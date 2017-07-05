@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+  -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Button - Material Compoonents Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      fieldset {
+        margin: 24px;
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+      fieldset mdc-button {
+        margin: 16px;
+      }
+      .mdc-theme--dark fieldset {
+        background-color: #333;
+      }
+
+      .mdc-theme--dark fieldset legend {
+        color: #f0f0f0;
+      }
+
+      .hero div {
+        text-align: center;
+      }
+      .hero div label {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+
+      fieldset legend {
+        display: block;
+        padding: 16px;
+        padding-top: 64px;
+        padding-bottom: 24px;
+      }
+    </style>
+  </head>
+  <body ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><i class="material-icons">&#xE5C4;</i></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Buttons</span>
+        </section>
+      </div>
+    </header>
+    <main class="mdc-toolbar-fixed-adjust" ng-controller="MainCtrl">
+
+      <section class="hero">
+        <div>
+          <mdc-button raised="isRaised" dense="isDense" compact="isCompact" color="{{ whichColor }}" ng-disabled="isDisabled">Click Me!</mdc-button>
+          <br><br>
+          <label><input type="checkbox" ng-model="isDense"> Dense</label>
+          <label><input type="checkbox" ng-model="isCompact"> Compact</label>
+          <label><input type="checkbox" ng-model="isRaised" checked="checked"> Raised</label>
+          <label><input type="checkbox" ng-model="isDisabled"> Disabled</label>
+          <br>
+          Color:
+          <label><input type="radio" ng-model="whichColor" value="primary"> Primary</label>
+          <label><input type="radio" ng-model="whichColor" value="accent"> Accent </label>
+          <label><input type="radio" ng-model="whichColor" value> Default </label>
+        </div>
+      </section>
+
+      <section>
+        <fieldset>
+          <legend class="mdc-typography--title">Buttons</legend>
+          <mdc-button>Default</mdc-button>
+          <mdc-button raised="true">Raised</mdc-button>
+          <mdc-button dense="true">Dense Default</mdc-button>
+          <mdc-button dense="true" raised="true">Dense Raised</mdc-button>
+          <mdc-button compact="true">Compact</mdc-button>
+          <mdc-button compact="true" raised="true">Compact Raised</mdc-button>
+          <mdc-button color="primary">Default with Primary</mdc-button>
+          <mdc-button raised="true" color="primary">Raised with Primary</mdc-button>
+          <mdc-button color="accent">Default with Accent</mdc-button>
+          <mdc-button raised="true" color="accent">Raised with Accent</mdc-button>
+        </fieldset>
+
+        <fieldset>
+          <legend class="mdc-typography--title">Disabled</legend>
+          <mdc-button ng-disabled="true">Default</mdc-button>
+          <mdc-button raised="true" ng-disabled="true">Raised</mdc-button>
+          <mdc-button dense="true" ng-disabled="true">Dense Default</mdc-button>
+          <mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</mdc-button>
+          <mdc-button compact="true" ng-disabled="true">Compact</mdc-button>
+          <mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</mdc-button>
+          <mdc-button color="primary" ng-disabled="true">Default with Primary</mdc-button>
+          <mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</mdc-button>
+          <mdc-button color="accent" ng-disabled="true">Default with Accent</mdc-button>
+          <mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</mdc-button>
+        </fieldset>
+      </section>
+
+      <section class="mdc-theme--dark">
+        <fieldset>
+          <legend class="mdc-typography--title">Dark Theme - Buttons</legend>
+          <mdc-button>Default</mdc-button>
+          <mdc-button raised="true">Raised</mdc-button>
+          <mdc-button dense="true">Dense Default</mdc-button>
+          <mdc-button dense="true" raised="true">Dense Raised</mdc-button>
+          <mdc-button compact="true">Compact</mdc-button>
+          <mdc-button compact="true" raised="true">Compact Raised</mdc-button>
+          <mdc-button color="primary">Default with Primary</mdc-button>
+          <mdc-button raised="true" color="primary">Raised with Primary</mdc-button>
+          <mdc-button color="accent">Default with Accent</mdc-button>
+          <mdc-button raised="true" color="accent">Raised with Accent</mdc-button>
+        </fieldset>
+        <fieldset>
+          <legend class="mdc-typography--title">Dark Theme - Disabled <input type="checkbox" ng-model="isDisabled"> </legend>
+          <mdc-button ng-disabled="true">Default</mdc-button>
+          <mdc-button raised="true" ng-disabled="true">Raised</mdc-button>
+          <mdc-button dense="true" ng-disabled="true">Dense Default</mdc-button>
+          <mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</mdc-button>
+          <mdc-button compact="true" ng-disabled="true">Compact</mdc-button>
+          <mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</mdc-button>
+          <mdc-button color="primary" ng-disabled="true">Default with Primary</mdc-button>
+          <mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</mdc-button>
+          <mdc-button color="accent" ng-disabled="true">Default with Accent</mdc-button>
+          <mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</mdc-button>
+        </fieldset>
+      </section>
+    </main>
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc.button'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.isRaised = true;
+          $scope.whichColor = "primary";
+        }]);
+    </script>
+  </body>
+</html>

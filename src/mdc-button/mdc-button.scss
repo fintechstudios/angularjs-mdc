@@ -1,0 +1,12 @@
+@import "~@material/button/mdc-button";
+
+// on custom elements, :disabled doesn't exist, but the disabled attribute is available via [disabled]
+.mdc-button {
+  &[disabled] {
+    @extend .mdc-button:disabled;
+  }
+
+  &--raised[disabled] {
+    @extend .mdc-button--raised:disabled;
+  }
+}
