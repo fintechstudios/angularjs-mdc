@@ -8,7 +8,7 @@ const PUBLIC_PATH = '/assets/';
 const IS_DEV = process.env.MDC_ENV === 'development' || process.env.MDC_ENV === 'test';
 const IS_TEST = process.env.MDC_ENV === 'test';
 const IS_PROD = process.env.MDC_ENV === 'production';
-const OUT_PATH = IS_PROD ? path.resolve('./dist') : path.resolve('./build');
+const OUT_PATH = path.resolve('./dist');
 const PACKAGE_NAME = 'angularjs-mdc';
 
 const CSS_LOADER_CONFIG = [

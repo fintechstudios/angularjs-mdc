@@ -1,5 +1,5 @@
 {
-  "name": "angularjs-mdc",
+  "name": "@fintechstudios/angularjs-mdc",
   "version": "0.1.0",
   "description": "Material Design Components Web for AngularJS",
   "main": "./dist/index",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fintechstudios/mdc-web-angularjs.git"
+    "url": "git+https://github.com/fintechstudios/angularjs-mdc.git"
   },
   "author": "Dylan Praul",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/fintechstudios/mdc-web-angularjs/issues"
+    "url": "https://github.com/fintechstudios/angularjs-mdc/issues"
   },
-  "homepage": "https://github.com/fintechstudios/mdc-web-angularjs#readme",
+  "homepage": "https://github.com/fintechstudios/angularjs-mdc#readme",
   "peerDependencies": {
     "angular": ">=1.4 <1.7"
   },
