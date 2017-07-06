@@ -1,4 +1,4 @@
-# angularjs-mdc
+# angularjs-mdc  [![CircleCI](https://circleci.com/gh/fintechstudios/angularjs-mdc/tree/master.svg?style=svg)](https://circleci.com/gh/fintechstudios/angularjs-mdc/tree/master)
 AngularJS wrapper for [Material Design Components Web](https://material.io/components/web/)
 
 ## Rationale
