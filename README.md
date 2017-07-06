@@ -25,6 +25,10 @@ being an easy and suitable replacement for angular-material.
 - `npm run serve` - build a development version to memory, demos available at `localhost:8080`
 - `npm run build:min` - build a production-ready version in `dist/`
 
+## Testing
+- `npm run test` - run auto-refreshing unit tests against source
+- `npm run test:ci` - single-run unit tests against minified distributable
+
 
 ## Coverage
 

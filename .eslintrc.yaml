@@ -3,6 +3,8 @@ extends:
   - google
 globals:
   goog: false
+plugins:
+  - mocha
 env:
   browser: true
 parserOptions:

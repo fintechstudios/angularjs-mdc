@@ -5,7 +5,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Used with webpack-dev-server
 const PUBLIC_PATH = '/assets/';
-const IS_DEV = process.env.MDC_ENV === 'development';
+const IS_DEV = process.env.MDC_ENV === 'development' || process.env.MDC_ENV === 'test';
+const IS_TEST = process.env.MDC_ENV === 'test';
 const IS_PROD = process.env.MDC_ENV === 'production';
 const OUT_PATH = IS_PROD ? path.resolve('./dist') : path.resolve('./build');
 const PACKAGE_NAME = 'angularjs-mdc';
@@ -47,7 +48,7 @@ module.exports = [{
     disableHostCheck: true,
     contentBase: [path.join(__dirname, 'demos'), path.join(__dirname, 'node_modules')],
   },
-  devtool: IS_DEV ? 'source-map' : false,
+  devtool: (IS_DEV && !IS_TEST) ? 'source-map' : false,
   module: {
     rules: [{
       test: /\.js$/,
