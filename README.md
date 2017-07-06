@@ -21,7 +21,7 @@ being an easy and suitable replacement for angular-material.
 `npm install`
 
 ### Commands Available
-- `npm run build` - build a development npversion in `dist/`
+- `npm run build` - build a development ready version in `dist/`
 - `npm run serve` - build a development version to memory, demos available at `localhost:8080`
 - `npm run build:min` - build a production-ready version in `dist/`
 
