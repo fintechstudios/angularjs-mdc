@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: Building Distributions
-          command: "npm run build:min"
+          command: "npm run build:all"
 
       - run:
           name: Running Unit Tests

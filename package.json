@@ -5,11 +5,15 @@
   "main": "./dist/index",
   "scripts": {
     "lint": "eslint --color src",
-    "build": "webpack --progress --colors",
-    "build:min": "cross-env MDC_ENV=production webpack -p --progress --colors",
+    "build": "webpack --colors",
+    "build:min": "cross-env MDC_ENV=production webpack -p --colors",
+    "build:all": "npm run build && npm run build:min",
     "test": "cross-env MDC_ENV=test karma start karma.conf.js",
     "test:ci": "karma start karma.ci.conf.js",
-    "serve": "cross-env MDC_ENV=development webpack-dev-server --content-base demos --inline --hot --host 0.0.0.0"
+    "serve": "cross-env MDC_ENV=development webpack-dev-server --content-base demos --inline --hot --host 0.0.0.0",
+    "preversion": "npm run test -- --single-run",
+    "version": "npm run build:all && git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
