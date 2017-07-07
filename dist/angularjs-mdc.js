@@ -95,8 +95,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(2);
-
 /**
  * @ngdoc component
  * @name mdcButton
@@ -109,7 +107,6 @@ __webpack_require__(2);
  * @param {expression=} ng-disabled En/Disable based on the expression
  *
  */
-
 var MdcButtonController = function () {
   MdcButtonController.$inject = ['$element'];
 
@@ -170,12 +167,6 @@ angular.module('mdc.button', []).component('mdcButton', {
     color: '@'
   }
 });
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
