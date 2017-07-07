@@ -1,5 +1,3 @@
-require('./mdc-button.scss');
-
 /**
  * @ngdoc component
  * @name mdcButton

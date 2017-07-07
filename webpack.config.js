@@ -34,9 +34,14 @@ const CSS_LOADER_CONFIG = [
   },
 ];
 
+const DEV_SERVER_CONFIG = {
+  disableHostCheck: true,
+  contentBase: [path.join(__dirname, 'demos'), path.join(__dirname, 'node_modules')],
+};
+
 module.exports = [{
   name: 'js-all',
-  entry: path.resolve('./src/all.js'),
+  entry: path.resolve('./src/mdc.js'),
   output: {
     path: OUT_PATH,
     publicPath: PUBLIC_PATH,
@@ -44,10 +49,7 @@ module.exports = [{
     libraryTarget: 'umd',
     library: PACKAGE_NAME,
   },
-  devServer: {
-    disableHostCheck: true,
-    contentBase: [path.join(__dirname, 'demos'), path.join(__dirname, 'node_modules')],
-  },
+  devServer: DEV_SERVER_CONFIG,
   devtool: (IS_DEV && !IS_TEST) ? 'source-map' : false,
   module: {
     rules: [{
@@ -57,7 +59,22 @@ module.exports = [{
       options: {
         cacheDirectory: true,
       },
-    }, {
+    }],
+  },
+}];
+
+const CSS_EXPORT = {
+  name: 'scss',
+  entry: {},
+  output: {
+    path: OUT_PATH,
+    publicPath: PUBLIC_PATH,
+    filename: '[name].' + (IS_PROD ? 'min.' : '') + 'css',
+  },
+  devServer: DEV_SERVER_CONFIG,
+  devtool: IS_DEV ? 'source-map' : false,
+  module: {
+    rules: [{
       test: /\.scss$/,
       use: IS_DEV ? [{loader: 'style-loader'}].concat(CSS_LOADER_CONFIG) : ExtractTextPlugin.extract({
         fallback: 'style-loader',
@@ -66,9 +83,11 @@ module.exports = [{
     }],
   },
   plugins: [
-    new ExtractTextPlugin(PACKAGE_NAME + '.' + (IS_PROD ? 'min.' : '') + 'css'),
+    new ExtractTextPlugin('[name].' + (IS_PROD ? 'min.' : '') + 'css'),
   ],
-}];
+};
+CSS_EXPORT['entry'][PACKAGE_NAME] = path.resolve('./src/mdc.scss');
+module.exports.push(CSS_EXPORT);
 
 
 if (IS_DEV) {
@@ -82,9 +101,7 @@ if (IS_DEV) {
       publicPath: PUBLIC_PATH,
       filename: '[name].css.js',
     },
-    devServer: {
-      disableHostCheck: true,
-    },
+    devServer: DEV_SERVER_CONFIG,
     devtool: 'source-map',
     module: {
       rules: [{
