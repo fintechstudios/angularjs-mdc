@@ -15,12 +15,12 @@ module.exports = function(config) {
     files: [
       './node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
-      './src/all.js',
+      './src/mdc.js',
       './src/**/*.spec.js',
     ],
 
     preprocessors: {
-      './src/all.js': ['webpack'],
+      './src/mdc.js': ['webpack'],
       './src/**/*.spec.js': ['babel'],
     },
 
