@@ -1,0 +1,37 @@
+$default-icon-size: 24px;
+
+.mdc-icon {
+  margin: auto;
+  background-repeat: no-repeat no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  height: $default-icon-size;
+  width: $default-icon-size;
+
+  // The icons should not shrink on smaller viewports.
+  min-height: $default-icon-size;
+  min-width: $default-icon-size;
+
+  svg {
+    pointer-events: none;
+    display: block;
+  }
+
+  &[mdc-font-icon] {
+    line-height: $default-icon-size;
+    width: auto;
+  }
+}
+
+$icon-sizes: 18 24 36 48;
+
+@each $size in $icon-sizes {
+  .mdc-icon--#{$size}, .material-icons.mdc-icon--#{$size} {
+    font-size: #{$size}px;
+    height: #{$size}px;
+    width: #{$size}px;
+    min-height: #{$size}px;
+    min-width: #{$size}px;
+  }
+}

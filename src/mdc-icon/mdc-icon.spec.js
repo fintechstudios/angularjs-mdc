@@ -17,11 +17,12 @@ describe('mdc-icon', function() {
     };
   }));
 
-  it('should have only the `material-icons` class by default', function() {
+  it('should have only the `material-icons` and `mdc-icon` classes by default', function() {
     const ctrl = makeCtrl();
 
     expect(ctrl.elem.hasClass('material-icons')).to.be.true;
-    expect(ctrl.elem[0].classList.length).to.equal(1);
+    expect(ctrl.elem.hasClass('mdc-icon')).to.be.true;
+    expect(ctrl.elem[0].classList.length).to.equal(2);
   });
 
   it('should use the `mdc-font-icon` attribute as its text contents', function() {
@@ -38,5 +39,21 @@ describe('mdc-icon', function() {
     ctrl.$onChanges({'mdcFontIcon': {}});
 
     expect(ctrl.elem.text()).to.equal(icon2);
+  });
+
+  it('should add the `mdc-icon--SIZE` class for each of the MDC_ICON_SIZES', function() {
+    const ctrl = makeCtrl({'mdcFontIcon': icon1});
+    ctrl.MDC_ICON_SIZES.forEach(function(size) {
+      ctrl.size = size;
+      ctrl.$onChanges({size: {}});
+      expect(ctrl.elem.hasClass('mdc-icon--' + size));
+      expect(ctrl.elem[0].classList.length).to.equal(3);
+    });
+  });
+
+  it('should not add any classes if an invalid size is added', function() {
+    const ctrl = makeCtrl({'mdcFontIcon': icon1, 'size': 55});
+
+    expect(ctrl.elem[0].classList.length).to.equal(2);
   });
 });

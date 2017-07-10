@@ -78,24 +78,10 @@
 
       <section class="hero">
         <div>
-          <mdc-icon ng-style="{'font-size': '48px', 'height': '48px'}" class="mdc-theme--primary" ng-bind="iconName"></mdc-icon>
+          <mdc-icon size="48" ng-bind="iconName"></mdc-icon>
           <br><br>
           <input title="selected icon" type="text" ng-model="iconName">
         </div>
-      </section>
-
-      <section class="mdc-theme--dark">
-        <fieldset>
-          <legend class="mdc-typography--title">Using ng-bind</legend>
-          <div class="glyph-row" ng-repeat="icon in iconSets[1]">
-            <div class="preview-glyphs" ng-repeat="size in sizes">
-              <mdc-icon ng-bind="icon.name"
-                        ng-style="{color: icon.color, 'font-size': size + 'px', height: size + 'px'}"
-                        aria-label="{{ icon.name + size }}"
-                        class="step"></mdc-icon>
-            </div>
-          </div>
-        </fieldset>
       </section>
 
       <section>
@@ -104,8 +90,22 @@
           <div class="glyph-row" ng-repeat="icon in iconSets[0]">
             <div class="preview-glyphs" ng-repeat="size in sizes">
               <mdc-icon mdc-font-icon="{{ icon.name }}"
-                        ng-style="{color: icon.color, 'font-size': size + 'px', height: size + 'px'}"
-                        aria-label="{{ icon.name + size }}"
+                        ng-style="{color: icon.color}"
+                        size="{{ size }}"
+                        class="step"></mdc-icon>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="mdc-theme--dark">
+        <fieldset>
+          <legend class="mdc-typography--title">Using ng-bind</legend>
+          <div class="glyph-row" ng-repeat="icon in iconSets[1]">
+            <div class="preview-glyphs" ng-repeat="size in sizes">
+              <mdc-icon ng-bind="icon.name"
+                        ng-style="{color: icon.color}"
+                        size="{{ size }}"
                         class="step"></mdc-icon>
             </div>
           </div>
@@ -117,8 +117,8 @@
           <legend class="mdc-typography--title">Using html context</legend>
           <div class="glyph-row" ng-repeat="icon in iconSets[2]">
             <div class="preview-glyphs" ng-repeat="size in sizes">
-              <mdc-icon ng-style="{color: icon.color, 'font-size': size + 'px', height: size + 'px'}"
-                        aria-label="{{ icon.name + size }}"
+              <mdc-icon ng-style="{color: icon.color}"
+                        size="{{ size }}"
                         class="step">{{ icon.name }}</mdc-icon>
             </div>
           </div>
@@ -129,7 +129,7 @@
     <script src="assets/angularjs-mdc.js"></script>
     <script>
       angular.module('demo', ['mdc.icon'])
-        .controller('MainCtrl', ['$scope', function($scope) {
+        .controller('MainCtrl', ['$scope', 'MDC_ICON_SIZES', function($scope, MDC_ICON_SIZES) {
           $scope.name = '';
           $scope.iconSets = [
             [
@@ -143,7 +143,7 @@
               {name: 'share'}, {name: 'check_box', color: 'green'}
             ]
           ];
-          $scope.sizes = [48, 36, 24, 18];
+          $scope.sizes = MDC_ICON_SIZES.reverse();
           $scope.iconName = 'insert_emoticon';
         }]);
     </script>
