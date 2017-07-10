@@ -5,12 +5,12 @@ describe('mdc-button', function() {
 
   beforeEach(module('mdc'));
   beforeEach(inject(function($componentController) {
-    makeCtrl = function(bindings) {
+    makeCtrl = function(bindings, changes) {
       const ctrl = $componentController('mdcButton', {
         $element: angular.element('<mdc-button></mdc-button>'),
       }, bindings || {});
       ctrl.$postLink();
-      ctrl.$onChanges();
+      ctrl.$onChanges(changes || {});
       return ctrl;
     };
   }));
@@ -26,13 +26,15 @@ describe('mdc-button', function() {
     it('should have the `mdc-button--' + attr + '` class when ' + attr + '=true', function() {
       const ctrl = makeCtrl();
       ctrl[attr] = false;
-      ctrl.$onChanges();
+      const changes = {};
+      changes[attr] = {};
+      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + attr)).to.be.false;
       ctrl[attr] = true;
-      ctrl.$onChanges();
+      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + attr)).to.be.true;
       ctrl[attr] = false;
-      ctrl.$onChanges();
+      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + attr)).to.be.false;
     });
   });
@@ -40,14 +42,15 @@ describe('mdc-button', function() {
   ['primary', 'accent'].forEach(function(color) {
     it('should have the `mdc-button--' + color + '` class when color=' + color, function() {
       const ctrl = makeCtrl();
+      const changes = {'color': {}};
       ctrl['color'] = '';
-      ctrl.$onChanges();
+      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + color)).to.be.false;
       ctrl['color'] = color;
-      ctrl.$onChanges();
+      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + color)).to.be.true;
       ctrl['color'] = '';
-      ctrl.$onChanges();
+      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + color)).to.be.false;
     });
   });

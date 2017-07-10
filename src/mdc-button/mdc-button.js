@@ -19,25 +19,29 @@ class MdcButtonController {
     this.elem.addClass('mdc-button');
   }
 
-  $onChanges() {
+  $onChanges(changesObj) {
     const e = this.elem;
     const ctrl = this;
     ['dense', 'raised', 'compact'].forEach(function(attr) {
-      if (ctrl[attr]) {
-        e.addClass('mdc-button--' + attr);
-      } else {
-        e.removeClass('mdc-button--' + attr);
+      if (changesObj[attr]) {
+        if (ctrl[attr]) {
+          e.addClass('mdc-button--' + attr);
+        } else {
+          e.removeClass('mdc-button--' + attr);
+        }
       }
     });
-    if (ctrl.color === 'primary') {
-      e.addClass('mdc-button--primary');
-      e.removeClass('mdc-button--accent');
-    } else if (ctrl.color === 'accent') {
-      e.addClass('mdc-button--accent');
-      e.removeClass('mdc-button--primary');
-    } else {
-      e.removeClass('mdc-button--primary');
-      e.removeClass('mdc-button--accent');
+    if (changesObj.color) {
+      if (ctrl.color === 'primary') {
+        e.addClass('mdc-button--primary');
+        e.removeClass('mdc-button--accent');
+      } else if (ctrl.color === 'accent') {
+        e.addClass('mdc-button--accent');
+        e.removeClass('mdc-button--primary');
+      } else {
+        e.removeClass('mdc-button--primary');
+        e.removeClass('mdc-button--accent');
+      }
     }
   };
 }
