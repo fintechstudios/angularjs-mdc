@@ -22,8 +22,9 @@
     <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
     <script src="assets/demo-styles.css.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
-  <body>
+  <body ng-app="demo">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -37,13 +38,22 @@
     <main>
       <nav class="mdc-toolbar-fixed-adjust">
         <ul class="catalog-list mdc-list mdc-list--two-line">
-          
+
           <!-- Button -->
           <li class="mdc-list-item">
-              <span class="catalog-list-icon mdc-list-item__start-detail"><img class="catalog-component-icon" src="/images/ic_button_24px.svg" /></span>
+              <span class="catalog-list-icon mdc-list-item__start-detail"><mdc-icon>add_circle_outline</mdc-icon></span>
               <a href="button.html" class="mdc-list-item__text">
                 Button
                 <span class="mdc-list-item__text__secondary">Raised and flat buttons</span>
+              </a>
+          </li>
+
+          <!-- Icon -->
+          <li class="mdc-list-item">
+              <span class="catalog-list-icon mdc-list-item__start-detail"><mdc-icon>insert_emoticon</mdc-icon></span>
+              <a href="icon.html" class="mdc-list-item__text">
+                  Icon
+                  <span class="mdc-list-item__text__secondary">Material Design Icons</span>
               </a>
           </li>
           
@@ -302,5 +312,13 @@
         </ul>
       </nav>
     </main>
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+        }]);
+    </script>
   </body>
 </html>
