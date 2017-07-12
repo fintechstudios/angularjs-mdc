@@ -3,7 +3,7 @@ module.exports = function(config) {
   config.set({
     basePath: '.',
 
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['browserify', 'mocha', 'chai'],
 
     autoWatch: true,
     singleRun: false,
@@ -21,13 +21,18 @@ module.exports = function(config) {
 
     preprocessors: {
       './src/mdc.js': ['webpack'],
-      './src/**/*.spec.js': ['babel'],
+      './src/**/*.spec.js': ['browserify'],
     },
 
     reporters: ['mocha'],
 
     mochaReporter: {
       output: 'autowatch',
+    },
+
+    browserify: {
+      debug: true,
+      transform: [['babelify', {'presets': ['es2015']}]],
     },
 
     browserConsoleLogOptions: {

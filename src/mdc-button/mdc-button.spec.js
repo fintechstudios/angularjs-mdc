@@ -3,7 +3,7 @@
 describe('mdc-button', function() {
   let makeCtrl;
 
-  beforeEach(module('mdc'));
+  beforeEach(angular.mock.module('mdc'));
   beforeEach(inject(function($componentController) {
     makeCtrl = function(bindings, changes) {
       const ctrl = $componentController('mdcButton', {

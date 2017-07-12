@@ -1,20 +1,15 @@
 'use strict';
 
+import {getComponentGenerator} from '../util/test-helper';
+
 describe('mdc-icon', function() {
   let makeCtrl;
   const icon1 = 'home';
   const icon2 = 'arrow_back';
 
-  beforeEach(module('mdc'));
+  beforeEach(angular.mock.module('mdc'));
   beforeEach(inject(function($componentController) {
-    makeCtrl = function(bindings, changes) {
-      const ctrl = $componentController('mdcIcon', {
-        $element: angular.element('<mdc-icon></mdc-icon>'),
-      }, bindings || {});
-      ctrl.$onChanges(changes | {});
-      ctrl.$postLink();
-      return ctrl;
-    };
+    makeCtrl = getComponentGenerator($componentController, 'mdc-icon');
   }));
 
   it('should have only the `material-icons` and `mdc-icon` classes by default', function() {
