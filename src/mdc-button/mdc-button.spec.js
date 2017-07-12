@@ -9,8 +9,8 @@ describe('mdc-button', function() {
       const ctrl = $componentController('mdcButton', {
         $element: angular.element('<mdc-button></mdc-button>'),
       }, bindings || {});
-      ctrl.$postLink();
       ctrl.$onChanges(changes || {});
+      ctrl.$postLink();
       return ctrl;
     };
   }));

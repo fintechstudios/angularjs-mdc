@@ -11,8 +11,8 @@ describe('mdc-icon', function() {
       const ctrl = $componentController('mdcIcon', {
         $element: angular.element('<mdc-icon></mdc-icon>'),
       }, bindings || {});
-      ctrl.$postLink();
       ctrl.$onChanges(changes | {});
+      ctrl.$postLink();
       return ctrl;
     };
   }));
