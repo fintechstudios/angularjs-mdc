@@ -1,20 +1,28 @@
 
 import {normalize} from './normalize';
 
+
+function UNINITIALIZED_VALUE() {}
+export const _UNINITIALIZED_VALUE = new UNINITIALIZED_VALUE();
+
 /**
- * Convenience class for using with $onChanges()
+ * From AngularJS - generates keys for use with $onChanges()
  *
- * Usage: `ctrl.$onChanges({item: changesObj('new')});`
+ * Usage: `ctrl.$onChanges({item: SimpleChange('new')});`
  *
- * @param currentValue
- * @param [previousValue=Object]
+ * @param current
+ * @param [previous=_UNINITIALIZED_VALUE]
  * @returns {{currentValue: *, previousValue: (*|{})}}
  */
-export function changesObj(currentValue, previousValue={}) {
-  return {
-    currentValue: currentValue,
-    previousValue: previousValue || {},
-  };
+export class SimpleChange {
+  constructor(current, previous=_UNINITIALIZED_VALUE) {
+    this.previousValue = previous;
+    this.currentValue = current;
+  }
+
+  isFirstChange() {
+    return this.previousValue === _UNINITIALIZED_VALUE;
+  }
 }
 
 /**
@@ -36,14 +44,31 @@ export function getComponentGenerator($componentController, componentName) {
       $element: e,
     }, bindings);
 
+    /**
+     * Utility function to simulate binding update on controller.
+     * @param {string} binding the binding to update
+     * @param newValue the new value to update the binding to
+     */
+    ctrl._update_ = function(binding, newValue) {
+      const changes = {};
+      changes[binding] = new SimpleChange(newValue, this[binding]);
+      this[binding] = newValue;
+      if (this.$onChanges) {
+        this.$onChanges(changes);
+      }
+    };
+
     const changes = {};
     for (const key in bindings) {
       if (bindings.hasOwnProperty(key)) {
-        changes[key] = changesObj(key, bindings[key]);
+        changes[key] = new SimpleChange(bindings[key]);
       }
     }
     if (ctrl.$onChanges) {
       ctrl.$onChanges(changes);
+    }
+    if (ctrl.$onInit) {
+      ctrl.$onInit();
     }
     if (ctrl.$postLink) {
       ctrl.$postLink();

@@ -30,8 +30,7 @@ describe('mdc-icon', function() {
     const ctrl = makeCtrl({'mdcFontIcon': icon1});
 
     expect(ctrl.elem.text()).to.equal(icon1);
-    ctrl.mdcFontIcon = icon2;
-    ctrl.$onChanges({'mdcFontIcon': {}});
+    ctrl._update_('mdcFontIcon', icon2);
 
     expect(ctrl.elem.text()).to.equal(icon2);
   });
@@ -39,8 +38,7 @@ describe('mdc-icon', function() {
   it('should add the `mdc-icon--SIZE` class for each of the MDC_ICON_SIZES', function() {
     const ctrl = makeCtrl({'mdcFontIcon': icon1});
     ctrl.MDC_ICON_SIZES.forEach(function(size) {
-      ctrl.size = size;
-      ctrl.$onChanges({size: {}});
+      ctrl._update_('size', size);
       expect(ctrl.elem.hasClass('mdc-icon--' + size));
       expect(ctrl.elem[0].classList.length).to.equal(3);
     });

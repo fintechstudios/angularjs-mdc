@@ -1,18 +1,13 @@
 'use strict';
 
+import {getComponentGenerator} from '../util/test-helper';
+
 describe('mdc-button', function() {
   let makeCtrl;
 
   beforeEach(angular.mock.module('mdc'));
   beforeEach(inject(function($componentController) {
-    makeCtrl = function(bindings, changes) {
-      const ctrl = $componentController('mdcButton', {
-        $element: angular.element('<mdc-button></mdc-button>'),
-      }, bindings || {});
-      ctrl.$onChanges(changes || {});
-      ctrl.$postLink();
-      return ctrl;
-    };
+    makeCtrl = getComponentGenerator($componentController, 'mdc-button');
   }));
 
   it('should have only the `mdc-button` class by default', function() {
@@ -25,16 +20,11 @@ describe('mdc-button', function() {
   ['dense', 'raised', 'compact'].forEach(function(attr) {
     it('should have the `mdc-button--' + attr + '` class when ' + attr + '=true', function() {
       const ctrl = makeCtrl();
-      ctrl[attr] = false;
-      const changes = {};
-      changes[attr] = {};
-      ctrl.$onChanges(changes);
+      ctrl._update_(attr, false);
       expect(ctrl.elem.hasClass('mdc-button--' + attr)).to.be.false;
-      ctrl[attr] = true;
-      ctrl.$onChanges(changes);
+      ctrl._update_(attr, true);
       expect(ctrl.elem.hasClass('mdc-button--' + attr)).to.be.true;
-      ctrl[attr] = false;
-      ctrl.$onChanges(changes);
+      ctrl._update_(attr, false);
       expect(ctrl.elem.hasClass('mdc-button--' + attr)).to.be.false;
     });
   });
@@ -42,15 +32,10 @@ describe('mdc-button', function() {
   ['primary', 'accent'].forEach(function(color) {
     it('should have the `mdc-button--' + color + '` class when color=' + color, function() {
       const ctrl = makeCtrl();
-      const changes = {'color': {}};
-      ctrl['color'] = '';
-      ctrl.$onChanges(changes);
       expect(ctrl.elem.hasClass('mdc-button--' + color)).to.be.false;
-      ctrl['color'] = color;
-      ctrl.$onChanges(changes);
+      ctrl._update_('color', color);
       expect(ctrl.elem.hasClass('mdc-button--' + color)).to.be.true;
-      ctrl['color'] = '';
-      ctrl.$onChanges(changes);
+      ctrl._update_('color', '');
       expect(ctrl.elem.hasClass('mdc-button--' + color)).to.be.false;
     });
   });
