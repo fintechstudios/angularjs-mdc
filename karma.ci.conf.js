@@ -3,7 +3,7 @@ module.exports = function(config) {
   config.set({
     basePath: '.',
 
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['browserify', 'mocha', 'chai'],
 
     autoWatch: false,
     singleRun: true,
@@ -13,15 +13,21 @@ module.exports = function(config) {
     files: [
       './node_modules/angular/angular.js',
       './node_modules/angular-mocks/angular-mocks.js',
+      './src/util/mock-component.js',
       './dist/angularjs-mdc.min.js',
       './src/**/*.spec.js',
     ],
 
     preprocessors: {
-      './src/**/*.spec.js': ['babel'],
+      './src/**/*.spec.js': ['browserify'],
     },
 
     reporters: ['mocha', 'junit'],
+
+    browserify: {
+      debug: true,
+      transform: [['babelify', {'presets': ['es2015']}]],
+    },
 
     junitReporter: {
       outputDir: './test',
