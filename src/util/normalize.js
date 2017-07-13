@@ -1,5 +1,3 @@
-// from angular
-
 const PREFIX_REGEXP = /^((?:x|data)[:\-_])/i;
 const SPECIAL_CHARS_REGEXP = /[:\-_]+(.)/g;
 
@@ -12,7 +10,7 @@ function fnCamelCaseReplace(all, letter) {
  * Converts all accepted directives format into proper directive name.
  * @param {string} name Name to normalize
  */
-function directiveNormalize(name) {
+export function directiveNormalize(name) {
   return name
     .replace(PREFIX_REGEXP, '')
     .replace(SPECIAL_CHARS_REGEXP, fnCamelCaseReplace);
@@ -26,7 +24,7 @@ function directiveNormalize(name) {
  *
  * @returns {string[]} the list of binding names
  */
-function convertStringsObjToBindingNames(obj, skip) {
+export function convertStringsObjToBindingNames(obj, skip) {
   const names = [];
   for (const attr in obj) {
     if (!obj.hasOwnProperty(attr) || skip.indexOf(attr) >= 0) {
@@ -38,8 +36,3 @@ function convertStringsObjToBindingNames(obj, skip) {
   }
   return names;
 }
-
-module.exports = {
-  normalize: directiveNormalize,
-  convertStringsObjToBindingNames: convertStringsObjToBindingNames,
-};
