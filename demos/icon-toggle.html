@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+  -->
+<html class="mdc-typography">
+  <head>
+    <meta charset="utf-8">
+    <title>Icon Toggle - Material Components Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <style>
+      .hero div {
+        text-align: center;
+      }
+
+      .mdc-theme--dark {
+        background: #303030;
+      }
+
+      .mdc-theme--dark:not(.demo-color-combo) {
+        padding-bottom: 1rem;
+      }
+
+      #demo-color-combos {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .demo-wrapper {
+        margin-left: 1rem;
+      }
+
+      .example {
+        display: flex;
+        flex-flow: row wrap;
+        align-content: left;
+        justify-content: left;
+      }
+
+      .toggle-example {
+        min-width: 240px;
+        padding: 24px;
+        margin: 24px;
+      }
+
+      .example h2 {
+        font-size: 1.3em;
+        margin-bottom: 0.8em;
+        margin-top: 0.8em;
+      }
+
+      .demo-color-combo {
+        width: 250px;
+        padding: 1rem;
+        border-radius: 4px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+      }
+
+      .demo-color-combo > p {
+        margin: 0;
+      }
+
+      #light-on-bg {
+        background-color: #3e82f7;
+      }
+      #light-on-bg .mdc-icon-toggle {
+        color: white;
+      }
+      #light-on-bg .mdc-icon-toggle.mdc-ripple-upgraded::before,
+      #light-on-bg .mdc-icon-toggle.mdc-ripple-upgraded::after {
+        background-color: rgba(255, 255, 255, .3);
+      }
+
+      #dark-on-bg {
+        background-color: #00bcd6;
+      }
+
+      #custom-on-dark .mdc-icon-toggle {
+        color: #de442c;
+      }
+      #custom-on-dark .mdc-icon-toggle.mdc-ripple-upgraded::before,
+      #custom-on-dark .mdc-icon-toggle.mdc-ripple-upgraded::after {
+        /* #de442c - opacity .16 */
+        background-color: rgba(222, 68, 44, .26);
+      }
+    </style>
+  </head>
+  <body ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Icon Toggle</span>
+        </section>
+      </div>
+    </header>
+    <main class="mdc-toolbar-fixed-adjust" ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <div>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle toggle-on='{"content": "{{ contentOn }}", "label": "Remove From Favorites"}'
+                             toggle-off='{"content": "{{ contentOff }}", "label": "Add to Favorites"}'
+                             ng-disabled="isDisabled" color="{{ whichColor }}" ng-model="isToggled">
+            </mdc-icon-toggle>
+          </div>
+          <br><br>
+          <label>On: <input type="text" ng-model="contentOn"></label>
+          <label>Off: <input type="text" ng-model="contentOff"></label><br>
+          <label><input type="checkbox" ng-model="isToggled"> Toggled</label>
+          <label><input type="checkbox" ng-model="isDisabled"> Disabled</label>
+          <br>
+          Color:
+          <label><input type="radio" ng-model="whichColor" value="primary"> Primary</label>
+          <label><input type="radio" ng-model="whichColor" value="accent"> Accent </label>
+          <label><input type="radio" ng-model="whichColor" value> Default </label>
+        </div>
+      </section>
+
+      <section class="example">
+        <div class="toggle-example">
+          <h2>Using Material Icons</h2>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle id="add-to-favorites" ng-model="isFavorite"
+                             toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                             toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+            </mdc-icon-toggle>
+          </div>
+          <p><label>Favorited? <input type="checkbox" ng-model="isFavorite"></label>
+        </div>
+
+        <div class="toggle-example">
+          <h2>Using Font Awesome</h2>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle
+              toggle-on='{"cssClass": "fa-star", "label": "Unstar this item"}'
+              toggle-off='{"cssClass": "fa-star-o", "label": "Star this item"}'
+              aria-pressed="true" icon-inner-selector=".fa">
+                <i class="fa fa-star" aria-hidden="true"></i>
+            </mdc-icon-toggle>
+          </div>
+        </div>
+
+        <div class="toggle-example mdc-theme--dark">
+          <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                             toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+            </mdc-icon-toggle>
+          </div>
+        </div>
+
+        <div class="toggle-example">
+          <h2>Primary Colored Icons</h2>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle color="primary"
+                             toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                             toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+            </mdc-icon-toggle>
+          </div>
+        </div>
+
+        <div class="toggle-example">
+          <h2>Accent Colored Icons</h2>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle color="accent"
+                             toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                             toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+            </mdc-icon-toggle>
+          </div>
+        </div>
+
+        <div class="toggle-example">
+          <h2>Disabled Icons</h2>
+          <div class="demo-wrapper">
+            <mdc-icon-toggle ng-disabled="true"
+                             toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                             toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+            </mdc-icon-toggle>
+          </div>
+          <div class="mdc-theme--dark">
+            <div class="demo-wrapper">
+              <mdc-icon-toggle ng-disabled="true"
+                               toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                               toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+              </mdc-icon-toggle>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="toggle-example">
+          <h2>Additional Color Combinations</h2>
+          <div id="demo-color-combos">
+            <div id="light-on-bg" class="demo-color-combo">
+              <div>
+                <mdc-icon-toggle class="mdc-theme--text-primary-on-primary"
+                                 toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                                 toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+                </mdc-icon-toggle>
+              </div>
+              <p class="mdc-theme--text-primary-on-primary">Light icon on background</p>
+            </div>
+            <div id="dark-on-bg" class="demo-color-combo">
+              <div class="mdc-theme--primary">
+                <mdc-icon-toggle toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                                 toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+                </mdc-icon-toggle>
+              </div>
+              <p>Dark icon on background</p>
+            </div>
+            <div id="custom-on-dark" class="demo-color-combo mdc-theme--dark">
+              <div>
+                <mdc-icon-toggle toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
+                                 toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
+                </mdc-icon-toggle>
+              </div>
+              <p class="mdc-theme--text-primary-on-dark">Custom color on dark background</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.isFavorite = true;
+          $scope.isDisabled = false;
+          $scope.isToggled = false;
+          $scope.contentOn = 'favorite';
+          $scope.contentOff = 'favorite_border';
+          $scope.whichColor = '';
+        }]);
+    </script>
+  </body>
+</html>

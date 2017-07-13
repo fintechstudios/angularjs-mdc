@@ -32,10 +32,9 @@ being an easy and suitable replacement for angular-material.
 
 ## Coverage
 
-| Component       | Status              | Module     |
-| --------------- | ------------------- | ---------- |
-| button          | :white_check_mark:  | mdc.button |
-| icon            | :white_check_mark:  | mdc.icon   |
+| Component       | Status              | Module           |
+| --------------- | ------------------- | ---------------- |
+| button          | :white_check_mark:  | mdc.button       |
 | card            | :x:                 | |
 | checkbox        | :x:                 | |
 | dialog          | :x:                 | |
@@ -44,7 +43,8 @@ being an easy and suitable replacement for angular-material.
 | fab             | :x:                 | |
 | form-field      | :x:                 | |
 | grid-list       | :x:                 | |
-| icon-toggle     | :x:                 | |
+| icon            | :white_check_mark:  | mdc.icon          |
+| icon-toggle     | :white_check_mark:  | mdc.icon-toggle   |
 | linear-progress | :x:                 | |
 | list            | :x:                 | |
 | menu            | :x:                 | |
