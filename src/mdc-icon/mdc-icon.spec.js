@@ -43,7 +43,6 @@ describe('mdc-icon', function() {
     MDC_ICON_SIZES.forEach(function(size) {
       component.updateParent('iconSize', size);
       expect(elem.hasClass('mdc-icon--' + size));
-      console.log(elem[0].classList);
       expect(elem[0].classList.length).to.equal(initialClassSize + 1);
     });
   }));
