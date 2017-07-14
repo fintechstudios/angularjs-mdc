@@ -26,12 +26,16 @@ $default-icon-size: 24px;
 
 $icon-sizes: 18 24 36 48;
 
-@each $size in $icon-sizes {
+@mixin mdc-icon-size($size, $suffix: px) {
   .mdc-icon--#{$size}, .material-icons.mdc-icon--#{$size} {
-    font-size: #{$size}px;
-    height: #{$size}px;
-    width: #{$size}px;
-    min-height: #{$size}px;
-    min-width: #{$size}px;
+    font-size: #{$size}#{$suffix};
+    height: #{$size}#{$suffix};
+    width: #{$size}#{$suffix};
+    min-height: #{$size}#{$suffix};
+    min-width: #{$size}#{$suffix};
   }
+}
+
+@each $size in $icon-sizes {
+  @include mdc-icon-size($size);
 }
