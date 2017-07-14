@@ -30,7 +30,7 @@ describe('mdc-icon', function() {
     const elem = component.$element;
 
     expect(elem.text()).to.equal(icon1);
-    component.updateParent('iconName', icon2);
+    component.$parent('iconName', icon2);
 
     expect(elem.text()).to.equal(icon2);
   });
@@ -41,7 +41,7 @@ describe('mdc-icon', function() {
     const initialClassSize = elem[0].classList.length;
 
     MDC_ICON_SIZES.forEach(function(size) {
-      component.updateParent('iconSize', size);
+      component.$parent('iconSize', size);
       expect(elem.hasClass('mdc-icon--' + size));
       expect(elem[0].classList.length).to.equal(initialClassSize + 1);
     });
@@ -51,7 +51,7 @@ describe('mdc-icon', function() {
     const component = new $mockComponent({'mdcFontIcon': icon1, 'size': '{{ iconSize }}'}, {iconSize: ''});
     const elem = component.$element;
     const initialClassSize = elem[0].classList.length;
-    component.updateParent('iconSize', 'aaa');
+    component.$parent('iconSize', 'aaa');
 
     expect(elem[0].classList.length).to.equal(initialClassSize);
   });

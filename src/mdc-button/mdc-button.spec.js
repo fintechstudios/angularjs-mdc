@@ -25,10 +25,10 @@ describe('mdc-button', function() {
       const elem = component.$element;
       expect(elem.hasClass('mdc-button--' + attr)).to.be.false;
 
-      component.updateParent('buttonStyle', true);
+      component.$parent('buttonStyle', true);
       expect(elem.hasClass('mdc-button--' + attr)).to.be.true;
 
-      component.updateParent('buttonStyle', false);
+      component.$parent('buttonStyle', false);
       expect(elem.hasClass('mdc-button--' + attr)).to.be.false;
     });
   });
@@ -39,10 +39,10 @@ describe('mdc-button', function() {
       const elem = component.$element;
       expect(elem.hasClass('mdc-button--' + color)).to.be.false;
 
-      component.updateParent('buttonColor', color);
+      component.$parent('buttonColor', color);
       expect(elem.hasClass('mdc-button--' + color)).to.be.true;
 
-      component.updateParent('buttonColor', '');
+      component.$parent('buttonColor', '');
       expect(elem.hasClass('mdc-button--' + color)).to.be.false;
     });
   });

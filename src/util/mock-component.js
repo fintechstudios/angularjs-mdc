@@ -1,4 +1,7 @@
 
+function UNINITIALIZED_VALUE() {}
+const _UNINITIALIZED_VALUE = new UNINITIALIZED_VALUE();
+
 /**
  * @ngdoc service
  * @name $componentGenerator
@@ -46,7 +49,7 @@ class ComponentGeneratorProvider {
          * @method compile
          */
         compile() {
-          $compile(this.$element)(this.$parentScope);
+          $compile(this.$element)(this._$parentScope);
         }
 
         /**
@@ -54,20 +57,26 @@ class ComponentGeneratorProvider {
          * @method digest
          */
         digest() {
-          this.$parentScope.$$childHead.$apply();
+          this._$parentScope.$apply();
         }
 
         /**
-         * Convenience function to update variable in controller's $parentScope
-         * @method updateParent
+         * Convenience function to access the controller's parent scope
+         *
+         * Will return requested `variable` in the parent scope.
+         * If newValue is specified, will update `variable` in the parent scope and return the changed value.
+         *
+         * @method $parent
          *
          * @param {string} variable the variable name to update
-         * @param {*} newValue the new value to update the binding to
+         * @param {*} [newValue] the new value to update the binding to
          */
-        updateParent(variable, newValue) {
-          this.$parentScope[variable] = newValue;
-
-          this.digest();
+        $parent(variable, newValue=_UNINITIALIZED_VALUE) {
+          if (newValue !== _UNINITIALIZED_VALUE) {
+            this._$parentScope[variable] = newValue;
+            this.digest();
+          }
+          return this._$parentScope[variable];
         }
 
         /**
@@ -82,14 +91,7 @@ class ComponentGeneratorProvider {
          * @returns {Object} The scope the controller is (or will be) bound to.
          */
         get $childScope() {
-          return this.$parentScope.$$childHead;
-        }
-
-        /**
-         * @returns {Object} The parent scope of the controller.
-         */
-        get $parentScope() {
-          return this._$parentScope;
+          return this._$parentScope.$$childHead;
         }
 
         /**

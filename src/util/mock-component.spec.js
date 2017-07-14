@@ -81,11 +81,6 @@ describe('test-helper', function() {
       expect(component.$ctrl.$scope).to.equal(component.$childScope);
     });
 
-    it('should provide .$parentScope, which is the scope above the controller', function() {
-      const component = new $mockComponent();
-      expect(component.$childScope.$parent).to.equal(component.$parentScope);
-    });
-
     it('should have .$element, which is the element linked to the controller', function() {
       const component = new $mockComponent();
       expect(component.$element).to.exist;
@@ -158,7 +153,7 @@ describe('test-helper', function() {
         expect(ctrl.onChangesCalled).to.exist;
         expect(ctrl.onChangesCalled).to.equal(1);
 
-        component.updateParent('parentString', UPDATED_STRING);
+        component.$parent('parentString', UPDATED_STRING);
         expect(ctrl.onChangesCalled).to.equal(2);
         expect(ctrl.lastChangesObj.testString).to.exist;
         expect(ctrl.lastChangesObj.testString.currentValue).to.exist;
@@ -173,7 +168,7 @@ describe('test-helper', function() {
         expect(ctrl.onChangesCalled).to.exist;
         expect(ctrl.onChangesCalled).to.equal(1);
 
-        component.updateParent('parentString', UPDATED_STRING);
+        component.$parent('parentString', UPDATED_STRING);
         expect(ctrl.onChangesCalled).to.equal(2);
         expect(ctrl.lastChangesObj.testOneWay).to.exist;
         expect(ctrl.lastChangesObj.testOneWay.currentValue).to.exist;
@@ -189,7 +184,7 @@ describe('test-helper', function() {
         expect(ctrl.onChangesCalled).to.exist;
         expect(ctrl.onChangesCalled).to.equal(1);
 
-        component.updateParent('parentString', UPDATED_STRING);
+        component.$parent('parentString', UPDATED_STRING);
         expect(ctrl.onChangesCalled).to.equal(1);
         expect(ctrl.testTwoWay).to.equal(UPDATED_STRING);
       });
@@ -233,8 +228,8 @@ describe('test-helper', function() {
         expect(ctrl.testOneWay).to.exist;
         expect(ctrl.testOneWay).to.equal(TEST_STRING);
 
-        component.$parentScope.parentString = UPDATED_STRING;
-        component.$parentScope.$apply();
+        component._$parentScope.parentString = UPDATED_STRING;
+        component._$parentScope.$apply();
 
         expect(ctrl.testOneWay).to.equal(UPDATED_STRING);
       });
@@ -246,8 +241,8 @@ describe('test-helper', function() {
         expect(ctrl.testTwoWay).to.exist;
         expect(ctrl.testTwoWay).to.equal(TEST_STRING);
 
-        component.$parentScope.parentString = UPDATED_STRING;
-        component.$parentScope.$apply();
+        component._$parentScope.parentString = UPDATED_STRING;
+        component._$parentScope.$apply();
 
         expect(ctrl.testTwoWay).to.equal(UPDATED_STRING);
       });
@@ -260,17 +255,22 @@ describe('test-helper', function() {
 
         ctrl.testTwoWay = UPDATED_STRING;
         ctrl.$scope.$apply();
-        expect(component.$parentScope.parentString).to.equal(UPDATED_STRING);
+        expect(component._$parentScope.parentString).to.equal(UPDATED_STRING);
       });
     });
 
-    it('should provide `.updateParent()` to facilitate updates to parent scope', function() {
+    it('should provide `.$parent(variable)` to facilitate getting attributes from the parent scope', function() {
+      const component = new $mockComponent({testOneWay: 'parentString'}, {parentString: TEST_STRING});
+      expect(component.$parent('parentString')).to.equal(TEST_STRING);
+    });
+
+    it('should provide `.$parent(variable, newValue)` to facilitate updates to parent scope', function() {
       const component = new $mockComponent({testOneWay: 'parentString'}, {parentString: TEST_STRING});
       const ctrl = component.$ctrl;
       expect(ctrl.testOneWay).to.exist;
       expect(ctrl.testOneWay).to.equal(TEST_STRING);
 
-      component.updateParent('parentString', UPDATED_STRING);
+      component.$parent('parentString', UPDATED_STRING);
       expect(ctrl.testOneWay).to.equal(UPDATED_STRING);
     });
   });
