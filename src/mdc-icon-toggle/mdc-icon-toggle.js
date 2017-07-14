@@ -99,12 +99,12 @@ class MdcIconToggleController {
   $postLink() {
     this.foundation_ = this.getDefaultFoundation();
     this.foundation_.init();
-    if (!this.foundation_.toggleOnData_.cssClass || !this.foundation_.toggleOnData_.cssClass) {
+    if (!this.foundation_.toggleOnData_.cssClass && !this.foundation_.toggleOffData_.cssClass) {
       // if no cssClass specified, assume material-icons
       this.elem.addClass('material-icons');
     }
     // this.ripple_ = this.initRipple_(); // this should work, but it's disabled until mdc-ripple is wrapped
-    this.foundation_.toggle(this.ngModel === undefined ? !!this.ariaPressed : this.ngModel);
+    this.foundation_.toggle(this.ngModel === undefined ? this.ariaPressed === 'true' : this.ngModel);
     this.foundation_.setDisabled(this.ngDisabled);
   }
 
@@ -128,7 +128,6 @@ class MdcIconToggleController {
       for (const key in changesObj) {
         // check all the bound string attributes for changes, but only refresh if a single change is found
         if (notRefreshed && changesObj.hasOwnProperty(key) && STRING_BINDINGS.indexOf(key) >= 0) {
-          console.log(changesObj);
           this.foundation_.refreshToggleData();
           this.foundation_.toggle(!!this.ngModel);
           notRefreshed = false;
