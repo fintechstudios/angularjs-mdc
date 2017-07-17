@@ -943,6 +943,8 @@ angular.module('mdc.icon', []).constant('MDC_ICON_SIZES', ['18', '24', '36', '48
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _iconToggle = __webpack_require__(10);
@@ -1002,7 +1004,7 @@ var MdcIconToggleController = function () {
     value: function initRipple_() {
       var _this = this;
 
-      var adapter = Object.assign(_ripple.MDCRipple.createAdapter(this), {
+      var adapter = _extends(_ripple.MDCRipple.createAdapter(this), {
         isUnbounded: function isUnbounded() {
           return true;
         },
@@ -1169,6 +1171,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MDCIconToggle = exports.MDCIconToggleFoundation = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1235,7 +1239,7 @@ var MDCIconToggle = exports.MDCIconToggle = function (_MDCComponent) {
     value: function initRipple_() {
       var _this2 = this;
 
-      var adapter = Object.assign(_ripple.MDCRipple.createAdapter(this), {
+      var adapter = _extends(_ripple.MDCRipple.createAdapter(this), {
         isUnbounded: function isUnbounded() {
           return true;
         },
@@ -1600,6 +1604,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _foundation = __webpack_require__(1);
@@ -1749,7 +1755,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
     _classCallCheck(this, MDCRippleFoundation);
 
     /** @private {number} */
-    var _this = _possibleConstructorReturn(this, (MDCRippleFoundation.__proto__ || Object.getPrototypeOf(MDCRippleFoundation)).call(this, Object.assign(MDCRippleFoundation.defaultAdapter, adapter)));
+    var _this = _possibleConstructorReturn(this, (MDCRippleFoundation.__proto__ || Object.getPrototypeOf(MDCRippleFoundation)).call(this, _extends(MDCRippleFoundation.defaultAdapter, adapter)));
 
     _this.layoutFrame_ = 0;
 
@@ -2064,7 +2070,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
       // Programmatic deactivation.
       if (activationState.isProgrammatic) {
         var evtObject = null;
-        var _state = /** @type {!ActivationStateType} */Object.assign({}, activationState);
+        var _state = /** @type {!ActivationStateType} */_extends({}, activationState);
         requestAnimationFrame(function () {
           return _this7.animateDeactivation_(evtObject, _state);
         });
@@ -2084,7 +2090,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
         needsActualDeactivation = e.type === 'mouseup';
       }
 
-      var state = /** @type {!ActivationStateType} */Object.assign({}, activationState);
+      var state = /** @type {!ActivationStateType} */_extends({}, activationState);
       requestAnimationFrame(function () {
         if (needsDeactivationUX) {
           _this7.activationState_.hasDeactivationUXRun = true;
@@ -2309,6 +2315,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _base = __webpack_require__(0);
@@ -2376,7 +2384,7 @@ var MDCIconToggleFoundation = function (_MDCFoundation) {
   function MDCIconToggleFoundation(adapter) {
     _classCallCheck(this, MDCIconToggleFoundation);
 
-    var _this = _possibleConstructorReturn(this, (MDCIconToggleFoundation.__proto__ || Object.getPrototypeOf(MDCIconToggleFoundation)).call(this, Object.assign(MDCIconToggleFoundation.defaultAdapter, adapter)));
+    var _this = _possibleConstructorReturn(this, (MDCIconToggleFoundation.__proto__ || Object.getPrototypeOf(MDCIconToggleFoundation)).call(this, _extends(MDCIconToggleFoundation.defaultAdapter, adapter)));
 
     _this.on_ = false;
     _this.disabled_ = false;
@@ -2748,6 +2756,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _base = __webpack_require__(0);
@@ -2837,7 +2847,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
   function MDCRippleFoundation(adapter) {
     _classCallCheck(this, MDCRippleFoundation);
 
-    var _this = _possibleConstructorReturn(this, (MDCRippleFoundation.__proto__ || Object.getPrototypeOf(MDCRippleFoundation)).call(this, Object.assign(MDCRippleFoundation.defaultAdapter, adapter)));
+    var _this = _possibleConstructorReturn(this, (MDCRippleFoundation.__proto__ || Object.getPrototypeOf(MDCRippleFoundation)).call(this, _extends(MDCRippleFoundation.defaultAdapter, adapter)));
 
     _this.layoutFrame_ = 0;
     _this.frame_ = { width: 0, height: 0 };
@@ -3089,7 +3099,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
       if (activationState.isProgrammatic) {
         var evtObject = null;
         requestAnimationFrame(function () {
-          return _this7.animateDeactivation_(evtObject, Object.assign({}, activationState));
+          return _this7.animateDeactivation_(evtObject, _extends({}, activationState));
         });
         this.activationState_ = this.defaultActivationState_();
         return;
@@ -3107,7 +3117,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
         needsActualDeactivation = e.type === 'mouseup';
       }
 
-      var state = Object.assign({}, activationState);
+      var state = _extends({}, activationState);
       requestAnimationFrame(function () {
         if (needsDeactivationUX) {
           _this7.activationState_.hasDeactivationUXRun = true;
