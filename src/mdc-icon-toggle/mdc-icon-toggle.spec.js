@@ -162,7 +162,7 @@ describe('mdc-icon-toggle', function() {
     expectComponentToBeDisabled(component);
   });
 
-  it('should not be enabled when ng-disabled=false', function() {
+  it('should be enabled when ng-disabled=false', function() {
     const bindings = Object.assign({'ngDisabled': false}, CONTENT_TOGGLE_BINDINGS);
     const component = new $mockComponent(bindings);
     expectComponentToBeEnabled(component);
