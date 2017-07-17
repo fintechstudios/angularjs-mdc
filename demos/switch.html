@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Switch - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      section.example  {
+        margin-bottom: 0.5rem;
+        margin: 16px;
+        padding: 40px;
+        background-color: #eee;
+      }
+
+      .demo-header-toolbar {
+        z-index: 10;
+      }
+
+      .hero div {
+        text-align: center;
+      }
+
+      h2 {
+        margin: 0;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 16px;
+      }
+
+      section.example.mdc-theme--dark {
+        background-color: #333;
+      }
+
+      section.example.mdc-theme--dark > h2 {
+        color: white;
+      }
+
+      section.example.mdc-theme--dark > label {
+        color: white;
+      }
+    </style>
+  </head>
+  <body ng-app="demo" class="mdc-typography">
+    <header class="mdc-toolbar mdc-toolbar--fixed demo-header-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Switch</span>
+        </section>
+      </div>
+    </header>
+    <main ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <div>
+          <mdc-switch ng-disabled="isDisabled" ng-model="isToggled"></mdc-switch>
+          <br><br>
+          <label><input type="checkbox" ng-model="isToggled"> Toggled </label>
+          <label><input type="checkbox" ng-model="isDisabled"> Disabled </label>
+        </div>
+      </section>
+
+      <section class="example">
+        <h2>Switch on Light Theme</h2>
+        <mdc-switch input-id="basic-switch"></mdc-switch>
+        <label for="basic-switch" class="mdc-switch-label">off/on</label>
+      </section>
+      <section class="example">
+        <h2>Switch on Light Theme - Disabled</h2>
+        <mdc-switch input-id="basic-switch--disabled" ng-disabled="true"></mdc-switch>
+        <label for="basic-switch--disabled" class="mdc-switch-label">off/on</label>
+      </section>
+
+      <section class="example mdc-theme--dark">
+        <h2>Switch on Dark Theme</h2>
+        <mdc-switch input-id="basic-switch--dark"></mdc-switch>
+        <label for="basic-switch--dark" class="mdc-switch-label">off/on</label>
+      </section>
+
+      <section class="example mdc-theme--dark">
+        <h2>Switch on Dark Theme - Disabled</h2>
+        <mdc-switch input-id="basic-switch--dark--disabled" ng-disabled="true"></mdc-switch>
+        <label for="basic-switch--dark--disabled" class="mdc-switch-label">off/on</label>
+      </section>
+
+    </main>
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.isDisabled = false;
+          $scope.isToggled = false;
+          $scope.theId = 'idA';
+        }]);
+    </script>
+  </body>
+</html>

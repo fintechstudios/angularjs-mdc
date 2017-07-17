@@ -53,7 +53,7 @@ being an easy and suitable replacement for angular-material.
 | select          | :x:                 | |
 | slider          | :x:                 | |
 | snackbar        | :x:                 | |
-| switch          | :x:                 | |
+| switch          | :white_check_mark:  | mdc.switch        |
 | tabs            | :x:                 | |
 | textfield       | :x:                 | |
 | theme           | :x:                 | |
