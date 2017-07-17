@@ -768,8 +768,9 @@ function getNormalizedEventCoords(ev, pageOffset, clientRect) {
 __webpack_require__(7);
 __webpack_require__(8);
 __webpack_require__(9);
+__webpack_require__(20);
 
-angular.module('mdc', ['mdc.button', 'mdc.icon', 'mdc.icon-toggle']);
+angular.module('mdc', ['mdc.button', 'mdc.icon', 'mdc.icon-toggle', 'mdc.switch']);
 
 /***/ }),
 /* 7 */
@@ -3359,6 +3360,85 @@ function convertStringsObjToBindingNames(obj, skip) {
   }
   return names;
 }
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @ngdoc component
+ * @name mdcSwitch
+ * @module mdc.switch
+ *
+ * @param {string} [inputId] The id for the inner input element (use with <label for=>)
+ * @param {string} [ngModel] Assignable AngularJS expression to data-bind to.
+ * @param {expression} [ngDisabled] Enable/Disable based on the expression
+ *
+ */
+var MdcSwitchController = function () {
+  MdcSwitchController.$inject = ['$element'];
+
+  function MdcSwitchController($element) {
+    _classCallCheck(this, MdcSwitchController);
+
+    this.elem = $element;
+    this.elem.addClass('mdc-switch');
+  }
+
+  _createClass(MdcSwitchController, [{
+    key: '$postLink',
+    value: function $postLink() {
+      if (this.ngDisabled) {
+        this.elem.addClass('mdc-switch--disabled');
+      }
+    }
+  }, {
+    key: '$onChanges',
+    value: function $onChanges(changesObj) {
+      if (changesObj.ngDisabled) {
+        if (this.ngDisabled) {
+          this.elem.addClass('mdc-switch--disabled');
+        } else {
+          this.elem.removeClass('mdc-switch--disabled');
+        }
+      }
+    }
+  }]);
+
+  return MdcSwitchController;
+}();
+
+/**
+ * @ngdoc module
+ * @name mdc.switch
+ * @description
+ *
+ * Switch
+ */
+
+
+angular.module('mdc.switch', []).component('mdcSwitch', {
+  controller: MdcSwitchController,
+  bindings: {
+    inputId: '@',
+    ngDisabled: '<?',
+    ngModel: '=?'
+  },
+  template: __webpack_require__(21)
+});
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>"
 
 /***/ })
 /******/ ]);
