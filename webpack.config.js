@@ -59,9 +59,6 @@ module.exports = [{
       options: {
         cacheDirectory: true,
       },
-    }, {
-      test: /\.html$/,
-      loader: 'raw-loader',
     }],
   },
 }];
