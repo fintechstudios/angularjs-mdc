@@ -50,6 +50,7 @@ class ComponentGeneratorProvider {
          */
         compile() {
           $compile(this.$element)(this._$parentScope);
+          this.digest();
         }
 
         /**
