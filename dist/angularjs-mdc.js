@@ -769,8 +769,9 @@ __webpack_require__(7);
 __webpack_require__(8);
 __webpack_require__(9);
 __webpack_require__(20);
+__webpack_require__(21);
 
-angular.module('mdc', ['mdc.button', 'mdc.icon', 'mdc.icon-toggle', 'mdc.switch']);
+angular.module('mdc', ['mdc.button', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.switch']);
 
 /***/ }),
 /* 7 */
@@ -3374,6 +3375,115 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 /**
  * @ngdoc component
+ * @name mdcList
+ * @module mdc.list
+ *
+ * @param {expression} [dense] T/F whether to display the list densely
+ * @param {expression} [avatar] T/F whether to display the list in avatar-style
+ * @param {expression} [twoLine] T/F whether to display the list in two-line style
+ *
+ */
+var MdcListController = function () {
+  MdcListController.$inject = ['$element'];
+
+  function MdcListController($element) {
+    _classCallCheck(this, MdcListController);
+
+    this.elem = $element;
+  }
+
+  _createClass(MdcListController, [{
+    key: '$postLink',
+    value: function $postLink() {
+      this.elem.addClass('mdc-list');
+      if (this.dense) {
+        this.elem.addClass('mdc-list--dense');
+      }
+      if (this.avatar) {
+        this.elem.addClass('mdc-list--avatar-list');
+      }
+      if (this.twoLine) {
+        this.elem.addClass('mdc-list--two-line');
+      }
+    }
+  }, {
+    key: '$onChanges',
+    value: function $onChanges(changesObj) {
+      if (changesObj.dense) {
+        this.elem.toggleClass('mdc-list--dense', this.dense);
+      }
+      if (changesObj.avatar) {
+        this.elem.toggleClass('mdc-list--avatar-list', this.avatar);
+      }
+      if (changesObj.twoLine) {
+        this.elem.toggleClass('mdc-list--two-line', this.twoLine);
+      }
+    }
+  }]);
+
+  return MdcListController;
+}();
+
+/**
+ * @ngdoc component
+ * @name mdcListItem
+ * @module mdc.list-item
+ *
+ */
+
+
+var MdcListItemController = function () {
+  MdcListItemController.$inject = ['$element'];
+
+  function MdcListItemController($element) {
+    _classCallCheck(this, MdcListItemController);
+
+    this.elem = $element;
+  }
+
+  _createClass(MdcListItemController, [{
+    key: '$postLink',
+    value: function $postLink() {
+      this.elem.addClass('mdc-list-item');
+    }
+  }]);
+
+  return MdcListItemController;
+}();
+
+/**
+ * @ngdoc module
+ * @name mdc.list
+ * @description
+ *
+ * List
+ */
+
+
+angular.module('mdc.list', []).component('mdcList', {
+  controller: MdcListController,
+  bindings: {
+    dense: '<?',
+    avatar: '<?',
+    twoLine: '<?'
+  }
+}).component('mdcListItem', {
+  controller: MdcListItemController
+});
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @ngdoc component
  * @name mdcSwitch
  * @module mdc.switch
  *
@@ -3431,11 +3541,11 @@ angular.module('mdc.switch', []).component('mdcSwitch', {
     ngDisabled: '<?',
     ngModel: '=?'
   },
-  template: __webpack_require__(21)
+  template: __webpack_require__(22)
 });
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>"
