@@ -11,7 +11,6 @@
 class MdcSwitchController {
   constructor($element) {
     this.elem = $element;
-    this.elem.addClass('mdc-switch');
   }
 
   $postLink() {

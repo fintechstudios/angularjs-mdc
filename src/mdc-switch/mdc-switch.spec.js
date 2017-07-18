@@ -10,11 +10,6 @@ describe('mdc-switch', function() {
     $mockComponent = $componentGenerator('mdcSwitch');
   }));
 
-  it('should have the `mdc-switch` class by default', function() {
-    const elem = new $mockComponent().$element;
-    expect(elem.hasClass('mdc-switch')).to.be.true;
-  });
-
   it('should toggle as ng-model changes', function() {
     const component = new $mockComponent({'ngModel': 'isToggled'}, {'isToggled': false});
     const checkbox = component.$element.find('input')[0];
@@ -39,7 +34,6 @@ describe('mdc-switch', function() {
   function expectComponentToBeDisabled(component) {
     const elem = component.$element;
     const checkbox = angular.element(component.$element.find('input')[0]);
-    console.log(checkbox);
 
     expect(elem.hasClass('mdc-switch--disabled')).to.be.true;
     expect(checkbox.attr('disabled')).to.equal('disabled');

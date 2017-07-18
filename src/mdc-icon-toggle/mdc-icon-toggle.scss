@@ -1,1 +1,5 @@
 @import "~@material/icon-toggle/mdc-icon-toggle";
+
+mdc-icon-toggle {
+  @extend .mdc-icon-toggle;
+}

@@ -39,7 +39,6 @@ class MdcIconToggleController {
   constructor($element) {
     this.elem = $element;
     this.root_ = this.elem[0];
-    this.elem.addClass('mdc-icon-toggle');
     this.elem.attr('role', 'button');
   }
 

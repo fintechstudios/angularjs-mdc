@@ -15,10 +15,6 @@ class MdcButtonController {
     this.elem = $element;
   }
 
-  $postLink() {
-    this.elem.addClass('mdc-button');
-  }
-
   $onChanges(changesObj) {
     const e = this.elem;
     const ctrl = this;

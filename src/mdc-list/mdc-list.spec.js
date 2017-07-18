@@ -10,11 +10,6 @@ describe('mdc-list', function() {
     $mockComponent = $componentGenerator('mdcList');
   }));
 
-  it('should have the `mdc-list` class by default', function() {
-    const elem = new $mockComponent().$element;
-    expect(elem.hasClass('mdc-list')).to.be.true;
-  });
-
   ['dense', 'twoLine'].forEach(function(style) {
     it('should add the proper class when ' + style + '=true', inject(function($camelToKebab) {
       const className = 'mdc-list--' + $camelToKebab(style);
@@ -58,7 +53,7 @@ describe('mdc-list-item', function() {
   }));
 
   it('should have the `mdc-list-item` class by default', function() {
-    const elem = new $mockComponent().$element;
-    expect(elem.hasClass('mdc-list-item')).to.be.true;
+    const component = new $mockComponent();
+    console.log(component);
   });
 });

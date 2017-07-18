@@ -10,12 +10,6 @@ describe('mdc-button', function() {
     $mockComponent = $componentGenerator('mdcButton');
   }));
 
-  it('should have the `mdc-button` class by default', function() {
-    const elem = new $mockComponent().$element;
-
-    expect(elem.hasClass('mdc-button')).to.be.true;
-  });
-
   ['dense', 'raised', 'compact'].forEach(function(attr) {
     it('should have the `mdc-button--' + attr + '` class when ' + attr + '=true', function() {
       const bindings = {};

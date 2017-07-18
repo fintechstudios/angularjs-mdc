@@ -14,7 +14,6 @@ class MdcListController {
   }
 
   $postLink() {
-    this.elem.addClass('mdc-list');
     if (this.dense) {
       this.elem.addClass('mdc-list--dense');
     }
@@ -45,15 +44,7 @@ class MdcListController {
  * @module mdc.list-item
  *
  */
-class MdcListItemController {
-  constructor($element) {
-    this.elem = $element;
-  }
 
-  $postLink() {
-    this.elem.addClass('mdc-list-item');
-  }
-}
 
 /**
  * @ngdoc module
@@ -72,6 +63,4 @@ angular
       twoLine: '<?',
     },
   })
-  .component('mdcListItem', {
-    controller: MdcListItemController,
-  });
+  .component('mdcListItem', {});

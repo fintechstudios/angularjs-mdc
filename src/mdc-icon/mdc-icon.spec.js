@@ -12,11 +12,10 @@ describe('mdc-icon', function() {
     $mockComponent = $componentGenerator('mdcIcon');
   }));
 
-  it('should have the `material-icons` and `mdc-icon` classes by default', function() {
+  it('should have the `material-icons` class by default', function() {
     const elem = new $mockComponent().$element;
 
     expect(elem.hasClass('material-icons')).to.be.true;
-    expect(elem.hasClass('mdc-icon')).to.be.true;
   });
 
   it('should use the `mdc-font-icon` attribute as its text contents', function() {

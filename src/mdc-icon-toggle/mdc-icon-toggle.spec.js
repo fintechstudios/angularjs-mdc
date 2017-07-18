@@ -44,30 +44,26 @@ describe('mdc-icon-toggle', function() {
     });
   }
 
-  it('should have the `mdc-icon-toggle` and `material-icons` classes by default', function() {
+  it('should have the `material-icons` classes by default', function() {
     const elem = new $mockComponent().$element;
-    expect(elem.hasClass('mdc-icon-toggle')).to.be.true;
     expect(elem.hasClass('material-icons')).to.be.true;
   });
 
-  it('should have not have the `material-icons` class when toggleOn has `cssClass`', function() {
+  it('should not have the `material-icons` class when toggleOn has `cssClass`', function() {
     const elem = new $mockComponent({'toggleOn': CSS_TOGGLE_BINDINGS['toggleOn']}).$element;
 
-    expect(elem.hasClass('mdc-icon-toggle')).to.be.true;
     expect(elem.hasClass('material-icons')).to.be.false;
   });
 
-  it('should have not have the `material-icons` class when toggleOff has `cssClass`', function() {
+  it('should not have the `material-icons` class when toggleOff has `cssClass`', function() {
     const elem = new $mockComponent({'toggleOff': CSS_TOGGLE_BINDINGS['toggleOff']}).$element;
 
-    expect(elem.hasClass('mdc-icon-toggle')).to.be.true;
     expect(elem.hasClass('material-icons')).to.be.false;
   });
 
-  it('should have not have the `material-icons` class when toggleOff and toggleOn has `cssClass`', function() {
+  it('should not have the `material-icons` class when toggleOff and toggleOn has `cssClass`', function() {
     const elem = new $mockComponent(CSS_TOGGLE_BINDINGS).$element;
 
-    expect(elem.hasClass('mdc-icon-toggle')).to.be.true;
     expect(elem.hasClass('material-icons')).to.be.false;
   });
 
