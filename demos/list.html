@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html class="mdc-typography">
+  <head>
+    <meta charset="utf-8">
+    <title>List Item - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      mdc-list,
+      .mdc-list-group {
+        max-width: 600px;
+      }
+      .mdc-theme--dark {
+        background: #303030;
+      }
+      .mdc-theme--dark > h3 {
+        color: white;
+      }
+      .grey-bg {
+        background: rgba(0, 0, 0, .26);
+      }
+      #icon-with-text-demo .mdc-list-item__start-detail {
+        color: rgba(0, 0, 0, .54);
+      }
+      .mdc-theme--dark #icon-with-text-demo .mdc-list-item__start-detail {
+        color: rgba(255, 255, 255, .7);
+      }
+      #avatar-text-icon-demo-list .mdc-list-item__end-detail {
+        text-decoration: none;
+        color: #ff4081; /* Pink A200 */
+      }
+      .two-line-avatar-text-icon-demo .mdc-list-item__start-detail {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      .two-line-avatar-text-icon-demo .mdc-list-item__end-detail {
+        color: rgba(0, 0, 0, .26);
+        text-decoration: none;
+      }
+      .mdc-theme--dark .two-line-avatar-text-icon-demo .mdc-list-item__start-detail {
+        background-color: rgba(255, 255, 255, .7);
+        color: #303030;
+      }
+      .mdc-theme--dark .two-line-avatar-text-icon-demo .mdc-list-item__end-detail {
+        color: rgba(255, 255, 255, .7);
+      }
+
+      .preamble {
+        max-width: 600px;
+        margin-top: 48px;
+        margin-left: 72px;
+      }
+
+      #demo-wrapper {
+        margin: 24px;
+      }
+
+      #demo-wrapper section {
+        padding: 24px;
+      }
+
+      #demo-wrapper mdc-list, #demo-wrapper .mdc-list-group {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      #demo-wrapper .mdc-list-group mdc-list,
+      #demo-wrapper .mdc-theme--dark mdc-list,
+      #demo-wrapper .mdc-theme--dark .mdc-list-group {
+        border: none;
+      }
+
+      #demo-wrapper h2 {
+        font-size: 1.5em;
+        margin-bottom: 0.8em;
+        margin-left: 24px;
+      }
+
+      #demo-wrapper h3 {
+        margin-bottom: 0.8em;
+      }
+
+      .hero mdc-list {
+        background-color: white;
+        min-width: 320px;
+        box-shadow:
+          0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+          0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+          0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      }
+
+    </style>
+  </head>
+  <body ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">List</span>
+        </section>
+      </div>
+    </header>
+    <main ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero" dir="{{ isRtl ? 'rtl' : ''}}">
+        <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+          <mdc-list-item ng-repeat="folder in folder_demo">
+            <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+              <mdc-icon aria-hidden="true">folder</mdc-icon>
+            </span>
+            <span class="mdc-list-item__text">
+              {{ folder.n }}
+              <span class="mdc-list-item__text__secondary">{{ folder.d }}</span>
+            </span>
+            <a href="#" class="mdc-list-item__end-detail material-icons"
+               aria-label="View more information" title="More info"
+               onclick="event.preventDefault();">
+              info
+            </a>
+          </mdc-list-item>
+        </mdc-list>
+      </section>
+
+      <section class="preamble mdc-typography--body1">
+        <aside>
+          <p>
+          <em>NOTE:</em> For the purposes of this demo, we've set a max-width of 600px on all
+          <code>mdc-list</code> elements, and surrounded them by a 1px border. This is
+          not included in the base css, which has the list
+          take up as much width as possible (since it's a block element).
+          </p>
+        </aside>
+        <label id="toggle-rtl-label">
+          <input type="checkbox" ng-model="isRtl">
+          Toggle RTL
+        </label>
+      </section>
+
+      <div id="demo-wrapper" dir="{{ isRtl ? 'rtl' : '' }}">
+        <section>
+          <h2>Single-Line List</h2>
+          <section>
+            <h3>Text only</h3>
+            <mdc-list>
+              <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Text only (dense)</h3>
+            <mdc-list dense="true">
+              <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
+            </mdc-list>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Text Only (dark)</h3>
+            <mdc-list>
+              <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Start Detail</h3>
+            <aside><p><em>Note: The grey background is styled using demo placeholder styles</em></p></aside>
+            <mdc-list>
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Start Detail (dense)</h3>
+            <mdc-list dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Start Detail Example - Icon with Text</h3>
+            <mdc-list id="icon-with-text-demo">
+              <mdc-list-item ng-repeat="item in icon_demo">
+                <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
+                  {{ item.i }}
+                </mdc-icon>
+                {{ item.n }}
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Start Detail Example - Icon with Text (Dark)</h3>
+            <mdc-list id="icon-with-text-demo">
+              <mdc-list-item ng-repeat="item in icon_demo">
+                <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
+                  {{ item.i }}
+                </mdc-icon>
+                {{ item.n }}
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Avatar List</h3>
+            <mdc-list avatar="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Avatar List (dense)</h3>
+            <mdc-list avatar="true" dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Example - Avatar with Text</h3>
+            <mdc-list avatar="true">
+              <mdc-list-item ng-repeat="item in animal_demo">
+                <img class="mdc-list-item__start-detail"
+                     src="{{ item.i }}"
+                     width="56" height="56" alt="{{ item.n }}">
+                {{ item.n }}
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Example - Avatar with Text (Dark)</h3>
+            <mdc-list avatar="true">
+              <mdc-list-item ng-repeat="item in animal_demo">
+                <img class="mdc-list-item__start-detail"
+                     src="{{ item.i }}"
+                     width="56" height="56" alt="{{ item.n }}">
+                {{ item.n }}
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>End Detail</h3>
+            <mdc-list>
+              <mdc-list-item ng-repeat="_ in three">
+                Single-line item
+                <span class="mdc-list-item__end-detail grey-bg"></span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>End Detail (Dense)</h3>
+            <mdc-list dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                Single-line item
+                <span class="mdc-list-item__end-detail grey-bg"></span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Avatar + End Detail</h3>
+            <mdc-list avatar="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item
+                <span class="mdc-list-item__end-detail grey-bg"></span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Avatar + End Detail (Dense)</h3>
+            <mdc-list dense="true" avatar="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item
+                <span class="mdc-list-item__end-detail grey-bg"></span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Example - Avatar with Text and icon</h3>
+            <mdc-list id="avatar-text-icon-demo-list" avatar="true">
+              <mdc-list-item ng-repeat="item in animal_demo">
+                <img class="mdc-list-item__start-detail grey-bg"
+                     src="{{ item.i }}"
+                     width="56" height="56" alt="{{ item.n }}">
+                {{ item.n }}
+                <a class="mdc-list-item__end-detail material-icons" href="#"
+                   aria-label="{{ item.f }}" title="{{ item.f }}"
+                   onclick="event.preventDefault();">
+                  {{ item.f.indexOf('Add') >= 0 ? 'favorite_border' : 'favorite' }}
+                </a>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Example - Avatar with Text and icon (Dark)</h3>
+            <mdc-list id="avatar-text-icon-demo-list" avatar="true">
+              <mdc-list-item ng-repeat="item in animal_demo">
+                <img class="mdc-list-item__start-detail grey-bg"
+                     src="{{ item.i }}"
+                     width="56" height="56" alt="{{ item.n }}">
+                {{ item.n }}
+                <a class="mdc-list-item__end-detail material-icons" href="#"
+                   aria-label="{{ item.f }}" title="{{ item.f }}"
+                   onclick="event.preventDefault();">
+                  {{ item.f.indexOf('Add') >= 0 ? 'favorite_border' : 'favorite' }}
+                </a>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+        </section>
+        <section>
+          <h2>Two-line List</h2>
+          <section>
+            <h3>Text-Only</h3>
+            <mdc-list two-line="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Text-Only (Dense)</h3>
+            <mdc-list two-line="true" dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Start Detail</h3>
+            <mdc-list two-line="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Start Detail (Dense)</h3>
+            <mdc-list two-line="true" dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Avatar List</h3>
+            <mdc-list two-line="true" avatar="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Avatar List (dense)</h3>
+            <mdc-list two-line="true" avatar="true" dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>End Detail</h3>
+            <mdc-list two-line="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+                <span class="mdc-list-item__end-detail grey-bg"></span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>End Detail (Dense)</h3>
+            <mdc-list two-line="true" dense="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__text">
+                  Two-line item
+                  <span class="mdc-list-item__text__secondary">Secondary text</span>
+                </span>
+                <span class="mdc-list-item__end-detail grey-bg"></span>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Example - Two-line avatar + text + icon</h3>
+            <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+              <mdc-list-item ng-repeat="folder in folder_demo">
+                <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+                  <mdc-icon aria-hidden="true">folder</mdc-icon>
+                </span>
+                <span class="mdc-list-item__text">
+                  {{ folder.n }}
+                  <span class="mdc-list-item__text__secondary">{{ folder.d }}</span>
+                </span>
+                <a href="#" class="mdc-list-item__end-detail material-icons"
+                   aria-label="View more information" title="More info"
+                   onclick="event.preventDefault();">
+                  info
+                </a>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Example - Two-line avatar + text + icon (Dark)</h3>
+            <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+              <mdc-list-item ng-repeat="folder in folder_demo">
+                <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+                  <mdc-icon aria-hidden="true">folder</mdc-icon>
+                </span>
+                <span class="mdc-list-item__text">
+                  {{ folder.n }}
+                  <span class="mdc-list-item__text__secondary">{{ folder.d }}</span>
+                </span>
+                <a href="#" class="mdc-list-item__end-detail material-icons"
+                   aria-label="View more information" title="More info"
+                   onclick="event.preventDefault();">
+                  info
+                </a>
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+        </section>
+        <section>
+          <h2>List Dividers</h2>
+          <section>
+            <h3>Full-Width Dividers</h3>
+            <mdc-list>
+              <mdc-list-item ng-repeat="_ in three">Single-line item - section 1</mdc-list-item>
+              <li class="mdc-list-divider" role="separator"></li>
+              <mdc-list-item ng-repeat="_ in two">Single-line item - section 2</mdc-list-item>
+            </mdc-list>
+          </section>
+          <section>
+            <h3>Inset Dividers</h3>
+            <mdc-list avatar="true">
+              <mdc-list-item ng-repeat="_ in three">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item - section 1
+              </mdc-list-item>
+              <li class="mdc-list-divider mdc-list-divider--inset" role="separator"></li>
+              <mdc-list-item ng-repeat="_ in two">
+                <span class="mdc-list-item__start-detail grey-bg"></span>
+                Single-line item - section 2
+              </mdc-list-item>
+            </mdc-list>
+          </section>
+        </section>
+        <section>
+          <h2>List Groups</h2>
+          <section>
+            <h3>Basic Usage</h3>
+            <div class="mdc-list-group">
+              <h3 class="mdc-list-group__subheader">List 1</h3>
+              <mdc-list>
+                <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
+              </mdc-list>
+              <hr class="mdc-list-divider">
+              <h3 class="mdc-list-group__subheader">List 2</h3>
+              <mdc-list>
+                <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
+              </mdc-list>
+            </div>
+          </section>
+          <section>
+            <h3>Example - Two-line Lists, Avatars, end detail, inset dividers</h3>
+            <div class="mdc-list-group">
+              <h3 class="mdc-list-group__subheader">Folders</h3>
+              <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+                <mdc-list-item ng-repeat="item in folder_demo">
+                  <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+                    <mdc-icon aria-hidden="true">folder</mdc-icon>
+                  </span>
+                  <span class="mdc-list-item__text">
+                    {{ item.n }}
+                    <span class="mdc-list-item__text__secondary">{{ item.d }}</span>
+                  </span>
+                  <a href="#" class="mdc-list-item__end-detail material-icons"
+                     aria-label="View more information" title="More info"
+                     onclick="event.preventDefault();">
+                    info
+                  </a>
+                </mdc-list-item>
+              </mdc-list>
+              <hr class="mdc-list-divider mdc-list-divider--inset">
+              <h3 class="mdc-list-group__subheader">Files</h3>
+              <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+                <mdc-list-item ng-repeat="item in folder_demo2">
+                  <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+                    <mdc-icon aria-hidden="true">folder</mdc-icon>
+                  </span>
+                  <span class="mdc-list-item__text">
+                    {{ item.n }}
+                    <span class="mdc-list-item__text__secondary">{{ item.d }}</span>
+                  </span>
+                  <a href="#" class="mdc-list-item__end-detail material-icons"
+                     aria-label="View more information" title="More info"
+                     onclick="event.preventDefault();">
+                    info
+                  </a>
+                </mdc-list-item>
+              </mdc-list>
+            </div>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Example - Two-line Lists, Avatars, end detail, inset dividers (Dark)</h3>
+            <div class="mdc-list-group">
+              <h3 class="mdc-list-group__subheader">Folders</h3>
+              <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+                <mdc-list-item ng-repeat="item in folder_demo">
+                  <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+                    <mdc-icon aria-hidden="true">folder</mdc-icon>
+                  </span>
+                  <span class="mdc-list-item__text">
+                    {{ item.n }}
+                    <span class="mdc-list-item__text__secondary">{{ item.d }}</span>
+                  </span>
+                  <a href="#" class="mdc-list-item__end-detail material-icons"
+                     aria-label="View more information" title="More info"
+                     onclick="event.preventDefault();">
+                    info
+                  </a>
+                </mdc-list-item>
+              </mdc-list>
+              <hr class="mdc-list-divider mdc-list-divider--inset">
+              <h3 class="mdc-list-group__subheader">Files</h3>
+              <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
+                <mdc-list-item ng-repeat="item in folder_demo2">
+                  <span class="mdc-list-item__start-detail grey-bg" role="presentation">
+                    <mdc-icon aria-hidden="true">folder</mdc-icon>
+                  </span>
+                  <span class="mdc-list-item__text">
+                    {{ item.n }}
+                    <span class="mdc-list-item__text__secondary">{{ item.d }}</span>
+                  </span>
+                  <a href="#" class="mdc-list-item__end-detail material-icons"
+                     aria-label="View more information" title="More info"
+                     onclick="event.preventDefault();">
+                    info
+                  </a>
+                </mdc-list-item>
+              </mdc-list>
+            </div>
+          </section>
+        </section>
+        <section>
+          <h2>Interactive Lists (with ink ripple)</h2>
+          <section>
+            <h3>Example - Interactive List</h3>
+            <mdc-list ng-repeat="item in icon_demo" data-demo-interactive-list>
+              <a href="#" class="mdc-list-item">
+                <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
+                  {{ item.i }}
+                </mdc-icon>
+                {{ item.n }}
+              </a>
+            </mdc-list>
+          </section>
+          <section class="mdc-theme--dark">
+            <h3>Example - Interactive List (Dark Theme)</h3>
+            <mdc-list data-demo-interactive-list>
+              <mdc-list ng-repeat="item in icon_demo" data-demo-interactive-list>
+                <a href="#" class="mdc-list-item">
+                  <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
+                    {{ item.i }}
+                  </mdc-icon>
+                  {{ item.n }}
+                </a>
+            </mdc-list>
+          </section>
+        </section>
+      </div>
+    </main>
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.three = [1, 2, 3];
+          $scope.two = [1, 2];
+          $scope.folder_demo = [
+            {n: 'Photos', d: 'Jan 9, 2014'}, {n: 'Recipes', d: 'Jan 17, 2014'}, {n: 'Work', d: 'Jan 28, 2014'}
+          ];
+          $scope.folder_demo2 = [
+            {n: 'Vacation Itinerary', d: 'Jan 10, 2014'}, {n: 'Kitchen Remodel', d: 'Jan 20, 2014'}
+          ];
+          $scope.icon_demo = [
+            {n: 'Wi-Fi', i: 'network_wifi'}, {n: 'Bluetooth', i: 'bluetooth'}, {n: 'Data Usage', i: 'data_usage'}
+          ];
+          $scope.animal_demo = [
+            {n: 'Panda', i: '/images/animal1.svg', f: 'Remove from favorites'},
+            {n: 'Sleuth', i: '/images/animal2.svg', f: 'Add to favorites'},
+            {n: 'Brown Bear', i: '/images/animal3.svg', f: 'Add to favorites'}
+          ];
+        }]);
+    </script>
+  </body>
+</html>

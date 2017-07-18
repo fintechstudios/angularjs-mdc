@@ -46,7 +46,7 @@ being an easy and suitable replacement for angular-material.
 | icon            | :white_check_mark:  | mdc.icon          |
 | icon-toggle     | :white_check_mark:  | mdc.icon-toggle   |
 | linear-progress | :x:                 | |
-| list            | :x:                 | |
+| list            | :white_check_mark:  | mdc.list          |
 | menu            | :x:                 | |
 | radio           | :x:                 | |
 | ripple          | :x:                 | |
