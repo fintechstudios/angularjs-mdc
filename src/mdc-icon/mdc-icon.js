@@ -16,9 +16,6 @@ class MdcIconController {
 
   $postLink() {
     this.elem.addClass('material-icons');
-    if (this.mdcFontIcon) {
-      this.elem.text(this.mdcFontIcon);
-    }
   }
 
   $onChanges(changesObj) {

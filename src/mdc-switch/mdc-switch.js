@@ -13,19 +13,9 @@ class MdcSwitchController {
     this.elem = $element;
   }
 
-  $postLink() {
-    if (this.ngDisabled) {
-      this.elem.addClass('mdc-switch--disabled');
-    }
-  }
-
   $onChanges(changesObj) {
     if (changesObj.ngDisabled) {
-      if (this.ngDisabled) {
-        this.elem.addClass('mdc-switch--disabled');
-      } else {
-        this.elem.removeClass('mdc-switch--disabled');
-      }
+      this.elem.toggleClass('mdc-switch--disabled', this.ngDisabled);
     }
   };
 }

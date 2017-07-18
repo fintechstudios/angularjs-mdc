@@ -20,24 +20,12 @@ class MdcButtonController {
     const ctrl = this;
     ['dense', 'raised', 'compact'].forEach(function(attr) {
       if (changesObj[attr]) {
-        if (ctrl[attr]) {
-          e.addClass('mdc-button--' + attr);
-        } else {
-          e.removeClass('mdc-button--' + attr);
-        }
+        e.toggleClass('mdc-button--' + attr, ctrl[attr]);
       }
     });
     if (changesObj.color) {
-      if (ctrl.color === 'primary') {
-        e.addClass('mdc-button--primary');
-        e.removeClass('mdc-button--accent');
-      } else if (ctrl.color === 'accent') {
-        e.addClass('mdc-button--accent');
-        e.removeClass('mdc-button--primary');
-      } else {
-        e.removeClass('mdc-button--primary');
-        e.removeClass('mdc-button--accent');
-      }
+      e.toggleClass('mdc-button--accent', ctrl.color === 'accent');
+      e.toggleClass('mdc-button--primary', ctrl.color === 'primary');
     }
   };
 }
@@ -55,9 +43,9 @@ angular
   .component('mdcButton', {
     controller: MdcButtonController,
     bindings: {
-      dense: '<',
-      raised: '<',
-      compact: '<',
+      dense: '<?',
+      raised: '<?',
+      compact: '<?',
       color: '@',
     },
   });

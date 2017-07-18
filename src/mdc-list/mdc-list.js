@@ -13,18 +13,6 @@ class MdcListController {
     this.elem = $element;
   }
 
-  $postLink() {
-    if (this.dense) {
-      this.elem.addClass('mdc-list--dense');
-    }
-    if (this.avatar) {
-      this.elem.addClass('mdc-list--avatar-list');
-    }
-    if (this.twoLine) {
-      this.elem.addClass('mdc-list--two-line');
-    }
-  }
-
   $onChanges(changesObj) {
     if (changesObj.dense) {
       this.elem.toggleClass('mdc-list--dense', this.dense);
