@@ -790,12 +790,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @name mdcButton
  * @module mdc.button
  *
- * @param {expression=} dense Display the button densely
- * @param {expression=} raised Display the button raised (false -> flat)
- * @param {expression=} compact Display the button compact
- * @param {expression=} card-action Use when within mdc-card to apply proper styles
- * @param {string=} color Color for button: "primary", "accent", or nothing
- * @param {expression=} ng-disabled En/Disable based on the expression
+ * @param {expression} [dense] Display the button densely
+ * @param {expression} [raised] Display the button raised (false -> flat)
+ * @param {expression} [compact] Display the button compact
+ * @param {expression} [cardAction] Use when within mdc-card to apply proper styles
+ * @param {string} [color] Color for button: "primary", "accent", or nothing
+ * @param {expression} [ngDisabled] En/Disable based on the expression
  *
  */
 var MdcButtonController = function () {
@@ -3398,7 +3398,7 @@ var MdcListController = function () {
 /**
  * @ngdoc component
  * @name mdcListItem
- * @module mdc.list-item
+ * @module mdc.list
  *
  */
 
@@ -3612,7 +3612,14 @@ angular.module('mdc.card', [])
   bindings: {
     vertical: '<?'
   }
-});
+})
+/**
+ * @ngdoc component
+ * @name mdcCardSupportingText
+ * @module mdc.card
+ *
+ */
+.component('mdcCardSupportingText', {});
 
 /***/ })
 /******/ ]);
