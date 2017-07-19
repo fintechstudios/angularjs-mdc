@@ -29,7 +29,7 @@ class MdcListController {
 /**
  * @ngdoc component
  * @name mdcListItem
- * @module mdc.list-item
+ * @module mdc.list
  *
  */
 
