@@ -27,6 +27,19 @@ describe('mdc-button', function() {
     });
   });
 
+  it('should have the `mdc-button--compact` and `mdc-card__action` classes when cardAction=true', function() {
+    const component = new $mockComponent({'cardAction': 'isAction'}, {isAction: true});
+    const elem = component.$element;
+
+    expect(elem.hasClass('mdc-button--compact')).to.be.true;
+    expect(elem.hasClass('mdc-card__action')).to.be.true;
+
+    component.$parent('isAction', false);
+
+    expect(elem.hasClass('mdc-button--compact')).to.be.false;
+    expect(elem.hasClass('mdc-card__action')).to.be.false;
+  });
+
   ['primary', 'accent'].forEach(function(color) {
     it('should have the `mdc-button--' + color + '` class when color=' + color, function() {
       const component = new $mockComponent({'color': '{{ buttonColor }}'}, {buttonColor: ''});

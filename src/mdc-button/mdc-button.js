@@ -6,6 +6,7 @@
  * @param {expression=} dense Display the button densely
  * @param {expression=} raised Display the button raised (false -> flat)
  * @param {expression=} compact Display the button compact
+ * @param {expression=} card-action Use when within mdc-card to apply proper styles
  * @param {string=} color Color for button: "primary", "accent", or nothing
  * @param {expression=} ng-disabled En/Disable based on the expression
  *
@@ -27,6 +28,9 @@ class MdcButtonController {
       e.toggleClass('mdc-button--accent', ctrl.color === 'accent');
       e.toggleClass('mdc-button--primary', ctrl.color === 'primary');
     }
+    if (changesObj.cardAction) {
+      e.toggleClass('mdc-button--compact mdc-card__action', this.cardAction);
+    }
   };
 }
 
@@ -46,6 +50,7 @@ angular
       dense: '<?',
       raised: '<?',
       compact: '<?',
+      cardAction: '<?',
       color: '@',
     },
   });

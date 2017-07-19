@@ -1,0 +1,31 @@
+@import '~@material/card/mdc-card';
+
+mdc-card {
+  @extend .mdc-card;
+}
+
+mdc-card-horizontal-block {
+  @extend .mdc-card__horizontal-block;
+}
+
+mdc-card-primary {
+  @extend .mdc-card__primary;
+}
+
+mdc-card-title {
+  display: block;
+  @extend .mdc-card__title;
+}
+
+mdc-card-subtitle {
+  display: block;
+  @extend .mdc-card__subtitle;
+}
+
+mdc-card-media {
+  @extend .mdc-card__media;
+}
+
+mdc-card-actions {
+  @extend .mdc-card__actions;
+}
