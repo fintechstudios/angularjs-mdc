@@ -770,8 +770,9 @@ __webpack_require__(8);
 __webpack_require__(9);
 __webpack_require__(20);
 __webpack_require__(21);
+__webpack_require__(23);
 
-angular.module('mdc', ['mdc.button', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.switch']);
+angular.module('mdc', ['mdc.button', 'mdc.card', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.switch']);
 
 /***/ }),
 /* 7 */
@@ -792,6 +793,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @param {expression=} dense Display the button densely
  * @param {expression=} raised Display the button raised (false -> flat)
  * @param {expression=} compact Display the button compact
+ * @param {expression=} card-action Use when within mdc-card to apply proper styles
  * @param {string=} color Color for button: "primary", "accent", or nothing
  * @param {expression=} ng-disabled En/Disable based on the expression
  *
@@ -806,35 +808,21 @@ var MdcButtonController = function () {
   }
 
   _createClass(MdcButtonController, [{
-    key: '$postLink',
-    value: function $postLink() {
-      this.elem.addClass('mdc-button');
-    }
-  }, {
     key: '$onChanges',
     value: function $onChanges(changesObj) {
       var e = this.elem;
       var ctrl = this;
       ['dense', 'raised', 'compact'].forEach(function (attr) {
         if (changesObj[attr]) {
-          if (ctrl[attr]) {
-            e.addClass('mdc-button--' + attr);
-          } else {
-            e.removeClass('mdc-button--' + attr);
-          }
+          e.toggleClass('mdc-button--' + attr, ctrl[attr]);
         }
       });
       if (changesObj.color) {
-        if (ctrl.color === 'primary') {
-          e.addClass('mdc-button--primary');
-          e.removeClass('mdc-button--accent');
-        } else if (ctrl.color === 'accent') {
-          e.addClass('mdc-button--accent');
-          e.removeClass('mdc-button--primary');
-        } else {
-          e.removeClass('mdc-button--primary');
-          e.removeClass('mdc-button--accent');
-        }
+        e.toggleClass('mdc-button--accent', ctrl.color === 'accent');
+        e.toggleClass('mdc-button--primary', ctrl.color === 'primary');
+      }
+      if (changesObj.cardAction) {
+        e.toggleClass('mdc-button--compact mdc-card__action', this.cardAction);
       }
     }
   }]);
@@ -854,9 +842,10 @@ var MdcButtonController = function () {
 angular.module('mdc.button', []).component('mdcButton', {
   controller: MdcButtonController,
   bindings: {
-    dense: '<',
-    raised: '<',
-    compact: '<',
+    dense: '<?',
+    raised: '<?',
+    compact: '<?',
+    cardAction: '<?',
     color: '@'
   }
 });
@@ -895,10 +884,7 @@ var MdcIconController = function () {
   _createClass(MdcIconController, [{
     key: '$postLink',
     value: function $postLink() {
-      this.elem.addClass('material-icons mdc-icon');
-      if (this.mdcFontIcon) {
-        this.elem.text(this.mdcFontIcon);
-      }
+      this.elem.addClass('material-icons');
     }
   }, {
     key: '$onChanges',
@@ -997,7 +983,6 @@ var MdcIconToggleController = function () {
 
     this.elem = $element;
     this.root_ = this.elem[0];
-    this.elem.addClass('mdc-icon-toggle');
     this.elem.attr('role', 'button');
   }
 
@@ -3393,20 +3378,6 @@ var MdcListController = function () {
   }
 
   _createClass(MdcListController, [{
-    key: '$postLink',
-    value: function $postLink() {
-      this.elem.addClass('mdc-list');
-      if (this.dense) {
-        this.elem.addClass('mdc-list--dense');
-      }
-      if (this.avatar) {
-        this.elem.addClass('mdc-list--avatar-list');
-      }
-      if (this.twoLine) {
-        this.elem.addClass('mdc-list--two-line');
-      }
-    }
-  }, {
     key: '$onChanges',
     value: function $onChanges(changesObj) {
       if (changesObj.dense) {
@@ -3431,26 +3402,6 @@ var MdcListController = function () {
  *
  */
 
-
-var MdcListItemController = function () {
-  MdcListItemController.$inject = ['$element'];
-
-  function MdcListItemController($element) {
-    _classCallCheck(this, MdcListItemController);
-
-    this.elem = $element;
-  }
-
-  _createClass(MdcListItemController, [{
-    key: '$postLink',
-    value: function $postLink() {
-      this.elem.addClass('mdc-list-item');
-    }
-  }]);
-
-  return MdcListItemController;
-}();
-
 /**
  * @ngdoc module
  * @name mdc.list
@@ -3467,9 +3418,7 @@ angular.module('mdc.list', []).component('mdcList', {
     avatar: '<?',
     twoLine: '<?'
   }
-}).component('mdcListItem', {
-  controller: MdcListItemController
-});
+}).component('mdcListItem', {});
 
 /***/ }),
 /* 21 */
@@ -3499,25 +3448,13 @@ var MdcSwitchController = function () {
     _classCallCheck(this, MdcSwitchController);
 
     this.elem = $element;
-    this.elem.addClass('mdc-switch');
   }
 
   _createClass(MdcSwitchController, [{
-    key: '$postLink',
-    value: function $postLink() {
-      if (this.ngDisabled) {
-        this.elem.addClass('mdc-switch--disabled');
-      }
-    }
-  }, {
     key: '$onChanges',
     value: function $onChanges(changesObj) {
       if (changesObj.ngDisabled) {
-        if (this.ngDisabled) {
-          this.elem.addClass('mdc-switch--disabled');
-        } else {
-          this.elem.removeClass('mdc-switch--disabled');
-        }
+        this.elem.toggleClass('mdc-switch--disabled', this.ngDisabled);
       }
     }
   }]);
@@ -3549,6 +3486,133 @@ angular.module('mdc.switch', []).component('mdcSwitch', {
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>"
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @ngdoc component
+ * @name mdcCardTitle
+ * @module mdc.card
+ *
+ * @param {expression} [large] whether to display the title larger
+ */
+var MdcCardTitleController = function () {
+  MdcCardTitleController.$inject = ['$element'];
+
+  function MdcCardTitleController($element) {
+    _classCallCheck(this, MdcCardTitleController);
+
+    this.elem = $element;
+  }
+
+  _createClass(MdcCardTitleController, [{
+    key: '$onChanges',
+    value: function $onChanges(changesObj) {
+      if (changesObj.large) {
+        this.elem.toggleClass('mdc-card__title--large', this.large);
+      }
+    }
+  }]);
+
+  return MdcCardTitleController;
+}();
+
+/**
+ * @ngdoc component
+ * @name mdcCardActions
+ * @module mdc.card
+ *
+ * @param {expression} [vertical] T/F show the actions vertically
+ */
+
+
+var MdcCardActionsController = function () {
+  MdcCardActionsController.$inject = ['$element'];
+
+  function MdcCardActionsController($element) {
+    _classCallCheck(this, MdcCardActionsController);
+
+    this.elem = $element;
+  }
+
+  _createClass(MdcCardActionsController, [{
+    key: '$onChanges',
+    value: function $onChanges(changesObj) {
+      if (changesObj.vertical) {
+        this.elem.toggleClass('mdc-card__actions--vertical', this.vertical);
+      }
+    }
+  }]);
+
+  return MdcCardActionsController;
+}();
+
+/**
+ * @ngdoc module
+ * @name mdc.card
+ * @description
+ *
+ * Card
+ *
+ * Largely for convenience. It is just as easy to use the classes.
+ */
+
+
+angular.module('mdc.card', [])
+/**
+ * @ngdoc component
+ * @name mdcCard
+ * @module mdc.card
+ *
+ */
+.component('mdcCard', {})
+/**
+ * @ngdoc component
+ * @name mdcCardPrimary
+ * @module mdc.card
+ *
+ */
+.component('mdcCardPrimary', {})
+/**
+ * @ngdoc component
+ * @name mdcCardHorizontalBlock
+ * @module mdc.card
+ *
+ */
+.component('mdcCardHorizontalBlock', {}).component('mdcCardTitle', {
+  controller: MdcCardTitleController,
+  bindings: {
+    large: '<?'
+  }
+})
+/**
+ * @ngdoc component
+ * @name mdcCardSubtitle
+ * @module mdc.card
+ *
+ */
+.component('mdcCardSubtitle', {})
+/**
+ * @ngdoc component
+ * @name mdcCardMedia
+ * @module mdc.card
+ *
+ */
+.component('mdcCardMedia', {}).component('mdcCardActions', {
+  controller: MdcCardActionsController,
+  bindings: {
+    vertical: '<?'
+  }
+});
 
 /***/ })
 /******/ ]);
