@@ -29,3 +29,7 @@ mdc-card-media {
 mdc-card-actions {
   @extend .mdc-card__actions;
 }
+
+mdc-card-supporting-text {
+  @extend .mdc-card__supporting-text;
+}

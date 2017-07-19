@@ -94,4 +94,11 @@ angular
     bindings: {
       vertical: '<?',
     },
-  });
+  })
+  /**
+   * @ngdoc component
+   * @name mdcCardSupportingText
+   * @module mdc.card
+   *
+   */
+  .component('mdcCardSupportingText', {});
