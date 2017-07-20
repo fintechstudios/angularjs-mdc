@@ -43,6 +43,7 @@ class MdcListController {
  */
 angular
   .module('mdc.list', [])
+//  .component('mdcListItem', {});
   .component('mdcList', {
     controller: MdcListController,
     bindings: {
@@ -50,5 +51,4 @@ angular
       avatar: '<?',
       twoLine: '<?',
     },
-  })
-  .component('mdcListItem', {});
+  });

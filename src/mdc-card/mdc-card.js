@@ -38,6 +38,54 @@ class MdcCardActionsController {
 
 
 /**
+ * @ngdoc component
+ * @name mdcCard
+ * @module mdc.card
+ *
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcCardPrimary
+ * @module mdc.card
+ *
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcCardHorizontalBlock
+ * @module mdc.card
+ *
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcCardMedia
+ * @module mdc.card
+ *
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcCardSupportingText
+ * @module mdc.card
+ *
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcCardSubtitle
+ * @module mdc.card
+ *
+ */
+
+
+/**
  * @ngdoc module
  * @name mdc.card
  * @description
@@ -48,57 +96,21 @@ class MdcCardActionsController {
  */
 angular
   .module('mdc.card', [])
-  /**
-   * @ngdoc component
-   * @name mdcCard
-   * @module mdc.card
-   *
-   */
-  .component('mdcCard', {})
-  /**
-   * @ngdoc component
-   * @name mdcCardPrimary
-   * @module mdc.card
-   *
-   */
-  .component('mdcCardPrimary', {})
-  /**
-   * @ngdoc component
-   * @name mdcCardHorizontalBlock
-   * @module mdc.card
-   *
-   */
-  .component('mdcCardHorizontalBlock', {})
+//  .component('mdcCard', {})
+//  .component('mdcCardPrimary', {})
+//  .component('mdcCardHorizontalBlock', {})
+//  .component('mdcCardSubtitle', {})
+//  .component('mdcCardSupportingText', {});
+//  .component('mdcCardMedia', {})
   .component('mdcCardTitle', {
     controller: MdcCardTitleController,
     bindings: {
       large: '<?',
     },
   })
-  /**
-   * @ngdoc component
-   * @name mdcCardSubtitle
-   * @module mdc.card
-   *
-   */
-  .component('mdcCardSubtitle', {})
-  /**
-   * @ngdoc component
-   * @name mdcCardMedia
-   * @module mdc.card
-   *
-   */
-  .component('mdcCardMedia', {})
   .component('mdcCardActions', {
     controller: MdcCardActionsController,
     bindings: {
       vertical: '<?',
     },
-  })
-  /**
-   * @ngdoc component
-   * @name mdcCardSupportingText
-   * @module mdc.card
-   *
-   */
-  .component('mdcCardSupportingText', {});
+  });
