@@ -40,20 +40,3 @@ describe('mdc-list', function() {
     expect(elem.hasClass(className)).to.be.false;
   });
 });
-
-
-describe('mdc-list-item', function() {
-  let $mockComponent;
-
-  beforeEach(angular.mock.module('ngMockComponent'));
-  beforeEach(angular.mock.module('mdc'));
-
-  beforeEach(inject(function($componentGenerator) {
-    $mockComponent = $componentGenerator('mdcListItem');
-  }));
-
-  it('should have the `mdc-list-item` class by default', function() {
-    const component = new $mockComponent();
-    console.log(component);
-  });
-});
