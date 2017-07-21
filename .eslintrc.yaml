@@ -30,4 +30,5 @@ rules:
 
   prefer-const: error
 
+  angular/function-type: [1, "named"]
   angular/file-name: off
