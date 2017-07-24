@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -765,17 +765,189 @@ function getNormalizedEventCoords(ev, pageOffset, clientRect) {
 "use strict";
 
 
-__webpack_require__(7);
-__webpack_require__(8);
-__webpack_require__(9);
-__webpack_require__(20);
-__webpack_require__(21);
-__webpack_require__(23);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTransformPropertyName = getTransformPropertyName;
+exports.clamp = clamp;
+exports.bezierProgress = bezierProgress;
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-angular.module('mdc', ['mdc.button', 'mdc.card', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.switch']);
+/** @type {string|undefined} */
+var storedTransformPropertyName_ = void 0;
+
+/**
+ * Returns the name of the correct transform property to use on the current browser.
+ * @param {!Window} globalObj
+ * @param {boolean=} forceRefresh
+ * @return {string}
+ */
+function getTransformPropertyName(globalObj) {
+  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if (storedTransformPropertyName_ === undefined || forceRefresh) {
+    var el = globalObj.document.createElement('div');
+    var transformPropertyName = 'transform' in el.style ? 'transform' : 'webkitTransform';
+    storedTransformPropertyName_ = transformPropertyName;
+  }
+
+  return storedTransformPropertyName_;
+}
+
+/**
+ * Clamps a value between the minimum and the maximum, returning the clamped value.
+ * @param {number} value
+ * @param {number} min
+ * @param {number} max
+ * @return {number}
+ */
+function clamp(value) {
+  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
+  return Math.min(max, Math.max(min, value));
+}
+
+/**
+ * Returns the easing value to apply at time t, for a given cubic bezier curve.
+ * Control points P0 and P3 are assumed to be (0,0) and (1,1), respectively.
+ * Parameters are as follows:
+ * - time: The current time in the animation, scaled between 0 and 1.
+ * - x1: The x value of control point P1.
+ * - y1: The y value of control point P1.
+ * - x2: The x value of control point P2.
+ * - y2: The y value of control point P2.
+ * @param {number} time
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ * @return {number}
+ */
+function bezierProgress(time, x1, y1, x2, y2) {
+  return getBezierCoordinate_(solvePositionFromXValue_(time, x1, x2), y1, y2);
+}
+
+/**
+ * Compute a single coordinate at a position point between 0 and 1.
+ * c1 and c2 are the matching coordinate on control points P1 and P2, respectively.
+ * Control points P0 and P3 are assumed to be (0,0) and (1,1), respectively.
+ * Adapted from https://github.com/google/closure-library/blob/master/closure/goog/math/bezier.js.
+ * @param {number} t
+ * @param {number} c1
+ * @param {number} c2
+ * @return {number}
+ */
+function getBezierCoordinate_(t, c1, c2) {
+  // Special case start and end.
+  if (t === 0 || t === 1) {
+    return t;
+  }
+
+  // Step one - from 4 points to 3
+  var ic0 = t * c1;
+  var ic1 = c1 + t * (c2 - c1);
+  var ic2 = c2 + t * (1 - c2);
+
+  // Step two - from 3 points to 2
+  ic0 += t * (ic1 - ic0);
+  ic1 += t * (ic2 - ic1);
+
+  // Final step - last point
+  return ic0 + t * (ic1 - ic0);
+}
+
+/**
+ * Project a point onto the Bezier curve, from a given X. Calculates the position t along the curve.
+ * Adapted from https://github.com/google/closure-library/blob/master/closure/goog/math/bezier.js.
+ * @param {number} xVal
+ * @param {number} x1
+ * @param {number} x2
+ * @return {number}
+ */
+function solvePositionFromXValue_(xVal, x1, x2) {
+  var EPSILON = 1e-6;
+  var MAX_ITERATIONS = 8;
+
+  if (xVal <= 0) {
+    return 0;
+  } else if (xVal >= 1) {
+    return 1;
+  }
+
+  // Initial estimate of t using linear interpolation.
+  var t = xVal;
+
+  // Try gradient descent to solve for t. If it works, it is very fast.
+  var tMin = 0;
+  var tMax = 1;
+  var value = 0;
+  for (var i = 0; i < MAX_ITERATIONS; i++) {
+    value = getBezierCoordinate_(t, x1, x2);
+    var derivative = (getBezierCoordinate_(t + EPSILON, x1, x2) - value) / EPSILON;
+    if (Math.abs(value - xVal) < EPSILON) {
+      return t;
+    } else if (Math.abs(derivative) < EPSILON) {
+      break;
+    } else {
+      if (value < xVal) {
+        tMin = t;
+      } else {
+        tMax = t;
+      }
+      t -= (value - xVal) / derivative;
+    }
+  }
+
+  // If the gradient descent got stuck in a local minimum, e.g. because
+  // the derivative was close to 0, use a Dichotomy refinement instead.
+  // We limit the number of interations to 8.
+  for (var _i = 0; Math.abs(value - xVal) > EPSILON && _i < MAX_ITERATIONS; _i++) {
+    if (value < xVal) {
+      tMin = t;
+      t = (t + tMax) / 2;
+    } else {
+      tMax = t;
+      t = (t + tMin) / 2;
+    }
+    value = getBezierCoordinate_(t, x1, x2);
+  }
+  return t;
+}
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(8);
+__webpack_require__(9);
+__webpack_require__(10);
+__webpack_require__(21);
+__webpack_require__(22);
+__webpack_require__(24);
+__webpack_require__(25);
+
+angular.module('mdc', ['mdc.button', 'mdc.card', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.switch', 'mdc.menu']);
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -851,7 +1023,7 @@ angular.module('mdc.button', []).component('mdcButton', {
 });
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -925,7 +1097,7 @@ angular.module('mdc.icon', []).constant('MDC_ICON_SIZES', ['18', '24', '36', '48
 });
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -935,11 +1107,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _iconToggle = __webpack_require__(10);
+var _iconToggle = __webpack_require__(11);
 
-var _ripple = __webpack_require__(16);
+var _ripple = __webpack_require__(17);
 
-var _normalize = __webpack_require__(19);
+var _normalize = __webpack_require__(20);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1147,7 +1319,7 @@ angular.module('mdc.icon-toggle', []).component('mdcIconToggle', {
 });
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1166,9 +1338,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _base = __webpack_require__(0);
 
-var _ripple = __webpack_require__(11);
+var _ripple = __webpack_require__(12);
 
-var _foundation = __webpack_require__(14);
+var _foundation = __webpack_require__(15);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -1341,7 +1513,7 @@ var MDCIconToggle = exports.MDCIconToggle = function (_MDCComponent) {
 }(_base.MDCComponent);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1362,7 +1534,7 @@ var _adapter = __webpack_require__(3);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(12);
+var _foundation = __webpack_require__(13);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -1581,7 +1753,7 @@ RippleCapableSurface.prototype.unbounded;
 RippleCapableSurface.prototype.disabled;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1603,7 +1775,7 @@ var _adapter = __webpack_require__(3);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(13);
+var _constants = __webpack_require__(14);
 
 var _util = __webpack_require__(4);
 
@@ -2236,7 +2408,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCRippleFoundation;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2292,7 +2464,7 @@ var numbers = exports.numbers = {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2308,7 +2480,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _base = __webpack_require__(0);
 
-var _constants = __webpack_require__(15);
+var _constants = __webpack_require__(16);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2528,7 +2700,7 @@ function isSpace(_ref3) {
 }
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2567,7 +2739,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2582,7 +2754,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _base = __webpack_require__(0);
 
-var _foundation = __webpack_require__(17);
+var _foundation = __webpack_require__(18);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -2733,7 +2905,7 @@ var MDCRipple = exports.MDCRipple = function (_MDCComponent) {
 }(_base.MDCComponent);
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2749,7 +2921,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _base = __webpack_require__(0);
 
-var _constants = __webpack_require__(18);
+var _constants = __webpack_require__(19);
 
 var _util = __webpack_require__(5);
 
@@ -3244,7 +3416,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCRippleFoundation;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3300,7 +3472,7 @@ var numbers = exports.numbers = {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3348,7 +3520,7 @@ function convertStringsObjToBindingNames(obj, skip) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3411,17 +3583,19 @@ var MdcListController = function () {
  */
 
 
-angular.module('mdc.list', []).component('mdcList', {
+angular.module('mdc.list', [])
+//  .component('mdcListItem', {});
+.component('mdcList', {
   controller: MdcListController,
   bindings: {
     dense: '<?',
     avatar: '<?',
     twoLine: '<?'
   }
-}).component('mdcListItem', {});
+});
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3478,17 +3652,17 @@ angular.module('mdc.switch', []).component('mdcSwitch', {
     ngDisabled: '<?',
     ngModel: '=?'
   },
-  template: __webpack_require__(22)
+  template: __webpack_require__(23)
 });
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>"
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3557,6 +3731,48 @@ var MdcCardActionsController = function () {
 }();
 
 /**
+ * @ngdoc component
+ * @name mdcCard
+ * @module mdc.card
+ *
+ */
+
+/**
+ * @ngdoc component
+ * @name mdcCardPrimary
+ * @module mdc.card
+ *
+ */
+
+/**
+ * @ngdoc component
+ * @name mdcCardHorizontalBlock
+ * @module mdc.card
+ *
+ */
+
+/**
+ * @ngdoc component
+ * @name mdcCardMedia
+ * @module mdc.card
+ *
+ */
+
+/**
+ * @ngdoc component
+ * @name mdcCardSupportingText
+ * @module mdc.card
+ *
+ */
+
+/**
+ * @ngdoc component
+ * @name mdcCardSubtitle
+ * @module mdc.card
+ *
+ */
+
+/**
  * @ngdoc module
  * @name mdc.card
  * @description
@@ -3568,58 +3784,1310 @@ var MdcCardActionsController = function () {
 
 
 angular.module('mdc.card', [])
-/**
- * @ngdoc component
- * @name mdcCard
- * @module mdc.card
- *
- */
-.component('mdcCard', {})
-/**
- * @ngdoc component
- * @name mdcCardPrimary
- * @module mdc.card
- *
- */
-.component('mdcCardPrimary', {})
-/**
- * @ngdoc component
- * @name mdcCardHorizontalBlock
- * @module mdc.card
- *
- */
-.component('mdcCardHorizontalBlock', {}).component('mdcCardTitle', {
+//  .component('mdcCard', {})
+//  .component('mdcCardPrimary', {})
+//  .component('mdcCardHorizontalBlock', {})
+//  .component('mdcCardSubtitle', {})
+//  .component('mdcCardSupportingText', {});
+//  .component('mdcCardMedia', {})
+.component('mdcCardTitle', {
   controller: MdcCardTitleController,
   bindings: {
     large: '<?'
   }
-})
-/**
- * @ngdoc component
- * @name mdcCardSubtitle
- * @module mdc.card
- *
- */
-.component('mdcCardSubtitle', {})
-/**
- * @ngdoc component
- * @name mdcCardMedia
- * @module mdc.card
- *
- */
-.component('mdcCardMedia', {}).component('mdcCardActions', {
+}).component('mdcCardActions', {
   controller: MdcCardActionsController,
   bindings: {
     vertical: '<?'
   }
-})
+});
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _foundation = __webpack_require__(26);
+
+var _foundation2 = _interopRequireDefault(_foundation);
+
+var _util = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+MdcSimpleMenuToggleController.$inject = ['$document', 'MDC_SIMPLE_MENU_TOGGLE_EVENT'];
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /**
  * @ngdoc component
- * @name mdcCardSupportingText
- * @module mdc.card
+ * @name mdcSimpleMenu
+ * @module mdc.menu
+ *
+ * @param {expression} [open] Whether the menu is opened or closed at start
+ * @param {string} [openFrom=topLeft] topLeft, topRight, bottomLeft, or bottomRight
+ * @param {string} [id] Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
+ */
+var MdcSimpleMenuController = function () {
+  MdcSimpleMenuController.$inject = ['$element', '$scope', '$window', 'MDC_SIMPLE_MENU_TOGGLE_EVENT'];
+
+  function MdcSimpleMenuController($element, $scope, $window, MDC_SIMPLE_MENU_TOGGLE_EVENT) {
+    _classCallCheck(this, MdcSimpleMenuController);
+
+    this.window = $window;
+    this.document = this.window.document;
+    this.elem = $element;
+    this.root_ = this.elem[0];
+    this.scope = $scope;
+    this.foundation_ = this.getDefaultFoundation();
+    this.TOGGLE_EVENT = MDC_SIMPLE_MENU_TOGGLE_EVENT;
+  }
+
+  /**
+   * Return the item container element inside the component.
+   * @return {?Element}
+   */
+
+
+  _createClass(MdcSimpleMenuController, [{
+    key: 'getDefaultFoundation',
+
+
+    /** @return {!MDCSimpleMenuFoundation} */
+    value: function getDefaultFoundation() {
+      var _this = this;
+
+      return new _foundation2.default({
+        addClass: function addClass(className) {
+          return _this.root_.classList.add(className);
+        },
+        removeClass: function removeClass(className) {
+          return _this.root_.classList.remove(className);
+        },
+        hasClass: function hasClass(className) {
+          return _this.root_.classList.contains(className);
+        },
+        hasNecessaryDom: function hasNecessaryDom() {
+          return Boolean(_this.itemsContainer_);
+        },
+        getAttributeForEventTarget: function getAttributeForEventTarget(target, attributeName) {
+          return target.getAttribute(attributeName);
+        },
+        getInnerDimensions: function getInnerDimensions() {
+          var itemsContainer = _this.itemsContainer_;
+
+          return { width: itemsContainer.offsetWidth, height: itemsContainer.offsetHeight };
+        },
+        hasAnchor: function hasAnchor() {
+          return _this.root_.parentElement && (_this.root_.parentElement.classList.contains('mdc-menu-anchor') || _this.root_.parentElement.tagName.toLowerCase() === 'mdc-menu-anchor');
+        },
+        getAnchorDimensions: function getAnchorDimensions() {
+          return _this.root_.parentElement.getBoundingClientRect();
+        },
+        getWindowDimensions: function getWindowDimensions() {
+          return { width: _this.window.innerWidth, height: _this.window.innerHeight };
+        },
+        setScale: function setScale(x, y) {
+          _this.root_.style[(0, _util.getTransformPropertyName)(window)] = 'scale(' + x + ', ' + y + ')';
+        },
+        setInnerScale: function setInnerScale(x, y) {
+          _this.itemsContainer_.style[(0, _util.getTransformPropertyName)(window)] = 'scale(' + x + ', ' + y + ')';
+        },
+        getNumberOfItems: function getNumberOfItems() {
+          return _this.items.length;
+        },
+        registerInteractionHandler: function registerInteractionHandler(type, handler) {
+          return _this.root_.addEventListener(type, handler);
+        },
+        deregisterInteractionHandler: function deregisterInteractionHandler(type, handler) {
+          return _this.root_.removeEventListener(type, handler);
+        },
+        registerBodyClickHandler: function registerBodyClickHandler(handler) {
+          return _this.document.body.addEventListener('click', handler);
+        },
+        deregisterBodyClickHandler: function deregisterBodyClickHandler(handler) {
+          return _this.document.body.removeEventListener('click', handler);
+        },
+        getYParamsForItemAtIndex: function getYParamsForItemAtIndex(index) {
+          var _items$index = _this.items[index],
+              top = _items$index.offsetTop,
+              height = _items$index.offsetHeight;
+
+          return { top: top, height: height };
+        },
+        setTransitionDelayForItemAtIndex: function setTransitionDelayForItemAtIndex(index, value) {
+          return _this.items[index].style.setProperty('transition-delay', value);
+        },
+        getIndexForEventTarget: function getIndexForEventTarget(target) {
+          return _this.items.indexOf(target);
+        },
+        notifySelected: function notifySelected(evtData) {
+          _this.emit(_foundation2.default.strings.SELECTED_EVENT, {
+            index: evtData.index,
+            item: _this.items[evtData.index]
+          });
+        },
+        notifyCancel: function notifyCancel() {
+          return _this.emit(_foundation2.default.strings.CANCEL_EVENT, {});
+        },
+        saveFocus: function saveFocus() {
+          _this.previousFocus_ = _this.document.activeElement;
+        },
+        restoreFocus: function restoreFocus() {
+          if (_this.previousFocus_) {
+            _this.previousFocus_.focus();
+          }
+        },
+        isFocused: function isFocused() {
+          return _this.document.activeElement === _this.root_;
+        },
+        focus: function focus() {
+          return _this.root_.focus();
+        },
+        getFocusedItemIndex: function getFocusedItemIndex() {
+          return _this.items.indexOf(_this.document.activeElement);
+        },
+        focusItemAtIndex: function focusItemAtIndex(index) {
+          return _this.items[index].focus();
+        },
+        isRtl: function isRtl() {
+          return getComputedStyle(_this.root_).getPropertyValue('direction') === 'rtl';
+        },
+        setTransformOrigin: function setTransformOrigin(origin) {
+          _this.root_.style[(0, _util.getTransformPropertyName)(window) + '-origin'] = origin;
+        },
+        setPosition: function setPosition(position) {
+          _this.root_.style.left = 'left' in position ? position.left : null;
+          _this.root_.style.right = 'right' in position ? position.right : null;
+          _this.root_.style.top = 'top' in position ? position.top : null;
+          _this.root_.style.bottom = 'bottom' in position ? position.bottom : null;
+        },
+        getAccurateTime: function getAccurateTime() {
+          return _this.window.performance.now();
+        }
+      });
+    }
+  }, {
+    key: 'emit',
+    value: function emit(name, args) {
+      this.scope.$emit(name.replace(name, this.id), args);
+    }
+  }, {
+    key: 'show',
+    value: function show() {
+      this.foundation_.open();
+    }
+  }, {
+    key: 'hide',
+    value: function hide() {
+      this.foundation_.close();
+    }
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      this.foundation_.isOpen() ? this.hide() : this.show();
+    }
+  }, {
+    key: '$postLink',
+    value: function $postLink() {
+      var _this2 = this;
+
+      this.toggleHandler = function () {
+        return _this2.toggle();
+      };
+      this.elem.on(this.TOGGLE_EVENT, this.toggleHandler);
+    }
+  }, {
+    key: '$onChanges',
+    value: function $onChanges(changesObj) {
+      if (changesObj.open) {
+        this.open ? this.show() : this.hide();
+      }
+      if (changesObj.openFrom) {
+        this.elem.toggleClass('mdc-simple-menu--open-from-top-left', this.openFrom === 'topLeft');
+        this.elem.toggleClass('mdc-simple-menu--open-from-top-right', this.openFrom === 'topRight');
+        this.elem.toggleClass('mdc-simple-menu--open-from-bottom-left', this.openFrom === 'bottomLeft');
+        this.elem.toggleClass('mdc-simple-menu--open-from-bottom-right', this.openFrom === 'bottomRight');
+      }
+    }
+  }, {
+    key: '$onDestroy',
+    value: function $onDestroy() {
+      this.elem.off(this.TOGGLE_EVENT, this.toggleHandler);
+      this.foundation_.destroy();
+    }
+  }, {
+    key: 'itemsContainer_',
+    get: function get() {
+      return this.root_.querySelector(_foundation2.default.strings.ITEMS_SELECTOR);
+    }
+
+    /**
+     * Return the items within the menu. Note that this only contains the set of elements within
+     * the items container that are proper list items, and not supplemental / presentational DOM
+     * elements.
+     * @return {!Array<!Element>}
+     */
+
+  }, {
+    key: 'items',
+    get: function get() {
+      var itemsContainer = this.itemsContainer_;
+
+      return [].slice.call(itemsContainer.querySelectorAll('mdc-simple-menu-item'));
+    }
+  }]);
+
+  return MdcSimpleMenuController;
+}();
+
+/**
+ * @ngdoc component
+ * @name mdcSimpleMenuItem
+ * @module mdc.menu
+ * @description Used as a child of mdcMenu to create menu items
  *
  */
-.component('mdcCardSupportingText', {});
+
+/**
+ * @ngdoc component
+ * @name mdcMenuAnchor
+ * @module mdc.menu
+ * @description If this is the parent of mdcMenu, the menu will bind to it
+ *
+ */
+
+/**
+ * @ngdoc directive
+ * @name mdcSimpleMenuToggle
+ * @module mdc.menu
+ * @restrict A
+ * @description Binds a click handler to open the closest mdcSimpleMenu, unless an `id` is given as a value
+ *
+ */
+
+
+function MdcSimpleMenuToggleController($document, MDC_SIMPLE_MENU_TOGGLE_EVENT) {
+  return {
+    restrict: 'A',
+    link: function link(scope, element) {
+      var menus = void 0;
+      var menuId = element.attr('mdc-simple-menu-toggle');
+
+      if (menuId) {
+        menus = [$document[0].getElementById(menuId)];
+      } else {
+        menus = element.parent()[0].querySelectorAll(':scope > mdc-simple-menu');
+      }
+
+      if (menus.length === 1) {
+        var menuCtrl = angular.element(menus[0]);
+        var openHandler = function openHandler() {
+          return menuCtrl.triggerHandler(MDC_SIMPLE_MENU_TOGGLE_EVENT);
+        };
+        element.on('click', openHandler);
+        element.on('$destroy', function () {
+          element.off('click', openHandler);
+        });
+      }
+    }
+  };
+}
+
+angular.module('mdc.menu', []).constant('MDC_SIMPLE_MENU_TOGGLE_EVENT', 'MDCSimpleMenu:toggle').component('mdcSimpleMenu', {
+  controller: MdcSimpleMenuController,
+  template: __webpack_require__(29),
+  bindings: {
+    id: '@',
+    open: '<?',
+    openFrom: '@'
+  },
+  transclude: true
+}).directive('mdcSimpleMenuToggle', MdcSimpleMenuToggleController);
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _foundation = __webpack_require__(1);
+
+var _foundation2 = _interopRequireDefault(_foundation);
+
+var _adapter = __webpack_require__(27);
+
+var _adapter2 = _interopRequireDefault(_adapter);
+
+var _constants = __webpack_require__(28);
+
+var _util = __webpack_require__(6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright 2016 Google Inc. All Rights Reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * you may not use this file except in compliance with the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may obtain a copy of the License at
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Unless required by applicable law or agreed to in writing, software
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * See the License for the specific language governing permissions and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * limitations under the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+ * @extends {MDCFoundation<!MDCSimpleMenuAdapter>}
+ */
+var MDCSimpleMenuFoundation = function (_MDCFoundation) {
+  _inherits(MDCSimpleMenuFoundation, _MDCFoundation);
+
+  _createClass(MDCSimpleMenuFoundation, null, [{
+    key: 'cssClasses',
+
+    /** @return enum{cssClasses} */
+    get: function get() {
+      return _constants.cssClasses;
+    }
+
+    /** @return enum{strings} */
+
+  }, {
+    key: 'strings',
+    get: function get() {
+      return _constants.strings;
+    }
+
+    /** @return enum{numbers} */
+
+  }, {
+    key: 'numbers',
+    get: function get() {
+      return _constants.numbers;
+    }
+
+    /**
+     * {@see MDCSimpleMenuAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCSimpleMenuAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCSimpleMenuAdapter} */{
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          hasClass: function hasClass() {
+            return false;
+          },
+          hasNecessaryDom: function hasNecessaryDom() {
+            return false;
+          },
+          getAttributeForEventTarget: function getAttributeForEventTarget() {},
+          getInnerDimensions: function getInnerDimensions() {
+            return {};
+          },
+          hasAnchor: function hasAnchor() {
+            return false;
+          },
+          getAnchorDimensions: function getAnchorDimensions() {
+            return {};
+          },
+          getWindowDimensions: function getWindowDimensions() {
+            return {};
+          },
+          setScale: function setScale() {},
+          setInnerScale: function setInnerScale() {},
+          getNumberOfItems: function getNumberOfItems() {
+            return 0;
+          },
+          registerInteractionHandler: function registerInteractionHandler() {},
+          deregisterInteractionHandler: function deregisterInteractionHandler() {},
+          registerBodyClickHandler: function registerBodyClickHandler() {},
+          deregisterBodyClickHandler: function deregisterBodyClickHandler() {},
+          getYParamsForItemAtIndex: function getYParamsForItemAtIndex() {
+            return {};
+          },
+          setTransitionDelayForItemAtIndex: function setTransitionDelayForItemAtIndex() {},
+          getIndexForEventTarget: function getIndexForEventTarget() {
+            return 0;
+          },
+          notifySelected: function notifySelected() {},
+          notifyCancel: function notifyCancel() {},
+          saveFocus: function saveFocus() {},
+          restoreFocus: function restoreFocus() {},
+          isFocused: function isFocused() {
+            return false;
+          },
+          focus: function focus() {},
+          getFocusedItemIndex: function getFocusedItemIndex() {
+            return -1;
+          },
+          focusItemAtIndex: function focusItemAtIndex() {},
+          isRtl: function isRtl() {
+            return false;
+          },
+          setTransformOrigin: function setTransformOrigin() {},
+          setPosition: function setPosition() {},
+          getAccurateTime: function getAccurateTime() {
+            return 0;
+          }
+        }
+      );
+    }
+
+    /** @param {!MDCSimpleMenuAdapter} adapter */
+
+  }]);
+
+  function MDCSimpleMenuFoundation(adapter) {
+    _classCallCheck(this, MDCSimpleMenuFoundation);
+
+    /** @private {function(!Event)} */
+    var _this = _possibleConstructorReturn(this, (MDCSimpleMenuFoundation.__proto__ || Object.getPrototypeOf(MDCSimpleMenuFoundation)).call(this, _extends(MDCSimpleMenuFoundation.defaultAdapter, adapter)));
+
+    _this.clickHandler_ = function (evt) {
+      return _this.handlePossibleSelected_(evt);
+    };
+    /** @private {function(!Event)} */
+    _this.keydownHandler_ = function (evt) {
+      return _this.handleKeyboardDown_(evt);
+    };
+    /** @private {function(!Event)} */
+    _this.keyupHandler_ = function (evt) {
+      return _this.handleKeyboardUp_(evt);
+    };
+    /** @private {function(!Event)} */
+    _this.documentClickHandler_ = function (evt) {
+      _this.adapter_.notifyCancel();
+      _this.close(evt);
+    };
+    /** @private {boolean} */
+    _this.isOpen_ = false;
+    /** @private {number} */
+    _this.startScaleX_ = 0;
+    /** @private {number} */
+    _this.startScaleY_ = 0;
+    /** @private {number} */
+    _this.targetScale_ = 1;
+    /** @private {number} */
+    _this.scaleX_ = 0;
+    /** @private {number} */
+    _this.scaleY_ = 0;
+    /** @private {boolean} */
+    _this.running_ = false;
+    /** @private {number} */
+    _this.selectedTriggerTimerId_ = 0;
+    /** @private {number} */
+    _this.animationRequestId_ = 0;
+    /** @private {!{ width: number, height: number }} */
+    _this.dimensions_;
+    /** @private {number} */
+    _this.startTime_;
+    /** @private {number} */
+    _this.itemHeight_;
+    return _this;
+  }
+
+  _createClass(MDCSimpleMenuFoundation, [{
+    key: 'init',
+    value: function init() {
+      var _MDCSimpleMenuFoundat = MDCSimpleMenuFoundation.cssClasses,
+          ROOT = _MDCSimpleMenuFoundat.ROOT,
+          OPEN = _MDCSimpleMenuFoundat.OPEN;
+
+
+      if (!this.adapter_.hasClass(ROOT)) {
+        throw new Error(ROOT + ' class required in root element.');
+      }
+
+      if (!this.adapter_.hasNecessaryDom()) {
+        throw new Error('Required DOM nodes missing in ' + ROOT + ' component.');
+      }
+
+      if (this.adapter_.hasClass(OPEN)) {
+        this.isOpen_ = true;
+      }
+
+      this.adapter_.registerInteractionHandler('click', this.clickHandler_);
+      this.adapter_.registerInteractionHandler('keyup', this.keyupHandler_);
+      this.adapter_.registerInteractionHandler('keydown', this.keydownHandler_);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      clearTimeout(this.selectedTriggerTimerId_);
+      // Cancel any currently running animations.
+      cancelAnimationFrame(this.animationRequestId_);
+      this.adapter_.deregisterInteractionHandler('click', this.clickHandler_);
+      this.adapter_.deregisterInteractionHandler('keyup', this.keyupHandler_);
+      this.adapter_.deregisterInteractionHandler('keydown', this.keydownHandler_);
+      this.adapter_.deregisterBodyClickHandler(this.documentClickHandler_);
+    }
+
+    /**
+     * Calculates transition delays for individual menu items, so that they fade in one at a time.
+     * @private
+     */
+
+  }, {
+    key: 'applyTransitionDelays_',
+    value: function applyTransitionDelays_() {
+      var _MDCSimpleMenuFoundat2 = MDCSimpleMenuFoundation.cssClasses,
+          BOTTOM_LEFT = _MDCSimpleMenuFoundat2.BOTTOM_LEFT,
+          BOTTOM_RIGHT = _MDCSimpleMenuFoundat2.BOTTOM_RIGHT;
+
+      var numItems = this.adapter_.getNumberOfItems();
+      var height = this.dimensions_.height;
+
+      var transitionDuration = MDCSimpleMenuFoundation.numbers.TRANSITION_DURATION_MS / 1000;
+      var start = MDCSimpleMenuFoundation.numbers.TRANSITION_SCALE_ADJUSTMENT_Y;
+
+      for (var index = 0; index < numItems; index++) {
+        var _adapter_$getYParamsF = this.adapter_.getYParamsForItemAtIndex(index),
+            itemTop = _adapter_$getYParamsF.top,
+            itemHeight = _adapter_$getYParamsF.height;
+
+        this.itemHeight_ = itemHeight;
+        var itemDelayFraction = itemTop / height;
+        if (this.adapter_.hasClass(BOTTOM_LEFT) || this.adapter_.hasClass(BOTTOM_RIGHT)) {
+          itemDelayFraction = (height - itemTop - itemHeight) / height;
+        }
+        var itemDelay = (start + itemDelayFraction * (1 - start)) * transitionDuration;
+        // Use toFixed() here to normalize CSS unit precision across browsers
+        this.adapter_.setTransitionDelayForItemAtIndex(index, itemDelay.toFixed(3) + 's');
+      }
+    }
+
+    /**
+     * Removes transition delays from menu items.
+     * @private
+     */
+
+  }, {
+    key: 'removeTransitionDelays_',
+    value: function removeTransitionDelays_() {
+      var numItems = this.adapter_.getNumberOfItems();
+      for (var i = 0; i < numItems; i++) {
+        this.adapter_.setTransitionDelayForItemAtIndex(i, null);
+      }
+    }
+
+    /**
+     * Animates menu opening or closing.
+     * @private
+     */
+
+  }, {
+    key: 'animationLoop_',
+    value: function animationLoop_() {
+      var _this2 = this;
+
+      var time = this.adapter_.getAccurateTime();
+      var _MDCSimpleMenuFoundat3 = MDCSimpleMenuFoundation.numbers,
+          TRANSITION_DURATION_MS = _MDCSimpleMenuFoundat3.TRANSITION_DURATION_MS,
+          TRANSITION_X1 = _MDCSimpleMenuFoundat3.TRANSITION_X1,
+          TRANSITION_Y1 = _MDCSimpleMenuFoundat3.TRANSITION_Y1,
+          TRANSITION_X2 = _MDCSimpleMenuFoundat3.TRANSITION_X2,
+          TRANSITION_Y2 = _MDCSimpleMenuFoundat3.TRANSITION_Y2,
+          TRANSITION_SCALE_ADJUSTMENT_X = _MDCSimpleMenuFoundat3.TRANSITION_SCALE_ADJUSTMENT_X,
+          TRANSITION_SCALE_ADJUSTMENT_Y = _MDCSimpleMenuFoundat3.TRANSITION_SCALE_ADJUSTMENT_Y;
+
+      var currentTime = (0, _util.clamp)((time - this.startTime_) / TRANSITION_DURATION_MS);
+
+      // Animate X axis very slowly, so that only the Y axis animation is visible during fade-out.
+      var currentTimeX = (0, _util.clamp)((currentTime - TRANSITION_SCALE_ADJUSTMENT_X) / (1 - TRANSITION_SCALE_ADJUSTMENT_X));
+      // No time-shifting on the Y axis when closing.
+      var currentTimeY = currentTime;
+
+      var startScaleY = this.startScaleY_;
+      if (this.targetScale_ === 1) {
+        // Start with the menu at the height of a single item.
+        if (this.itemHeight_) {
+          startScaleY = Math.max(this.itemHeight_ / this.dimensions_.height, startScaleY);
+        }
+        // X axis moves faster, so time-shift forward.
+        currentTimeX = (0, _util.clamp)(currentTime + TRANSITION_SCALE_ADJUSTMENT_X);
+        // Y axis moves slower, so time-shift backwards and adjust speed by the difference.
+        currentTimeY = (0, _util.clamp)((currentTime - TRANSITION_SCALE_ADJUSTMENT_Y) / (1 - TRANSITION_SCALE_ADJUSTMENT_Y));
+      }
+
+      // Apply cubic bezier easing independently to each axis.
+      var easeX = (0, _util.bezierProgress)(currentTimeX, TRANSITION_X1, TRANSITION_Y1, TRANSITION_X2, TRANSITION_Y2);
+      var easeY = (0, _util.bezierProgress)(currentTimeY, TRANSITION_X1, TRANSITION_Y1, TRANSITION_X2, TRANSITION_Y2);
+
+      // Calculate the scales to apply to the outer container and inner container.
+      this.scaleX_ = this.startScaleX_ + (this.targetScale_ - this.startScaleX_) * easeX;
+      var invScaleX = 1 / (this.scaleX_ === 0 ? 1 : this.scaleX_);
+      this.scaleY_ = startScaleY + (this.targetScale_ - startScaleY) * easeY;
+      var invScaleY = 1 / (this.scaleY_ === 0 ? 1 : this.scaleY_);
+
+      // Apply scales.
+      this.adapter_.setScale(this.scaleX_, this.scaleY_);
+      this.adapter_.setInnerScale(invScaleX, invScaleY);
+
+      // Stop animation when we've covered the entire 0 - 1 range of time.
+      if (currentTime < 1) {
+        this.animationRequestId_ = requestAnimationFrame(function () {
+          return _this2.animationLoop_();
+        });
+      } else {
+        this.animationRequestId_ = 0;
+        this.running_ = false;
+        this.adapter_.removeClass(MDCSimpleMenuFoundation.cssClasses.ANIMATING);
+      }
+    }
+
+    /**
+     * Starts the open or close animation.
+     * @private
+     */
+
+  }, {
+    key: 'animateMenu_',
+    value: function animateMenu_() {
+      var _this3 = this;
+
+      this.startTime_ = this.adapter_.getAccurateTime();
+      this.startScaleX_ = this.scaleX_;
+      this.startScaleY_ = this.scaleY_;
+
+      this.targetScale_ = this.isOpen_ ? 1 : 0;
+
+      if (!this.running_) {
+        this.running_ = true;
+        this.animationRequestId_ = requestAnimationFrame(function () {
+          return _this3.animationLoop_();
+        });
+      }
+    }
+
+    /**
+     * @param {?number} focusIndex
+     * @private
+     */
+
+  }, {
+    key: 'focusOnOpen_',
+    value: function focusOnOpen_(focusIndex) {
+      if (focusIndex === null) {
+        // First, try focusing the menu.
+        this.adapter_.focus();
+        // If that doesn't work, focus first item instead.
+        if (!this.adapter_.isFocused()) {
+          this.adapter_.focusItemAtIndex(0);
+        }
+      } else {
+        this.adapter_.focusItemAtIndex(focusIndex);
+      }
+    }
+
+    /**
+     * Handle keys that we want to repeat on hold (tab and arrows).
+     * @param {!Event} evt
+     * @return {boolean}
+     * @private
+     */
+
+  }, {
+    key: 'handleKeyboardDown_',
+    value: function handleKeyboardDown_(evt) {
+      // Do nothing if Alt, Ctrl or Meta are pressed.
+      if (evt.altKey || evt.ctrlKey || evt.metaKey) {
+        return true;
+      }
+
+      var keyCode = evt.keyCode,
+          key = evt.key,
+          shiftKey = evt.shiftKey;
+
+      var isTab = key === 'Tab' || keyCode === 9;
+      var isArrowUp = key === 'ArrowUp' || keyCode === 38;
+      var isArrowDown = key === 'ArrowDown' || keyCode === 40;
+      var isSpace = key === 'Space' || keyCode === 32;
+
+      var focusedItemIndex = this.adapter_.getFocusedItemIndex();
+      var lastItemIndex = this.adapter_.getNumberOfItems() - 1;
+
+      if (shiftKey && isTab && focusedItemIndex === 0) {
+        this.adapter_.focusItemAtIndex(lastItemIndex);
+        evt.preventDefault();
+        return false;
+      }
+
+      if (!shiftKey && isTab && focusedItemIndex === lastItemIndex) {
+        this.adapter_.focusItemAtIndex(0);
+        evt.preventDefault();
+        return false;
+      }
+
+      // Ensure Arrow{Up,Down} and space do not cause inadvertent scrolling
+      if (isArrowUp || isArrowDown || isSpace) {
+        evt.preventDefault();
+      }
+
+      if (isArrowUp) {
+        if (focusedItemIndex === 0 || this.adapter_.isFocused()) {
+          this.adapter_.focusItemAtIndex(lastItemIndex);
+        } else {
+          this.adapter_.focusItemAtIndex(focusedItemIndex - 1);
+        }
+      } else if (isArrowDown) {
+        if (focusedItemIndex === lastItemIndex || this.adapter_.isFocused()) {
+          this.adapter_.focusItemAtIndex(0);
+        } else {
+          this.adapter_.focusItemAtIndex(focusedItemIndex + 1);
+        }
+      }
+
+      return true;
+    }
+
+    /**
+     * Handle keys that we don't want to repeat on hold (Enter, Space, Escape).
+     * @param {!Event} evt
+     * @return {boolean}
+     * @private
+     */
+
+  }, {
+    key: 'handleKeyboardUp_',
+    value: function handleKeyboardUp_(evt) {
+      // Do nothing if Alt, Ctrl or Meta are pressed.
+      if (evt.altKey || evt.ctrlKey || evt.metaKey) {
+        return true;
+      }
+
+      var keyCode = evt.keyCode,
+          key = evt.key;
+
+      var isEnter = key === 'Enter' || keyCode === 13;
+      var isSpace = key === 'Space' || keyCode === 32;
+      var isEscape = key === 'Escape' || keyCode === 27;
+
+      if (isEnter || isSpace) {
+        this.handlePossibleSelected_(evt);
+      }
+
+      if (isEscape) {
+        this.adapter_.notifyCancel();
+        this.close();
+      }
+
+      return true;
+    }
+
+    /**
+     * @param {!Event} evt
+     * @private
+     */
+
+  }, {
+    key: 'handlePossibleSelected_',
+    value: function handlePossibleSelected_(evt) {
+      var _this4 = this;
+
+      if (this.adapter_.getAttributeForEventTarget(evt.target, _constants.strings.ARIA_DISABLED_ATTR) === 'true') {
+        return;
+      }
+      var targetIndex = this.adapter_.getIndexForEventTarget(evt.target);
+      if (targetIndex < 0) {
+        return;
+      }
+      // Debounce multiple selections
+      if (this.selectedTriggerTimerId_) {
+        return;
+      }
+      this.selectedTriggerTimerId_ = setTimeout(function () {
+        _this4.selectedTriggerTimerId_ = 0;
+        _this4.close();
+        _this4.adapter_.notifySelected({ index: targetIndex });
+      }, _constants.numbers.SELECTED_TRIGGER_DELAY);
+    }
+
+    /** @private */
+
+  }, {
+    key: 'autoPosition_',
+    value: function autoPosition_() {
+      var _position;
+
+      if (!this.adapter_.hasAnchor()) {
+        return;
+      }
+
+      // Defaults: open from the top left.
+      var vertical = 'top';
+      var horizontal = 'left';
+
+      var anchor = this.adapter_.getAnchorDimensions();
+      var windowDimensions = this.adapter_.getWindowDimensions();
+
+      var topOverflow = anchor.top + this.dimensions_.height - windowDimensions.height;
+      var bottomOverflow = this.dimensions_.height - anchor.bottom;
+      var extendsBeyondTopBounds = topOverflow > 0;
+
+      if (extendsBeyondTopBounds) {
+        if (bottomOverflow < topOverflow) {
+          vertical = 'bottom';
+        }
+      }
+
+      var leftOverflow = anchor.left + this.dimensions_.width - windowDimensions.width;
+      var rightOverflow = this.dimensions_.width - anchor.right;
+      var extendsBeyondLeftBounds = leftOverflow > 0;
+      var extendsBeyondRightBounds = rightOverflow > 0;
+
+      if (this.adapter_.isRtl()) {
+        // In RTL, we prefer to open from the right.
+        horizontal = 'right';
+        if (extendsBeyondRightBounds && leftOverflow < rightOverflow) {
+          horizontal = 'left';
+        }
+      } else if (extendsBeyondLeftBounds && rightOverflow < leftOverflow) {
+        horizontal = 'right';
+      }
+
+      var position = (_position = {}, _defineProperty(_position, horizontal, '0'), _defineProperty(_position, vertical, '0'), _position);
+
+      this.adapter_.setTransformOrigin(vertical + ' ' + horizontal);
+      this.adapter_.setPosition(position);
+    }
+
+    /**
+     * Open the menu.
+     * @param {{focusIndex: ?number}=} options
+     */
+
+  }, {
+    key: 'open',
+    value: function open() {
+      var _this5 = this;
+
+      var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+          _ref$focusIndex = _ref.focusIndex,
+          focusIndex = _ref$focusIndex === undefined ? null : _ref$focusIndex;
+
+      this.adapter_.saveFocus();
+      this.adapter_.addClass(MDCSimpleMenuFoundation.cssClasses.ANIMATING);
+      this.animationRequestId_ = requestAnimationFrame(function () {
+        _this5.dimensions_ = _this5.adapter_.getInnerDimensions();
+        _this5.applyTransitionDelays_();
+        _this5.autoPosition_();
+        _this5.animateMenu_();
+        _this5.adapter_.addClass(MDCSimpleMenuFoundation.cssClasses.OPEN);
+        _this5.focusOnOpen_(focusIndex);
+        _this5.adapter_.registerBodyClickHandler(_this5.documentClickHandler_);
+      });
+      this.isOpen_ = true;
+    }
+
+    /**
+     * Closes the menu.
+     * @param {Event=} evt
+     */
+
+  }, {
+    key: 'close',
+    value: function close() {
+      var _this6 = this;
+
+      var evt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      var targetIsDisabled = evt ? this.adapter_.getAttributeForEventTarget(evt.target, _constants.strings.ARIA_DISABLED_ATTR) === 'true' : false;
+
+      if (targetIsDisabled) {
+        return;
+      }
+
+      this.adapter_.deregisterBodyClickHandler(this.documentClickHandler_);
+      this.adapter_.addClass(MDCSimpleMenuFoundation.cssClasses.ANIMATING);
+      requestAnimationFrame(function () {
+        _this6.removeTransitionDelays_();
+        _this6.animateMenu_();
+        _this6.adapter_.removeClass(MDCSimpleMenuFoundation.cssClasses.OPEN);
+      });
+      this.isOpen_ = false;
+      this.adapter_.restoreFocus();
+    }
+
+    /** @return {boolean} */
+
+  }, {
+    key: 'isOpen',
+    value: function isOpen() {
+      return this.isOpen_;
+    }
+  }]);
+
+  return MDCSimpleMenuFoundation;
+}(_foundation2.default);
+
+exports.default = MDCSimpleMenuFoundation;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC Simple Menu. Provides an interface for managing
+ * - classes
+ * - dom
+ * - focus
+ * - position
+ * - dimensions
+ * - event handlers
+ *
+ * Additionally, provides type information for the adapter to the Closure
+ * compiler.
+ *
+ * Implement this adapter for your framework of choice to delegate updates to
+ * the component in your framework of choice. See architecture documentation
+ * for more details.
+ * https://github.com/material-components/material-components-web/blob/master/docs/architecture.md
+ *
+ * @record
+ */
+var MDCSimpleMenuAdapter = function () {
+  function MDCSimpleMenuAdapter() {
+    _classCallCheck(this, MDCSimpleMenuAdapter);
+  }
+
+  _createClass(MDCSimpleMenuAdapter, [{
+    key: "addClass",
+
+    /** @param {string} className */
+    value: function addClass(className) {}
+
+    /** @param {string} className */
+
+  }, {
+    key: "removeClass",
+    value: function removeClass(className) {}
+
+    /**
+     * @param {string} className
+     * @return {boolean}
+     */
+
+  }, {
+    key: "hasClass",
+    value: function hasClass(className) {}
+
+    /** @return {boolean} */
+
+  }, {
+    key: "hasNecessaryDom",
+    value: function hasNecessaryDom() {}
+
+    /**
+     * @param {EventTarget} target
+     * @param {string} attributeName
+     * @return {string}
+     */
+
+  }, {
+    key: "getAttributeForEventTarget",
+    value: function getAttributeForEventTarget(target, attributeName) {}
+
+    /** @return {{ width: number, height: number }} */
+
+  }, {
+    key: "getInnerDimensions",
+    value: function getInnerDimensions() {}
+
+    /** @return {boolean} */
+
+  }, {
+    key: "hasAnchor",
+    value: function hasAnchor() {}
+
+    /** @return {{width: number, height: number, top: number, right: number, bottom: number, left: number}} */
+
+  }, {
+    key: "getAnchorDimensions",
+    value: function getAnchorDimensions() {}
+
+    /** @return {{ width: number, height: number }} */
+
+  }, {
+    key: "getWindowDimensions",
+    value: function getWindowDimensions() {}
+
+    /**
+     * @param {number} x
+     * @param {number} y
+     */
+
+  }, {
+    key: "setScale",
+    value: function setScale(x, y) {}
+
+    /**
+     * @param {number} x
+     * @param {number} y
+     */
+
+  }, {
+    key: "setInnerScale",
+    value: function setInnerScale(x, y) {}
+
+    /** @return {number} */
+
+  }, {
+    key: "getNumberOfItems",
+    value: function getNumberOfItems() {}
+
+    /**
+     * @param {string} type
+     * @param {function(!Event)} handler
+     */
+
+  }, {
+    key: "registerInteractionHandler",
+    value: function registerInteractionHandler(type, handler) {}
+
+    /**
+     * @param {string} type
+     * @param {function(!Event)} handler
+     */
+
+  }, {
+    key: "deregisterInteractionHandler",
+    value: function deregisterInteractionHandler(type, handler) {}
+
+    /** @param {function(!Event)} handler */
+
+  }, {
+    key: "registerBodyClickHandler",
+    value: function registerBodyClickHandler(handler) {}
+
+    /** @param {function(!Event)} handler */
+
+  }, {
+    key: "deregisterBodyClickHandler",
+    value: function deregisterBodyClickHandler(handler) {}
+
+    /**
+     * @param {number} index
+     * @return {{top: number, height: number}}
+     */
+
+  }, {
+    key: "getYParamsForItemAtIndex",
+    value: function getYParamsForItemAtIndex(index) {}
+
+    /**
+     * @param {number} index
+     * @param {string|null} value
+     */
+
+  }, {
+    key: "setTransitionDelayForItemAtIndex",
+    value: function setTransitionDelayForItemAtIndex(index, value) {}
+
+    /**
+     * @param {EventTarget} target
+     * @return {number}
+     */
+
+  }, {
+    key: "getIndexForEventTarget",
+    value: function getIndexForEventTarget(target) {}
+
+    /** @param {{index: number}} evtData */
+
+  }, {
+    key: "notifySelected",
+    value: function notifySelected(evtData) {}
+  }, {
+    key: "notifyCancel",
+    value: function notifyCancel() {}
+  }, {
+    key: "saveFocus",
+    value: function saveFocus() {}
+  }, {
+    key: "restoreFocus",
+    value: function restoreFocus() {}
+
+    /** @return {boolean} */
+
+  }, {
+    key: "isFocused",
+    value: function isFocused() {}
+  }, {
+    key: "focus",
+    value: function focus() {}
+
+    /** @return {number} */
+
+  }, {
+    key: "getFocusedItemIndex",
+    value: function getFocusedItemIndex() /* number */{}
+
+    /** @param {number} index */
+
+  }, {
+    key: "focusItemAtIndex",
+    value: function focusItemAtIndex(index) {}
+
+    /** @return {boolean} */
+
+  }, {
+    key: "isRtl",
+    value: function isRtl() {}
+
+    /** @param {string} origin */
+
+  }, {
+    key: "setTransformOrigin",
+    value: function setTransformOrigin(origin) {}
+
+    /** @param {{
+    *   top: (string|undefined),
+    *   right: (string|undefined),
+    *   bottom: (string|undefined),
+    *   left: (string|undefined)
+    * }} position */
+
+  }, {
+    key: "setPosition",
+    value: function setPosition(position) {}
+
+    /** @return {number} */
+
+  }, {
+    key: "getAccurateTime",
+    value: function getAccurateTime() {}
+  }]);
+
+  return MDCSimpleMenuAdapter;
+}();
+
+exports.default = MDCSimpleMenuAdapter;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/** @enum {string} */
+var cssClasses = exports.cssClasses = {
+  ROOT: 'mdc-simple-menu',
+  OPEN: 'mdc-simple-menu--open',
+  ANIMATING: 'mdc-simple-menu--animating',
+  TOP_RIGHT: 'mdc-simple-menu--open-from-top-right',
+  BOTTOM_LEFT: 'mdc-simple-menu--open-from-bottom-left',
+  BOTTOM_RIGHT: 'mdc-simple-menu--open-from-bottom-right'
+};
+
+/** @enum {string} */
+var strings = exports.strings = {
+  ITEMS_SELECTOR: '.mdc-simple-menu__items',
+  SELECTED_EVENT: 'MDCSimpleMenu:selected',
+  CANCEL_EVENT: 'MDCSimpleMenu:cancel',
+  ARIA_DISABLED_ATTR: 'aria-disabled'
+};
+
+/** @enum {number} */
+var numbers = exports.numbers = {
+  // Amount of time to wait before triggering a selected event on the menu. Note that this time
+  // will most likely be bumped up once interactive lists are supported to allow for the ripple to
+  // animate before closing the menu
+  SELECTED_TRIGGER_DELAY: 50,
+  // Total duration of the menu animation.
+  TRANSITION_DURATION_MS: 300,
+  // The menu starts its open animation with the X axis at this time value (0 - 1).
+  TRANSITION_SCALE_ADJUSTMENT_X: 0.5,
+  // The time value the menu waits until the animation starts on the Y axis (0 - 1).
+  TRANSITION_SCALE_ADJUSTMENT_Y: 0.2,
+  // The cubic bezier control points for the animation (cubic-bezier(0, 0, 0.2, 1)).
+  TRANSITION_X1: 0,
+  TRANSITION_Y1: 0,
+  TRANSITION_X2: 0.2,
+  TRANSITION_Y2: 1
+};
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"mdc-simple-menu__items mdc-list\" role=\"menu\" aria-hidden=\"true\" ng-transclude></div>\n"
 
 /***/ })
 /******/ ]);
