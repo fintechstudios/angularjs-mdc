@@ -74,6 +74,27 @@ describe('mdc-simple-menu-toggle', function() {
     expect(menu.hasClass('mdc-simple-menu--animating') || menu.hasClass('mdc-simple-menu--open')).to.be.true;
   });
 
+  it('should only bind to mdc-simple-menu within the same direct parent', function() {
+    const parent = angular.element('<div></div>');
+    const toggle = angular.element('<div mdc-simple-menu-toggle></div>');
+    const menu1 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
+    const menu2 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
+
+    menu1.append(menu2);
+    parent.append(toggle);
+    parent.append(menu1);
+    $compile(parent)($scope);
+    console.log(parent);
+    $scope.$digest();
+
+    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.false;
+    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
+
+    toggle.triggerHandler('click');
+    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.true;
+    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
+  });
+
   it('should not bind to any mdc-simple-menu when multiple are in the same parent', function() {
     const parent = angular.element('<div></div>');
     const toggle = angular.element('<div mdc-simple-menu-toggle></div>');

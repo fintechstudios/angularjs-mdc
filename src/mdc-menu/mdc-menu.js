@@ -187,7 +187,7 @@ function MdcSimpleMenuToggleController($document, MDC_SIMPLE_MENU_TOGGLE_EVENT) 
       if (menuId) {
         menus = [$document[0].getElementById(menuId)];
       } else {
-        menus = element.parent()[0].querySelectorAll(':scope > mdc-simple-menu');
+        menus = element.parent()[0].querySelectorAll('mdc-simple-menu');
       }
 
       if (menus.length === 1) {
