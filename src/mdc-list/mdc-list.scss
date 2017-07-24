@@ -8,3 +8,13 @@ mdc-list {
 mdc-list-item {
   @extend .mdc-list-item;
 }
+
+mdc-divider {
+  display: block;
+  @extend .mdc-list-divider;
+}
+
+mdc-divider-inset {
+  display: block;
+  @extend .mdc-list-divider, .mdc-list-divider--inset;
+}

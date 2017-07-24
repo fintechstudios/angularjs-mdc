@@ -35,6 +35,22 @@ class MdcListController {
 
 
 /**
+ * @ngdoc component
+ * @name mdcDivider
+ * @module mdc.list
+ * @description Divider used for lists
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcDividerInset
+ * @module mdc.list
+ * @description Divider used for lists with inset styling
+ */
+
+
+/**
  * @ngdoc module
  * @name mdc.list
  * @description

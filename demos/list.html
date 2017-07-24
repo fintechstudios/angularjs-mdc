@@ -469,7 +469,7 @@
             <h3>Full-Width Dividers</h3>
             <mdc-list>
               <mdc-list-item ng-repeat="_ in three">Single-line item - section 1</mdc-list-item>
-              <li class="mdc-list-divider" role="separator"></li>
+              <mdc-divider></mdc-divider>
               <mdc-list-item ng-repeat="_ in two">Single-line item - section 2</mdc-list-item>
             </mdc-list>
           </section>
@@ -480,7 +480,7 @@
                 <span class="mdc-list-item__start-detail grey-bg"></span>
                 Single-line item - section 1
               </mdc-list-item>
-              <li class="mdc-list-divider mdc-list-divider--inset" role="separator"></li>
+              <mdc-divider-inset></mdc-divider-inset>
               <mdc-list-item ng-repeat="_ in two">
                 <span class="mdc-list-item__start-detail grey-bg"></span>
                 Single-line item - section 2
@@ -497,7 +497,7 @@
               <mdc-list>
                 <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
               </mdc-list>
-              <hr class="mdc-list-divider">
+              <mdc-divider></mdc-divider>
               <h3 class="mdc-list-group__subheader">List 2</h3>
               <mdc-list>
                 <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
@@ -524,7 +524,7 @@
                   </a>
                 </mdc-list-item>
               </mdc-list>
-              <hr class="mdc-list-divider mdc-list-divider--inset">
+              <mdc-divider-inset></mdc-divider-inset>
               <h3 class="mdc-list-group__subheader">Files</h3>
               <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
                 <mdc-list-item ng-repeat="item in folder_demo2">
@@ -564,7 +564,7 @@
                   </a>
                 </mdc-list-item>
               </mdc-list>
-              <hr class="mdc-list-divider mdc-list-divider--inset">
+              <mdc-divider-inset></mdc-divider-inset>
               <h3 class="mdc-list-group__subheader">Files</h3>
               <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
                 <mdc-list-item ng-repeat="item in folder_demo2">
@@ -589,8 +589,8 @@
           <h2>Interactive Lists (with ink ripple)</h2>
           <section>
             <h3>Example - Interactive List</h3>
-            <mdc-list ng-repeat="item in icon_demo" data-demo-interactive-list>
-              <a href="#" class="mdc-list-item">
+            <mdc-list data-demo-interactive-list>
+              <a href="#" class="mdc-list-item" ng-repeat="item in icon_demo">
                 <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
                   {{ item.i }}
                 </mdc-icon>
@@ -601,13 +601,12 @@
           <section class="mdc-theme--dark">
             <h3>Example - Interactive List (Dark Theme)</h3>
             <mdc-list data-demo-interactive-list>
-              <mdc-list ng-repeat="item in icon_demo" data-demo-interactive-list>
-                <a href="#" class="mdc-list-item">
-                  <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
-                    {{ item.i }}
-                  </mdc-icon>
-                  {{ item.n }}
-                </a>
+              <a href="#" class="mdc-list-item" ng-repeat="item in icon_demo" data-demo-interactive-list>
+                <mdc-icon class="mdc-list-item__start-detail" aria-hidden="true">
+                  {{ item.i }}
+                </mdc-icon>
+                {{ item.n }}
+              </a>
             </mdc-list>
           </section>
         </section>
