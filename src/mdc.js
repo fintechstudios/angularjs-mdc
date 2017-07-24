@@ -4,5 +4,9 @@ require('./mdc-icon-toggle/mdc-icon-toggle');
 require('./mdc-list/mdc-list');
 require('./mdc-switch/mdc-switch');
 require('./mdc-card/mdc-card');
+require('./mdc-menu/mdc-menu');
 
-angular.module('mdc', ['mdc.button', 'mdc.card', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.switch']);
+angular.module('mdc', [
+  'mdc.button', 'mdc.card', 'mdc.icon', 'mdc.icon-toggle',
+  'mdc.list', 'mdc.switch', 'mdc.menu',
+]);

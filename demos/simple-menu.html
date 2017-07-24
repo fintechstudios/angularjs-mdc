@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Menu - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      html,
+      body,
+      main {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .hero div {
+        text-align: center;
+      }
+
+      .demo-header-toolbar {
+        z-index: 10;
+      }
+
+      .demo-content {
+        position: relative;
+        flex: 1;
+        margin-top: 16px;
+      }
+
+      .demo-controls-container {
+        height: 90%;
+        width: 100%;
+      }
+
+      .demo-controls {
+        margin-left: auto;
+        margin-right: auto;
+        width: 320px;
+      }
+
+      .mdc-menu-anchor {
+        margin: 16px;
+      }
+
+      .mdc-theme--dark {
+        background-color: #333;
+      }
+
+      .mdc-menu-anchor {
+        position: absolute;
+      }
+
+      .top {
+        top: 0;
+      }
+      .left {
+        left: 0;
+      }
+      .bottom {
+        bottom: 0;
+      }
+      .right {
+        right: 0;
+      }
+
+    </style>
+  </head>
+  <body ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed demo-header-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Simple Menu</span>
+        </section>
+      </div>
+    </header>
+
+    <main ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+
+        <mdc-simple-menu id="heroDemo" open-from="{{ openFrom }}">
+          <mdc-simple-menu-item>Back</mdc-simple-menu-item>
+          <mdc-simple-menu-item>Forward</mdc-simple-menu-item>
+          <mdc-simple-menu-item>Reload</mdc-simple-menu-item>
+          <div class="mdc-list-divider" role="separator"></div>
+          <mdc-simple-menu-item>Help &amp; Feedback</mdc-simple-menu-item>
+          <mdc-simple-menu-item>Settings</mdc-simple-menu-item>
+        </mdc-simple-menu>
+        <div>
+          <mdc-button raised="true" color="primary" mdc-simple-menu-toggle="heroDemo">Toggle Hero</mdc-button><br><br>
+          Open from:<br>
+          <label><input type="radio" value="topLeft" ng-model="openFrom"> Top left</label><br>
+          <label><input type="radio" value="topRight" ng-model="openFrom"> Top right</label><br>
+          <label><input type="radio" value="bottomLeft" ng-model="openFrom"> Bottom left</label><br>
+          <label><input type="radio" value="bottomRight" ng-model="openFrom"> Bottom right</label>
+        </div>
+      </section>
+
+      <div class="demo-content" ng-class="{'mdc-theme--dark': darkTheme}">
+        <div class="mdc-menu-anchor" ng-class="{top: isTop, bottom: !isTop, left: isLeft, right: !isLeft}">
+          <mdc-button raised="true" color="primary" mdc-simple-menu-toggle>Reveal Menu</mdc-button>
+          <mdc-simple-menu ng-class="{'mdc-simple-menu--theme-dark': darkTheme}">
+            <mdc-simple-menu-item ng-click="out.selected='back'">Back</mdc-simple-menu-item>
+            <mdc-simple-menu-item ng-click="out.selected='forward'">Forward</mdc-simple-menu-item>
+            <mdc-simple-menu-item ng-click="out.selected='reload'">Reload</mdc-simple-menu-item>
+            <div class="mdc-list-divider" role="separator"></div>
+
+            <mdc-simple-menu-item ng-click="out.selected='save'">Save As...</mdc-simple-menu-item>
+          </mdc-simple-menu>
+        </div>
+
+        <div class="demo-controls-container">
+          <div class="demo-controls">
+            <br><br>
+            Button position:<br>
+            <label><input type="radio" name="position" ng-click="isTop = true; isLeft = true;" checked> Top left</label>
+            <label><input type="radio" name="position" ng-click="isTop = true; isLeft = false;"> Top right</label><br>
+            <label><input type="radio" name="position" ng-click="isTop = false; isLeft = true;"> Bottom left</label>
+            <label><input type="radio" name="position" ng-click="isTop = false; isLeft = false;"> Bottom right</label><br><br>
+            <label><input type="checkbox" ng-model="darkTheme"> Dark mode</label><br><br>
+
+            <span>Last Selected item: <em ng-bind="out.selected"></em></span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.darkTheme = false;
+          $scope.console = console;
+          $scope.openFrom = 'topLeft';
+          $scope.positon = {t: '0px', l: '0px'};
+          $scope.isLeft = true;
+          $scope.isTop = true;
+          $scope.out = {
+            selected: '<none selected>',
+          };
+        }]);
+    </script>
+  </body>
+</html>
