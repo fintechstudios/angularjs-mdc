@@ -1,0 +1,17 @@
+@import '~@material/dialog/mdc-dialog';
+
+mdc-dialog {
+  @extend .mdc-dialog;
+}
+
+mdc-dialog-header {
+  @extend .mdc-dialog__header;
+}
+
+mdc-dialog-body {
+  @extend .mdc-dialog__body;
+}
+
+mdc-dialog-footer {
+  @extend .mdc-dialog__footer;
+}

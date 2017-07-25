@@ -58,6 +58,8 @@
     "@material/toolbar": "^0.4.1",
     "@material/typography": "^0.2.2",
     "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-material": "^1.1.4",
     "angular-mocks": "^1.6.5",
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.25.0",
