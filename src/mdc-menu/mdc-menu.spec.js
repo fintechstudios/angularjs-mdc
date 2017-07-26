@@ -84,7 +84,6 @@ describe('mdc-simple-menu-toggle', function() {
     parent.append(toggle);
     parent.append(menu1);
     $compile(parent)($scope);
-    console.log(parent);
     $scope.$digest();
 
     expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.false;
