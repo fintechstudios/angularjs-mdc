@@ -8,6 +8,10 @@ mdc-dialog-header {
   @extend .mdc-dialog__header;
 }
 
+mdc-dialog-title {
+  @extend .mdc-dialog__header__title
+}
+
 mdc-dialog-body {
   @extend .mdc-dialog__body;
 }

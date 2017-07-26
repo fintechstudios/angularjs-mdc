@@ -1,7 +1,7 @@
 require('angular-animate');
 require('angular-material/modules/js/core/core.js');
 
-import {MDCDialog} from '@material/dialog';
+import {MDCDialog, MDCDialogFoundation} from '@material/dialog';
 
 
 /**
@@ -9,11 +9,20 @@ import {MDCDialog} from '@material/dialog';
  * @name mdcDialog
  * @module mdc.dialog
  */
+class MdcDialogController {
+}
 
 
 /**
  * @ngdoc component
  * @name mdcDialogHeader
+ * @module mdc.dialog
+ */
+
+
+/**
+ * @ngdoc component
+ * @name mdcDialogTitle
  * @module mdc.dialog
  */
 
@@ -40,28 +49,27 @@ import {MDCDialog} from '@material/dialog';
 function $mdcDialogProvider($$interimElementProvider) {
   return $$interimElementProvider('$mdcDialog')
     .setDefaults({
-      methods: ['disableParentScroll', 'hasBackdrop', 'clickOutsideToClose', 'escapeToClose',
-        'targetEvent', 'closeTo', 'openFrom', 'parent', 'fullscreen', 'multiple'],
+      methods: ['parent'],
       options: defaultDialogOptions,
     })
     .addPreset('alert', {
-      methods: ['title', 'htmlContent', 'textContent', 'content', 'ariaLabel', 'ok', 'theme', 'css'],
+      methods: ['title', 'htmlContent', 'textContent', 'ok', 'css', 'scrollable'],
       options: presetDialogOptions,
     })
     .addPreset('confirm', {
-      methods: ['title', 'htmlContent', 'textContent', 'content', 'ariaLabel', 'ok', 'cancel', 'theme', 'css'],
+      methods: ['title', 'htmlContent', 'textContent', 'ok', 'cancel', 'css', 'scrollable'],
       options: presetDialogOptions,
     })
     .addPreset('prompt', {
-      methods: ['title', 'htmlContent', 'textContent', 'initialValue', 'content', 'placeholder', 'ariaLabel',
-        'ok', 'cancel', 'theme', 'css'],
+      methods: ['title', 'htmlContent', 'textContent', 'initialValue', 'placeholder',
+        'ok', 'cancel', 'css', 'scrollable'],
       options: presetDialogOptions,
     });
 
   /* @ngInject */
   function presetDialogOptions($mdcDialog) {
     return {
-      template: require('raw-loader!./mdc-dialog.html'),
+      template: require('raw-loader!./mdc-dialog-service.html'),
       controller: function mdcDialogCtrl() {
         const isPrompt = this.$type === 'prompt';
 
@@ -81,28 +89,19 @@ function $mdcDialogProvider($$interimElementProvider) {
   }
 
   /* @ngInject */
-  function defaultDialogOptions($mdcDialog, $injector, $document, $window, $rootElement) {
+  function defaultDialogOptions($mdcDialog, $injector, $document, $rootElement, $q, $interval) {
     return {
-      hasBackdrop: true,
       isolateScope: true,
       onCompiling: beforeCompile,
       onShow: onShow,
       onShowing: beforeShow,
       onRemove: onRemove,
-      clickOutsideToClose: false,
-      escapeToClose: true,
-      targetEvent: null,
-      closeTo: null,
-      openFrom: null,
-      focusOnOpen: true,
-      disableParentScroll: true,
       autoWrap: true,
-      fullscreen: false,
       transformTemplate: function(template, options) {
         return validatedTemplate(template);
 
         /**
-         * The specified template should contain a <mdc-dialog> wrapper element....
+         * The specified template should contain a <mdc-dialog> wrapper element
          */
         function validatedTemplate(template) {
           if (options.autoWrap && !/<\/mdc-dialog>/g.test(template)) {
@@ -119,21 +118,21 @@ function $mdcDialogProvider($$interimElementProvider) {
 
     function beforeShow(scope, element, options, controller) {
       if (controller) {
-        const mdHtmlContent = controller.htmlContent || options.htmlContent || '';
-        const mdTextContent = controller.textContent || options.textContent ||
+        const mdcHtmlContent = controller.htmlContent || options.htmlContent || '';
+        const mdcTextContent = controller.textContent || options.textContent ||
           controller.content || options.content || '';
 
-        if (mdHtmlContent && !$injector.has('$sanitize')) {
+        if (mdcHtmlContent && !$injector.has('$sanitize')) {
           throw Error('The ngSanitize module must be loaded in order to use htmlContent.');
         }
 
-        if (mdHtmlContent && mdTextContent) {
-          throw Error('md-dialog cannot have both `htmlContent` and `textContent`');
+        if (mdcHtmlContent && mdcTextContent) {
+          throw Error('mdc-dialog cannot have both `htmlContent` and `textContent`');
         }
 
         // Only assign the content if nothing throws, otherwise it'll still be compiled.
-        controller.mdHtmlContent = mdHtmlContent;
-        controller.mdTextContent = mdTextContent;
+        controller.mdcHtmlContent = mdcHtmlContent;
+        controller.mdcTextContent = mdcTextContent;
       }
     }
 
@@ -143,25 +142,50 @@ function $mdcDialogProvider($$interimElementProvider) {
       options.parent.append(element).append(function() {
         // this doesn't actually append an element, but assures the element is in the DOM before continuing
         options.mdcDialog = new MDCDialog(element[0]);
-        addEventListeners(element, options);
+        addEventListeners(controller, options);
         options.mdcDialog.show();
       });
     }
 
-    function addEventListeners(controller, options) {
-      options.mdcDialog.listen('MDCDialog:accept', () => $mdcDialog.hide(controller.result));
-      options.mdcDialog.listen('MDCDialog:cancel', () => $mdcDialog.cancel());
+    function onRemove(scope, element, options) {
+      return $q(function(resolve, reject) {
+        removeEventListeners(options);
+        options.mdcDialog.close();
+        const interval = $interval(function() {
+          // wait for close animation to finish before destroying
+          if (!element.hasClass(MDCDialogFoundation.cssClasses.ANIMATING)) {
+            $interval.cancel(interval);
+            resolve();
+          }
+        }, 10);
+      }).then(function() {
+        options.mdcDialog.destroy();
+        // Exposed cleanup function from the $mdCompiler.
+        options.cleanupElement();
+        // Restores the focus to the origin element if the last interaction upon opening was a keyboard.
+        if (!options.$destroy && options.originInteraction === 'keyboard') {
+          options.origin.focus();
+        }
+      });
     }
 
-    function onRemove(scope, element, options) {
-      // TODO: remove event listeners and hide dialog before destruction
-      options.mdcDialog.destroy();
-      // Exposed cleanup function from the $mdCompiler.
-      options.cleanupElement();
-      // Restores the focus to the origin element if the last interaction upon opening was a keyboard.
-      if (!options.$destroy && options.originInteraction === 'keyboard') {
-        options.origin.focus();
-      }
+    function addEventListeners(controller, options) {
+      options.onAcceptHandler = (e) => {
+        e.stopPropagation();
+        $mdcDialog.hide(controller ? controller.result : undefined);
+      };
+      options.onCancelHandler = (e) => {
+        e.stopPropagation();
+        $mdcDialog.cancel();
+      };
+
+      options.mdcDialog.listen(MDCDialogFoundation.strings.ACCEPT_EVENT, options.onAcceptHandler);
+      options.mdcDialog.listen(MDCDialogFoundation.strings.CANCEL_EVENT, options.onCancelHandler);
+    }
+
+    function removeEventListeners(options) {
+      options.mdcDialog.unlisten(MDCDialogFoundation.strings.ACCEPT_EVENT, options.onAcceptHandler);
+      options.mdcDialog.unlisten(MDCDialogFoundation.strings.CANCEL_EVENT, options.onCancelHandler);
     }
 
     /**
@@ -186,8 +210,7 @@ function $mdcDialogProvider($$interimElementProvider) {
  *
  * @description Show a dialog with the specified options.
  *
- * @param {Object} options - Either provide an `$mdDialogPreset` returned from `alert()`, and
- *      `confirm()`, or an options object with the following properties:
+ * @param {Object} options - Either provide an `$mdcDialogPreset` or an options object with the following properties:
  * @param {string} [options.templateUrl] - The url of a template that will be used as the content
  *      of the dialog.
  * @param {string} [options.template] - HTML template to show in the dialog. This **must** be trusted HTML
@@ -201,25 +224,12 @@ function $mdcDialogProvider($$interimElementProvider) {
  * @param {boolean} [options.autoWrap] - Whether or not to automatically wrap the template with a
  *     `<mdc-dialog>` tag if one is not provided. Defaults to true. Can be disabled if you provide a
  *     custom dialog directive.
- * @param {DOMClickEvent} [options.targetEvent] - A click's event object. When passed in as an option,
- *     the location of the click will be used as the starting point for the opening animation
- *     of the the dialog.
- * @param {string|Element|Object} [options.openFrom] - The query selector, DOM element or the Rect object
- *     that is used to determine the bounds (top, left, height, width) from which the Dialog will originate.
- * @param {string|Element|Object} [options.closeTo] - The query selector, DOM element or the Rect object
- *     that is used to determine the bounds (top, left, height, width) to which the Dialog will target.
  * @param {Object} [options.scope] - the scope to link the template / controller to. If none is specified,
  *     it will create a new isolate scope.
  *     This scope will be destroyed when the dialog is removed unless `preserveScope` is set to true.
  * @param {boolean} [options.preserveScope=false] - whether to preserve the scope when the element is removed.
- * @param {boolean} [options.disableParentScroll=true] - Whether to disable scrolling while the dialog is open.
- * @param {boolean} [options.hasBackdrop=true] - Whether there should be an opaque backdrop behind the dialog.
- * @param {boolean} [options.clickOutsideToClose=false] - Whether the user can click outside the dialog to close it.
- * @param {boolean} [options.escapeToClose=true] - Whether the user can press escape to close the dialog.
- * @param {boolean} [options.focusOnOpen=true] - An option to override focus behavior on open. Only disable if
- *     focusing some other way, as focus management is required for dialogs to be accessible.
  * @param {function|string} [options.controller] - The controller to associate with the dialog. The controller
- *     will be injected with the local `$mdDialog`, which passes along a scope for the dialog.
+ *     will be injected with the local `$mdcDialog`, which passes along a scope for the dialog.
  * @param {Object} [options.locals] - An object containing key/value pairs. The keys will be used as names
  *     of values to inject into the controller. For example, `locals: {three: 3}` would inject
  *     `three` into the controller, with the value 3. If `bindToController` is true, they will be
@@ -237,11 +247,110 @@ function $mdcDialogProvider($$interimElementProvider) {
  * @param {function} [options.onRemoving] - Callback function used to announce the
  *      close/hide() action is starting. This allows developers to run custom animations
  *      in parallel the close animations.
- * @param {boolean} [options.fullscreen=false] - Whether the dialog should show in fullscreen.
- * @param {boolean} [options.multiple=false] - Whether this dialog can display over one that's currently open.
- * @returns {promise} A promise that can be resolved with `$mdDialog.hide()` or rejected with `$mdDialog.cancel()`.
+ * @returns {promise} A promise that can be resolved with `$mdcDialog.hide()` or rejected with `$mdcDialog.cancel()`.
  */
+
+
+/**
+ * @ngdoc method
+ * @name $mdcDialog#alert
+ *
+ * @description
+ * Builds a preconfigured dialog with the specified message.
+ *
+ * @returns {Object} an `$mdcDialogPreset` with the chainable configuration methods:
+ *
+ * - $mdcDialogPreset#title(string) - Sets the alert title.
+ * - $mdcDialogPreset#textContent(string) - Sets the alert message.
+ * - $mdcDialogPreset#htmlContent(string) - Sets the alert message as HTML. Requires ngSanitize
+ *     module to be loaded. HTML is not run through Angular's compiler.
+ * - $mdcDialogPreset#ok(string) - Sets the alert "Okay" button text.
+ * - $mdcDialogPreset#css(string) - Custom classes to apply to mdc-dialog using ng-class
+ * - $mdcDialogPreset#scrollable(boolean) - Whether the body of the element has a vertical scrollbar
+ *
+ */
+
+
+/**
+ * @ngdoc method
+ * @name $mdcDialog#confirm
+ *
+ * @description
+ * Builds a preconfigured dialog with the specified message. You can call show and the promise returned
+ * will be resolved only if the user clicks the confirm action on the dialog.
+ *
+ * @returns {Object} an `$mdcDialogPreset` with the chainable configuration methods:
+ *
+ * Additionally, it supports the following methods:
+ *
+ * - $mdcDialogPreset#title(string) - Sets the confirm title.
+ * - $mdcDialogPreset#textContent(string) - Sets the confirm message.
+ * - $mdcDialogPreset#htmlContent(string) - Sets the confirm message as HTML. Requires ngSanitize
+ *     module to be loaded. HTML is not run through Angular's compiler.
+ * - $mdcDialogPreset#ok(string) - Sets the confirm "Okay" button text.
+ * - $mdcDialogPreset#cancel(string) - Sets the confirm "Cancel" button text.
+ * - $mdcDialogPreset#css(string) - Custom classes to apply to mdc-dialog using ng-class
+ * - $mdcDialogPreset#scrollable(boolean) - Whether the body of the element has a vertical scrollbar
+ *
+ */
+
+
+/**
+ * @ngdoc method
+ * @name $mdcDialog#prompt
+ *
+ * @description
+ * Builds a preconfigured dialog with the specified message and input box. You can call show and the promise returned
+ * will be resolved only if the user clicks the prompt action on the dialog, passing the input value
+ * as the first argument.
+ *
+ * @returns {Object} an `$mdcDialogPreset` with the chainable configuration methods:
+ *
+ * Additionally, it supports the following methods:
+ *
+ * - $mdcDialogPreset#title(string) - Sets the prompt title.
+ * - $mdcDialogPreset#textContent(string) - Sets the prompt message.
+ * - $mdcDialogPreset#htmlContent(string) - Sets the prompt message as HTML. Requires ngSanitize
+ *     module to be loaded. HTML is not run through Angular's compiler.
+ * - $mdcDialogPreset#placeholder(string) - Sets the placeholder text for the input.
+ * - $mdcDialogPreset#initialValue(string) - Sets the initial value for the prompt input.
+ * - $mdcDialogPreset#ok(string) - Sets the prompt "Okay" button text.
+ * - $mdcDialogPreset#cancel(string) - Sets the prompt "Cancel" button text.
+ * - $mdcDialogPreset#css(string) - Custom classes to apply to mdc-dialog using ng-class
+ * - $mdcDialogPreset#scrollable(boolean) - Whether the body of the element has a vertical scrollbar
+ *
+ */
+
+
+/**
+ * @ngdoc method
+ * @name $mdcDialog#hide
+ *
+ * @description Hide an existing dialog and resolve the promise returned from `$mdcDialog.show()`.
+ *
+ * @param {*=} response An argument for the resolved promise.
+ *
+ * @returns {promise} A promise that is resolved when the dialog has been closed.
+ */
+
+
+/**
+ * @ngdoc method
+ * @name $mdcDialog#cancel
+ *
+ * @description Hide an existing dialog and reject the promise returned from `$mdcDialog.show()`.
+ *
+ * @param {*=} response An argument for the rejected promise.
+ *
+ * @returns {promise} A promise that is resolved when the dialog has been closed.
+ */
+
 
 angular
   .module('mdc.dialog', ['material.core'])
-  .provider('$mdcDialog', $mdcDialogProvider);
+  .provider('$mdcDialog', $mdcDialogProvider)
+  .component('mdcDialog', {
+    controller: MdcDialogController,
+    template: require('raw-loader!./mdc-dialog-component.html'),
+    transclude: true,
+  });

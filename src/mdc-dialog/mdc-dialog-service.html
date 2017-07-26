@@ -1,0 +1,26 @@
+<mdc-dialog role="alertdialog"
+            aria-labelledby="mdc-dialog-title"
+            aria-describedby="mdc-dialog-body"
+            ng-class="dialog.css">
+  <mdc-dialog-header>
+    <mdc-dialog-title id="mdc-dialog-title">{{ dialog.title }}</mdc-dialog-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body id="mdc-dialog-body" ng-class="::{'mdc-dialog__body--scrollable': dialog.scrollable}"
+                   ng-if="::dialog.mdcHtmlContent" ng-bind-html="::dialog.mdcHtmlContent">
+  </mdc-dialog-body>
+  <mdc-dialog-body id="mdc-dialog-body" ng-class="::{'mdc-dialog__body--scrollable': dialog.scrollable}"
+                   ng-if="::!dialog.mdcHtmlContent">
+    <span ng-if="::dialog.mdcTextContent">{{::dialog.mdcTextContent}}</span>
+    <label ng-if="::dialog.$type == 'prompt'">
+      <input ng-keypress="dialog.keypress($event)" ng-model="dialog.result" placeholder="{{::dialog.placeholder}}">
+    </label>
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <mdc-button dialog="cancel" ng-if="dialog.$type === 'confirm' || dialog.$type === 'prompt'">
+      {{ dialog.cancel }}
+    </mdc-button>
+    <mdc-button dialog="accept">
+      {{ dialog.ok }}
+    </mdc-button>
+  </mdc-dialog-footer>
+</mdc-dialog>

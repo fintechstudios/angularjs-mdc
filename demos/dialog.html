@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
-      body {
+      html, body {
         width: 100%;
         height: 100%;
       }
@@ -31,9 +31,6 @@
     	  margin: 0;
     	  box-sizing: border-box;
     	}
-      .demo-content > button {
-        margin-bottom: 6px;
-      }
       .mdc-theme--dark {
         background-color: #303030;
       }
@@ -42,13 +39,18 @@
         padding: 24px;
       }
 
+      section.example {
+        text-align: center;
+      }
+
       .catalog-dialog-demo {
         position: relative;
         width: 320px;
       }
     </style>
   </head>
-  <body class="mdc-typography" ng-app="demo" ng-controller="MainCtrl" ng-class="{'mdc-theme--dark': isDarkTheme}">
+  <body class="mdc-typography" ng-app="demo" ng-controller="MainCtrl"
+        dir="{{ isRTL ? 'rtl': ''}}" ng-class="{'mdc-theme--dark': isDarkTheme}">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -64,89 +66,78 @@
       <section class="hero" dir="{{ isRTL ? 'rtl': ''}}">
         <aside class="catalog-dialog-demo mdc-dialog mdc-dialog--open">
       	  <div class="mdc-dialog__surface">
-      	    <header class="mdc-dialog__header">
-      	      <h2 id="mdc-dialog-default-label" class="mdc-dialog__header__title">
+      	    <mdc-dialog-header>
+      	      <mdc-dialog-title>
       	        Are you happy?
-      	      </h2>
-      	    </header>
-      	    <section id="mdc-dialog-default-description" class="mdc-dialog__body">
+      	      </mdc-dialog-title>
+      	    </mdc-dialog-header>
+      	    <mdc-dialog-body>
       	       Please check the left and right side of this element for fun.
-      	    </section>
-      	    <footer class="mdc-dialog__footer">
-      	      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Cancel</button>
-      	      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Continue</button>
-      	    </footer>
+      	    </mdc-dialog-body>
+      	    <mdc-dialog-footer>
+      	      <mdc-button dialog="cancel">Cancel</mdc-button>
+              <mdc-button dialog="accept">Continue</mdc-button>
+      	    </mdc-dialog-footer>
       	  </div>
       	</aside>
       </section>
 
-      <div class="demo-body" dir="{{ isRTL ? 'rtl': ''}}">
-        <aside id="mdc-dialog-default"
-        	  class="mdc-dialog"
+      <div class="demo-body">
+        <mdc-dialog id="mdc-dialog-default"
         	  role="alertdialog"
-        	  aria-hidden="true"
         	  aria-labelledby="mdc-dialog-default-label"
         	  aria-describedby="mdc-dialog-default-description">
-    	    <div class="mdc-dialog__surface">
-    	      <header class="mdc-dialog__header">
-    	        <h2 id="mdc-dialog-default-label" class="mdc-dialog__header__title">
-    	          Use Google's location service?
-    	        </h2>
-    	      </header>
-    	      <section id="mdc-dialog-default-description" class="mdc-dialog__body">
-    	        Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-    	      </section>
-    	      <footer class="mdc-dialog__footer">
-    	        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Decline</button>
-    	        <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Accept</button>
-    	      </footer>
-    	    </div>
-    	    <div class="mdc-dialog__backdrop"></div>
-      	</aside>
+          <mdc-dialog-header>
+            <mdc-dialog-title id="mdc-dialog-default-label">Use Google's location service?</mdc-dialog-title>
+          </mdc-dialog-header>
+          <mdc-dialog-body id="mdc-dialog-default-description">
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </mdc-dialog-body>
+          <mdc-dialog-footer>
+            <mdc-button dialog="cancel">Decline</mdc-button>
+            <mdc-button dialog="accept">Accept</mdc-button>
+          </mdc-dialog-footer>
+      	</mdc-dialog>
 
-      	<aside id="mdc-dialog-with-list"
-        	  class="mdc-dialog"
+      	<mdc-dialog id="mdc-dialog-with-list"
         	  role="alertdialog"
-         	  aria-hidden="true"
         	  aria-labelledby="mdc-dialog-with-list-label"
         	  aria-describedby="mdc-dialog-with-list-description">
-      	  <div class="mdc-dialog__surface">
-      	    <header class="mdc-dialog__header">
-      	      <h2 id="mdc-dialog-with-list-label" class="mdc-dialog__header__title">
-      	        Choose a Ringtone
-      	      </h2>
-      	    </header>
-      	    <section id="mdc-dialog-with-list-description" class="mdc-dialog__body mdc-dialog__body--scrollable">
-              <ul class="mdc-list">
-                <li class="mdc-list-item">None</li>
-                <li class="mdc-list-item">Callisto</li>
-                <li class="mdc-list-item">Ganymede</li>
-                <li class="mdc-list-item">Luna</li>
-                <li class="mdc-list-item">Marimba</li>
-                <li class="mdc-list-item">Schwifty</li>
-                <li class="mdc-list-item">Callisto</li>
-                <li class="mdc-list-item">Ganymede</li>
-                <li class="mdc-list-item">Luna</li>
-                <li class="mdc-list-item">Marimba</li>
-                <li class="mdc-list-item">Schwifty</li>
-              </ul>
-      	    </section>
-      	    <footer class="mdc-dialog__footer">
-      	      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Decline</button>
-      	      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Accept</button>
-      	    </footer>
-      	  </div>
-      	  <div class="mdc-dialog__backdrop"></div>
-      	</aside>
+          <mdc-dialog-header>
+            <mdc-dialog-title id="mdc-dialog-with-list-label">Choose a Ringtone</mdc-dialog-title>
+          </mdc-dialog-header>
+          <mdc-dialog-body id="mdc-dialog-with-list-description" class="mdc-dialog__body--scrollable">
+            <mdc-list>
+              <mdc-list-item>None</mdc-list-item>
+              <mdc-list-item>Callisto</mdc-list-item>
+              <mdc-list-item>Ganymede</mdc-list-item>
+              <mdc-list-item>Luna</mdc-list-item>
+              <mdc-list-item>Marimba</mdc-list-item>
+              <mdc-list-item>Schwifty</mdc-list-item>
+              <mdc-list-item>Callisto</mdc-list-item>
+              <mdc-list-item>Ganymede</mdc-list-item>
+              <mdc-list-item>Luna</mdc-list-item>
+              <mdc-list-item>Marimba</mdc-list-item>
+              <mdc-list-item>Schwifty</mdc-list-item>
+            </mdc-list>
+          </mdc-dialog-body>
+          <mdc-dialog-footer>
+            <mdc-button dialog="cancel">Decline</mdc-button>
+            <mdc-button dialog="accept">Accept</mdc-button>
+          </mdc-dialog-footer>
+      	</mdc-dialog>
     	</div>
-      <section class="example">
-        <button id="default-dialog-activation" class="mdc-button mdc-button--primary mdc-button--raised">Show Dialog</button>
-        <button id="dialog-with-list-activation" class="mdc-button mdc-button--primary mdc-button--raised">Show Scrolling Dialog</button>
-
-        <mdc-button ng-click="openDialog()">Open</mdc-button>
+      <section class="example" dir="ltr">
         <label><input ng-model="isRTL" type="checkbox">Toggle RTL</label>
-        <label><input ng-model="isDarkTheme" type="checkbox">Toggle Dark</label>
-
+        <label><input ng-model="isDarkTheme" type="checkbox">Toggle Dark</label><br><br>
+        <mdc-button raised="true" color="primary" ng-click="openDialog()">Show Dialog</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="openScrollingDialog()">Show Scrolling Dialog</mdc-button>
+        <br><br>
+        <mdc-button raised="true" color="primary" ng-click="alertOpen()">Open Alert</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="confirmOpen()">Open Confirm</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="promptOpen()">Open Prompt</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="openTemplate()">Open Template</mdc-button><br>
+        <br>Status: <em ng-bind="status"></em><br>
       </section>
     </main>
     <script src="angular/angular.min.js"></script>
@@ -154,40 +145,54 @@
     <script>
       angular.module('demo', ['mdc'])
         .controller('MainCtrl', ['$scope', '$mdcDialog', function($scope, $mdcDialog) {
+          function onResolve(result) {
+            $scope.status = 'You accepted the dialog' + (result ? ' and entered ' + result : '');
+          }
+          function onReject() {
+            $scope.status = 'You cancelled the dialog';
+          }
+
           $scope.name = '';
           $scope.isDarkTheme = false;
           $scope.isRTL = false;
+          $scope.status = '<no dialog opened>';
           $scope.openDialog = function() {
-            $mdcDialog.show(
-              $mdcDialog.alert()
-                .clickOutsideToClose(true)
-                .title('here we have a title')
-                .textContent('and here we have the text content')
-                .ariaLabel('Entity Associations Info')
-                .ok('let gooooo')
-            );
+            $mdcDialog.show({
+              contentElement: '#mdc-dialog-default',
+              parent: '.demo-body',
+            }).then(onResolve, onReject);
           };
+          $scope.openScrollingDialog = function() {
+            $mdcDialog.show({
+              contentElement: '#mdc-dialog-with-list',
+              parent: '.demo-body',
+            }).then(onResolve, onReject);
+          };
+          $scope.presets = ['alert', 'confirm', 'prompt'];
+          $scope.presets.forEach(function(preset) {
+            $scope[preset + 'Open'] = function() {
+              const dialog = $mdcDialog[preset]()
+                .title('Title for ' + preset)
+                .textContent('Text body for ' + preset)
+                .ok('Okay');
+              switch (preset) {
+                case 'alert':
+                  break;
+                case 'prompt':
+                  dialog.initialValue('30');
+                  dialog.placeholder('Enter something please');
+                default:
+                  dialog.cancel('Cancel');
+              }
+              $mdcDialog.show(dialog).then(onResolve, onReject);
+            }
+          });
+          $scope.openTemplate = function() {
+            $mdcDialog.show({
+              templateUrl: 'dialog-demo-template.html',
+            }).then(onResolve, onReject);
+          }
         }]);
-    </script>
-    <script>
-      function demo() {
-        var dialog = new mdc.dialog.MDCDialog(document.querySelector('#mdc-dialog-default'));
-        dialog.listen('MDCDialog:accept', function() {
-          console.log('accepted');
-        });
-        dialog.listen('MDCDialog:cancel', function() {
-          console.log('canceled');
-        });
-        document.querySelector('#default-dialog-activation').addEventListener('click', function (evt) {
-          dialog.lastFocusedTarget = evt.target;
-          dialog.show();
-        });
-      	var dialogScrollable = new mdc.dialog.MDCDialog(document.querySelector('#mdc-dialog-with-list'));
-      	document.querySelector('#dialog-with-list-activation').addEventListener('click', function (evt) {
-      	  dialogScrollable.lastFocusedTarget = evt.target;
-          dialogScrollable.show();
-      	});
-      }
     </script>
   </body>
 </html>
