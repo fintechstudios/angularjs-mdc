@@ -7,9 +7,9 @@
  * @param {expression} [raised] Display the button raised (false -> flat)
  * @param {expression} [compact] Display the button compact
  * @param {expression} [cardAction] Use when within mdc-card to apply proper styles
+ * @param {string} [dialog] Set to "accept" or "cancel" when creating buttons in mdc-dialog-footer
  * @param {string} [color] Color for button: "primary", "accent", or nothing
  * @param {expression} [ngDisabled] En/Disable based on the expression
- *
  */
 class MdcButtonController {
   constructor($element) {
@@ -30,6 +30,11 @@ class MdcButtonController {
     }
     if (changesObj.cardAction) {
       e.toggleClass('mdc-button--compact mdc-card__action', this.cardAction);
+    }
+    if (changesObj.dialog) {
+      e.toggleClass('mdc-dialog__footer__button', ctrl.dialog !== '');
+      e.toggleClass('mdc-dialog__footer__button--cancel', ctrl.dialog === 'cancel');
+      e.toggleClass('mdc-dialog__footer__button--accept', ctrl.dialog === 'accept');
     }
   };
 }
@@ -52,5 +57,6 @@ angular
       compact: '<?',
       cardAction: '<?',
       color: '@',
+      dialog: '@',
     },
   });

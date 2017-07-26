@@ -53,4 +53,21 @@ describe('mdc-button', function() {
       expect(elem.hasClass('mdc-button--' + color)).to.be.false;
     });
   });
+
+  ['accept', 'cancel'].forEach(function(action) {
+    it('should have proper classes when dialog=' + action, function() {
+      const component = new $mockComponent({'dialog': '{{ action }}'}, {action: ''});
+      const elem = component.$element;
+      expect(elem.hasClass('mdc-dialog__footer__button')).to.be.false;
+      expect(elem.hasClass('mdc-dialog__footer__button--' + action)).to.be.false;
+
+      component.$parent('action', action);
+      expect(elem.hasClass('mdc-dialog__footer__button')).to.be.true;
+      expect(elem.hasClass('mdc-dialog__footer__button--' + action)).to.be.true;
+
+      component.$parent('action', '');
+      expect(elem.hasClass('mdc-dialog__footer__button')).to.be.false;
+      expect(elem.hasClass('mdc-dialog__footer__button--' + action)).to.be.false;
+    });
+  });
 });
