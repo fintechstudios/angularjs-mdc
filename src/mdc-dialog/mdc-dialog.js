@@ -1,5 +1,4 @@
-require('angular-animate');
-require('angular-material/modules/js/core/core.js');
+require('../util/angular-material-core-slim');
 
 import {MDCDialog, MDCDialogFoundation} from '@material/dialog';
 
@@ -347,7 +346,7 @@ function $mdcDialogProvider($$interimElementProvider) {
 
 
 angular
-  .module('mdc.dialog', ['material.core'])
+  .module('mdc.dialog', ['material.core.slim'])
   .provider('$mdcDialog', $mdcDialogProvider)
   .component('mdcDialog', {
     controller: MdcDialogController,
