@@ -8,14 +8,14 @@
  */
 angular
   .module('material.core.slim')
-  .service('$mdCompiler', MdCompilerService);
+  .service('$mdCompilerSlim', MdCompilerService);
 
 /**
  * @ngdoc service
- * @name $mdCompiler
+ * @name $mdCompilerSlim
  * @module material.core.compiler
  * @description
- * The $mdCompiler service is an abstraction of AngularJS's compiler, that allows developers
+ * The $mdCompilerSlim service is an abstraction of AngularJS's compiler, that allows developers
  * to easily compile an element with options like in a Directive Definition Object.
  *
  * > The compiler powers a lot of components inside of AngularJS Material.
@@ -26,7 +26,7 @@ angular
  * Basic Usage with a template
  *
  * <hljs lang="js">
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     templateUrl: 'modal.html',
  *     controller: 'ModalCtrl',
  *     locals: {
@@ -46,7 +46,7 @@ angular
  *   // The compiler doesn't need to recompile the element each time.
  *   var myElement = $compile('<span>Test</span>')(myScope);
  *
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     contentElement: myElement
  *   }).then(function (compileData) {
  *     compileData.element // Content Element (same as above)
@@ -63,7 +63,7 @@ angular
  * <hljs lang="js">
  *   var domElement = document.querySelector('#myElement');
  *
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     contentElement: myElement
  *   }).then(function (compileData) {
  *     compileData.element // Content Element (same as above)
@@ -71,10 +71,10 @@ angular
  *   });
  * </hljs>
  *
- * The `$mdCompiler` can also query for the element in the DOM itself.
+ * The `$mdCompilerSlim` can also query for the element in the DOM itself.
  *
  * <hljs lang="js">
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     contentElement: '#myElement'
  *   }).then(function (compileData) {
  *     compileData.element // Content Element (same as above)
@@ -102,11 +102,11 @@ function MdCompilerService($q, $templateRequest, $injector, $compile, $controlle
 
 /**
  * @ngdoc method
- * @name $mdCompiler#compile
+ * @name $mdCompilerSlim#compile
  * @description
  *
  * A method to compile a HTML template with the AngularJS compiler.
- * The `$mdCompiler` is wrapper around the AngularJS compiler and provides extra functionality
+ * The `$mdCompilerSlim` is wrapper around the AngularJS compiler and provides extra functionality
  * like controller instantiation or async resolves.
  *
  * @param {!Object} options An options object, with the following properties:

@@ -45,8 +45,8 @@ class MdcDialogController {
  * @name $mdcDialog
  * @module mdc.dialog
  */
-function $mdcDialogProvider($$interimElementProvider) {
-  return $$interimElementProvider('$mdcDialog')
+function $mdcDialogProvider($$interimElementSlimProvider) {
+  return $$interimElementSlimProvider('$mdcDialog')
     .setDefaults({
       methods: ['parent'],
       options: defaultDialogOptions,

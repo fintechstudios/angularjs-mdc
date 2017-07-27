@@ -8,7 +8,7 @@
  */
 angular
   .module('material.core.slim')
-  .factory('$mdUtil', UtilFactory);
+  .factory('$mdUtilSlim', UtilFactory);
 
 /**
  * @ngInject

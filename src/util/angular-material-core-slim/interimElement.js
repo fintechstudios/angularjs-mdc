@@ -1,29 +1,29 @@
 /* eslint-disable */
 
 angular.module('material.core.slim')
-  .provider('$$interimElement', InterimElementProvider);
+  .provider('$$interimElementSlim', InterimElementProvider);
 
 /*
  * @ngdoc service
- * @name $$interimElement
+ * @name $$interimElementSlim
  * @module material.core.slim
  *
  * @description
  *
- * Factory that contructs `$$interimElement.$service` services.
+ * Factory that contructs `$$interimElementSlim.$service` services.
  * Used internally in material design for elements that appear on screen temporarily.
  * The service provides a promise-like API for interacting with the temporary
  * elements.
  *
  * ```js
- * app.service('$mdToast', function($$interimElement) {
- *   var $mdToast = $$interimElement(toastDefaultOptions);
+ * app.service('$mdToast', function($$interimElementSlim) {
+ *   var $mdToast = $$interimElementSlim(toastDefaultOptions);
  *   return $mdToast;
  * });
  * ```
  * @param {object=} defaultOptions Options used by default for the `show` method on the service.
  *
- * @returns {$$interimElement.$service}
+ * @returns {$$interimElementSlim.$service}
  *
  */
 
@@ -109,10 +109,10 @@ function InterimElementProvider() {
      * Create a factory that has the given methods & defaults implementing interimElement
      */
     /* @ngInject */
-    function factory($$interimElement, $injector) {
+    function factory($$interimElementSlim, $injector) {
       var defaultMethods;
       var defaultOptions;
-      var interimElementService = $$interimElement();
+      var interimElementService = $$interimElementSlim();
 
       /*
        * publicService is what the developer will be using.
@@ -247,13 +247,13 @@ function InterimElementProvider() {
 
   /* @ngInject */
   function InterimElementFactory($document, $q, $rootScope, $timeout, $rootElement,
-                                 $mdUtil, $mdCompiler, $injector, $exceptionHandler) {
+                                 $mdUtilSlim, $mdCompilerSlim, $injector, $exceptionHandler) {
     return function createInterimElementService() {
       var SHOW_CANCELLED = false;
 
       /*
        * @ngdoc service
-       * @name $$interimElement.$service
+       * @name $$interimElementSlim.$service
        *
        * @description
        * A service used to control inserting and removing an element into the DOM.
@@ -266,7 +266,7 @@ function InterimElementProvider() {
       var hidePromises = []; // Promises for the interim's which are currently hiding.
       var showingInterims = []; // Interim elements which are currently showing up.
 
-      // Publish instance $$interimElement service;
+      // Publish instance $$interimElementSlim service;
       // ... used as $mdDialog, $mdToast, $mdMenu, and $mdSelect
 
       return service = {
@@ -279,7 +279,7 @@ function InterimElementProvider() {
 
       /*
        * @ngdoc method
-       * @name $$interimElement.$service#show
+       * @name $$interimElementSlim.$service#show
        * @kind function
        *
        * @description
@@ -339,7 +339,7 @@ function InterimElementProvider() {
 
       /*
        * @ngdoc method
-       * @name $$interimElement.$service#hide
+       * @name $$interimElementSlim.$service#hide
        * @kind function
        *
        * @description
@@ -380,7 +380,7 @@ function InterimElementProvider() {
 
       /*
        * @ngdoc method
-       * @name $$interimElement.$service#cancel
+       * @name $$interimElementSlim.$service#cancel
        * @kind function
        *
        * @description
@@ -562,7 +562,7 @@ function InterimElementProvider() {
         function configureScopeAndTransitions(options) {
           options = options || { };
           if ( options.template ) {
-            options.template = $mdUtil.processTemplate(options.template);
+            options.template = $mdUtilSlim.processTemplate(options.template);
           }
 
           return angular.extend({
@@ -578,7 +578,7 @@ function InterimElementProvider() {
          */
         function compileElement(options) {
 
-          var compiled = !options.skipCompile ? $mdCompiler.compile(options) : null;
+          var compiled = !options.skipCompile ? $mdCompilerSlim.compile(options) : null;
 
           return compiled || $q(function (resolve) {
             resolve({
