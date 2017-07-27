@@ -1459,17 +1459,17 @@ function $mdcDialogProvider($$interimElementSlimProvider) {
         controller.mdcHtmlContent = mdcHtmlContent;
         controller.mdcTextContent = mdcTextContent;
       }
+      options.mdcDialog = new _dialog.MDCDialog(element[0]);
     }
 
     function onShow(scope, element, options, controller) {
       options.parent = getDomElement(options.parent, $rootElement);
-
-      options.parent.append(element).append(function () {
-        // this doesn't actually append an element, but assures the element is in the DOM before continuing
-        options.mdcDialog = new _dialog.MDCDialog(element[0]);
+      angular.element(function () {
+        // wait for the DOM refresh before trying to show the dialog
         addEventListeners(controller, options);
         options.mdcDialog.show();
       });
+      options.parent.append(element);
     }
 
     function onRemove(scope, element, options) {
