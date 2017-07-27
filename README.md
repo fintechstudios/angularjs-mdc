@@ -48,7 +48,7 @@ being an easy and suitable replacement for angular-material.
 | linear-progress | :x:                 | |
 | list            | :white_check_mark:  | mdc.list          |
 | menu            | :white_check_mark:  | mdc.menu          |
-| radio           | :x:                 | |
+| radio           | :white_check_mark:  | mdc.radio         |
 | ripple          | :x:                 | |
 | select          | :x:                 | |
 | slider          | :x:                 | |
