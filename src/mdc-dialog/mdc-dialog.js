@@ -30,7 +30,20 @@ class MdcDialogController {
  * @ngdoc component
  * @name mdcDialogBody
  * @module mdc.dialog
+ *
+ * @param {expression} [scrollable=false] whether the element has a vertical scrollbar
  */
+class MdcDialogBodyController {
+  constructor($element) {
+    this.elem = $element;
+  }
+
+  $onChanges(changesObj) {
+    if (changesObj.scrollable) {
+      this.elem.toggleClass('mdc-dialog__body--scrollable', this.scrollable);
+    }
+  }
+}
 
 
 /**
@@ -351,4 +364,10 @@ angular
     controller: MdcDialogController,
     template: require('raw-loader!./mdc-dialog-component.html'),
     transclude: true,
+  })
+  .component('mdcDialogBody', {
+    controller: MdcDialogBodyController,
+    bindings: {
+      scrollable: '<?',
+    },
   });
