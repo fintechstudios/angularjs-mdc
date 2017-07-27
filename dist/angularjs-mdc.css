@@ -189,6 +189,8 @@
  * }
  * ```
  */
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
 .mdc-button, mdc-button {
   --mdc-ripple-surface-width: 0;
   --mdc-ripple-surface-height: 0;
@@ -200,8 +202,12 @@
   --mdc-ripple-fg-translate-start: 0;
   will-change: transform, opacity;
   -webkit-tap-highlight-color: transparent;
+  /* @alternate */
   color: rgba(0, 0, 0, 0.87);
   color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   display: inline-block;
   position: relative;
   min-width: 64px;
@@ -249,6 +255,7 @@
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -260,14 +267,19 @@
             transition-duration: 120ms;
     opacity: 1; }
   .mdc-button.mdc-ripple-upgraded--unbounded::before, mdc-button.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -288,8 +300,10 @@
   .mdc-button.mdc-ripple-upgraded::after, mdc-button.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -301,12 +315,16 @@
     -webkit-transform-origin: center center;
             transform-origin: center center; }
   .mdc-button.mdc-ripple-upgraded--unbounded::after, mdc-button.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -336,6 +354,7 @@
     --mdc-ripple-fg-translate-start: 0;
     will-change: transform, opacity;
     -webkit-tap-highlight-color: transparent;
+    /* @alternate */
     color: white;
     color: var(--mdc-theme-text-primary-on-dark, white); }
     .mdc-button--theme-dark:not(.mdc-ripple-upgraded):hover::before, .mdc-button--theme-dark:not(.mdc-ripple-upgraded):focus::before, .mdc-button--theme-dark:not(.mdc-ripple-upgraded):active::after,
@@ -370,6 +389,7 @@
       left: calc(50% - 100%);
       width: 200%;
       height: 200%;
+      /* @alternate */
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -387,14 +407,19 @@
     .mdc-button--theme-dark.mdc-ripple-upgraded--unbounded::before,
     .mdc-theme--dark .mdc-button.mdc-ripple-upgraded--unbounded::before,
     .mdc-theme--dark mdc-button.mdc-ripple-upgraded--unbounded::before {
+      /* @alternate */
       top: calc(50% - 50%);
       top: var(--mdc-ripple-top, calc(50% - 50%));
+      /* @alternate */
       left: calc(50% - 50%);
       left: var(--mdc-ripple-left, calc(50% - 50%));
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -419,8 +444,10 @@
     .mdc-theme--dark mdc-button.mdc-ripple-upgraded::after {
       top: 0;
       left: 0;
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
       -webkit-transform: scale(0);
@@ -436,12 +463,16 @@
     .mdc-button--theme-dark.mdc-ripple-upgraded--unbounded::after,
     .mdc-theme--dark .mdc-button.mdc-ripple-upgraded--unbounded::after,
     .mdc-theme--dark mdc-button.mdc-ripple-upgraded--unbounded::after {
+      /* @alternate */
       top: 0;
       top: var(--mdc-ripple-top, 0);
+      /* @alternate */
       left: 0;
       left: var(--mdc-ripple-left, 0);
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
       -webkit-transform: scale(0);
@@ -480,6 +511,7 @@
               transition-duration: 85ms;
       opacity: .6; }
     .mdc-button.mdc-button--primary::before, mdc-button.mdc-button--primary::before {
+      /* @alternate */
       background-color: rgba(63, 81, 181, 0.12);
       position: absolute;
       top: calc(50% - 100%);
@@ -500,6 +532,7 @@
       left: calc(50% - 100%);
       width: 200%;
       height: 200%;
+      /* @alternate */
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -511,19 +544,25 @@
               transition-duration: 120ms;
       opacity: 1; }
     .mdc-button.mdc-button--primary.mdc-ripple-upgraded--unbounded::before, mdc-button.mdc-button--primary.mdc-ripple-upgraded--unbounded::before {
+      /* @alternate */
       top: calc(50% - 50%);
       top: var(--mdc-ripple-top, calc(50% - 50%));
+      /* @alternate */
       left: calc(50% - 50%);
       left: var(--mdc-ripple-left, calc(50% - 50%));
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
               transform: scale(var(--mdc-ripple-fg-scale, 0)); }
     .mdc-button.mdc-button--primary::after, mdc-button.mdc-button--primary::after {
+      /* @alternate */
       background-color: rgba(63, 81, 181, 0.12);
       position: absolute;
       top: calc(50% - 100%);
@@ -542,8 +581,10 @@
     .mdc-button.mdc-button--primary.mdc-ripple-upgraded::after, mdc-button.mdc-button--primary.mdc-ripple-upgraded::after {
       top: 0;
       left: 0;
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
       -webkit-transform: scale(0);
@@ -555,12 +596,16 @@
       -webkit-transform-origin: center center;
               transform-origin: center center; }
     .mdc-button.mdc-button--primary.mdc-ripple-upgraded--unbounded::after, mdc-button.mdc-button--primary.mdc-ripple-upgraded--unbounded::after {
+      /* @alternate */
       top: 0;
       top: var(--mdc-ripple-top, 0);
+      /* @alternate */
       left: 0;
       left: var(--mdc-ripple-left, 0);
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
       -webkit-transform: scale(0);
@@ -591,6 +636,7 @@
               transition-duration: 85ms;
       opacity: .6; }
     .mdc-button.mdc-button--accent::before, mdc-button.mdc-button--accent::before {
+      /* @alternate */
       background-color: rgba(255, 64, 129, 0.12);
       position: absolute;
       top: calc(50% - 100%);
@@ -611,6 +657,7 @@
       left: calc(50% - 100%);
       width: 200%;
       height: 200%;
+      /* @alternate */
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -622,19 +669,25 @@
               transition-duration: 120ms;
       opacity: 1; }
     .mdc-button.mdc-button--accent.mdc-ripple-upgraded--unbounded::before, mdc-button.mdc-button--accent.mdc-ripple-upgraded--unbounded::before {
+      /* @alternate */
       top: calc(50% - 50%);
       top: var(--mdc-ripple-top, calc(50% - 50%));
+      /* @alternate */
       left: calc(50% - 50%);
       left: var(--mdc-ripple-left, calc(50% - 50%));
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       -webkit-transform: scale(0);
               transform: scale(0);
       -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
               transform: scale(var(--mdc-ripple-fg-scale, 0)); }
     .mdc-button.mdc-button--accent::after, mdc-button.mdc-button--accent::after {
+      /* @alternate */
       background-color: rgba(255, 64, 129, 0.12);
       position: absolute;
       top: calc(50% - 100%);
@@ -653,8 +706,10 @@
     .mdc-button.mdc-button--accent.mdc-ripple-upgraded::after, mdc-button.mdc-button--accent.mdc-ripple-upgraded::after {
       top: 0;
       left: 0;
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
       -webkit-transform: scale(0);
@@ -666,12 +721,16 @@
       -webkit-transform-origin: center center;
               transform-origin: center center; }
     .mdc-button.mdc-button--accent.mdc-ripple-upgraded--unbounded::after, mdc-button.mdc-button--accent.mdc-ripple-upgraded--unbounded::after {
+      /* @alternate */
       top: 0;
       top: var(--mdc-ripple-top, 0);
+      /* @alternate */
       left: 0;
       left: var(--mdc-ripple-left, 0);
+      /* @alternate */
       width: 100%;
       width: var(--mdc-ripple-fg-size, 100%);
+      /* @alternate */
       height: 100%;
       height: var(--mdc-ripple-fg-size, 100%);
       -webkit-transform: scale(0);
@@ -742,6 +801,7 @@
         left: calc(50% - 100%);
         width: 200%;
         height: 200%;
+        /* @alternate */
         -webkit-transform: scale(0);
                 transform: scale(0);
         -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -753,14 +813,19 @@
                 transition-duration: 120ms;
         opacity: 1; }
       .mdc-button--raised.mdc-button--primary.mdc-ripple-upgraded--unbounded::before {
+        /* @alternate */
         top: calc(50% - 50%);
         top: var(--mdc-ripple-top, calc(50% - 50%));
+        /* @alternate */
         left: calc(50% - 50%);
         left: var(--mdc-ripple-left, calc(50% - 50%));
+        /* @alternate */
         width: 100%;
         width: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         height: 100%;
         height: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         -webkit-transform: scale(0);
                 transform: scale(0);
         -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -781,8 +846,10 @@
       .mdc-button--raised.mdc-button--primary.mdc-ripple-upgraded::after {
         top: 0;
         left: 0;
+        /* @alternate */
         width: 100%;
         width: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         height: 100%;
         height: var(--mdc-ripple-fg-size, 100%);
         -webkit-transform: scale(0);
@@ -794,12 +861,16 @@
         -webkit-transform-origin: center center;
                 transform-origin: center center; }
       .mdc-button--raised.mdc-button--primary.mdc-ripple-upgraded--unbounded::after {
+        /* @alternate */
         top: 0;
         top: var(--mdc-ripple-top, 0);
+        /* @alternate */
         left: 0;
         left: var(--mdc-ripple-left, 0);
+        /* @alternate */
         width: 100%;
         width: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         height: 100%;
         height: var(--mdc-ripple-fg-size, 100%);
         -webkit-transform: scale(0);
@@ -847,6 +918,7 @@
         left: calc(50% - 100%);
         width: 200%;
         height: 200%;
+        /* @alternate */
         -webkit-transform: scale(0);
                 transform: scale(0);
         -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -858,14 +930,19 @@
                 transition-duration: 120ms;
         opacity: 1; }
       .mdc-button--raised.mdc-button--accent.mdc-ripple-upgraded--unbounded::before {
+        /* @alternate */
         top: calc(50% - 50%);
         top: var(--mdc-ripple-top, calc(50% - 50%));
+        /* @alternate */
         left: calc(50% - 50%);
         left: var(--mdc-ripple-left, calc(50% - 50%));
+        /* @alternate */
         width: 100%;
         width: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         height: 100%;
         height: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         -webkit-transform: scale(0);
                 transform: scale(0);
         -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -886,8 +963,10 @@
       .mdc-button--raised.mdc-button--accent.mdc-ripple-upgraded::after {
         top: 0;
         left: 0;
+        /* @alternate */
         width: 100%;
         width: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         height: 100%;
         height: var(--mdc-ripple-fg-size, 100%);
         -webkit-transform: scale(0);
@@ -899,12 +978,16 @@
         -webkit-transform-origin: center center;
                 transform-origin: center center; }
       .mdc-button--raised.mdc-button--accent.mdc-ripple-upgraded--unbounded::after {
+        /* @alternate */
         top: 0;
         top: var(--mdc-ripple-top, 0);
+        /* @alternate */
         left: 0;
         left: var(--mdc-ripple-left, 0);
+        /* @alternate */
         width: 100%;
         width: var(--mdc-ripple-fg-size, 100%);
+        /* @alternate */
         height: 100%;
         height: var(--mdc-ripple-fg-size, 100%);
         -webkit-transform: scale(0);
@@ -921,37 +1004,47 @@
                 animation: 83ms mdc-ripple-fg-opacity-out; }
     .mdc-button--theme-dark .mdc-button--raised,
     .mdc-theme--dark .mdc-button--raised {
+      /* @alternate */
       background-color: #3f51b5;
       background-color: var(--mdc-theme-primary, #3f51b5);
+      /* @alternate */
       color: white;
       color: var(--mdc-theme-text-primary-on-primary, white); }
       .mdc-button--theme-dark .mdc-button--raised::before,
       .mdc-theme--dark .mdc-button--raised::before {
         color: black; }
   .mdc-button--primary {
+    /* @alternate */
     color: #3f51b5;
     color: var(--mdc-theme-primary, #3f51b5); }
     .mdc-button--theme-dark .mdc-button--primary,
     .mdc-theme--dark .mdc-button--primary {
+      /* @alternate */
       color: #3f51b5;
       color: var(--mdc-theme-primary, #3f51b5); }
     .mdc-button--primary.mdc-button--raised {
+      /* @alternate */
       background-color: #3f51b5;
       background-color: var(--mdc-theme-primary, #3f51b5);
+      /* @alternate */
       color: white;
       color: var(--mdc-theme-text-primary-on-primary, white); }
       .mdc-button--primary.mdc-button--raised::before {
         color: black; }
   .mdc-button--accent {
+    /* @alternate */
     color: #ff4081;
     color: var(--mdc-theme-accent, #ff4081); }
     .mdc-button--theme-dark .mdc-button--accent,
     .mdc-theme--dark .mdc-button--accent {
+      /* @alternate */
       color: #ff4081;
       color: var(--mdc-theme-accent, #ff4081); }
     .mdc-button--accent.mdc-button--raised {
+      /* @alternate */
       background-color: #ff4081;
       background-color: var(--mdc-theme-accent, #ff4081);
+      /* @alternate */
       color: white;
       color: var(--mdc-theme-text-primary-on-accent, white); }
       .mdc-button--accent.mdc-button--raised::before {
@@ -980,6 +1073,900 @@
     .mdc-theme--dark .mdc-button--raised:disabled,
     .mdc-theme--dark .mdc-button--raised[disabled] {
       background-color: rgba(255, 255, 255, 0.12); }
+
+/**
+ * The css property used for elevation. In most cases this should not be changed. It is exposed
+ * as a variable for abstraction / easy use when needing to reference the property directly, for
+ * example in a `will-change` rule.
+ */
+/**
+ * The default duration value for elevation transitions.
+ */
+/**
+ * The default easing value for elevation transitions.
+ */
+/**
+ * Applies the correct css rules to an element to give it the elevation specified by $z-value.
+ * The $z-value must be between 0 and 24.
+ */
+/**
+ * Returns a string that can be used as the value for a `transition` property for elevation.
+ * Calling this function directly is useful in situations where a component needs to transition
+ * more than one property.
+ *
+ * ```scss
+ * .foo {
+ *   transition: mdc-elevation-transition-rule(), opacity 100ms ease;
+ *   will-change: $mdc-elevation-property, opacity;
+ * }
+ * ```
+ */
+/**
+ * Applies the correct css rules needed to have an element transition between elevations.
+ * This mixin should be applied to elements whose elevation values will change depending on their
+ * context (e.g. when active or disabled).
+ */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+.mdc-card, mdc-card {
+  -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 2px;
+  overflow: hidden; }
+  .mdc-card__primary, mdc-card-primary {
+    padding: 16px; }
+    .mdc-card__primary .mdc-card__title--large, mdc-card-primary .mdc-card__title--large {
+      padding-top: 8px; }
+    .mdc-card__primary:last-child, mdc-card-primary:last-child {
+      padding-bottom: 24px; }
+  .mdc-card__supporting-text, mdc-card-supporting-text {
+    padding: 8px 16px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.25rem;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+    .mdc-card--theme-dark .mdc-card__supporting-text, .mdc-card--theme-dark mdc-card-supporting-text,
+    .mdc-theme--dark .mdc-card__supporting-text,
+    .mdc-theme--dark mdc-card-supporting-text {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+    .mdc-card__primary + .mdc-card__supporting-text, mdc-card-primary + .mdc-card__supporting-text, .mdc-card__primary + mdc-card-supporting-text, mdc-card-primary + mdc-card-supporting-text {
+      margin-top: -8px;
+      padding-top: 0; }
+    .mdc-card__supporting-text:last-child, mdc-card-supporting-text:last-child {
+      padding-bottom: 24px; }
+  .mdc-card__actions, mdc-card-actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 8px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .mdc-card--theme-dark .mdc-card__actions, .mdc-card--theme-dark mdc-card-actions,
+    .mdc-theme--dark .mdc-card__actions,
+    .mdc-theme--dark mdc-card-actions {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+    .mdc-card__actions .mdc-card__action, mdc-card-actions .mdc-card__action {
+      margin: 0 8px 0 0; }
+      [dir="rtl"] .mdc-card__actions .mdc-card__action, [dir="rtl"] mdc-card-actions .mdc-card__action, .mdc-card__actions .mdc-card__action[dir="rtl"], mdc-card-actions .mdc-card__action[dir="rtl"] {
+        margin: 0 0 0 8px; }
+    .mdc-card__actions .mdc-card__action:last-child, mdc-card-actions .mdc-card__action:last-child {
+      margin-left: 0;
+      margin-right: 0; }
+      [dir="rtl"] .mdc-card__actions .mdc-card__action:last-child, [dir="rtl"] mdc-card-actions .mdc-card__action:last-child, .mdc-card__actions .mdc-card__action:last-child[dir="rtl"], mdc-card-actions .mdc-card__action:last-child[dir="rtl"] {
+        margin-left: 0;
+        margin-right: 0; }
+    .mdc-card__actions--vertical {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: column;
+              flex-flow: column;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start; }
+      .mdc-card__actions--vertical .mdc-card__action {
+        margin: 0 0 4px; }
+      .mdc-card__actions--vertical .mdc-card__action:last-child {
+        margin-bottom: 0; }
+  .mdc-card__media, mdc-card-media {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 16px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+  .mdc-card__media-item {
+    display: inline-block;
+    width: auto;
+    height: 80px;
+    margin: 16px 0 0;
+    padding: 0; }
+    .mdc-card__media-item--1dot5x {
+      width: auto;
+      height: 120px; }
+    .mdc-card__media-item--2x {
+      width: auto;
+      height: 160px; }
+    .mdc-card__media-item--3x {
+      width: auto;
+      height: 240px; }
+  .mdc-card__title, mdc-card-title {
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.5rem;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
+    margin: -.063rem 0; }
+    .mdc-card--theme-dark .mdc-card__title, .mdc-card--theme-dark mdc-card-title,
+    .mdc-theme--dark .mdc-card__title,
+    .mdc-theme--dark mdc-card-title {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+  .mdc-card__title--large {
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 2rem;
+    margin: 0; }
+  .mdc-card__subtitle, mdc-card-subtitle {
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.25rem;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
+    margin: -.063rem 0; }
+    .mdc-card--theme-dark .mdc-card__subtitle, .mdc-card--theme-dark mdc-card-subtitle,
+    .mdc-theme--dark .mdc-card__subtitle,
+    .mdc-theme--dark mdc-card-subtitle {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+  .mdc-card__horizontal-block, mdc-card-horizontal-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0;
+    padding-left: 0;
+    padding-right: 16px; }
+    [dir="rtl"] .mdc-card__horizontal-block, [dir="rtl"] mdc-card-horizontal-block, .mdc-card__horizontal-block[dir="rtl"], mdc-card-horizontal-block[dir="rtl"] {
+      padding-left: 16px;
+      padding-right: 0; }
+    .mdc-card__horizontal-block .mdc-card__actions--vertical, mdc-card-horizontal-block .mdc-card__actions--vertical {
+      margin: 16px; }
+    .mdc-card__horizontal-block .mdc-card__media-item, mdc-card-horizontal-block .mdc-card__media-item {
+      margin-left: 16px;
+      margin-right: 0; }
+      [dir="rtl"] .mdc-card__horizontal-block .mdc-card__media-item, [dir="rtl"] mdc-card-horizontal-block .mdc-card__media-item, .mdc-card__horizontal-block .mdc-card__media-item[dir="rtl"], mdc-card-horizontal-block .mdc-card__media-item[dir="rtl"] {
+        margin-left: 0;
+        margin-right: 16px; }
+    .mdc-card__horizontal-block .mdc-card__media-item--3x, mdc-card-horizontal-block .mdc-card__media-item--3x {
+      margin-bottom: 16px; }
+
+mdc-card-title {
+  display: block; }
+
+mdc-card-subtitle {
+  display: block; }
+
+/**
+ * The css property used for elevation. In most cases this should not be changed. It is exposed
+ * as a variable for abstraction / easy use when needing to reference the property directly, for
+ * example in a `will-change` rule.
+ */
+/**
+ * The default duration value for elevation transitions.
+ */
+/**
+ * The default easing value for elevation transitions.
+ */
+/**
+ * Applies the correct css rules to an element to give it the elevation specified by $z-value.
+ * The $z-value must be between 0 and 24.
+ */
+/**
+ * Returns a string that can be used as the value for a `transition` property for elevation.
+ * Calling this function directly is useful in situations where a component needs to transition
+ * more than one property.
+ *
+ * ```scss
+ * .foo {
+ *   transition: mdc-elevation-transition-rule(), opacity 100ms ease;
+ *   will-change: $mdc-elevation-property, opacity;
+ * }
+ * ```
+ */
+/**
+ * Applies the correct css rules needed to have an element transition between elevations.
+ * This mixin should be applied to elements whose elevation values will change depending on their
+ * context (e.g. when active or disabled).
+ */
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
+:root {
+  --mdc-dialog-dark-theme-bg-color: #303030; }
+
+.mdc-dialog, mdc-dialog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  z-index: 2; }
+  .mdc-dialog__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 100%;
+    /* @alternate */
+    background-color: rgba(0, 0, 0, 0.87);
+    background-color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
+    opacity: 0;
+    z-index: -1; }
+  .mdc-dialog__surface {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+    width: calc(100% - 30px);
+    min-width: 640px;
+    max-width: 865px;
+    -webkit-transform: translateY(150px) scale(0.8);
+            transform: translateY(150px) scale(0.8);
+    border-radius: 2px;
+    /* @alternate */
+    background-color: #fff;
+    background-color: var(--mdc-theme-background, #fff);
+    opacity: 0; }
+    .mdc-dialog--theme-dark .mdc-dialog__surface,
+    .mdc-theme--dark .mdc-dialog__surface {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white);
+      background-color: #303030;
+      background-color: var(--mdc-dialog-dark-theme-bg-color, #303030); }
+    [dir="rtl"] .mdc-dialog .mdc-dialog__surface, [dir="rtl"] mdc-dialog .mdc-dialog__surface,
+    .mdc-dialog[dir="rtl"] .mdc-dialog__surface, mdc-dialog[dir="rtl"] .mdc-dialog__surface {
+      text-align: right; }
+  .mdc-dialog__header, mdc-dialog-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 24px 24px 0; }
+    .mdc-dialog__header__empty {
+      padding: 0; }
+    [dir="rtl"] .mdc-dialog .mdc-dialog__header, [dir="rtl"] mdc-dialog .mdc-dialog__header, [dir="rtl"] .mdc-dialog mdc-dialog-header, [dir="rtl"] mdc-dialog mdc-dialog-header,
+    .mdc-dialog[dir="rtl"] .mdc-dialog__header, mdc-dialog[dir="rtl"] .mdc-dialog__header,
+    .mdc-dialog[dir="rtl"] mdc-dialog-header, mdc-dialog[dir="rtl"] mdc-dialog-header {
+      text-align: right; }
+    .mdc-dialog__header__title, mdc-dialog-title {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      margin: 0;
+      font-family: Roboto, sans-serif;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 2rem; }
+  .mdc-dialog__body, mdc-dialog-body {
+    margin-top: 20px;
+    padding: 0 24px 24px;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.54);
+    color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.25rem; }
+    .mdc-dialog--theme-dark.mdc-dialog__body, mdc-dialog-body.mdc-dialog--theme-dark,
+    .mdc-theme--dark .mdc-dialog__body,
+    .mdc-theme--dark mdc-dialog-body {
+      /* @alternate */
+      color: rgba(255, 255, 255, 0.7);
+      color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+    .mdc-dialog__body--scrollable {
+      max-height: 195px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      overflow-y: scroll;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; }
+  .mdc-dialog__footer, mdc-dialog-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 8px; }
+    .mdc-dialog__footer__button {
+      margin-left: 0;
+      margin-right: 8px; }
+      [dir="rtl"] .mdc-dialog__footer__button, .mdc-dialog__footer__button[dir="rtl"] {
+        margin-left: 8px;
+        margin-right: 0; }
+      .mdc-dialog__footer__button:last-child {
+        margin-left: 0;
+        margin-right: 0; }
+        [dir="rtl"] .mdc-dialog__footer__button:last-child, .mdc-dialog__footer__button:last-child[dir="rtl"] {
+          margin-left: 0;
+          margin-right: 0; }
+  @media (max-width: 640px) {
+    .mdc-dialog, mdc-dialog {
+      min-width: 280px; }
+      .mdc-dialog__surface {
+        min-width: 280px; }
+      .mdc-dialog__body, mdc-dialog-body {
+        line-height: 24px; } }
+  .mdc-dialog--animating {
+    visibility: visible; }
+    .mdc-dialog--animating .mdc-dialog__backdrop {
+      -webkit-transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+    .mdc-dialog--animating .mdc-dialog--open .mdc-dialog__surface {
+      -webkit-transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+    .mdc-dialog--animating .mdc-dialog__surface {
+      -webkit-transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+  .mdc-dialog--open {
+    visibility: visible; }
+    .mdc-dialog--open .mdc-dialog__backdrop {
+      opacity: .3; }
+    .mdc-dialog--open .mdc-dialog__surface {
+      -webkit-transform: translateY(0) scale(1);
+              transform: translateY(0) scale(1);
+      opacity: 1; }
+
+.mdc-dialog-scroll-lock {
+  height: 100vh;
+  overflow: hidden; }
 
 mdc-icon {
   margin: auto;
@@ -1162,6 +2149,7 @@ mdc-icon {
  * ```
  */
 .mdc-icon-toggle, mdc-icon-toggle {
+  /* @alternate */
   color: rgba(0, 0, 0, 0.54);
   color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
   --mdc-ripple-surface-width: 0;
@@ -1219,6 +2207,7 @@ mdc-icon {
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -1230,14 +2219,19 @@ mdc-icon {
             transition-duration: 120ms;
     opacity: 1; }
   .mdc-icon-toggle.mdc-ripple-upgraded--unbounded::before, mdc-icon-toggle.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -1258,8 +2252,10 @@ mdc-icon {
   .mdc-icon-toggle.mdc-ripple-upgraded::after, mdc-icon-toggle.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1271,12 +2267,16 @@ mdc-icon {
     -webkit-transform-origin: center center;
             transform-origin: center center; }
   .mdc-icon-toggle.mdc-ripple-upgraded--unbounded::after, mdc-icon-toggle.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1313,6 +2313,7 @@ mdc-icon {
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -1330,14 +2331,19 @@ mdc-icon {
   .mdc-icon-toggle--theme-dark.mdc-icon-toggle.mdc-ripple-upgraded--unbounded::before, mdc-icon-toggle.mdc-icon-toggle--theme-dark.mdc-ripple-upgraded--unbounded::before,
   .mdc-theme--dark .mdc-icon-toggle.mdc-ripple-upgraded--unbounded::before,
   .mdc-theme--dark mdc-icon-toggle.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -1362,8 +2368,10 @@ mdc-icon {
   .mdc-theme--dark mdc-icon-toggle.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1379,12 +2387,16 @@ mdc-icon {
   .mdc-icon-toggle--theme-dark.mdc-icon-toggle.mdc-ripple-upgraded--unbounded::after, mdc-icon-toggle.mdc-icon-toggle--theme-dark.mdc-ripple-upgraded--unbounded::after,
   .mdc-theme--dark .mdc-icon-toggle.mdc-ripple-upgraded--unbounded::after,
   .mdc-theme--dark mdc-icon-toggle.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1412,13 +2424,16 @@ mdc-icon {
   .mdc-icon-toggle--theme-dark,
   .mdc-theme--dark .mdc-icon-toggle,
   .mdc-theme--dark mdc-icon-toggle {
+    /* @alternate */
     color: white;
     color: var(--mdc-theme-text-primary-on-dark, white); }
 
 .mdc-icon-toggle--primary {
+  /* @alternate */
   color: #3f51b5;
   color: var(--mdc-theme-primary, #3f51b5); }
   .mdc-icon-toggle--primary::before {
+    /* @alternate */
     background-color: rgba(63, 81, 181, 0.14);
     position: absolute;
     top: calc(50% - 100%);
@@ -1439,6 +2454,7 @@ mdc-icon {
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -1450,19 +2466,25 @@ mdc-icon {
             transition-duration: 120ms;
     opacity: 1; }
   .mdc-icon-toggle--primary.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
             transform: scale(var(--mdc-ripple-fg-scale, 0)); }
   .mdc-icon-toggle--primary::after {
+    /* @alternate */
     background-color: rgba(63, 81, 181, 0.14);
     position: absolute;
     top: calc(50% - 100%);
@@ -1481,8 +2503,10 @@ mdc-icon {
   .mdc-icon-toggle--primary.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1494,12 +2518,16 @@ mdc-icon {
     -webkit-transform-origin: center center;
             transform-origin: center center; }
   .mdc-icon-toggle--primary.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1516,9 +2544,11 @@ mdc-icon {
             animation: 83ms mdc-ripple-fg-opacity-out; }
 
 .mdc-icon-toggle--accent {
+  /* @alternate */
   color: #ff4081;
   color: var(--mdc-theme-accent, #ff4081); }
   .mdc-icon-toggle--accent::before {
+    /* @alternate */
     background-color: rgba(255, 64, 129, 0.14);
     position: absolute;
     top: calc(50% - 100%);
@@ -1539,6 +2569,7 @@ mdc-icon {
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -1550,19 +2581,25 @@ mdc-icon {
             transition-duration: 120ms;
     opacity: 1; }
   .mdc-icon-toggle--accent.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
             transform: scale(var(--mdc-ripple-fg-scale, 0)); }
   .mdc-icon-toggle--accent::after {
+    /* @alternate */
     background-color: rgba(255, 64, 129, 0.14);
     position: absolute;
     top: calc(50% - 100%);
@@ -1581,8 +2618,10 @@ mdc-icon {
   .mdc-icon-toggle--accent.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1594,12 +2633,16 @@ mdc-icon {
     -webkit-transform-origin: center center;
             transform-origin: center center; }
   .mdc-icon-toggle--accent.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -1616,11 +2659,13 @@ mdc-icon {
             animation: 83ms mdc-ripple-fg-opacity-out; }
 
 .mdc-icon-toggle--disabled {
+  /* @alternate */
   color: rgba(0, 0, 0, 0.38);
   color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38));
   pointer-events: none; }
   .mdc-icon-toggle--theme-dark.mdc-icon-toggle--disabled,
   .mdc-theme--dark .mdc-icon-toggle--disabled {
+    /* @alternate */
     color: rgba(255, 255, 255, 0.5);
     color: var(--mdc-theme-text-disabled-on-dark, rgba(255, 255, 255, 0.5)); }
 
@@ -1779,7 +2824,7 @@ mdc-icon {
  * ```
  *
  * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
- * e.g. `@include mdc-rtl-reflexive-box-property(margin, left, 8px, ".mdc-component")`.
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
  *
  * Note that this function will always zero out the original value in an RTL context. If you're
  * trying to flip the values, use mdc-rtl-reflexive-property().
@@ -1922,6 +2967,7 @@ mdc-icon {
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.75rem;
+  /* @alternate */
   color: rgba(0, 0, 0, 0.87);
   color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
   margin: 0;
@@ -1931,6 +2977,7 @@ mdc-icon {
   .mdc-list--theme-dark,
   .mdc-theme--dark .mdc-list,
   .mdc-theme--dark mdc-list {
+    /* @alternate */
     color: white;
     color: var(--mdc-theme-text-primary-on-dark, white); }
 
@@ -1962,10 +3009,10 @@ mdc-icon {
     width: 24px;
     height: 24px;
     margin-left: auto;
-    margin-right: 16px; }
+    margin-right: 0; }
     [dir="rtl"] .mdc-list-item .mdc-list-item__end-detail, [dir="rtl"] mdc-list-item .mdc-list-item__end-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item__end-detail,
     .mdc-list-item[dir="rtl"] .mdc-list-item__end-detail, mdc-list-item[dir="rtl"] .mdc-list-item__end-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item__end-detail {
-      margin-left: 16px;
+      margin-left: 0;
       margin-right: auto; }
   .mdc-list-item__text {
     display: -webkit-inline-box;
@@ -1983,10 +3030,12 @@ mdc-icon {
       font-weight: 400;
       letter-spacing: 0.04em;
       line-height: 1.25rem;
+      /* @alternate */
       color: rgba(0, 0, 0, 0.54);
       color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.54)); }
       .mdc-list-item__text__secondary--theme-dark,
       .mdc-theme--dark .mdc-list-item__text__secondary {
+        /* @alternate */
         color: rgba(255, 255, 255, 0.7);
         color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
       .mdc-list--dense .mdc-list-item__text__secondary {
@@ -2078,6 +3127,7 @@ a.mdc-list-item {
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -2089,14 +3139,19 @@ a.mdc-list-item {
             transition-duration: 120ms;
     opacity: 1; }
   .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -2117,8 +3172,10 @@ a.mdc-list-item {
   .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -2130,12 +3187,16 @@ a.mdc-list-item {
     -webkit-transform-origin: center center;
             transform-origin: center center; }
   .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -2179,6 +3240,7 @@ a.mdc-list-item {
     left: calc(50% - 100%);
     width: 200%;
     height: 200%;
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -2199,14 +3261,19 @@ a.mdc-list-item {
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
   .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
     left: calc(50% - 50%);
     left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
@@ -2233,8 +3300,10 @@ a.mdc-list-item {
   .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -2252,12 +3321,16 @@ a.mdc-list-item {
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
   .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
+    /* @alternate */
     left: 0;
     left: var(--mdc-ripple-left, 0);
+    /* @alternate */
     width: 100%;
     width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
     height: 100%;
     height: var(--mdc-ripple-fg-size, 100%);
     -webkit-transform: scale(0);
@@ -2279,21 +3352,24 @@ a.mdc-list-item {
     -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
             animation: 83ms mdc-ripple-fg-opacity-out; }
 
-.mdc-list-divider {
+.mdc-list-divider, mdc-divider, mdc-divider-inset {
   height: 0;
   margin: 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
-  .mdc-list--theme-dark .mdc-list-divider,
-  .mdc-theme--dark .mdc-list-divider {
+  .mdc-list--theme-dark .mdc-list-divider, .mdc-list--theme-dark mdc-divider, .mdc-list--theme-dark mdc-divider-inset,
+  .mdc-theme--dark .mdc-list-divider,
+  .mdc-theme--dark mdc-divider,
+  .mdc-theme--dark mdc-divider-inset {
     border-bottom-color: rgba(255, 255, 255, 0.2); }
 
-.mdc-list-divider--inset {
+.mdc-list-divider--inset, mdc-divider-inset {
   margin-left: 56px;
   margin-right: 0;
   width: calc(100% - 56px); }
-  [dir="rtl"] .mdc-list-group .mdc-list-divider--inset,
-  .mdc-list-group[dir="rtl"] .mdc-list-divider--inset {
+  [dir="rtl"] .mdc-list-group .mdc-list-divider--inset, [dir="rtl"] .mdc-list-group mdc-divider-inset,
+  .mdc-list-group[dir="rtl"] .mdc-list-divider--inset,
+  .mdc-list-group[dir="rtl"] mdc-divider-inset {
     margin-left: 0;
     margin-right: 56px; }
 
@@ -2307,11 +3383,13 @@ a.mdc-list-item {
     font-weight: 500;
     letter-spacing: 0.04em;
     line-height: 1.5rem;
+    /* @alternate */
     color: rgba(0, 0, 0, 0.87);
     color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
     margin: 0.75rem 0; }
     .mdc-list-group__subheader--theme-dark,
     .mdc-theme--dark .mdc-list-group__subheader {
+      /* @alternate */
       color: white;
       color: var(--mdc-theme-text-primary-on-dark, white); }
   .mdc-list-group .mdc-list, .mdc-list-group mdc-list {
@@ -2320,698 +3398,10 @@ a.mdc-list-item {
 mdc-list {
   display: block; }
 
-/**
- * The css property used for elevation. In most cases this should not be changed. It is exposed
- * as a variable for abstraction / easy use when needing to reference the property directly, for
- * example in a `will-change` rule.
- */
-/**
- * The default duration value for elevation transitions.
- */
-/**
- * The default easing value for elevation transitions.
- */
-/**
- * Applies the correct css rules to an element to give it the elevation specified by $z-value.
- * The $z-value must be between 0 and 24.
- */
-/**
- * Returns a string that can be used as the value for a `transition` property for elevation.
- * Calling this function directly is useful in situations where a component needs to transition
- * more than one property.
- *
- * ```scss
- * .foo {
- *   transition: mdc-elevation-transition-rule(), opacity 100ms ease;
- *   will-change: $mdc-elevation-property, opacity;
- * }
- * ```
- */
-/**
- * Applies the correct css rules needed to have an element transition between elevations.
- * This mixin should be applied to elements whose elevation values will change depending on their
- * context (e.g. when active or disabled).
- */
-/*
-  Precomputed linear color channel values, for use in contrast calculations.
-  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-
-  Algorithm, for c in 0 to 255:
-  f(c) {
-    c = c / 255;
-    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-  }
-
-  This lookup table is needed since there is no `pow` in SASS.
-*/
-/**
- * Calculate the luminance for a color.
- * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- */
-/**
- * Calculate the contrast ratio between two colors.
- * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- */
-/**
- * Determine whether to use dark or light text on top of given color.
- * Returns "dark" for dark text and "light" for light text.
- */
-/*
-  Main theme colors.
-  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
-*/
-/* Indigo 500 */
-/* Pink A200 */
-/* White */
-/* Which set of text colors to use for each main theme color (light or dark) */
-/* Text colors according to light vs dark and text type */
-/* Primary text colors for each of the theme colors */
-/**
- * Applies the correct theme color style to the specified property.
- * $property is typically color or background-color, but can be any CSS property that accepts color values.
- * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
- */
-/**
- * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
- * Should provide the $root-selector option if applied to anything other than the root selector.
- * When used with a modifier class, provide a second argument of `true` for the $compound parameter
- * to specify that this should be attached as a compound class.
- *
- * Usage example:
- *
- * ```scss
- * .mdc-foo {
- *   color: black;
- *
- *   @include mdc-theme-dark {
- *     color: white;
- *   }
- *
- *   &__bar {
- *     background: black;
- *
- *     @include mdc-theme-dark(".mdc-foo") {
- *       background: white;
- *     }
- *   }
- * }
- *
- * .mdc-foo--disabled {
- *   opacity: .38;
- *
- *   @include mdc-theme-dark(".mdc-foo", true) {
- *     opacity: .5;
- *   }
- * }
- * ```
- */
-.mdc-switch, mdc-switch {
-  display: inline-block;
-  position: relative; }
-  .mdc-switch__native-control {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 34px;
-    height: 14px;
-    cursor: pointer;
-    opacity: 0;
-    z-index: 2; }
-  .mdc-switch__background {
-    display: block;
-    position: relative;
-    width: 34px;
-    height: 14px;
-    border-radius: 7px;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; }
-    .mdc-switch--theme-dark .mdc-switch__background,
-    .mdc-theme--dark .mdc-switch__background {
-      background-color: transparent; }
-    .mdc-switch__background::before {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      -webkit-transition: opacity 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
-      transition: opacity 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 7px;
-      background-color: #000;
-      content: "";
-      opacity: .38; }
-      .mdc-switch--theme-dark .mdc-switch__background::before,
-      .mdc-theme--dark .mdc-switch__background::before {
-        background-color: #fff;
-        opacity: .3; }
-    .mdc-switch__background .mdc-switch__knob {
-      display: block;
-      position: absolute;
-      top: -3px;
-      left: 0;
-      width: 20px;
-      height: 20px;
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
-      -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-      transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-      transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
-      transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 10px;
-      background-color: #fafafa;
-      -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-              box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-      z-index: 1; }
-      .mdc-switch--theme-dark .mdc-switch__background .mdc-switch__knob,
-      .mdc-theme--dark .mdc-switch__background .mdc-switch__knob {
-        background-color: #bdbdbd; }
-      .mdc-switch__background .mdc-switch__knob::before {
-        position: absolute;
-        top: -14px;
-        left: -14px;
-        width: 48px;
-        height: 48px;
-        -webkit-transform: scale(0);
-                transform: scale(0);
-        -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-        transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-        transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
-        transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 24px;
-        background-color: transparent;
-        content: "";
-        opacity: .2; }
-
-.mdc-switch__native-control:focus ~ .mdc-switch__background .mdc-switch__knob::before {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 24px;
-  background-color: #9e9e9e; }
-  .mdc-switch--theme-dark .mdc-switch__native-control:focus ~ .mdc-switch__background .mdc-switch__knob::before,
-  .mdc-theme--dark .mdc-switch__native-control:focus ~ .mdc-switch__background .mdc-switch__knob::before {
-    background-color: #f1f1f1;
-    opacity: .14; }
-
-.mdc-switch__native-control:checked ~ .mdc-switch__background::before {
-  background-color: #3f51b5;
-  background-color: var(--mdc-theme-primary, #3f51b5);
-  opacity: .5; }
-
-.mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob {
-  -webkit-transform: translateX(14px);
-          transform: translateX(14px);
-  -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #3f51b5;
-  background-color: var(--mdc-theme-primary, #3f51b5); }
-  .mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob::before {
-    background-color: #3f51b5;
-    background-color: var(--mdc-theme-primary, #3f51b5);
-    opacity: .15; }
-    .mdc-switch--theme-dark .mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob::before,
-    .mdc-theme--dark .mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob::before {
-      background-color: #3f51b5;
-      background-color: var(--mdc-theme-primary, #3f51b5); }
-
-.mdc-switch__native-control:disabled {
-  cursor: initial; }
-
-.mdc-switch__native-control:disabled ~ .mdc-switch__background::before {
-  background-color: #000;
-  opacity: .12; }
-  .mdc-switch--theme-dark .mdc-switch__native-control:disabled ~ .mdc-switch__background::before,
-  .mdc-theme--dark .mdc-switch__native-control:disabled ~ .mdc-switch__background::before {
-    background-color: #fff;
-    opacity: .1; }
-
-.mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob {
-  background-color: #bdbdbd; }
-  .mdc-switch--theme-dark .mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob,
-  .mdc-theme--dark .mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob {
-    background-color: #424242; }
-
-/**
- * The css property used for elevation. In most cases this should not be changed. It is exposed
- * as a variable for abstraction / easy use when needing to reference the property directly, for
- * example in a `will-change` rule.
- */
-/**
- * The default duration value for elevation transitions.
- */
-/**
- * The default easing value for elevation transitions.
- */
-/**
- * Applies the correct css rules to an element to give it the elevation specified by $z-value.
- * The $z-value must be between 0 and 24.
- */
-/**
- * Returns a string that can be used as the value for a `transition` property for elevation.
- * Calling this function directly is useful in situations where a component needs to transition
- * more than one property.
- *
- * ```scss
- * .foo {
- *   transition: mdc-elevation-transition-rule(), opacity 100ms ease;
- *   will-change: $mdc-elevation-property, opacity;
- * }
- * ```
- */
-/**
- * Applies the correct css rules needed to have an element transition between elevations.
- * This mixin should be applied to elements whose elevation values will change depending on their
- * context (e.g. when active or disabled).
- */
-/*
-  Precomputed linear color channel values, for use in contrast calculations.
-  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-
-  Algorithm, for c in 0 to 255:
-  f(c) {
-    c = c / 255;
-    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-  }
-
-  This lookup table is needed since there is no `pow` in SASS.
-*/
-/**
- * Calculate the luminance for a color.
- * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- */
-/**
- * Calculate the contrast ratio between two colors.
- * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
- */
-/**
- * Determine whether to use dark or light text on top of given color.
- * Returns "dark" for dark text and "light" for light text.
- */
-/*
-  Main theme colors.
-  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
-*/
-/* Indigo 500 */
-/* Pink A200 */
-/* White */
-/* Which set of text colors to use for each main theme color (light or dark) */
-/* Text colors according to light vs dark and text type */
-/* Primary text colors for each of the theme colors */
-/**
- * Applies the correct theme color style to the specified property.
- * $property is typically color or background-color, but can be any CSS property that accepts color values.
- * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
- */
-/**
- * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
- * Should provide the $root-selector option if applied to anything other than the root selector.
- * When used with a modifier class, provide a second argument of `true` for the $compound parameter
- * to specify that this should be attached as a compound class.
- *
- * Usage example:
- *
- * ```scss
- * .mdc-foo {
- *   color: black;
- *
- *   @include mdc-theme-dark {
- *     color: white;
- *   }
- *
- *   &__bar {
- *     background: black;
- *
- *     @include mdc-theme-dark(".mdc-foo") {
- *       background: white;
- *     }
- *   }
- * }
- *
- * .mdc-foo--disabled {
- *   opacity: .38;
- *
- *   @include mdc-theme-dark(".mdc-foo", true) {
- *     opacity: .5;
- *   }
- * }
- * ```
- */
-/* TODO(sgomes): Figure out what to do about desktop font sizes. */
-/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-/**
- * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
- *
- * Usage Example:
- * ```scss
- * .mdc-foo {
- *   position: absolute;
- *   left: 0;
- *
- *   @include mdc-rtl {
- *     left: auto;
- *     right: 0;
- *   }
- *
- *   &__bar {
- *     margin-left: 4px;
- *     @include mdc-rtl(".mdc-foo") {
- *       margin-left: auto;
- *       margin-right: 4px;
- *     }
- *   }
- * }
- *
- * .mdc-foo--mod {
- *   padding-left: 4px;
- *
- *   @include mdc-rtl {
- *     padding-left: auto;
- *     padding-right: 4px;
- *   }
- * }
- * ```
- *
- * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
- * in most cases, it will in some cases lead to false negatives, e.g.
- *
- * ```html
- * <html dir="rtl">
- *   <!-- ... -->
- *   <div dir="ltr">
- *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
- *   </div>
- * </html>
- * ```
- *
- * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
- */
-/**
- * Takes a base box-model property - e.g. margin / border / padding - along with a default
- * direction and value, and emits rules which apply the value to the
- * "<base-property>-<default-direction>" property by default, but flips the direction
- * when within an RTL context.
- *
- * For example:
- *
- * ```scss
- * .mdc-foo {
- *   @include mdc-rtl-reflexive-box(margin, left, 8px);
- * }
- * ```
- * is equivalent to:
- *
- * ```scss
- * .mdc-foo {
- *   margin-left: 8px;
- *
- *   @include mdc-rtl {
- *     margin-right: 8px;
- *     margin-left: 0;
- *   }
- * }
- * ```
- * whereas:
- *
- * ```scss
- * .mdc-foo {
- *   @include mdc-rtl-reflexive-box(margin, right, 8px);
- * }
- * ```
- * is equivalent to:
- *
- * ```scss
- * .mdc-foo {
- *   margin-right: 8px;
- *
- *   @include mdc-rtl {
- *     margin-right: 0;
- *     margin-left: 8px;
- *   }
- * }
- * ```
- *
- * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
- * e.g. `@include mdc-rtl-reflexive-box-property(margin, left, 8px, ".mdc-component")`.
- *
- * Note that this function will always zero out the original value in an RTL context. If you're
- * trying to flip the values, use mdc-rtl-reflexive-property().
- */
-/**
- * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
- * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
- * For example:
- *
- * ```scss
- * .mdc-foo {
- *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
- * }
- * ```
- * is equivalent to:
- *
- * ```scss
- * .mdc-foo {
- *   margin-left: auto;
- *   margin-right: 12px;
- *
- *   @include mdc-rtl {
- *     margin-left: 12px;
- *     margin-right: auto;
- *   }
- * }
- * ```
- *
- * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
- */
-/**
- * Takes an argument specifying a horizontal position property (either "left" or "right") as well
- * as a value, and applies that value to the specified position in a LTR context, and flips it in a
- * RTL context. For example:
- *
- * ```scss
- * .mdc-foo {
- *   @include mdc-rtl-reflexive-position(left, 0);
- *   position: absolute;
- * }
- * ```
- * is equivalent to:
- *
- * ```scss
- *  .mdc-foo {
- *    position: absolute;
- *    left: 0;
- *    right: initial;
- *
- *    @include mdc-rtl {
- *      right: 0;
- *      left: initial;
- *    }
- *  }
- * ```
- * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
- */
-.mdc-card, mdc-card {
-  -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-          box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 2px;
-  overflow: hidden; }
-  .mdc-card__primary, mdc-card-primary {
-    padding: 16px; }
-    .mdc-card__primary .mdc-card__title--large, mdc-card-primary .mdc-card__title--large {
-      padding-top: 8px; }
-    .mdc-card__primary:last-child, mdc-card-primary:last-child {
-      padding-bottom: 24px; }
-  .mdc-card__supporting-text, mdc-card-supporting-text {
-    padding: 8px 16px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    font-family: Roboto, sans-serif;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    line-height: 1.25rem;
-    color: rgba(0, 0, 0, 0.87);
-    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)); }
-    .mdc-card--theme-dark .mdc-card__supporting-text, .mdc-card--theme-dark mdc-card-supporting-text,
-    .mdc-theme--dark .mdc-card__supporting-text,
-    .mdc-theme--dark mdc-card-supporting-text {
-      color: white;
-      color: var(--mdc-theme-text-primary-on-dark, white); }
-    .mdc-card__primary + .mdc-card__supporting-text, mdc-card-primary + .mdc-card__supporting-text, .mdc-card__primary + mdc-card-supporting-text, mdc-card-primary + mdc-card-supporting-text {
-      margin-top: -8px;
-      padding-top: 0; }
-    .mdc-card__supporting-text:last-child, mdc-card-supporting-text:last-child {
-      padding-bottom: 24px; }
-  .mdc-card__actions, mdc-card-actions {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 8px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box; }
-    .mdc-card--theme-dark .mdc-card__actions, .mdc-card--theme-dark mdc-card-actions,
-    .mdc-theme--dark .mdc-card__actions,
-    .mdc-theme--dark mdc-card-actions {
-      color: white;
-      color: var(--mdc-theme-text-primary-on-dark, white); }
-    .mdc-card__actions .mdc-card__action, mdc-card-actions .mdc-card__action {
-      margin: 0 8px 0 0; }
-      [dir="rtl"] .mdc-card__actions .mdc-card__action, [dir="rtl"] mdc-card-actions .mdc-card__action, .mdc-card__actions .mdc-card__action[dir="rtl"], mdc-card-actions .mdc-card__action[dir="rtl"] {
-        margin: 0 0 0 8px; }
-    .mdc-card__actions .mdc-card__action:last-child, mdc-card-actions .mdc-card__action:last-child {
-      margin-left: 0;
-      margin-right: 0; }
-      [dir="rtl"] .mdc-card__actions .mdc-card__action:last-child, [dir="rtl"] mdc-card-actions .mdc-card__action:last-child, .mdc-card__actions .mdc-card__action:last-child[dir="rtl"], mdc-card-actions .mdc-card__action:last-child[dir="rtl"] {
-        margin-left: 0;
-        margin-right: 0; }
-    .mdc-card__actions--vertical {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-flow: column;
-              flex-flow: column;
-      -webkit-box-align: start;
-          -ms-flex-align: start;
-              align-items: flex-start; }
-      .mdc-card__actions--vertical .mdc-card__action {
-        margin: 0 0 4px; }
-      .mdc-card__actions--vertical .mdc-card__action:last-child {
-        margin-bottom: 0; }
-  .mdc-card__media, mdc-card-media {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    padding: 16px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box; }
-  .mdc-card__media-item {
-    display: inline-block;
-    width: auto;
-    height: 80px;
-    margin: 16px 0 0;
-    padding: 0; }
-    .mdc-card__media-item--1dot5x {
-      width: auto;
-      height: 120px; }
-    .mdc-card__media-item--2x {
-      width: auto;
-      height: 160px; }
-    .mdc-card__media-item--3x {
-      width: auto;
-      height: 240px; }
-  .mdc-card__title, mdc-card-title {
-    font-family: Roboto, sans-serif;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    line-height: 1.5rem;
-    color: rgba(0, 0, 0, 0.87);
-    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
-    margin: -.063rem 0; }
-    .mdc-card--theme-dark .mdc-card__title, .mdc-card--theme-dark mdc-card-title,
-    .mdc-theme--dark .mdc-card__title,
-    .mdc-theme--dark mdc-card-title {
-      color: white;
-      color: var(--mdc-theme-text-primary-on-dark, white); }
-  .mdc-card__title--large {
-    font-family: Roboto, sans-serif;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: normal;
-    line-height: 2rem;
-    margin: 0; }
-  .mdc-card__subtitle, mdc-card-subtitle {
-    font-family: Roboto, sans-serif;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    line-height: 1.25rem;
-    color: rgba(0, 0, 0, 0.87);
-    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87));
-    margin: -.063rem 0; }
-    .mdc-card--theme-dark .mdc-card__subtitle, .mdc-card--theme-dark mdc-card-subtitle,
-    .mdc-theme--dark .mdc-card__subtitle,
-    .mdc-theme--dark mdc-card-subtitle {
-      color: white;
-      color: var(--mdc-theme-text-primary-on-dark, white); }
-  .mdc-card__horizontal-block, mdc-card-horizontal-block {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    padding: 0;
-    padding-left: 0;
-    padding-right: 16px; }
-    [dir="rtl"] .mdc-card__horizontal-block, [dir="rtl"] mdc-card-horizontal-block, .mdc-card__horizontal-block[dir="rtl"], mdc-card-horizontal-block[dir="rtl"] {
-      padding-left: 16px;
-      padding-right: 0; }
-    .mdc-card__horizontal-block .mdc-card__actions--vertical, mdc-card-horizontal-block .mdc-card__actions--vertical {
-      margin: 16px; }
-    .mdc-card__horizontal-block .mdc-card__media-item, mdc-card-horizontal-block .mdc-card__media-item {
-      margin-left: 16px;
-      margin-right: 0; }
-      [dir="rtl"] .mdc-card__horizontal-block .mdc-card__media-item, [dir="rtl"] mdc-card-horizontal-block .mdc-card__media-item, .mdc-card__horizontal-block .mdc-card__media-item[dir="rtl"], mdc-card-horizontal-block .mdc-card__media-item[dir="rtl"] {
-        margin-left: 0;
-        margin-right: 16px; }
-    .mdc-card__horizontal-block .mdc-card__media-item--3x, mdc-card-horizontal-block .mdc-card__media-item--3x {
-      margin-bottom: 16px; }
-
-mdc-card-title {
+mdc-divider {
   display: block; }
 
-mdc-card-subtitle {
+mdc-divider-inset {
   display: block; }
 
 /**
@@ -3235,9 +3625,13 @@ mdc-card-subtitle {
     .mdc-theme--dark .mdc-simple-menu mdc-simple-menu-item,
     .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item {
       color: white; }
-  .mdc-simple-menu--theme-dark.mdc-simple-menu .mdc-list-divider, mdc-simple-menu.mdc-simple-menu--theme-dark .mdc-list-divider,
+  .mdc-simple-menu--theme-dark.mdc-simple-menu .mdc-list-divider, mdc-simple-menu.mdc-simple-menu--theme-dark .mdc-list-divider, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-divider, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-divider, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-divider-inset, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-divider-inset,
   .mdc-theme--dark .mdc-simple-menu .mdc-list-divider,
-  .mdc-theme--dark mdc-simple-menu .mdc-list-divider {
+  .mdc-theme--dark mdc-simple-menu .mdc-list-divider,
+  .mdc-theme--dark .mdc-simple-menu mdc-divider,
+  .mdc-theme--dark mdc-simple-menu mdc-divider,
+  .mdc-theme--dark .mdc-simple-menu mdc-divider-inset,
+  .mdc-theme--dark mdc-simple-menu mdc-divider-inset {
     border-color: rgba(255, 255, 255, 0.12); }
   .mdc-simple-menu .mdc-list-item__start-detail, mdc-simple-menu .mdc-list-item__start-detail {
     color: rgba(0, 0, 0, 0.54); }
@@ -3247,6 +3641,7 @@ mdc-card-subtitle {
       color: rgba(255, 255, 255, 0.54); }
   .mdc-simple-menu--selected.mdc-list-item, mdc-list-item.mdc-simple-menu--selected, mdc-simple-menu-item.mdc-simple-menu--selected,
   .mdc-simple-menu--selected.mdc-list-item .mdc-list-item__start-detail, mdc-list-item.mdc-simple-menu--selected .mdc-list-item__start-detail, mdc-simple-menu-item.mdc-simple-menu--selected .mdc-list-item__start-detail {
+    /* @alternate */
     color: #3f51b5;
     color: var(--mdc-theme-primary, #3f51b5); }
   .mdc-simple-menu .mdc-list-item::before, mdc-simple-menu .mdc-list-item::before, .mdc-simple-menu mdc-list-item::before, mdc-simple-menu mdc-list-item::before, .mdc-simple-menu mdc-simple-menu-item::before, mdc-simple-menu mdc-simple-menu-item::before {
@@ -3272,6 +3667,7 @@ mdc-card-subtitle {
     opacity: .18; }
   .mdc-simple-menu .mdc-list-item[aria-disabled="true"], mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-simple-menu mdc-list-item[aria-disabled="true"], mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"] {
     cursor: default;
+    /* @alternate */
     color: rgba(0, 0, 0, 0.38);
     color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38)); }
     .mdc-select--theme-dark .mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"],
@@ -3281,6 +3677,7 @@ mdc-card-subtitle {
     .mdc-theme--dark mdc-simple-menu mdc-list-item[aria-disabled="true"],
     .mdc-theme--dark .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"],
     .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"] {
+      /* @alternate */
       color: rgba(255, 255, 255, 0.5);
       color: var(--mdc-theme-text-disabled-on-dark, rgba(255, 255, 255, 0.5)); }
   .mdc-simple-menu .mdc-list-item[aria-disabled="true"]:focus::before, mdc-simple-menu .mdc-list-item[aria-disabled="true"]:focus::before, .mdc-simple-menu mdc-list-item[aria-disabled="true"]:focus::before, mdc-simple-menu mdc-list-item[aria-disabled="true"]:focus::before, .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:focus::before, mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:focus::before, .mdc-simple-menu .mdc-list-item[aria-disabled="true"]:active::before, mdc-simple-menu .mdc-list-item[aria-disabled="true"]:active::before, .mdc-simple-menu mdc-list-item[aria-disabled="true"]:active::before, mdc-simple-menu mdc-list-item[aria-disabled="true"]:active::before, .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:active::before, mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:active::before {
@@ -3290,3 +3687,253 @@ mdc-card-subtitle {
 .mdc-menu-anchor, mdc-menu-anchor {
   position: relative;
   overflow: visible; }
+
+/**
+ * The css property used for elevation. In most cases this should not be changed. It is exposed
+ * as a variable for abstraction / easy use when needing to reference the property directly, for
+ * example in a `will-change` rule.
+ */
+/**
+ * The default duration value for elevation transitions.
+ */
+/**
+ * The default easing value for elevation transitions.
+ */
+/**
+ * Applies the correct css rules to an element to give it the elevation specified by $z-value.
+ * The $z-value must be between 0 and 24.
+ */
+/**
+ * Returns a string that can be used as the value for a `transition` property for elevation.
+ * Calling this function directly is useful in situations where a component needs to transition
+ * more than one property.
+ *
+ * ```scss
+ * .foo {
+ *   transition: mdc-elevation-transition-rule(), opacity 100ms ease;
+ *   will-change: $mdc-elevation-property, opacity;
+ * }
+ * ```
+ */
+/**
+ * Applies the correct css rules needed to have an element transition between elevations.
+ * This mixin should be applied to elements whose elevation values will change depending on their
+ * context (e.g. when active or disabled).
+ */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+.mdc-switch, mdc-switch {
+  display: inline-block;
+  position: relative; }
+  .mdc-switch__native-control {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 14px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2; }
+  .mdc-switch__background {
+    display: block;
+    position: relative;
+    width: 34px;
+    height: 14px;
+    border-radius: 7px;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
+    .mdc-switch--theme-dark .mdc-switch__background,
+    .mdc-theme--dark .mdc-switch__background {
+      background-color: transparent; }
+    .mdc-switch__background::before {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      -webkit-transition: opacity 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 7px;
+      background-color: #000;
+      content: "";
+      opacity: .38; }
+      .mdc-switch--theme-dark .mdc-switch__background::before,
+      .mdc-theme--dark .mdc-switch__background::before {
+        background-color: #fff;
+        opacity: .3; }
+    .mdc-switch__background .mdc-switch__knob {
+      display: block;
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 10px;
+      background-color: #fafafa;
+      -webkit-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+              box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      z-index: 1; }
+      .mdc-switch--theme-dark .mdc-switch__background .mdc-switch__knob,
+      .mdc-theme--dark .mdc-switch__background .mdc-switch__knob {
+        background-color: #bdbdbd; }
+      .mdc-switch__background .mdc-switch__knob::before {
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        width: 48px;
+        height: 48px;
+        -webkit-transform: scale(0);
+                transform: scale(0);
+        -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+        transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 24px;
+        background-color: transparent;
+        content: "";
+        opacity: .2; }
+
+.mdc-switch__native-control:focus ~ .mdc-switch__background .mdc-switch__knob::before {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 24px;
+  background-color: #9e9e9e; }
+  .mdc-switch--theme-dark .mdc-switch__native-control:focus ~ .mdc-switch__background .mdc-switch__knob::before,
+  .mdc-theme--dark .mdc-switch__native-control:focus ~ .mdc-switch__background .mdc-switch__knob::before {
+    background-color: #f1f1f1;
+    opacity: .14; }
+
+.mdc-switch__native-control:checked ~ .mdc-switch__background::before {
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5);
+  opacity: .5; }
+
+.mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob {
+  -webkit-transform: translateX(14px);
+          transform: translateX(14px);
+  -webkit-transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1), background-color 90ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 90ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5); }
+  .mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob::before {
+    /* @alternate */
+    background-color: #3f51b5;
+    background-color: var(--mdc-theme-primary, #3f51b5);
+    opacity: .15; }
+    .mdc-switch--theme-dark .mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob::before,
+    .mdc-theme--dark .mdc-switch__native-control:checked ~ .mdc-switch__background .mdc-switch__knob::before {
+      /* @alternate */
+      background-color: #3f51b5;
+      background-color: var(--mdc-theme-primary, #3f51b5); }
+
+.mdc-switch__native-control:disabled {
+  cursor: initial; }
+
+.mdc-switch__native-control:disabled ~ .mdc-switch__background::before {
+  background-color: #000;
+  opacity: .12; }
+  .mdc-switch--theme-dark .mdc-switch__native-control:disabled ~ .mdc-switch__background::before,
+  .mdc-theme--dark .mdc-switch__native-control:disabled ~ .mdc-switch__background::before {
+    background-color: #fff;
+    opacity: .1; }
+
+.mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob {
+  background-color: #bdbdbd; }
+  .mdc-switch--theme-dark .mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob,
+  .mdc-theme--dark .mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob {
+    background-color: #424242; }
