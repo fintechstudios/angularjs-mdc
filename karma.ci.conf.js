@@ -30,7 +30,7 @@ module.exports = function(config) {
     },
 
     junitReporter: {
-      outputDir: './test',
+      outputDir: './test/junit',
       outputFile: 'junit.xml',
       suite: 'karma-angularjs-mdc',
       useBrowserName: false,
