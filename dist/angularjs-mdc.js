@@ -1464,7 +1464,7 @@ function $mdcDialogProvider($$interimElementSlimProvider) {
 
     function onShow(scope, element, options, controller) {
       options.parent = getDomElement(options.parent, $rootElement);
-      angular.element(function () {
+      element.ready(function () {
         // wait for the DOM refresh before trying to show the dialog
         addEventListeners(controller, options);
         options.mdcDialog.show();
