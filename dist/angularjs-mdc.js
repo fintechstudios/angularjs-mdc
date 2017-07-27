@@ -1329,7 +1329,7 @@ angular.module('mdc.card', [])
 
 var _dialog = __webpack_require__(11);
 
-$mdcDialogProvider.$inject = ['$$interimElementProvider'];
+$mdcDialogProvider.$inject = ['$$interimElementSlimProvider'];
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1375,11 +1375,11 @@ var MdcDialogController = function MdcDialogController() {
  */
 
 
-function $mdcDialogProvider($$interimElementProvider) {
+function $mdcDialogProvider($$interimElementSlimProvider) {
   defaultDialogOptions.$inject = ['$mdcDialog', '$injector', '$document', '$rootElement', '$q', '$interval'];
   presetDialogOptions.$inject = ['$mdcDialog'];
 
-  return $$interimElementProvider('$mdcDialog').setDefaults({
+  return $$interimElementSlimProvider('$mdcDialog').setDefaults({
     methods: ['parent'],
     options: defaultDialogOptions
   }).addPreset('alert', {
@@ -3254,7 +3254,7 @@ UtilFactory.$inject = ['$interpolate'];
  * @description
  * Util
  */
-angular.module('material.core.slim').factory('$mdUtil', UtilFactory);
+angular.module('material.core.slim').factory('$mdUtilSlim', UtilFactory);
 
 /**
  * @ngInject
@@ -3302,14 +3302,14 @@ MdCompilerService.$inject = ['$q', '$templateRequest', '$injector', '$compile', 
  * @description
  * AngularJS Material template and element compiler.
  */
-angular.module('material.core.slim').service('$mdCompiler', MdCompilerService);
+angular.module('material.core.slim').service('$mdCompilerSlim', MdCompilerService);
 
 /**
  * @ngdoc service
- * @name $mdCompiler
+ * @name $mdCompilerSlim
  * @module material.core.compiler
  * @description
- * The $mdCompiler service is an abstraction of AngularJS's compiler, that allows developers
+ * The $mdCompilerSlim service is an abstraction of AngularJS's compiler, that allows developers
  * to easily compile an element with options like in a Directive Definition Object.
  *
  * > The compiler powers a lot of components inside of AngularJS Material.
@@ -3320,7 +3320,7 @@ angular.module('material.core.slim').service('$mdCompiler', MdCompilerService);
  * Basic Usage with a template
  *
  * <hljs lang="js">
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     templateUrl: 'modal.html',
  *     controller: 'ModalCtrl',
  *     locals: {
@@ -3340,7 +3340,7 @@ angular.module('material.core.slim').service('$mdCompiler', MdCompilerService);
  *   // The compiler doesn't need to recompile the element each time.
  *   var myElement = $compile('<span>Test</span>')(myScope);
  *
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     contentElement: myElement
  *   }).then(function (compileData) {
  *     compileData.element // Content Element (same as above)
@@ -3357,7 +3357,7 @@ angular.module('material.core.slim').service('$mdCompiler', MdCompilerService);
  * <hljs lang="js">
  *   var domElement = document.querySelector('#myElement');
  *
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     contentElement: myElement
  *   }).then(function (compileData) {
  *     compileData.element // Content Element (same as above)
@@ -3365,10 +3365,10 @@ angular.module('material.core.slim').service('$mdCompiler', MdCompilerService);
  *   });
  * </hljs>
  *
- * The `$mdCompiler` can also query for the element in the DOM itself.
+ * The `$mdCompilerSlim` can also query for the element in the DOM itself.
  *
  * <hljs lang="js">
- *   $mdCompiler.compile({
+ *   $mdCompilerSlim.compile({
  *     contentElement: '#myElement'
  *   }).then(function (compileData) {
  *     compileData.element // Content Element (same as above)
@@ -3396,11 +3396,11 @@ function MdCompilerService($q, $templateRequest, $injector, $compile, $controlle
 
 /**
  * @ngdoc method
- * @name $mdCompiler#compile
+ * @name $mdCompilerSlim#compile
  * @description
  *
  * A method to compile a HTML template with the AngularJS compiler.
- * The `$mdCompiler` is wrapper around the AngularJS compiler and provides extra functionality
+ * The `$mdCompilerSlim` is wrapper around the AngularJS compiler and provides extra functionality
  * like controller instantiation or async resolves.
  *
  * @param {!Object} options An options object, with the following properties:
@@ -3627,34 +3627,34 @@ MdCompilerService.prototype._fetchContentElement = function (options) {
 
 /* eslint-disable */
 
-angular.module('material.core.slim').provider('$$interimElement', InterimElementProvider);
+angular.module('material.core.slim').provider('$$interimElementSlim', InterimElementProvider);
 
 /*
  * @ngdoc service
- * @name $$interimElement
+ * @name $$interimElementSlim
  * @module material.core.slim
  *
  * @description
  *
- * Factory that contructs `$$interimElement.$service` services.
+ * Factory that contructs `$$interimElementSlim.$service` services.
  * Used internally in material design for elements that appear on screen temporarily.
  * The service provides a promise-like API for interacting with the temporary
  * elements.
  *
  * ```js
- * app.service('$mdToast', function($$interimElement) {
- *   var $mdToast = $$interimElement(toastDefaultOptions);
+ * app.service('$mdToast', function($$interimElementSlim) {
+ *   var $mdToast = $$interimElementSlim(toastDefaultOptions);
  *   return $mdToast;
  * });
  * ```
  * @param {object=} defaultOptions Options used by default for the `show` method on the service.
  *
- * @returns {$$interimElement.$service}
+ * @returns {$$interimElementSlim.$service}
  *
  */
 
 function InterimElementProvider() {
-  InterimElementFactory.$inject = ['$document', '$q', '$rootScope', '$timeout', '$rootElement', '$mdUtil', '$mdCompiler', '$injector', '$exceptionHandler'];
+  InterimElementFactory.$inject = ['$document', '$q', '$rootScope', '$timeout', '$rootElement', '$mdUtilSlim', '$mdCompilerSlim', '$injector', '$exceptionHandler'];
 
   createInterimElementProvider.$get = InterimElementFactory;
   return createInterimElementProvider;
@@ -3665,7 +3665,7 @@ function InterimElementProvider() {
    * as well as configuration of 'preset' methods (eg dialog.basic(): basic is a preset method)
    */
   function createInterimElementProvider(interimFactoryName) {
-    factory.$inject = ['$$interimElement', '$injector'];
+    factory.$inject = ['$$interimElementSlim', '$injector'];
 
     var EXPOSED_METHODS = ['onHide', 'onShow', 'onRemove'];
 
@@ -3740,10 +3740,10 @@ function InterimElementProvider() {
      * Create a factory that has the given methods & defaults implementing interimElement
      */
     /* @ngInject */
-    function factory($$interimElement, $injector) {
+    function factory($$interimElementSlim, $injector) {
       var defaultMethods;
       var defaultOptions;
-      var interimElementService = $$interimElement();
+      var interimElementService = $$interimElementSlim();
 
       /*
        * publicService is what the developer will be using.
@@ -3871,13 +3871,13 @@ function InterimElementProvider() {
   }
 
   /* @ngInject */
-  function InterimElementFactory($document, $q, $rootScope, $timeout, $rootElement, $mdUtil, $mdCompiler, $injector, $exceptionHandler) {
+  function InterimElementFactory($document, $q, $rootScope, $timeout, $rootElement, $mdUtilSlim, $mdCompilerSlim, $injector, $exceptionHandler) {
     return function createInterimElementService() {
       var SHOW_CANCELLED = false;
 
       /*
        * @ngdoc service
-       * @name $$interimElement.$service
+       * @name $$interimElementSlim.$service
        *
        * @description
        * A service used to control inserting and removing an element into the DOM.
@@ -3890,7 +3890,7 @@ function InterimElementProvider() {
       var hidePromises = []; // Promises for the interim's which are currently hiding.
       var showingInterims = []; // Interim elements which are currently showing up.
 
-      // Publish instance $$interimElement service;
+      // Publish instance $$interimElementSlim service;
       // ... used as $mdDialog, $mdToast, $mdMenu, and $mdSelect
 
       return service = {
@@ -3903,7 +3903,7 @@ function InterimElementProvider() {
 
       /*
        * @ngdoc method
-       * @name $$interimElement.$service#show
+       * @name $$interimElementSlim.$service#show
        * @kind function
        *
        * @description
@@ -3961,7 +3961,7 @@ function InterimElementProvider() {
 
       /*
        * @ngdoc method
-       * @name $$interimElement.$service#hide
+       * @name $$interimElementSlim.$service#hide
        * @kind function
        *
        * @description
@@ -4001,7 +4001,7 @@ function InterimElementProvider() {
 
       /*
        * @ngdoc method
-       * @name $$interimElement.$service#cancel
+       * @name $$interimElementSlim.$service#cancel
        * @kind function
        *
        * @description
@@ -4179,7 +4179,7 @@ function InterimElementProvider() {
         function configureScopeAndTransitions(options) {
           options = options || {};
           if (options.template) {
-            options.template = $mdUtil.processTemplate(options.template);
+            options.template = $mdUtilSlim.processTemplate(options.template);
           }
 
           return angular.extend({
@@ -4194,7 +4194,7 @@ function InterimElementProvider() {
          */
         function compileElement(options) {
 
-          var compiled = !options.skipCompile ? $mdCompiler.compile(options) : null;
+          var compiled = !options.skipCompile ? $mdCompilerSlim.compile(options) : null;
 
           return compiled || $q(function (resolve) {
             resolve({
