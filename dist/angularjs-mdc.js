@@ -1327,6 +1327,8 @@ angular.module('mdc.card', [])
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dialog = __webpack_require__(11);
 
 $mdcDialogProvider.$inject = ['$$interimElementSlimProvider'];
@@ -1360,7 +1362,31 @@ var MdcDialogController = function MdcDialogController() {
  * @ngdoc component
  * @name mdcDialogBody
  * @module mdc.dialog
+ *
+ * @param {expression} [scrollable=false] whether the element has a vertical scrollbar
  */
+
+
+var MdcDialogBodyController = function () {
+  MdcDialogBodyController.$inject = ['$element'];
+
+  function MdcDialogBodyController($element) {
+    _classCallCheck(this, MdcDialogBodyController);
+
+    this.elem = $element;
+  }
+
+  _createClass(MdcDialogBodyController, [{
+    key: '$onChanges',
+    value: function $onChanges(changesObj) {
+      if (changesObj.scrollable) {
+        this.elem.toggleClass('mdc-dialog__body--scrollable', this.scrollable);
+      }
+    }
+  }]);
+
+  return MdcDialogBodyController;
+}();
 
 /**
  * @ngdoc component
@@ -1668,6 +1694,11 @@ angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', $mdc
   controller: MdcDialogController,
   template: __webpack_require__(25),
   transclude: true
+}).component('mdcDialogBody', {
+  controller: MdcDialogBodyController,
+  bindings: {
+    scrollable: '<?'
+  }
 });
 
 /***/ }),
