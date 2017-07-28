@@ -1,0 +1,5 @@
+@import '~@material/select/mdc-select';
+
+.mdc-select .mdc-list-item[disabled="disabled"] {
+  @extend .mdc-simple-menu .mdc-list-item[aria-disabled="disabled"];
+}

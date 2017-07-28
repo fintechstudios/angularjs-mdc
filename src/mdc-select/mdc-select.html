@@ -1,0 +1,10 @@
+<div ng-show="!$ctrl.noAnimation && !$ctrl.multiple" class="mdc-select" role="listbox" tabindex="0">
+    <span class="mdc-select__selected-text" ng-bind="$ctrl.prompt"></span>
+    <div class="mdc-simple-menu mdc-select__menu">
+        <ul class="mdc-list mdc-simple-menu__items" ng-transclude></ul>
+    </div>
+</div>
+<select ng-show="$ctrl.noAnimation && !$ctrl.multiple" class="mdc-select"
+        ng-model="$ctrl.ngModel" ng-disabled="$ctrl.ngDisabled" ng-transclude></select>
+<select ng-show="$ctrl.multiple" multiple class="mdc-multi-select mdc-list"
+        ng-model="$ctrl.ngModel" ng-disabled="$ctrl.ngDisabled" ng-transclude></select>

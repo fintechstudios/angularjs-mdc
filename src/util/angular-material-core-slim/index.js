@@ -7,6 +7,8 @@
  */
 angular.module('material.core.slim', []);
 
+require('./constant');
 require('./util');
 require('./compiler');
 require('./interimElement');
+require('./media');
