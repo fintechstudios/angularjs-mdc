@@ -1,3 +1,4 @@
+require('angular-debounce');
 
 import {MDCSelect, MDCSelectFoundation} from '@material/select';
 
@@ -6,72 +7,95 @@ import {MDCSelect, MDCSelectFoundation} from '@material/select';
  * @name mdcSelect
  * @module mdc.select
  *
- * @param {expression} [dense] Display the select densely
+ * @param {string} [prompt] Default empty-value option to present to user
+ * @param {string} [ngModel] Assignable AngularJS expression to data-bind to
+ * @param {expression} [noAnimation=false] Enable/Disable the use of JS animation (better on small screens)
+ * @param {expression} [autoResize=true] Automatically switch to noAnimation select on small screens.
+ * @param {string} [multiple=false] Enable/Disable multiple selection.
+ * @param {string} [size] When multiple select is disabled, sets size of select.
+ * @param {expression} [ngDisabled] Enable/Disable based on the expression
  */
 class MdcSelectController {
-  constructor($element, $scope) {
+  constructor($element, $scope, $window, debounce) {
     this.elem = $element;
     this.scope = $scope;
+    this.window = angular.element($window);
+    this.debounce = debounce;
   }
 
   changeHandler(e) {
     if (this.ngModelCtrl) {
-      this.ngModelCtrl.$setViewValue(this.mdc.getValue(), e.type);
+      this.ngModelCtrl.$setViewValue(this.mdc.value, e.type);
     }
     e.stopPropagation();
   }
 
-  $postLink() {
-    if (this.multiple) {
-      this.root_ = this.elem.children()[2];
-    } else if (this.noAnimation) {
-      this.root_ = this.elem.children()[1];
-    } else {
-      this.root_ = this.elem.children()[0];
+  resizeHandler() {
+    const isSmall = this.window[0].innerWidth < 960;
+    if (isSmall !== !!this.noAnimation) { // prevent redraw on first init large screen
+      this.noAnimation = isSmall;
     }
-    console.log(this.root_);
-    this.mdc = new MDCSelect(this.root_);
-    if (!this.multiple && this.noAnimation) {
-      this.mdc.listen(MDCSelectFoundation.strings.CHANGE_EVENT, this.changeHandler);
+  }
+
+  $postLink() {
+    // the MDCSelect element won't be initialized when noAnimation or multiple because it will never be shown
+    if (!this.multiple && !this.noAnimation) {
+      const mdcOptions = this.elem.children()[0].querySelectorAll('option');
+      angular.forEach(mdcOptions, function(e) {
+        e.setAttribute('role', 'option');
+        e.className += ' mdc-list-item';
+        e.setAttribute('id', e.getAttribute('value'));
+      });
+
+      this.mdc = new MDCSelect(this.elem.children()[0]);
+      this.boundChangeHandler = (e) => this.changeHandler(e);
+      this.mdc.listen(MDCSelectFoundation.strings.CHANGE_EVENT, this.boundChangeHandler);
+
+      // setup resize handler
+      this.autoResize = (this.autoResize === undefined && this.noAnimation === undefined) ? true : this.autoResize;
+      if (this.autoResize) {
+        this.boundResizeHandler = this.debounce(200, () => this.resizeHandler());
+        this.window.on('resize', this.boundResizeHandler);
+        this.boundResizeHandler();
+      }
+
+      // setup ngModelCtrl
+      if (this.ngModelCtrl) {
+        this.ngModelCtrl.$render = () => {
+          let selectedIndex = -1;
+          this.mdc.options.forEach((option, i) => {
+            if (option.value === this.ngModelCtrl.$viewValue) {
+              selectedIndex = i;
+              return 0;
+            }
+          });
+          this.mdc.selectedIndex = selectedIndex;
+        };
+      }
+    }
+
+    if (this.ngDisabled && this.mdc) {
+      this.mdc.disabled = this.ngDisabled;
     }
   }
 
   $onChanges(changesObj) {
-    if (changesObj.ngDisabled) {
-      this.mdc.disabled = this.ngDisabled;
+    if (this.mdc) {
+      if (changesObj.ngDisabled) {
+        this.mdc.disabled = this.ngDisabled;
+      }
     }
   };
 
   $onDestory() {
-    this.mdc.unlisten(MDCSelectFoundation.strings.CHANGE_EVENT, this.changeHandler);
+    if (this.boundResizeHandler) {
+      this.window.off('resize', this.boundResizeHandler);
+    }
+    if (this.boundChangeHandler) {
+      this.mdc.unlisten(MDCSelectFoundation.strings.CHANGE_EVENT, this.boundChangeHandler);
+    }
     this.mdc.destroy();
   }
-}
-
-
-/**
- * @ngdoc directive
- * @name mdcOption
- * @module mdc.option
- * @restrict E
- * @description Binds a click handler to open the closest mdcSimpleMenu, unless an `id` is given as a value
- *
- */
-function MdcOptionController() {
-  return {
-    require: {
-      selectCtrl: '^^mdcSelect',
-    },
-    scope: {
-      value: '@',
-      ngDisabled: '=?',
-      ngSelected: '=?',
-    },
-    restrict: 'E',
-    replace: true,
-    template: require('raw-loader!./mdc-option.html'),
-    // link: (scope, element) => {},
-  };
 }
 
 
@@ -83,7 +107,7 @@ function MdcOptionController() {
  * Select
  */
 angular
-  .module('mdc.select', ['material.core.slim'])
+  .module('mdc.select', ['rt.debounce'])
   .component('mdcSelect', {
     controller: MdcSelectController,
     transclude: true,
@@ -94,7 +118,8 @@ angular
       ngDisabled: '<?',
       noAnimation: '<?',
       prompt: '@',
-      multiple: '<?',
+      multiple: '@',
+      size: '<?',
+      autoResize: '<?',
     },
-  })
-  .directive('mdcOption', MdcOptionController);
+  });

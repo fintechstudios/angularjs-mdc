@@ -59,6 +59,7 @@
     "@material/toolbar": "^0.4.3",
     "@material/typography": "^0.2.3",
     "angular": "^1.6.5",
+    "angular-debounce": "^1.1.0",
     "angular-mocks": "^1.6.5",
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.25.0",

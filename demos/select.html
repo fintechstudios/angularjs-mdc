@@ -34,15 +34,6 @@
         padding-left: 0;
       }
 
-      /* Hack to work around style-loader asynchronously loading styles. */
-      /* Equivalent to using mdc-typography's subheading2, which is used in the sass file. */
-      .mdc-select {
-        font-family: Roboto, sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: .04em;
-      }
-
       .example {
         margin: 24px;
         padding: 24px;
@@ -64,94 +55,77 @@
     <main ng-controller="MainCtrl">
       <div class="mdc-toolbar-fixed-adjust"></div>
       <section class="hero">
-        <mdc-select prompt="Pick a food group">
-          <option role="option" class="mdc-list-item" ng-disabled="true">Pick a food group</option>
-          <option role="option" class="mdc-list-item">Bread, Cereal, Rice, and Pasta</option>
-          <option role="option" class="mdc-list-item" ng-disabled="true">Vegetables</option>
-          <option role="option" class="mdc-list-item">Fruit</option>
-          <option role="option" class="mdc-list-item">Milk, Yogurt, and Cheese</option>
-          <option role="option" class="mdc-list-item">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
-          <option role="option" class="mdc-list-item">Fats, Oils, and Sweets</option>
+        <mdc-select prompt="Pick a food group" auto-resize="false">
+          <option>Bread, Cereal, Rice, and Pasta</option>
+          <option ng-disabled="true">Vegetables</option>
+          <option>Fruit</option>
+          <option>Milk, Yogurt, and Cheese</option>
+          <option>Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
+          <option>Fats, Oils, and Sweets</option>
         </mdc-select>
       </section>
 
       <section class="example">
         <h2 class="mdc-typography--title">Fully-Featured Component</h2>
-        <section id="demo-wrapper">
-          <div id="js-select" class="mdc-select" role="listbox" tabindex="0">
-            <span class="mdc-select__selected-text">Pick a food group</span>
-            <div class="mdc-simple-menu mdc-select__menu">
-              <ul class="mdc-list mdc-simple-menu__items">
-                <li class="mdc-list-item" role="option" id="grains" aria-disabled="true">
-                  Pick a food group
-                </li>
-                <li class="mdc-list-item" role="option" id="grains" tabindex="0">
-                  Bread, Cereal, Rice, and Pasta
-                </li>
-                <li class="mdc-list-item" role="option" id="vegetables" aria-disabled="true" tabindex="0">
-                  Vegetables
-                </li>
-                <li class="mdc-list-item" role="option" id="fruit" tabindex="0">
-                  Fruit
-                </li>
-                <li class="mdc-list-item" role="option" id="dairy" tabindex="0">
-                  Milk, Yogurt, and Cheese
-                </li>
-                <li class="mdc-list-item" role="option" id="meat" tabindex="0">
-                  Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts
-                </li>
-                <li class="mdc-list-item" role="option" id="fats" tabindex="0">
-                  Fats, Oils, and Sweets
-                </li>
-              </ul>
-            </div>
-          </div>
+        <section id="demo-wrapper" dir="{{ isRTL ? 'rtl': '' }}"
+                 ng-class="{'mdc-theme--dark': isDarkTheme}">
+          <mdc-select prompt="Pick a food group" ng-disabled="isDisabled1" ng-model="selected1">
+            <option value="grains">Bread, Cereal, Rice, and Pasta</option>
+            <option value="vegetables" ng-disabled="true">Vegetables</option>
+            <option value="fruit">Fruit</option>
+            <option value="dairy">Milk, Yogurt, and Cheese</option>
+            <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
+            <option value="fats">Fats, Oils, and Sweets</option>
+          </mdc-select>
         </section>
-        <p>Currently selected: <span id="currently-selected">(none)</span></p>
-        <div>
-          <input type="checkbox" id="dark-theme">
-          <label for="dark-theme">Dark Theme</label>
-        </div>
-        <div>
-          <input type="checkbox" id="rtl">
-          <label for="rtl">RTL</label>
-        </div>
-        <div>
-          <input type="checkbox" id="disabled">
-          <label for="disabled">Disabled</label>
-        </div>
+        <label>Currently selected: <input ng-model="selected1"> </label>
+        <label>
+          <input type="checkbox" ng-model="isDarkTheme"> Dark Theme
+        </label>
+        <label>
+          <input type="checkbox" ng-model="isRTL"> RTL
+        </label>
+        <label>
+          <input type="checkbox" ng-model="isDisabled1"> Disabled
+        </label>
       </section>
       <section class="example">
         <h2 class="mdc-typography--title">CSS Only</h2>
-        <select class="mdc-select">
+        <mdc-select prompt="Pick a food group" no-animation="true" ng-model="selected2" ng-disabled="isDisabled2">
           <option value="" default selected>Pick a food group</option>
           <option value="grains">Bread, Cereal, Rice, and Pasta</option>
-          <option value="vegetables" disabled>Vegetables</option>
+          <option value="vegetables" ng-disabled="true">Vegetables</option>
           <option value="fruit">Fruit</option>
           <option value="dairy">Milk, Yogurt, and Cheese</option>
           <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
           <option value="fats">Fats, Oils, and Sweets</option>
-        </select>
+        </mdc-select>
+        <p>Currently selected: {{ selected2 }}</p>
+        <label>
+          <input type="checkbox" ng-model="isDisabled2"> Disabled
+        </label>
       </section>
 
       <section class="example">
         <h2>Select Multiple - CSS Only</h2>
-        <select multiple size="8" class="mdc-multi-select mdc-list">
-
-          <optgroup class="mdc-list-group" label="Fats, Oils, &amp; Sweets">
-            <option class="mdc-list-item">Olive Oil</option>
-            <option class="mdc-list-item">Brown Sugar</option>
-            <option class="mdc-list-item">Ice Cream</option>
+        <mdc-select multiple="true" size="8" ng-disabled="isDisabled3" ng-model="selected3">
+          <optgroup label="Fats, Oils, &amp; Sweets">
+            <option>Olive Oil</option>
+            <option ng-disabled="true">Brown Sugar</option>
+            <option>Ice Cream</option>
           </optgroup>
-          <option class="mdc-list-divider" role="presentation" disabled />
+          <option class="mdc-list-divider" role="presentation" disabled></option>
 
-          <optgroup class="mdc-list-group" label="Dairy">
-            <option class="mdc-list-item">Milk</option>
-            <option class="mdc-list-item">Cheese</option>
-            <option class="mdc-list-item">More Cheese</option>
+          <optgroup label="Dairy">
+            <option>Milk</option>
+            <option>Cheese</option>
+            <option>More Cheese</option>
           </optgroup>
-
-        </select>
+        </mdc-select>
+        <p>Currently selected: {{ selected3 }}</p>
+        <label>
+          <input type="checkbox" ng-model="isDisabled3"> Disabled
+        </label>
       </section>
 
     </main>
@@ -161,43 +135,11 @@
       angular.module('demo', ['mdc'])
         .controller('MainCtrl', ['$scope', function($scope) {
           $scope.name = '';
+          $scope.isDarkTheme = false;
+          $scope.isRTL = false;
+          $scope.isDisabled1 = $scope.isDisabled2 = $scope.isDisabled3 = false;
+          $scope.selected1 = $scope.selected2 = $scope.selected3 = '';
         }]);
-    </script>
-    <script>
-      function demo() {
-        var MDCSelect = mdc.select.MDCSelect;
-        var root = document.getElementById('js-select');
-        var currentlySelected = document.getElementById('currently-selected');
-        var select = MDCSelect.attachTo(root);
-        root.addEventListener('MDCSelect:change', function() {
-          var item = select.selectedOptions[0];
-          var index = select.selectedIndex;
-          currentlySelected.textContent = '"' + item.textContent + '" at index ' + index +
-           ' with value "' + select.value + '"';
-        });
-
-        var demoWrapper = document.getElementById('demo-wrapper');
-        var darkThemeCb = document.getElementById('dark-theme');
-        var rtlCb = document.getElementById('rtl');
-        var disabledCb = document.getElementById('disabled');
-
-        darkThemeCb.addEventListener('change', function() {
-          demoWrapper.classList[darkThemeCb.checked ? 'add' : 'remove']('mdc-theme--dark');
-        });
-        rtlCb.addEventListener('change', function() {
-          if (rtlCb.checked) {
-            demoWrapper.setAttribute('dir', 'rtl');
-          } else {
-            demoWrapper.removeAttribute('dir');
-          }
-        });
-        disabledCb.addEventListener('change', function() {
-          select.disabled = disabledCb.checked;
-        });
-
-        var heroSelect = document.getElementById('hero-js-select');
-        mdc.select.MDCSelect.attachTo(heroSelect);
-      }
     </script>
   </body>
 </html>

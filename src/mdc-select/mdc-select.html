@@ -6,5 +6,6 @@
 </div>
 <select ng-show="$ctrl.noAnimation && !$ctrl.multiple" class="mdc-select"
         ng-model="$ctrl.ngModel" ng-disabled="$ctrl.ngDisabled" ng-transclude></select>
-<select ng-show="$ctrl.multiple" multiple class="mdc-multi-select mdc-list"
+<select ng-show="$ctrl.multiple" class="mdc-multi-select mdc-list"
+        multiple ng-attr-size="{{ $ctrl.size }}"
         ng-model="$ctrl.ngModel" ng-disabled="$ctrl.ngDisabled" ng-transclude></select>
