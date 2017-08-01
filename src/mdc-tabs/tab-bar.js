@@ -7,6 +7,7 @@ import {MDCTabBarFoundation} from '@material/tabs';
  * @module mdc.tabs
  *
  * @param {string} [indicator] Color of indicator, "primary" or "accent"
+ * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
  */
 class MdcTabBarController {
   constructor($element, $window) {
@@ -48,6 +49,10 @@ class MdcTabBarController {
     if (changesObj.indicator) {
       this.elem.toggleClass('mdc-tab-bar--indicator-primary', this.indicator === 'primary');
       this.elem.toggleClass('mdc-tab-bar--indicator-accent', this.indicator === 'accent');
+    }
+    if (changesObj.variant) {
+      this.elem.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
+      this.elem.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
     }
   }
 
@@ -134,5 +139,6 @@ angular
     },
     bindings: {
       indicator: '@',
+      variant: '@',
     },
   });
