@@ -9499,6 +9499,9 @@ var MdcTabController = function () {
     this.elem.ready(function () {
       _this.foundation_.init();
       _this.ripple_ = new _ripple.MDCRipple(_this.root_);
+      if (_this.willBeActive) {
+        _this._active = true;
+      }
     });
   }
 
@@ -9510,18 +9513,13 @@ var MdcTabController = function () {
       }
     }
   }, {
-    key: '$postLink',
-    value: function $postLink() {
-      if (this.active) {
-        this.tabBar.activeTab = this;
-      }
-    }
-  }, {
     key: '$onChanges',
     value: function $onChanges(changesObj) {
-      if (changesObj.active && !changesObj.active.isFirstChange()) {
+      if (changesObj.active) {
+        this._active = changesObj.active.currentValue;
         if (changesObj.active.currentValue) {
-          this.tabBar.activeTab = this;
+          // on initialize, sync active state with tabbar
+          this.notifyTabBar();
         }
       }
     }
@@ -9537,16 +9535,17 @@ var MdcTabController = function () {
       this.elem.toggleClass('mdc-tab--with-icon-and-text', toggle);
     }
   }, {
-    key: 'notifySelected',
-    value: function notifySelected() {
-      if (this.tabBar) {
-        this.tabBar.activeTab = this;
-      }
+    key: 'handleClick',
+    value: function handleClick() {
+      this._active = true;
+      this.notifyTabBar();
     }
   }, {
-    key: 'activate',
-    value: function activate(isActive) {
-      this.foundation_.setActive(isActive);
+    key: 'notifyTabBar',
+    value: function notifyTabBar() {
+      if (this.tabBar) {
+        this.tabBar.activate(this);
+      }
     }
   }, {
     key: 'getDefaultFoundation',
@@ -9573,7 +9572,7 @@ var MdcTabController = function () {
           return _this2.root_.offsetLeft;
         },
         notifySelected: function notifySelected() {
-          return _this2.notifySelected();
+          return _this2.handleClick();
         }
       });
     }
@@ -9593,16 +9592,15 @@ var MdcTabController = function () {
       return this.foundation_.getComputedLeft();
     }
   }, {
-    key: 'active',
+    key: '_active',
     get: function get() {
-      return this.foundation_.isActive();
+      return this.foundation_ ? this.foundation_.isActive() : this.willBeActive;
     },
     set: function set(isActive) {
       if (this.foundation_) {
-        if (this.tabBar && isActive && !this.active) {
-          this.tabBar.activeTab = this;
-        }
-        this.activate(isActive);
+        this.foundation_.setActive(isActive);
+      } else {
+        this.willBeActive = isActive;
       }
     }
   }, {
@@ -9646,7 +9644,7 @@ angular.module('mdc.tabs').component('mdcTab', {
     tabBar: '^^?mdcTabBar'
   },
   bindings: {
-    active: '=?'
+    active: '<?'
   }
 }).component('mdcTabText', {
   controller: MdcTabTextController,
@@ -10527,6 +10525,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  * @param {string} [indicator] Color of indicator, "primary" or "accent"
  * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
+ * @param {string} [ngModel] Assignable AngularJS expression to bind selected tab to
  */
 var MdcTabBarController = function () {
   MdcTabBarController.$inject = ['$element', '$window'];
@@ -10534,11 +10533,12 @@ var MdcTabBarController = function () {
   function MdcTabBarController($element, $window) {
     _classCallCheck(this, MdcTabBarController);
 
-    this.activations = 0;
     this.window = $window;
     this.elem = $element;
     this.root_ = this.elem[0];
-    this.isInitialized = false;
+    this.selected_ = undefined;
+    this.initDone_ = false;
+    this.doBubble = true;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -10564,11 +10564,18 @@ var MdcTabBarController = function () {
       this.foundation_ = this.getDefaultFoundation();
       this.elem.ready(function () {
         _this.foundation_.init();
-        _this.isInitialized = true;
-        if (_this.toActivate) {
-          _this.setActiveTab_(_this.toActivate, false);
+        _this.initDone_ = true;
+
+        if (_this.selected_) {
+          // if select is specified
+          _this.ngModel = _this.selected_;
+        } else if (_this.toActivate) {
+          // if an active tab is specified
+          _this.setActiveTab_(_this.toActivate, true);
         } else {
-          _this.tabs[0].activate(true);
+          // otherwise select the first one
+          _this.ngModel = 0;
+          _this.tabs[0]._active = true;
         }
       });
     }
@@ -10588,6 +10595,16 @@ var MdcTabBarController = function () {
     key: '$onDestroy',
     value: function $onDestroy() {
       this.foundation_.destroy();
+    }
+  }, {
+    key: 'activate',
+    value: function activate(tab) {
+      if (this.initDone_) {
+        this.setActiveTab_(tab, false);
+      } else {
+        // shelve tab activation while foundation initializes
+        this.toActivate = tab;
+      }
     }
   }, {
     key: 'getDefaultFoundation',
@@ -10619,16 +10636,18 @@ var MdcTabBarController = function () {
           return _this2.indicator_.offsetWidth;
         },
         notifyChange: function notifyChange(evtData) {
-          return _this2.emit(_tabs.MDCTabBarFoundation.strings.CHANGE_EVENT, evtData);
+          if (_this2.scroller) {
+            _this2.scroller.scrollTo(_this2.foundation_.getActiveTabIndex());
+          }
         },
         getNumberOfTabs: function getNumberOfTabs() {
           return _this2.tabs.length;
         },
         isTabActiveAtIndex: function isTabActiveAtIndex(index) {
-          return _this2.tabs[index].active;
+          return _this2.tabs[index]._active;
         },
         setTabActiveAtIndex: function setTabActiveAtIndex(index, isActive) {
-          _this2.tabs[index].activate(isActive);
+          _this2.tabs[index]._active = isActive;
         },
         isDefaultPreventedOnClickForTabAtIndex: function isDefaultPreventedOnClickForTabAtIndex(index) {
           return _this2.tabs[index].preventDefaultOnClick;
@@ -10648,11 +10667,6 @@ var MdcTabBarController = function () {
       });
     }
   }, {
-    key: 'setActiveTabIndex_',
-    value: function setActiveTabIndex_(activeTabIndex, notifyChange) {
-      this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
-    }
-  }, {
     key: 'layout',
     value: function layout() {
       this.foundation_.layout();
@@ -10667,6 +10681,28 @@ var MdcTabBarController = function () {
       this.setActiveTabIndex_(indexOfTab, notifyChange);
     }
   }, {
+    key: 'setActiveTabIndex_',
+    value: function setActiveTabIndex_(activeTabIndex, notifyChange) {
+      this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
+      if (this.ngModelCtrl) {
+        this.ngModelCtrl.$setViewValue(activeTabIndex);
+      }
+    }
+  }, {
+    key: 'ngModel',
+    get: function get() {
+      return this.selected_;
+    },
+    set: function set(index) {
+      this.selected_ = parseInt(index);
+      if (isNaN(this.selected_)) {
+        this.selected_ = undefined;
+      }
+      if (this.initDone_ && this.selected_ !== undefined) {
+        this.activeTabIndex = this.selected_;
+      }
+    }
+  }, {
     key: 'tabs',
     get: function get() {
       return this.tabs_;
@@ -10676,14 +10712,6 @@ var MdcTabBarController = function () {
     get: function get() {
       var activeIndex = this.foundation_.getActiveTabIndex();
       return this.tabs[activeIndex];
-    },
-    set: function set(tab) {
-      if (this.isInitialized) {
-        this.setActiveTab_(tab, false);
-      } else {
-        // shelve tab activation while foundation initializes
-        this.toActivate = tab;
-      }
     }
   }, {
     key: 'activeTabIndex',
@@ -10691,7 +10719,7 @@ var MdcTabBarController = function () {
       return this.foundation_.getActiveTabIndex();
     },
     set: function set(index) {
-      this.setActiveTabIndex_(index, false);
+      this.setActiveTabIndex_(index, true);
     }
   }]);
 
@@ -10701,11 +10729,13 @@ var MdcTabBarController = function () {
 angular.module('mdc.tabs').component('mdcTabBar', {
   controller: MdcTabBarController,
   require: {
-    scroller: '^^?mdcTabBarScroller'
+    scroller: '^^?mdcTabBarScroller',
+    ngModelCtrl: '?ngModel'
   },
   bindings: {
     indicator: '@',
-    variant: '@'
+    variant: '@',
+    ngModel: '=?'
   }
 });
 
@@ -10731,9 +10761,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  */
 var MdcTabBarScrollerController = function () {
-  MdcTabBarScrollerController.$inject = ['$element', '$window'];
+  MdcTabBarScrollerController.$inject = ['$element', '$window', '$timeout'];
 
-  function MdcTabBarScrollerController($element, $window) {
+  function MdcTabBarScrollerController($element, $window, $timeout) {
     var _this = this;
 
     _classCallCheck(this, MdcTabBarScrollerController);
@@ -10744,6 +10774,9 @@ var MdcTabBarScrollerController = function () {
 
     this.elem.ready(function () {
       _this.foundation_.init();
+      $timeout(function () {
+        return _this.scrollToActive();
+      }, 1);
     });
   }
 
@@ -10757,13 +10790,6 @@ var MdcTabBarScrollerController = function () {
       this.foundation_ = this.getDefaultFoundation();
     }
   }, {
-    key: '$onChanges',
-    value: function $onChanges(changesObj) {
-      if (changesObj.active) {
-        this.elem.triggerHandler('click');
-      }
-    }
-  }, {
     key: '$onDestroy',
     value: function $onDestroy() {
       this.foundation_.destroy();
@@ -10773,6 +10799,16 @@ var MdcTabBarScrollerController = function () {
     value: function setTabBar(tabBar) {
       this.tabBar_ = tabBar;
       this.tabBarEl_ = this.tabBar_.root_;
+    }
+  }, {
+    key: 'scrollTo',
+    value: function scrollTo(index) {
+      this.foundation_.scrollToTabAtIndex_(index);
+    }
+  }, {
+    key: 'scrollToActive',
+    value: function scrollToActive() {
+      this.scrollTo(this.tabBar.activeTabIndex);
     }
   }, {
     key: 'getDefaultFoundation',
@@ -10877,7 +10913,6 @@ var MdcTabBarScrollerController = function () {
 
 angular.module('mdc.tabs').component('mdcTabBarScroller', {
   controller: MdcTabBarScrollerController,
-  bindings: {},
   transclude: true,
   template: __webpack_require__(70)
 });
