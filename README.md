@@ -54,7 +54,7 @@ being an easy and suitable replacement for angular-material.
 | slider          | :x:                 | |
 | snackbar        | :x:                 | |
 | switch          | :white_check_mark:  | mdc.switch        |
-| tabs            | :x:                 | |
+| tabs            | :white_check_mark:  | mdc.tabs          |
 | textfield       | :x:                 | |
 | theme           | :x:                 | |
 | toolbar         | :x:                 | |
