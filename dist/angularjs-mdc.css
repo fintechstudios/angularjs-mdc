@@ -2985,7 +2985,7 @@ mdc-icon {
   padding-top: 4px;
   font-size: .812rem; }
 
-.mdc-list-item, mdc-list-item, mdc-simple-menu-item {
+.mdc-list-item, mdc-list-item, mdc-simple-menu-item, .mdc-multi-select option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3001,8 +3001,8 @@ mdc-icon {
     height: 24px;
     margin-left: 0;
     margin-right: 32px; }
-    [dir="rtl"] .mdc-list-item .mdc-list-item__start-detail, [dir="rtl"] mdc-list-item .mdc-list-item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item__start-detail,
-    .mdc-list-item[dir="rtl"] .mdc-list-item__start-detail, mdc-list-item[dir="rtl"] .mdc-list-item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item__start-detail {
+    [dir="rtl"] .mdc-list-item .mdc-list-item__start-detail, [dir="rtl"] mdc-list-item .mdc-list-item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item__start-detail, [dir="rtl"] .mdc-multi-select option .mdc-list-item__start-detail, .mdc-multi-select [dir="rtl"] option .mdc-list-item__start-detail,
+    .mdc-list-item[dir="rtl"] .mdc-list-item__start-detail, mdc-list-item[dir="rtl"] .mdc-list-item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item__start-detail, .mdc-multi-select option[dir="rtl"] .mdc-list-item__start-detail {
       margin-left: 32px;
       margin-right: 0; }
   .mdc-list-item__end-detail {
@@ -3010,8 +3010,8 @@ mdc-icon {
     height: 24px;
     margin-left: auto;
     margin-right: 0; }
-    [dir="rtl"] .mdc-list-item .mdc-list-item__end-detail, [dir="rtl"] mdc-list-item .mdc-list-item__end-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item__end-detail,
-    .mdc-list-item[dir="rtl"] .mdc-list-item__end-detail, mdc-list-item[dir="rtl"] .mdc-list-item__end-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item__end-detail {
+    [dir="rtl"] .mdc-list-item .mdc-list-item__end-detail, [dir="rtl"] mdc-list-item .mdc-list-item__end-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item__end-detail, [dir="rtl"] .mdc-multi-select option .mdc-list-item__end-detail, .mdc-multi-select [dir="rtl"] option .mdc-list-item__end-detail,
+    .mdc-list-item[dir="rtl"] .mdc-list-item__end-detail, mdc-list-item[dir="rtl"] .mdc-list-item__end-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item__end-detail, .mdc-multi-select option[dir="rtl"] .mdc-list-item__end-detail {
       margin-left: 0;
       margin-right: auto; }
   .mdc-list-item__text {
@@ -3040,21 +3040,21 @@ mdc-icon {
         color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
       .mdc-list--dense .mdc-list-item__text__secondary {
         font-size: inherit; }
-  .mdc-list--dense .mdc-list-item, .mdc-list--dense mdc-list-item, .mdc-list--dense mdc-simple-menu-item {
+  .mdc-list--dense .mdc-list-item, .mdc-list--dense mdc-list-item, .mdc-list--dense mdc-simple-menu-item, .mdc-list--dense .mdc-multi-select option, .mdc-multi-select .mdc-list--dense option {
     height: 40px; }
     .mdc-list--dense .mdc-list-item__start-detail {
       width: 20px;
       height: 20px;
       margin-left: 0;
       margin-right: 36px; }
-      [dir="rtl"] .mdc-list-item .mdc-list--dense .mdc-list-item__start-detail, [dir="rtl"] mdc-list-item .mdc-list--dense .mdc-list-item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list--dense .mdc-list-item__start-detail,
-      .mdc-list-item[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail, mdc-list-item[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail {
+      [dir="rtl"] .mdc-list-item .mdc-list--dense .mdc-list-item__start-detail, [dir="rtl"] mdc-list-item .mdc-list--dense .mdc-list-item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list--dense .mdc-list-item__start-detail, [dir="rtl"] .mdc-multi-select option .mdc-list--dense .mdc-list-item__start-detail, .mdc-multi-select [dir="rtl"] option .mdc-list--dense .mdc-list-item__start-detail,
+      .mdc-list-item[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail, mdc-list-item[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail, .mdc-multi-select option[dir="rtl"] .mdc-list--dense .mdc-list-item__start-detail {
         margin-left: 36px;
         margin-right: 0; }
     .mdc-list--dense .mdc-list-item__end-detail {
       width: 20px;
       height: 20px; }
-  .mdc-list--avatar-list .mdc-list-item, .mdc-list--avatar-list mdc-list-item, .mdc-list--avatar-list mdc-simple-menu-item {
+  .mdc-list--avatar-list .mdc-list-item, .mdc-list--avatar-list mdc-list-item, .mdc-list--avatar-list mdc-simple-menu-item, .mdc-list--avatar-list .mdc-multi-select option, .mdc-multi-select .mdc-list--avatar-list option {
     height: 56px; }
     .mdc-list--avatar-list .mdc-list-item__start-detail {
       width: 40px;
@@ -3062,33 +3062,35 @@ mdc-icon {
       margin-left: 0;
       margin-right: 16px;
       border-radius: 50%; }
-      [dir="rtl"] .mdc-list-item .mdc-list--avatar-list .mdc-list-item__start-detail, [dir="rtl"] mdc-list-item .mdc-list--avatar-list .mdc-list-item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list .mdc-list-item__start-detail,
-      .mdc-list-item[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail, mdc-list-item[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail {
+      [dir="rtl"] .mdc-list-item .mdc-list--avatar-list .mdc-list-item__start-detail, [dir="rtl"] mdc-list-item .mdc-list--avatar-list .mdc-list-item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list .mdc-list-item__start-detail, [dir="rtl"] .mdc-multi-select option .mdc-list--avatar-list .mdc-list-item__start-detail, .mdc-multi-select [dir="rtl"] option .mdc-list--avatar-list .mdc-list-item__start-detail,
+      .mdc-list-item[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail, mdc-list-item[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail, .mdc-multi-select option[dir="rtl"] .mdc-list--avatar-list .mdc-list-item__start-detail {
         margin-left: 16px;
         margin-right: 0; }
-  .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item, mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item, mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item {
+  .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item, mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item, mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item, .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item {
     height: 48px; }
-    .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail {
+    .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail {
       width: 36px;
       height: 36px;
       margin-left: 0;
       margin-right: 20px; }
-      [dir="rtl"] .mdc-list-item .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-list-item mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-list-item mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
-      .mdc-list-item[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
-      .mdc-list-item[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
-      .mdc-list-item[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail {
+      [dir="rtl"] .mdc-list-item .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-multi-select option .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] option .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-list-item mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-multi-select option mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] option mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-list-item mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-multi-select option mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] option mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-list-item .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] .mdc-list-item option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-list-item .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] mdc-list-item option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] mdc-simple-menu-item .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] mdc-simple-menu-item option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, [dir="rtl"] .mdc-multi-select option option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select [dir="rtl"] option option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
+      .mdc-list-item[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select option[dir="rtl"] .mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
+      .mdc-list-item[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select option[dir="rtl"] mdc-list-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
+      .mdc-list-item[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select option[dir="rtl"] mdc-simple-menu-item .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail,
+      .mdc-list-item[dir="rtl"] .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select
+      .mdc-list-item[dir="rtl"] option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-list-item[dir="rtl"] .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select mdc-list-item[dir="rtl"] option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, mdc-simple-menu-item[dir="rtl"] .mdc-multi-select option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select mdc-simple-menu-item[dir="rtl"] option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail, .mdc-multi-select option[dir="rtl"] option .mdc-list--avatar-list.mdc-list--dense .mdc-list__item__start-detail {
         margin-left: 20px;
         margin-right: 0; }
-  .mdc-list--two-line .mdc-list-item, .mdc-list--two-line mdc-list-item, .mdc-list--two-line mdc-simple-menu-item {
+  .mdc-list--two-line .mdc-list-item, .mdc-list--two-line mdc-list-item, .mdc-list--two-line mdc-simple-menu-item, .mdc-list--two-line .mdc-multi-select option, .mdc-multi-select .mdc-list--two-line option {
     height: 72px; }
-  .mdc-list--two-line.mdc-list--dense .mdc-list-item, .mdc-list--two-line.mdc-list--dense mdc-list-item, .mdc-list--two-line.mdc-list--dense mdc-simple-menu-item {
+  .mdc-list--two-line.mdc-list--dense .mdc-list-item, .mdc-list--two-line.mdc-list--dense mdc-list-item, .mdc-list--two-line.mdc-list--dense mdc-simple-menu-item, .mdc-list--two-line.mdc-list--dense .mdc-multi-select option, .mdc-multi-select .mdc-list--two-line.mdc-list--dense option {
     height: 60px; }
 
 a.mdc-list-item {
   color: inherit;
   text-decoration: none; }
 
-.mdc-list-item.mdc-ripple-upgraded, mdc-list-item.mdc-ripple-upgraded, mdc-simple-menu-item.mdc-ripple-upgraded {
+.mdc-list-item.mdc-ripple-upgraded, mdc-list-item.mdc-ripple-upgraded, mdc-simple-menu-item.mdc-ripple-upgraded, .mdc-multi-select option.mdc-ripple-upgraded {
   --mdc-ripple-surface-width: 0;
   --mdc-ripple-surface-height: 0;
   --mdc-ripple-fg-size: 0;
@@ -3105,11 +3107,11 @@ a.mdc-list-item {
   width: 100%;
   padding: 0 16px;
   overflow: hidden; }
-  .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after {
+  .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, .mdc-multi-select option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, .mdc-multi-select option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after, .mdc-multi-select option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after {
     -webkit-transition-duration: 85ms;
             transition-duration: 85ms;
     opacity: .6; }
-  .mdc-list-item.mdc-ripple-upgraded::before, mdc-list-item.mdc-ripple-upgraded::before, mdc-simple-menu-item.mdc-ripple-upgraded::before {
+  .mdc-list-item.mdc-ripple-upgraded::before, mdc-list-item.mdc-ripple-upgraded::before, mdc-simple-menu-item.mdc-ripple-upgraded::before, .mdc-multi-select option.mdc-ripple-upgraded::before {
     background-color: rgba(0, 0, 0, 0.06);
     position: absolute;
     top: calc(50% - 100%);
@@ -3122,7 +3124,7 @@ a.mdc-list-item {
     opacity: 0;
     pointer-events: none;
     content: ""; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
     top: calc(50% - 100%);
     left: calc(50% - 100%);
     width: 200%;
@@ -3132,13 +3134,13 @@ a.mdc-list-item {
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
             transform: scale(var(--mdc-ripple-fg-scale, 0)); }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
     opacity: .99999; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
     -webkit-transition-duration: 120ms;
             transition-duration: 120ms;
     opacity: 1; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
     /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
@@ -3156,7 +3158,7 @@ a.mdc-list-item {
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
             transform: scale(var(--mdc-ripple-fg-scale, 0)); }
-  .mdc-list-item.mdc-ripple-upgraded::after, mdc-list-item.mdc-ripple-upgraded::after, mdc-simple-menu-item.mdc-ripple-upgraded::after {
+  .mdc-list-item.mdc-ripple-upgraded::after, mdc-list-item.mdc-ripple-upgraded::after, mdc-simple-menu-item.mdc-ripple-upgraded::after, .mdc-multi-select option.mdc-ripple-upgraded::after {
     background-color: rgba(0, 0, 0, 0.06);
     position: absolute;
     top: calc(50% - 100%);
@@ -3169,7 +3171,7 @@ a.mdc-list-item {
     opacity: 0;
     pointer-events: none;
     content: ""; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
     /* @alternate */
@@ -3183,10 +3185,10 @@ a.mdc-list-item {
     -webkit-transform-origin: center center;
             transform-origin: center center;
     opacity: 0; }
-  .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
+  .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-multi-select option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
     -webkit-transform-origin: center center;
             transform-origin: center center; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
     /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
@@ -3203,23 +3205,25 @@ a.mdc-list-item {
             transform: scale(0);
     -webkit-transform-origin: center center;
             transform-origin: center center; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
     -webkit-animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards;
             animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards; }
-  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
+  .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
             transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
     -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
             animation: 83ms mdc-ripple-fg-opacity-out; }
-  [dir="rtl"] .mdc-list-item.mdc-ripple-upgraded, [dir="rtl"] mdc-list-item.mdc-ripple-upgraded, [dir="rtl"] mdc-simple-menu-item.mdc-ripple-upgraded, .mdc-list-item.mdc-ripple-upgraded[dir="rtl"], mdc-list-item.mdc-ripple-upgraded[dir="rtl"], mdc-simple-menu-item.mdc-ripple-upgraded[dir="rtl"] {
+  [dir="rtl"] .mdc-list-item.mdc-ripple-upgraded, [dir="rtl"] mdc-list-item.mdc-ripple-upgraded, [dir="rtl"] mdc-simple-menu-item.mdc-ripple-upgraded, [dir="rtl"] .mdc-multi-select option.mdc-ripple-upgraded, .mdc-multi-select [dir="rtl"] option.mdc-ripple-upgraded, .mdc-list-item.mdc-ripple-upgraded[dir="rtl"], mdc-list-item.mdc-ripple-upgraded[dir="rtl"], mdc-simple-menu-item.mdc-ripple-upgraded[dir="rtl"], .mdc-multi-select option.mdc-ripple-upgraded[dir="rtl"] {
     left: initial;
     right: -16px; }
-  .mdc-list-item.mdc-ripple-upgraded:focus, mdc-list-item.mdc-ripple-upgraded:focus, mdc-simple-menu-item.mdc-ripple-upgraded:focus {
+  .mdc-list-item.mdc-ripple-upgraded:focus, mdc-list-item.mdc-ripple-upgraded:focus, mdc-simple-menu-item.mdc-ripple-upgraded:focus, .mdc-multi-select option.mdc-ripple-upgraded:focus {
     outline: none; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded::before,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded::before, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded::before, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded::before,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded::before,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded::before,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded::before {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded::before,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded::before, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded::before {
     background-color: rgba(255, 255, 255, 0.12);
     position: absolute;
     top: calc(50% - 100%);
@@ -3232,10 +3236,12 @@ a.mdc-list-item {
     opacity: 0;
     pointer-events: none;
     content: ""; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
     top: calc(50% - 100%);
     left: calc(50% - 100%);
     width: 200%;
@@ -3245,22 +3251,28 @@ a.mdc-list-item {
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
             transform: scale(var(--mdc-ripple-fg-scale, 0)); }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
     opacity: .99999; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
     -webkit-transition-duration: 120ms;
             transition-duration: 120ms;
     opacity: 1; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
     /* @alternate */
     top: calc(50% - 50%);
     top: var(--mdc-ripple-top, calc(50% - 50%));
@@ -3278,10 +3290,12 @@ a.mdc-list-item {
             transform: scale(0);
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
             transform: scale(var(--mdc-ripple-fg-scale, 0)); }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded::after,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded::after, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded::after, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded::after,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded::after,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded::after {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded::after,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded::after, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded::after {
     background-color: rgba(255, 255, 255, 0.12);
     position: absolute;
     top: calc(50% - 100%);
@@ -3294,10 +3308,12 @@ a.mdc-list-item {
     opacity: 0;
     pointer-events: none;
     content: ""; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
     /* @alternate */
@@ -3311,16 +3327,20 @@ a.mdc-list-item {
     -webkit-transform-origin: center center;
             transform-origin: center center;
     opacity: 0; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
     -webkit-transform-origin: center center;
             transform-origin: center center; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
     /* @alternate */
     top: 0;
     top: var(--mdc-ripple-top, 0);
@@ -3337,16 +3357,20 @@ a.mdc-list-item {
             transform: scale(0);
     -webkit-transform-origin: center center;
             transform-origin: center center; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
     -webkit-animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards;
             animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards; }
-  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
+  .mdc-list--theme-dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-list--theme-dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-list--theme-dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-list--theme-dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-multi-select .mdc-list--theme-dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
   .mdc-theme--dark .mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
   .mdc-theme--dark mdc-list-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
-  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
+  .mdc-theme--dark mdc-simple-menu-item.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
+  .mdc-theme--dark .mdc-multi-select option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-multi-select
+  .mdc-theme--dark option.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
             transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
     -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
@@ -3367,13 +3391,13 @@ a.mdc-list-item {
   margin-left: 56px;
   margin-right: 0;
   width: calc(100% - 56px); }
-  [dir="rtl"] .mdc-list-group .mdc-list-divider--inset, [dir="rtl"] .mdc-list-group mdc-divider-inset,
-  .mdc-list-group[dir="rtl"] .mdc-list-divider--inset,
-  .mdc-list-group[dir="rtl"] mdc-divider-inset {
+  [dir="rtl"] .mdc-list-group .mdc-list-divider--inset, [dir="rtl"] .mdc-multi-select optgroup .mdc-list-divider--inset, .mdc-multi-select [dir="rtl"] optgroup .mdc-list-divider--inset, [dir="rtl"] .mdc-list-group mdc-divider-inset, [dir="rtl"] .mdc-multi-select optgroup mdc-divider-inset, .mdc-multi-select [dir="rtl"] optgroup mdc-divider-inset,
+  .mdc-list-group[dir="rtl"] .mdc-list-divider--inset, .mdc-multi-select optgroup[dir="rtl"] .mdc-list-divider--inset,
+  .mdc-list-group[dir="rtl"] mdc-divider-inset, .mdc-multi-select optgroup[dir="rtl"] mdc-divider-inset {
     margin-left: 0;
     margin-right: 56px; }
 
-.mdc-list-group {
+.mdc-list-group, .mdc-multi-select optgroup {
   padding: 0 16px; }
   .mdc-list-group__subheader {
     font-family: Roboto, sans-serif;
@@ -3392,7 +3416,7 @@ a.mdc-list-item {
       /* @alternate */
       color: white;
       color: var(--mdc-theme-text-primary-on-dark, white); }
-  .mdc-list-group .mdc-list, .mdc-list-group mdc-list {
+  .mdc-list-group .mdc-list, .mdc-multi-select optgroup .mdc-list, .mdc-list-group mdc-list, .mdc-multi-select optgroup mdc-list {
     padding: 0; }
 
 mdc-list {
@@ -3567,7 +3591,7 @@ mdc-divider-inset {
     /* stylelint-enable plugin/selector-bem-pattern, selector-no-universal */ }
     .mdc-simple-menu__items > * {
       opacity: 0; }
-    .mdc-simple-menu__items > .mdc-list-item, .mdc-simple-menu__items > mdc-list-item, .mdc-simple-menu__items > mdc-simple-menu-item {
+    .mdc-simple-menu__items > .mdc-list-item, .mdc-simple-menu__items > mdc-list-item, .mdc-simple-menu__items > mdc-simple-menu-item, .mdc-multi-select .mdc-simple-menu__items > option {
       cursor: pointer; }
     .mdc-simple-menu--animating .mdc-simple-menu__items {
       overflow-y: hidden; }
@@ -3596,11 +3620,11 @@ mdc-divider-inset {
   .mdc-simple-menu--open-from-bottom-right {
     -webkit-transform-origin: bottom right !important;
             transform-origin: bottom right !important; }
-  .mdc-simple-menu .mdc-list-group, mdc-simple-menu .mdc-list-group,
+  .mdc-simple-menu .mdc-list-group, mdc-simple-menu .mdc-list-group, .mdc-simple-menu .mdc-multi-select optgroup, .mdc-multi-select .mdc-simple-menu optgroup, mdc-simple-menu .mdc-multi-select optgroup, .mdc-multi-select mdc-simple-menu optgroup,
   .mdc-simple-menu .mdc-list, mdc-simple-menu .mdc-list,
   .mdc-simple-menu mdc-list, mdc-simple-menu mdc-list {
     padding: 8px 0; }
-  .mdc-simple-menu .mdc-list-item, mdc-simple-menu .mdc-list-item, .mdc-simple-menu mdc-list-item, mdc-simple-menu mdc-list-item, .mdc-simple-menu mdc-simple-menu-item, mdc-simple-menu mdc-simple-menu-item {
+  .mdc-simple-menu .mdc-list-item, mdc-simple-menu .mdc-list-item, .mdc-simple-menu mdc-list-item, mdc-simple-menu mdc-list-item, .mdc-simple-menu mdc-simple-menu-item, mdc-simple-menu mdc-simple-menu-item, .mdc-simple-menu .mdc-multi-select option, .mdc-multi-select .mdc-simple-menu option, mdc-simple-menu .mdc-multi-select option, .mdc-multi-select mdc-simple-menu option {
     position: relative;
     padding: 0 16px;
     outline: none;
@@ -3617,13 +3641,17 @@ mdc-divider-inset {
     font-weight: 400;
     letter-spacing: 0.04em;
     line-height: 1.75rem; }
-    .mdc-simple-menu--theme-dark.mdc-simple-menu .mdc-list-item, mdc-simple-menu.mdc-simple-menu--theme-dark .mdc-list-item, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-list-item, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-list-item, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-simple-menu-item, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-simple-menu-item,
+    .mdc-simple-menu--theme-dark.mdc-simple-menu .mdc-list-item, mdc-simple-menu.mdc-simple-menu--theme-dark .mdc-list-item, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-list-item, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-list-item, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-simple-menu-item, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-simple-menu-item, .mdc-simple-menu--theme-dark.mdc-simple-menu .mdc-multi-select option, .mdc-multi-select .mdc-simple-menu--theme-dark.mdc-simple-menu option, mdc-simple-menu.mdc-simple-menu--theme-dark .mdc-multi-select option, .mdc-multi-select mdc-simple-menu.mdc-simple-menu--theme-dark option,
     .mdc-theme--dark .mdc-simple-menu .mdc-list-item,
     .mdc-theme--dark mdc-simple-menu .mdc-list-item,
     .mdc-theme--dark .mdc-simple-menu mdc-list-item,
     .mdc-theme--dark mdc-simple-menu mdc-list-item,
     .mdc-theme--dark .mdc-simple-menu mdc-simple-menu-item,
-    .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item {
+    .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item,
+    .mdc-theme--dark .mdc-simple-menu .mdc-multi-select option, .mdc-multi-select
+    .mdc-theme--dark .mdc-simple-menu option,
+    .mdc-theme--dark mdc-simple-menu .mdc-multi-select option, .mdc-multi-select
+    .mdc-theme--dark mdc-simple-menu option {
       color: white; }
   .mdc-simple-menu--theme-dark.mdc-simple-menu .mdc-list-divider, mdc-simple-menu.mdc-simple-menu--theme-dark .mdc-list-divider, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-divider, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-divider, .mdc-simple-menu--theme-dark.mdc-simple-menu mdc-divider-inset, mdc-simple-menu.mdc-simple-menu--theme-dark mdc-divider-inset,
   .mdc-theme--dark .mdc-simple-menu .mdc-list-divider,
@@ -3639,12 +3667,12 @@ mdc-divider-inset {
     .mdc-theme--dark .mdc-simple-menu .mdc-list-item__start-detail,
     .mdc-theme--dark mdc-simple-menu .mdc-list-item__start-detail {
       color: rgba(255, 255, 255, 0.54); }
-  .mdc-simple-menu--selected.mdc-list-item, mdc-list-item.mdc-simple-menu--selected, mdc-simple-menu-item.mdc-simple-menu--selected,
-  .mdc-simple-menu--selected.mdc-list-item .mdc-list-item__start-detail, mdc-list-item.mdc-simple-menu--selected .mdc-list-item__start-detail, mdc-simple-menu-item.mdc-simple-menu--selected .mdc-list-item__start-detail {
+  .mdc-simple-menu--selected.mdc-list-item, mdc-list-item.mdc-simple-menu--selected, mdc-simple-menu-item.mdc-simple-menu--selected, .mdc-multi-select option.mdc-simple-menu--selected,
+  .mdc-simple-menu--selected.mdc-list-item .mdc-list-item__start-detail, mdc-list-item.mdc-simple-menu--selected .mdc-list-item__start-detail, mdc-simple-menu-item.mdc-simple-menu--selected .mdc-list-item__start-detail, .mdc-multi-select option.mdc-simple-menu--selected .mdc-list-item__start-detail {
     /* @alternate */
     color: #3f51b5;
     color: var(--mdc-theme-primary, #3f51b5); }
-  .mdc-simple-menu .mdc-list-item::before, mdc-simple-menu .mdc-list-item::before, .mdc-simple-menu mdc-list-item::before, mdc-simple-menu mdc-list-item::before, .mdc-simple-menu mdc-simple-menu-item::before, mdc-simple-menu mdc-simple-menu-item::before {
+  .mdc-simple-menu .mdc-list-item::before, mdc-simple-menu .mdc-list-item::before, .mdc-simple-menu mdc-list-item::before, mdc-simple-menu mdc-list-item::before, .mdc-simple-menu mdc-simple-menu-item::before, mdc-simple-menu mdc-simple-menu-item::before, .mdc-simple-menu .mdc-multi-select option::before, .mdc-multi-select .mdc-simple-menu option::before, mdc-simple-menu .mdc-multi-select option::before, .mdc-multi-select mdc-simple-menu option::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -3656,37 +3684,1030 @@ mdc-divider-inset {
     background: currentColor;
     content: "";
     opacity: 0; }
-  .mdc-simple-menu .mdc-list-item:focus::before, mdc-simple-menu .mdc-list-item:focus::before, .mdc-simple-menu mdc-list-item:focus::before, mdc-simple-menu mdc-list-item:focus::before, .mdc-simple-menu mdc-simple-menu-item:focus::before, mdc-simple-menu mdc-simple-menu-item:focus::before {
+  .mdc-simple-menu .mdc-list-item:focus::before, mdc-simple-menu .mdc-list-item:focus::before, .mdc-simple-menu mdc-list-item:focus::before, mdc-simple-menu mdc-list-item:focus::before, .mdc-simple-menu mdc-simple-menu-item:focus::before, mdc-simple-menu mdc-simple-menu-item:focus::before, .mdc-simple-menu .mdc-multi-select option:focus::before, .mdc-multi-select .mdc-simple-menu option:focus::before, mdc-simple-menu .mdc-multi-select option:focus::before, .mdc-multi-select mdc-simple-menu option:focus::before {
     opacity: .12; }
-  .mdc-simple-menu .mdc-list-item:active::before, mdc-simple-menu .mdc-list-item:active::before, .mdc-simple-menu mdc-list-item:active::before, mdc-simple-menu mdc-list-item:active::before, .mdc-simple-menu mdc-simple-menu-item:active::before, mdc-simple-menu mdc-simple-menu-item:active::before {
+  .mdc-simple-menu .mdc-list-item:active::before, mdc-simple-menu .mdc-list-item:active::before, .mdc-simple-menu mdc-list-item:active::before, mdc-simple-menu mdc-list-item:active::before, .mdc-simple-menu mdc-simple-menu-item:active::before, mdc-simple-menu mdc-simple-menu-item:active::before, .mdc-simple-menu .mdc-multi-select option:active::before, .mdc-multi-select .mdc-simple-menu option:active::before, mdc-simple-menu .mdc-multi-select option:active::before, .mdc-multi-select mdc-simple-menu option:active::before {
     /*
       Slightly darker value for visual distinction.
       This allows a full base that has distinct modes.
       Progressive enhancement with ripples will provide complete button spec alignment.
     */
     opacity: .18; }
-  .mdc-simple-menu .mdc-list-item[aria-disabled="true"], mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-simple-menu mdc-list-item[aria-disabled="true"], mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"] {
+  .mdc-simple-menu .mdc-list-item[aria-disabled="true"], mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-simple-menu mdc-list-item[aria-disabled="true"], mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], .mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"], .mdc-select .mdc-simple-menu .mdc-list-item[disabled="disabled"], mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"], .mdc-select mdc-simple-menu .mdc-list-item[disabled="disabled"], .mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"], .mdc-select .mdc-simple-menu mdc-list-item[disabled="disabled"], mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"], .mdc-select mdc-simple-menu mdc-list-item[disabled="disabled"], .mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"], .mdc-select .mdc-simple-menu mdc-simple-menu-item[disabled="disabled"], mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"], .mdc-select mdc-simple-menu mdc-simple-menu-item[disabled="disabled"], .mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"], .mdc-select .mdc-multi-select .mdc-simple-menu option[disabled="disabled"], mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"], .mdc-select .mdc-multi-select mdc-simple-menu option[disabled="disabled"], .mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"], .mdc-multi-select .mdc-select .mdc-simple-menu option[disabled="disabled"], mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"], .mdc-multi-select .mdc-select mdc-simple-menu option[disabled="disabled"], .mdc-simple-menu .mdc-multi-select option[aria-disabled="true"], .mdc-multi-select .mdc-simple-menu option[aria-disabled="true"], mdc-simple-menu .mdc-multi-select option[aria-disabled="true"], .mdc-multi-select mdc-simple-menu option[aria-disabled="true"] {
     cursor: default;
     /* @alternate */
     color: rgba(0, 0, 0, 0.38);
     color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38)); }
-    .mdc-select--theme-dark .mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"],
+    .mdc-select--theme-dark .mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu .mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu mdc-list-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"], .mdc-select--theme-dark .mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"], .mdc-select .mdc-select--theme-dark .mdc-simple-menu .mdc-list-item[disabled="disabled"], .mdc-select--theme-dark mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"], .mdc-select .mdc-select--theme-dark mdc-simple-menu .mdc-list-item[disabled="disabled"], .mdc-select--theme-dark .mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"], .mdc-select .mdc-select--theme-dark .mdc-simple-menu mdc-list-item[disabled="disabled"], .mdc-select--theme-dark mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"], .mdc-select .mdc-select--theme-dark mdc-simple-menu mdc-list-item[disabled="disabled"], .mdc-select--theme-dark .mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"], .mdc-select .mdc-select--theme-dark .mdc-simple-menu mdc-simple-menu-item[disabled="disabled"], .mdc-select--theme-dark mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"], .mdc-select .mdc-select--theme-dark mdc-simple-menu mdc-simple-menu-item[disabled="disabled"], .mdc-select--theme-dark .mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"], .mdc-select .mdc-multi-select .mdc-select--theme-dark .mdc-simple-menu option[disabled="disabled"], .mdc-select--theme-dark mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"], .mdc-select .mdc-multi-select .mdc-select--theme-dark mdc-simple-menu option[disabled="disabled"], .mdc-select--theme-dark .mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"], .mdc-multi-select .mdc-select .mdc-select--theme-dark .mdc-simple-menu option[disabled="disabled"], .mdc-select--theme-dark mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"], .mdc-multi-select .mdc-select .mdc-select--theme-dark mdc-simple-menu option[disabled="disabled"], .mdc-select--theme-dark .mdc-simple-menu .mdc-multi-select option[aria-disabled="true"], .mdc-multi-select .mdc-select--theme-dark .mdc-simple-menu option[aria-disabled="true"], .mdc-select--theme-dark mdc-simple-menu .mdc-multi-select option[aria-disabled="true"], .mdc-multi-select .mdc-select--theme-dark mdc-simple-menu option[aria-disabled="true"],
     .mdc-theme--dark .mdc-simple-menu .mdc-list-item[aria-disabled="true"],
     .mdc-theme--dark mdc-simple-menu .mdc-list-item[aria-disabled="true"],
     .mdc-theme--dark .mdc-simple-menu mdc-list-item[aria-disabled="true"],
     .mdc-theme--dark mdc-simple-menu mdc-list-item[aria-disabled="true"],
     .mdc-theme--dark .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"],
-    .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"] {
+    .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"],
+    .mdc-theme--dark .mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"], .mdc-select
+    .mdc-theme--dark .mdc-simple-menu .mdc-list-item[disabled="disabled"],
+    .mdc-theme--dark mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"], .mdc-select
+    .mdc-theme--dark mdc-simple-menu .mdc-list-item[disabled="disabled"],
+    .mdc-theme--dark .mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"], .mdc-select
+    .mdc-theme--dark .mdc-simple-menu mdc-list-item[disabled="disabled"],
+    .mdc-theme--dark mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"], .mdc-select
+    .mdc-theme--dark mdc-simple-menu mdc-list-item[disabled="disabled"],
+    .mdc-theme--dark .mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"], .mdc-select
+    .mdc-theme--dark .mdc-simple-menu mdc-simple-menu-item[disabled="disabled"],
+    .mdc-theme--dark mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"], .mdc-select
+    .mdc-theme--dark mdc-simple-menu mdc-simple-menu-item[disabled="disabled"],
+    .mdc-theme--dark .mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"], .mdc-select .mdc-multi-select
+    .mdc-theme--dark .mdc-simple-menu option[disabled="disabled"],
+    .mdc-theme--dark mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"], .mdc-select .mdc-multi-select
+    .mdc-theme--dark mdc-simple-menu option[disabled="disabled"],
+    .mdc-theme--dark .mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"], .mdc-multi-select .mdc-select
+    .mdc-theme--dark .mdc-simple-menu option[disabled="disabled"],
+    .mdc-theme--dark mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"], .mdc-multi-select .mdc-select
+    .mdc-theme--dark mdc-simple-menu option[disabled="disabled"],
+    .mdc-theme--dark .mdc-simple-menu .mdc-multi-select option[aria-disabled="true"], .mdc-multi-select
+    .mdc-theme--dark .mdc-simple-menu option[aria-disabled="true"],
+    .mdc-theme--dark mdc-simple-menu .mdc-multi-select option[aria-disabled="true"], .mdc-multi-select
+    .mdc-theme--dark mdc-simple-menu option[aria-disabled="true"] {
       /* @alternate */
       color: rgba(255, 255, 255, 0.5);
       color: var(--mdc-theme-text-disabled-on-dark, rgba(255, 255, 255, 0.5)); }
-  .mdc-simple-menu .mdc-list-item[aria-disabled="true"]:focus::before, mdc-simple-menu .mdc-list-item[aria-disabled="true"]:focus::before, .mdc-simple-menu mdc-list-item[aria-disabled="true"]:focus::before, mdc-simple-menu mdc-list-item[aria-disabled="true"]:focus::before, .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:focus::before, mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:focus::before, .mdc-simple-menu .mdc-list-item[aria-disabled="true"]:active::before, mdc-simple-menu .mdc-list-item[aria-disabled="true"]:active::before, .mdc-simple-menu mdc-list-item[aria-disabled="true"]:active::before, mdc-simple-menu mdc-list-item[aria-disabled="true"]:active::before, .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:active::before, mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:active::before {
+  .mdc-simple-menu .mdc-list-item[aria-disabled="true"]:focus::before, mdc-simple-menu .mdc-list-item[aria-disabled="true"]:focus::before, .mdc-simple-menu mdc-list-item[aria-disabled="true"]:focus::before, mdc-simple-menu mdc-list-item[aria-disabled="true"]:focus::before, .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:focus::before, mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:focus::before, .mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"]:focus::before, .mdc-select .mdc-simple-menu .mdc-list-item[disabled="disabled"]:focus::before, mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"]:focus::before, .mdc-select mdc-simple-menu .mdc-list-item[disabled="disabled"]:focus::before, .mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"]:focus::before, .mdc-select .mdc-simple-menu mdc-list-item[disabled="disabled"]:focus::before, mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"]:focus::before, .mdc-select mdc-simple-menu mdc-list-item[disabled="disabled"]:focus::before, .mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"]:focus::before, .mdc-select .mdc-simple-menu mdc-simple-menu-item[disabled="disabled"]:focus::before, mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"]:focus::before, .mdc-select mdc-simple-menu mdc-simple-menu-item[disabled="disabled"]:focus::before, .mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"]:focus::before, .mdc-select .mdc-multi-select .mdc-simple-menu option[disabled="disabled"]:focus::before, mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"]:focus::before, .mdc-select .mdc-multi-select mdc-simple-menu option[disabled="disabled"]:focus::before, .mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"]:focus::before, .mdc-multi-select .mdc-select .mdc-simple-menu option[disabled="disabled"]:focus::before, mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"]:focus::before, .mdc-multi-select .mdc-select mdc-simple-menu option[disabled="disabled"]:focus::before, .mdc-simple-menu .mdc-multi-select option[aria-disabled="true"]:focus::before, .mdc-multi-select .mdc-simple-menu option[aria-disabled="true"]:focus::before, mdc-simple-menu .mdc-multi-select option[aria-disabled="true"]:focus::before, .mdc-multi-select mdc-simple-menu option[aria-disabled="true"]:focus::before, .mdc-simple-menu .mdc-list-item[aria-disabled="true"]:active::before, mdc-simple-menu .mdc-list-item[aria-disabled="true"]:active::before, .mdc-simple-menu mdc-list-item[aria-disabled="true"]:active::before, mdc-simple-menu mdc-list-item[aria-disabled="true"]:active::before, .mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:active::before, mdc-simple-menu mdc-simple-menu-item[aria-disabled="true"]:active::before, .mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"]:active::before, .mdc-select .mdc-simple-menu .mdc-list-item[disabled="disabled"]:active::before, mdc-simple-menu .mdc-select .mdc-list-item[disabled="disabled"]:active::before, .mdc-select mdc-simple-menu .mdc-list-item[disabled="disabled"]:active::before, .mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"]:active::before, .mdc-select .mdc-simple-menu mdc-list-item[disabled="disabled"]:active::before, mdc-simple-menu .mdc-select mdc-list-item[disabled="disabled"]:active::before, .mdc-select mdc-simple-menu mdc-list-item[disabled="disabled"]:active::before, .mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"]:active::before, .mdc-select .mdc-simple-menu mdc-simple-menu-item[disabled="disabled"]:active::before, mdc-simple-menu .mdc-select mdc-simple-menu-item[disabled="disabled"]:active::before, .mdc-select mdc-simple-menu mdc-simple-menu-item[disabled="disabled"]:active::before, .mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"]:active::before, .mdc-select .mdc-multi-select .mdc-simple-menu option[disabled="disabled"]:active::before, mdc-simple-menu .mdc-select .mdc-multi-select option[disabled="disabled"]:active::before, .mdc-select .mdc-multi-select mdc-simple-menu option[disabled="disabled"]:active::before, .mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"]:active::before, .mdc-multi-select .mdc-select .mdc-simple-menu option[disabled="disabled"]:active::before, mdc-simple-menu .mdc-multi-select .mdc-select option[disabled="disabled"]:active::before, .mdc-multi-select .mdc-select mdc-simple-menu option[disabled="disabled"]:active::before, .mdc-simple-menu .mdc-multi-select option[aria-disabled="true"]:active::before, .mdc-multi-select .mdc-simple-menu option[aria-disabled="true"]:active::before, mdc-simple-menu .mdc-multi-select option[aria-disabled="true"]:active::before, .mdc-multi-select mdc-simple-menu option[aria-disabled="true"]:active::before {
     opacity: 0; }
 
 /* postcss-bem-linter: end */
 .mdc-menu-anchor, mdc-menu-anchor {
   position: relative;
   overflow: visible; }
+
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/** MDC Ripple keyframes are split into their own file so that _mixins.scss can rely on them. */
+@keyframes mdc-ripple-fg-radius-in {
+  from {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
+            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  to {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); } }
+
+@keyframes mdc-ripple-fg-opacity-in {
+  from {
+    opacity: 0;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear; }
+  to {
+    opacity: 1; } }
+
+@keyframes mdc-ripple-fg-opacity-out {
+  from {
+    opacity: 1;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear; }
+  to {
+    opacity: 0; } }
+
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+.mdc-radio, mdc-radio {
+  --mdc-ripple-surface-width: 0;
+  --mdc-ripple-surface-height: 0;
+  --mdc-ripple-fg-size: 0;
+  --mdc-ripple-left: 0;
+  --mdc-ripple-top: 0;
+  --mdc-ripple-fg-scale: 1;
+  --mdc-ripple-fg-translate-end: 0;
+  --mdc-ripple-fg-translate-start: 0;
+  will-change: transform, opacity;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  cursor: pointer;
+  will-change: opacity, transform, border-color, background-color, color; }
+  .mdc-radio:not(.mdc-ripple-upgraded):hover::before, mdc-radio:not(.mdc-ripple-upgraded):hover::before, .mdc-radio:not(.mdc-ripple-upgraded):focus::before, mdc-radio:not(.mdc-ripple-upgraded):focus::before, .mdc-radio:not(.mdc-ripple-upgraded):active::after, mdc-radio:not(.mdc-ripple-upgraded):active::after {
+    -webkit-transition-duration: 85ms;
+            transition-duration: 85ms;
+    opacity: .6; }
+  .mdc-radio::before, mdc-radio::before {
+    /* @alternate */
+    background-color: rgba(63, 81, 181, 0.14);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+    @supports (background-color: color(green a(10%))) {
+      .mdc-radio::before, mdc-radio::before {
+        background-color: color(var(--mdc-theme-primary, #3f51b5) a(14%)); } }
+  .mdc-radio.mdc-ripple-upgraded::before, mdc-radio.mdc-ripple-upgraded::before {
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-radio.mdc-ripple-upgraded--background-focused::before, mdc-radio.mdc-ripple-upgraded--background-focused::before {
+    opacity: .99999; }
+  .mdc-radio.mdc-ripple-upgraded--background-active-fill::before, mdc-radio.mdc-ripple-upgraded--background-active-fill::before {
+    -webkit-transition-duration: 120ms;
+            transition-duration: 120ms;
+    opacity: 1; }
+  .mdc-radio.mdc-ripple-upgraded--unbounded::before, mdc-radio.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
+    top: calc(50% - 50%);
+    top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
+    left: calc(50% - 50%);
+    left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-radio::after, mdc-radio::after {
+    /* @alternate */
+    background-color: rgba(63, 81, 181, 0.14);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+    @supports (background-color: color(green a(10%))) {
+      .mdc-radio::after, mdc-radio::after {
+        background-color: color(var(--mdc-theme-primary, #3f51b5) a(14%)); } }
+  .mdc-radio.mdc-ripple-upgraded::after, mdc-radio.mdc-ripple-upgraded::after {
+    top: 0;
+    left: 0;
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    opacity: 0; }
+  .mdc-radio:not(.mdc-ripple-upgraded--unbounded)::after, mdc-radio:not(.mdc-ripple-upgraded--unbounded)::after {
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-radio.mdc-ripple-upgraded--unbounded::after, mdc-radio.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
+    top: 0;
+    top: var(--mdc-ripple-top, 0);
+    /* @alternate */
+    left: 0;
+    left: var(--mdc-ripple-left, 0);
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-radio.mdc-ripple-upgraded--foreground-activation::after, mdc-radio.mdc-ripple-upgraded--foreground-activation::after {
+    -webkit-animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards;
+            animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards; }
+  .mdc-radio.mdc-ripple-upgraded--foreground-deactivation::after, mdc-radio.mdc-ripple-upgraded--foreground-deactivation::after {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+    -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
+            animation: 83ms mdc-ripple-fg-opacity-out; }
+  .mdc-radio::before, mdc-radio::before, .mdc-radio::after, mdc-radio::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  .mdc-radio.mdc-ripple-upgraded .mdc-radio__background::before, mdc-radio.mdc-ripple-upgraded .mdc-radio__background::before {
+    content: none; }
+  .mdc-radio__background {
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    width: 50%;
+    height: 50%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .mdc-radio__background::before {
+      /* @alternate */
+      background-color: #3f51b5;
+      background-color: var(--mdc-theme-primary, #3f51b5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -webkit-transform: scale(0, 0);
+              transform: scale(0, 0);
+      -webkit-transition: opacity 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+      transition: opacity 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+      border-radius: 50%;
+      content: "";
+      opacity: 0;
+      pointer-events: none; }
+  .mdc-radio__outer-circle {
+    /* @alternate */
+    border-color: rgba(0, 0, 0, 0.54);
+    border-color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: border-color 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: border-color 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .mdc-radio--theme-dark .mdc-radio__outer-circle,
+    .mdc-theme--dark .mdc-radio__outer-circle {
+      /* @alternate */
+      border-color: rgba(255, 255, 255, 0.7);
+      border-color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+  .mdc-radio__inner-circle {
+    /* @alternate */
+    background-color: rgba(0, 0, 0, 0.54);
+    background-color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+    -webkit-transition: background-color 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: background-color 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), background-color 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), background-color 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 120ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    border-radius: 50%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .mdc-radio--theme-dark .mdc-radio__inner-circle,
+    .mdc-theme--dark .mdc-radio__inner-circle {
+      /* @alternate */
+      background-color: rgba(255, 255, 255, 0.7);
+      background-color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+  .mdc-radio__native-control {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: inherit;
+    opacity: 0;
+    z-index: 1; }
+
+.mdc-radio__native-control:checked + .mdc-radio__background,
+.mdc-radio__native-control:disabled + .mdc-radio__background {
+  -webkit-transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+  .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__outer-circle,
+  .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__outer-circle {
+    -webkit-transition: border-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: border-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+  .mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__inner-circle,
+  .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__inner-circle {
+    -webkit-transition: background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+
+.mdc-radio--disabled {
+  cursor: default;
+  pointer-events: none; }
+
+.mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__outer-circle {
+  /* @alternate */
+  border-color: #3f51b5;
+  border-color: var(--mdc-theme-primary, #3f51b5); }
+
+.mdc-radio__native-control:checked + .mdc-radio__background .mdc-radio__inner-circle {
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5);
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-transition: background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), background-color 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1); }
+
+.mdc-radio__native-control:disabled + .mdc-radio__background,
+fieldset:disabled .mdc-radio__native-control + .mdc-radio__background,
+[aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background {
+  cursor: default; }
+  .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__outer-circle,
+  fieldset:disabled .mdc-radio__native-control + .mdc-radio__background .mdc-radio__outer-circle,
+  [aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background .mdc-radio__outer-circle {
+    border-color: rgba(0, 0, 0, 0.26); }
+    .mdc-radio--theme-dark .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__outer-circle,
+    .mdc-theme--dark .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__outer-circle, .mdc-radio--theme-dark
+    fieldset:disabled .mdc-radio__native-control + .mdc-radio__background .mdc-radio__outer-circle,
+    .mdc-theme--dark
+    fieldset:disabled .mdc-radio__native-control + .mdc-radio__background .mdc-radio__outer-circle, .mdc-radio--theme-dark
+    [aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background .mdc-radio__outer-circle,
+    .mdc-theme--dark
+    [aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background .mdc-radio__outer-circle {
+      border-color: rgba(255, 255, 255, 0.3); }
+  .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__inner-circle,
+  fieldset:disabled .mdc-radio__native-control + .mdc-radio__background .mdc-radio__inner-circle,
+  [aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background .mdc-radio__inner-circle {
+    background-color: rgba(0, 0, 0, 0.26); }
+    .mdc-radio--theme-dark .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__inner-circle,
+    .mdc-theme--dark .mdc-radio__native-control:disabled + .mdc-radio__background .mdc-radio__inner-circle, .mdc-radio--theme-dark
+    fieldset:disabled .mdc-radio__native-control + .mdc-radio__background .mdc-radio__inner-circle,
+    .mdc-theme--dark
+    fieldset:disabled .mdc-radio__native-control + .mdc-radio__background .mdc-radio__inner-circle, .mdc-radio--theme-dark
+    [aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background .mdc-radio__inner-circle,
+    .mdc-theme--dark
+    [aria-disabled="true"] .mdc-radio__native-control + .mdc-radio__background .mdc-radio__inner-circle {
+      background-color: rgba(255, 255, 255, 0.3); }
+
+.mdc-radio__native-control:focus + .mdc-radio__background::before {
+  -webkit-transform: scale(2, 2);
+          transform: scale(2, 2);
+  -webkit-transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
+  opacity: .26; }
+
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+.mdc-select {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.75rem;
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.87);
+  color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
+  padding-left: 0;
+  padding-right: 24px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  max-width: calc(100% - 24px);
+  height: 32px;
+  -webkit-transition: border-bottom-color 150ms 0ms cubic-bezier(0.4, 0, 0.6, 1), background-color 150ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+  transition: border-bottom-color 150ms 0ms cubic-bezier(0.4, 0, 0.6, 1), background-color 150ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+  background: none;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%230%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.54%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E);
+  font-family: Roboto, sans-serif;
+  font-size: .936rem;
+  cursor: pointer; }
+  [dir="rtl"] .mdc-select, .mdc-select[dir="rtl"] {
+    padding-left: 24px;
+    padding-right: 0; }
+  .mdc-select::-ms-expand {
+    display: none; }
+  .mdc-select:focus {
+    /* @alternate */
+    border-bottom-color: #3f51b5;
+    border-bottom-color: var(--mdc-theme-primary, #3f51b5);
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.06); }
+  [dir="rtl"] .mdc-select, .mdc-select[dir="rtl"] {
+    background-position: left center; }
+  .mdc-select--theme-dark,
+  .mdc-theme--dark .mdc-select {
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-dark, white);
+    background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23ffffff%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.54%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    .mdc-select--theme-dark:focus,
+    .mdc-theme--dark .mdc-select:focus {
+      /* @alternate */
+      border-bottom-color: #3f51b5;
+      border-bottom-color: var(--mdc-theme-primary, #3f51b5);
+      background-color: rgba(255, 255, 255, 0.09); }
+  .mdc-select__menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-height: 100%;
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    overflow-y: scroll;
+    z-index: 4; }
+  .mdc-select__selected-text {
+    -webkit-transition: opacity 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: opacity 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: opacity 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1), transform 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    transition: opacity 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1), transform 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 125ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+    white-space: nowrap;
+    overflow: hidden; }
+
+.mdc-select--open .mdc-select__selected-text {
+  -webkit-transform: translateY(8px);
+          transform: translateY(8px);
+  -webkit-transition: opacity 125ms 125ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 125ms 125ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 125ms 125ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 125ms 125ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 125ms 125ms cubic-bezier(0, 0, 0.2, 1), transform 125ms 125ms cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 125ms 125ms cubic-bezier(0, 0, 0.2, 1), transform 125ms 125ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 125ms 125ms cubic-bezier(0, 0, 0.2, 1);
+  opacity: 0; }
+
+.mdc-select--disabled,
+.mdc-select[disabled] {
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.38);
+  color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38));
+  background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%230%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.38%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E);
+  border-bottom-style: dotted;
+  cursor: default;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+.mdc-select--theme-dark.mdc-select--disabled,
+.mdc-theme--dark .mdc-select--disabled {
+  /* @alternate */
+  color: rgba(255, 255, 255, 0.5);
+  color: var(--mdc-theme-text-disabled-on-dark, rgba(255, 255, 255, 0.5));
+  background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23ffffff%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.38%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E);
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.38); }
+
+.mdc-select--theme-dark.mdc-select[disabled],
+.mdc-theme--dark .mdc-select[disabled] {
+  /* @alternate */
+  color: rgba(255, 255, 255, 0.5);
+  color: var(--mdc-theme-text-disabled-on-dark, rgba(255, 255, 255, 0.5));
+  background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23ffffff%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.38%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E);
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.38); }
+
+.mdc-select__menu .mdc-list-item, .mdc-select__menu mdc-list-item, .mdc-select__menu mdc-simple-menu-item, .mdc-select__menu .mdc-multi-select option, .mdc-multi-select .mdc-select__menu option {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.75rem;
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.54);
+  color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54)); }
+  .mdc-select__menu .mdc-list-item[aria-selected="true"], .mdc-select__menu mdc-list-item[aria-selected="true"], .mdc-select__menu mdc-simple-menu-item[aria-selected="true"], .mdc-select__menu .mdc-multi-select option[aria-selected="true"], .mdc-multi-select .mdc-select__menu option[aria-selected="true"] {
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+  .mdc-select--theme-dark .mdc-select__menu .mdc-list-item, .mdc-select--theme-dark .mdc-select__menu mdc-list-item, .mdc-select--theme-dark .mdc-select__menu mdc-simple-menu-item, .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select option, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu option,
+  .mdc-theme--dark .mdc-select__menu .mdc-list-item,
+  .mdc-theme--dark .mdc-select__menu mdc-list-item,
+  .mdc-theme--dark .mdc-select__menu mdc-simple-menu-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-multi-select option, .mdc-multi-select
+  .mdc-theme--dark .mdc-select__menu option {
+    /* @alternate */
+    color: rgba(255, 255, 255, 0.7);
+    color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+    .mdc-select--theme-dark .mdc-select__menu .mdc-list-item[aria-selected="true"], .mdc-select--theme-dark .mdc-select__menu mdc-list-item[aria-selected="true"], .mdc-select--theme-dark .mdc-select__menu mdc-simple-menu-item[aria-selected="true"], .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select option[aria-selected="true"], .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu option[aria-selected="true"],
+    .mdc-theme--dark .mdc-select__menu .mdc-list-item[aria-selected="true"],
+    .mdc-theme--dark .mdc-select__menu mdc-list-item[aria-selected="true"],
+    .mdc-theme--dark .mdc-select__menu mdc-simple-menu-item[aria-selected="true"],
+    .mdc-theme--dark .mdc-select__menu .mdc-multi-select option[aria-selected="true"], .mdc-multi-select
+    .mdc-theme--dark .mdc-select__menu option[aria-selected="true"] {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+
+.mdc-select__menu .mdc-list-group, .mdc-select__menu .mdc-multi-select optgroup, .mdc-multi-select .mdc-select__menu optgroup,
+.mdc-select__menu .mdc-list-group > .mdc-list-item:first-child,
+.mdc-select__menu .mdc-multi-select optgroup > .mdc-list-item:first-child, .mdc-multi-select
+.mdc-select__menu optgroup > .mdc-list-item:first-child,
+.mdc-select__menu .mdc-list-group > mdc-list-item:first-child,
+.mdc-select__menu .mdc-multi-select optgroup > mdc-list-item:first-child, .mdc-multi-select
+.mdc-select__menu optgroup > mdc-list-item:first-child,
+.mdc-select__menu .mdc-list-group > mdc-simple-menu-item:first-child,
+.mdc-select__menu .mdc-multi-select optgroup > mdc-simple-menu-item:first-child, .mdc-multi-select
+.mdc-select__menu optgroup > mdc-simple-menu-item:first-child,
+.mdc-select__menu .mdc-multi-select .mdc-list-group > option:first-child, .mdc-multi-select
+.mdc-select__menu .mdc-list-group > option:first-child,
+.mdc-select__menu .mdc-multi-select optgroup > option:first-child, .mdc-multi-select
+.mdc-select__menu optgroup > option:first-child {
+  margin-top: 12px; }
+
+.mdc-select__menu .mdc-list-group, .mdc-select__menu .mdc-multi-select optgroup, .mdc-multi-select .mdc-select__menu optgroup {
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.38);
+  color: var(--mdc-theme-text-hint-on-light, rgba(0, 0, 0, 0.38));
+  font-weight: normal; }
+  .mdc-select__menu .mdc-list-group .mdc-list-item, .mdc-select__menu .mdc-multi-select optgroup .mdc-list-item, .mdc-multi-select .mdc-select__menu optgroup .mdc-list-item, .mdc-select__menu .mdc-list-group mdc-list-item, .mdc-select__menu .mdc-multi-select optgroup mdc-list-item, .mdc-multi-select .mdc-select__menu optgroup mdc-list-item, .mdc-select__menu .mdc-list-group mdc-simple-menu-item, .mdc-select__menu .mdc-multi-select optgroup mdc-simple-menu-item, .mdc-multi-select .mdc-select__menu optgroup mdc-simple-menu-item, .mdc-select__menu .mdc-list-group .mdc-multi-select option, .mdc-multi-select .mdc-select__menu .mdc-list-group option, .mdc-select__menu .mdc-multi-select optgroup option, .mdc-multi-select .mdc-select__menu optgroup option {
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+
+.mdc-select--theme-dark .mdc-select__menu .mdc-list-group, .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select optgroup, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu optgroup,
+.mdc-theme--dark .mdc-select__menu .mdc-list-group,
+.mdc-theme--dark .mdc-select__menu .mdc-multi-select optgroup, .mdc-multi-select
+.mdc-theme--dark .mdc-select__menu optgroup {
+  /* @alternate */
+  color: rgba(255, 255, 255, 0.5);
+  color: var(--mdc-theme-text-hint-on-dark, rgba(255, 255, 255, 0.5)); }
+  .mdc-select--theme-dark .mdc-select__menu .mdc-list-group .mdc-list-item, .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select optgroup .mdc-list-item, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu optgroup .mdc-list-item, .mdc-select--theme-dark .mdc-select__menu .mdc-list-group mdc-list-item, .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select optgroup mdc-list-item, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu optgroup mdc-list-item, .mdc-select--theme-dark .mdc-select__menu .mdc-list-group mdc-simple-menu-item, .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select optgroup mdc-simple-menu-item, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu optgroup mdc-simple-menu-item, .mdc-select--theme-dark .mdc-select__menu .mdc-list-group .mdc-multi-select option, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu .mdc-list-group option, .mdc-select--theme-dark .mdc-select__menu .mdc-multi-select optgroup option, .mdc-multi-select .mdc-select--theme-dark .mdc-select__menu optgroup option,
+  .mdc-theme--dark .mdc-select__menu .mdc-list-group .mdc-list-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-multi-select optgroup .mdc-list-item, .mdc-multi-select
+  .mdc-theme--dark .mdc-select__menu optgroup .mdc-list-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-list-group mdc-list-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-multi-select optgroup mdc-list-item, .mdc-multi-select
+  .mdc-theme--dark .mdc-select__menu optgroup mdc-list-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-list-group mdc-simple-menu-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-multi-select optgroup mdc-simple-menu-item, .mdc-multi-select
+  .mdc-theme--dark .mdc-select__menu optgroup mdc-simple-menu-item,
+  .mdc-theme--dark .mdc-select__menu .mdc-list-group .mdc-multi-select option, .mdc-multi-select
+  .mdc-theme--dark .mdc-select__menu .mdc-list-group option,
+  .mdc-theme--dark .mdc-select__menu .mdc-multi-select optgroup option, .mdc-multi-select
+  .mdc-theme--dark .mdc-select__menu optgroup option {
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-dark, white); }
+
+.mdc-multi-select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 250px;
+  padding: 0;
+  border: 1px solid;
+  /* @alternate */
+  border-color: rgba(0, 0, 0, 0.38);
+  border-color: var(--mdc-theme-text-hint-on-light, rgba(0, 0, 0, 0.38));
+  outline: none; }
+  .mdc-multi-select--theme-dark,
+  .mdc-theme--dark .mdc-multi-select {
+    /* @alternate */
+    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--mdc-theme-text-hint-on-dark, rgba(255, 255, 255, 0.5)); }
+  .mdc-multi-select .mdc-list-group, .mdc-multi-select optgroup {
+    margin: 16px 0 0;
+    padding: 0 0 0 16px;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.38);
+    color: var(--mdc-theme-text-hint-on-light, rgba(0, 0, 0, 0.38));
+    font-weight: normal; }
+    .mdc-multi-select .mdc-list-group--theme-dark,
+    .mdc-theme--dark .mdc-multi-select .mdc-list-group,
+    .mdc-theme--dark .mdc-multi-select optgroup {
+      /* @alternate */
+      color: rgba(255, 255, 255, 0.5);
+      color: var(--mdc-theme-text-hint-on-dark, rgba(255, 255, 255, 0.5)); }
+    .mdc-multi-select .mdc-list-group:last-child, .mdc-multi-select optgroup:last-child {
+      margin-bottom: 16px; }
+    .mdc-multi-select .mdc-list-group .mdc-list-divider, .mdc-multi-select optgroup .mdc-list-divider, .mdc-multi-select .mdc-list-group mdc-divider, .mdc-multi-select optgroup mdc-divider, .mdc-multi-select .mdc-list-group mdc-divider-inset, .mdc-multi-select optgroup mdc-divider-inset {
+      margin-left: -16px; }
+  .mdc-multi-select .mdc-list-item, .mdc-multi-select mdc-list-item, .mdc-multi-select mdc-simple-menu-item, .mdc-multi-select option {
+    margin: 0 0 0 -16px;
+    padding: 0 16px;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+    .mdc-multi-select .mdc-list-item--theme-dark,
+    .mdc-theme--dark .mdc-multi-select .mdc-list-item,
+    .mdc-theme--dark .mdc-multi-select mdc-list-item,
+    .mdc-theme--dark .mdc-multi-select mdc-simple-menu-item,
+    .mdc-theme--dark .mdc-multi-select option {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+    .mdc-multi-select .mdc-list-item:first-child, .mdc-multi-select mdc-list-item:first-child, .mdc-multi-select mdc-simple-menu-item:first-child, .mdc-multi-select option:first-child {
+      margin-top: 12px; }
+    .mdc-multi-select .mdc-list-item:last-child, .mdc-multi-select mdc-list-item:last-child, .mdc-multi-select mdc-simple-menu-item:last-child, .mdc-multi-select option:last-child {
+      margin-bottom: 8px; }
+  .mdc-multi-select .mdc-list-item:checked, .mdc-multi-select mdc-list-item:checked, .mdc-multi-select mdc-simple-menu-item:checked, .mdc-multi-select option:checked {
+    background-color: rgba(0, 0, 0, 0.12);
+    /* @alternate */
+    background-color: #fff;
+    background-color: var(--mdc-theme-background, #fff); }
+    .mdc-multi-select .mdc-list-item:checked--theme-dark, .mdc-multi-select mdc-list-item:checked--theme-dark, .mdc-multi-select mdc-simple-menu-item:checked--theme-dark, .mdc-multi-select option:checked--theme-dark,
+    .mdc-theme--dark .mdc-multi-select .mdc-list-item:checked,
+    .mdc-theme--dark .mdc-multi-select mdc-list-item:checked,
+    .mdc-theme--dark .mdc-multi-select mdc-simple-menu-item:checked,
+    .mdc-theme--dark .mdc-multi-select option:checked {
+      /* @alternate */
+      background-color: white;
+      background-color: var(--mdc-theme-text-primary-on-dark, white); }
+  .mdc-multi-select .mdc-list-divider, .mdc-multi-select mdc-divider, .mdc-multi-select mdc-divider-inset {
+    margin-bottom: 8px;
+    padding-top: 8px;
+    font-size: 0; }
+
+.mdc-multi-select:focus .mdc-list-item:checked, .mdc-multi-select:focus mdc-list-item:checked, .mdc-multi-select:focus mdc-simple-menu-item:checked, .mdc-multi-select:focus option:checked {
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5); }
+  .mdc-multi-select:focus .mdc-list-item:checked--theme-dark, .mdc-multi-select:focus mdc-list-item:checked--theme-dark, .mdc-multi-select:focus mdc-simple-menu-item:checked--theme-dark, .mdc-multi-select:focus option:checked--theme-dark,
+  .mdc-theme--dark .mdc-multi-select:focus .mdc-list-item:checked,
+  .mdc-theme--dark .mdc-multi-select:focus mdc-list-item:checked,
+  .mdc-theme--dark .mdc-multi-select:focus mdc-simple-menu-item:checked,
+  .mdc-theme--dark .mdc-multi-select:focus option:checked {
+    /* @alternate */
+    background-color: white;
+    background-color: var(--mdc-theme-text-primary-on-dark, white); }
+
+.mdc-multi-select option {
+  cursor: pointer; }
+
+.mdc-multi-select option:disabled {
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.38);
+  color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38));
+  cursor: default;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+.mdc-multi-select option.mdc-list-divider {
+  height: 0; }
 
 /**
  * The css property used for elevation. In most cases this should not be changed. It is exposed
@@ -3937,3 +4958,1885 @@ mdc-divider-inset {
   .mdc-switch--theme-dark .mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob,
   .mdc-theme--dark .mdc-switch__native-control:disabled ~ .mdc-switch__background .mdc-switch__knob {
     background-color: #424242; }
+
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/** MDC Ripple keyframes are split into their own file so that _mixins.scss can rely on them. */
+@keyframes mdc-ripple-fg-radius-in {
+  from {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
+            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+  to {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); } }
+
+@keyframes mdc-ripple-fg-opacity-in {
+  from {
+    opacity: 0;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear; }
+  to {
+    opacity: 1; } }
+
+@keyframes mdc-ripple-fg-opacity-out {
+  from {
+    opacity: 1;
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear; }
+  to {
+    opacity: 0; } }
+
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+.mdc-tab, mdc-tab {
+  font-family: Roboto, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.5rem;
+  display: table-cell;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 160px;
+  min-height: 48px;
+  padding: 0 24px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  vertical-align: middle;
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.54);
+  color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54)); }
+  .mdc-tab:hover, mdc-tab:hover {
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.87);
+    color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+  .mdc-tab:focus, mdc-tab:focus {
+    /* @alternate */
+    outline-color: rgba(0, 0, 0, 0.54);
+    outline-color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54)); }
+  .mdc-tab-bar--theme-dark .mdc-tab, .mdc-tab-bar--theme-dark mdc-tab,
+  .mdc-theme--dark .mdc-tab,
+  .mdc-theme--dark mdc-tab {
+    /* @alternate */
+    color: rgba(255, 255, 255, 0.7);
+    color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+    .mdc-tab-bar--theme-dark .mdc-tab:hover, .mdc-tab-bar--theme-dark mdc-tab:hover,
+    .mdc-theme--dark .mdc-tab:hover,
+    .mdc-theme--dark mdc-tab:hover {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+    .mdc-tab-bar--theme-dark .mdc-tab:focus, .mdc-tab-bar--theme-dark mdc-tab:focus,
+    .mdc-theme--dark .mdc-tab:focus,
+    .mdc-theme--dark mdc-tab:focus {
+      /* @alternate */
+      outline-color: rgba(255, 255, 255, 0.7);
+      outline-color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+  @media screen and (max-width: 600px) {
+    .mdc-tab, mdc-tab {
+      min-width: 72px;
+      padding: 0 12px; } }
+  .mdc-tab__icon, mdc-tab mdc-icon {
+    display: block;
+    margin: 0 auto;
+    width: 24px;
+    height: 24px; }
+    .mdc-tab-bar--icons-with-text .mdc-tab__icon, .mdc-tab-bar--icons-with-text mdc-tab mdc-icon, mdc-tab .mdc-tab-bar--icons-with-text mdc-icon {
+      margin-top: 4px; }
+  .mdc-tab__icon-text, mdc-tab-text {
+    display: block;
+    margin: 0 auto; }
+  .mdc-tab__icon + .mdc-tab__icon-text, mdc-tab mdc-icon + .mdc-tab__icon-text, .mdc-tab__icon + mdc-tab-text, mdc-tab mdc-icon + mdc-tab-text {
+    padding-top: 6px; }
+
+.mdc-tab--active {
+  /* @alternate */
+  color: rgba(0, 0, 0, 0.87);
+  color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+  .mdc-tab-bar--theme-dark .mdc-tab--active,
+  .mdc-theme--dark .mdc-tab--active {
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-dark, white); }
+  .mdc-tab--active::before {
+    bottom: 0; }
+
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab {
+  position: relative; }
+  .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after {
+    display: none;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    width: calc(100% - 4px);
+    height: 2px;
+    content: "";
+    pointer-events: none;
+    /* @alternate */
+    background-color: rgba(0, 0, 0, 0.87);
+    background-color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+    .mdc-tab-bar--theme-dark.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, mdc-tab-bar.mdc-tab-bar--theme-dark:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-tab-bar--theme-dark.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after, mdc-tab-bar.mdc-tab-bar--theme-dark:not(.mdc-tab-bar-upgraded) mdc-tab::after,
+    .mdc-theme--dark .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after,
+    .mdc-theme--dark mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after,
+    .mdc-theme--dark .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after,
+    .mdc-theme--dark mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after {
+      /* @alternate */
+      background-color: white;
+      background-color: var(--mdc-theme-text-primary-on-dark, white); }
+    .mdc-toolbar .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-toolbar mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-toolbar .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after, .mdc-toolbar mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after {
+      /* @alternate */
+      background-color: white;
+      background-color: var(--mdc-theme-text-primary-on-primary, white); }
+  .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:active::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:active::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:active::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:active::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:hover::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:hover::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:hover::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:hover::after {
+    display: block; }
+  .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):hover::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):hover::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):hover::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):hover::after {
+    opacity: .38; }
+  .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):active::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):active::after, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):active::after, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):active::after {
+    opacity: .87; }
+
+.mdc-tab-bar--icons-with-text:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-tab-bar--icons-with-text:not(.mdc-tab-bar-upgraded) mdc-tab::after {
+  top: 70px; }
+
+.mdc-tab.mdc-ripple-upgraded, mdc-tab.mdc-ripple-upgraded {
+  --mdc-ripple-surface-width: 0;
+  --mdc-ripple-surface-height: 0;
+  --mdc-ripple-fg-size: 0;
+  --mdc-ripple-left: 0;
+  --mdc-ripple-top: 0;
+  --mdc-ripple-fg-scale: 1;
+  --mdc-ripple-fg-translate-end: 0;
+  --mdc-ripple-fg-translate-start: 0;
+  will-change: transform, opacity;
+  -webkit-tap-highlight-color: transparent; }
+  .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):hover::before, .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):focus::before, .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after, mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded):active::after {
+    -webkit-transition-duration: 85ms;
+            transition-duration: 85ms;
+    opacity: .6; }
+  .mdc-tab.mdc-ripple-upgraded::after, mdc-tab.mdc-ripple-upgraded::after {
+    background-color: rgba(0, 0, 0, 0.06);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
+    top: 0;
+    left: 0;
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    opacity: 0; }
+  .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
+    top: 0;
+    top: var(--mdc-ripple-top, 0);
+    /* @alternate */
+    left: 0;
+    left: var(--mdc-ripple-left, 0);
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
+    -webkit-animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards;
+            animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+    -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
+            animation: 83ms mdc-ripple-fg-opacity-out; }
+  .mdc-tab.mdc-ripple-upgraded::before, mdc-tab.mdc-ripple-upgraded::before {
+    background-color: rgba(0, 0, 0, 0.06);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
+    opacity: .99999; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
+    -webkit-transition-duration: 120ms;
+            transition-duration: 120ms;
+    opacity: 1; }
+  .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
+    top: calc(50% - 50%);
+    top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
+    left: calc(50% - 50%);
+    left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded::before, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded::before,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded::before,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded::before {
+    background-color: rgba(255, 255, 255, 0.16);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
+    opacity: .99999; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
+    -webkit-transition-duration: 120ms;
+            transition-duration: 120ms;
+    opacity: 1; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
+    top: calc(50% - 50%);
+    top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
+    left: calc(50% - 50%);
+    left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded::after, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded::after,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded::after,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded::after {
+    background-color: rgba(255, 255, 255, 0.16);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
+    top: 0;
+    left: 0;
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    opacity: 0; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
+    top: 0;
+    top: var(--mdc-ripple-top, 0);
+    /* @alternate */
+    left: 0;
+    left: var(--mdc-ripple-left, 0);
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
+    -webkit-animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards;
+            animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards; }
+  .mdc-tab-bar--theme-dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-tab-bar--theme-dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
+  .mdc-theme--dark .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after,
+  .mdc-theme--dark mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+    -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
+            animation: 83ms mdc-ripple-fg-opacity-out; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded::before, .mdc-toolbar mdc-tab.mdc-ripple-upgraded::before {
+    background-color: rgba(255, 255, 255, 0.16);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::before {
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-focused::before {
+    opacity: .99999; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--background-active-fill::before {
+    -webkit-transition-duration: 120ms;
+            transition-duration: 120ms;
+    opacity: 1; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::before {
+    /* @alternate */
+    top: calc(50% - 50%);
+    top: var(--mdc-ripple-top, calc(50% - 50%));
+    /* @alternate */
+    left: calc(50% - 50%);
+    left: var(--mdc-ripple-left, calc(50% - 50%));
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform: scale(var(--mdc-ripple-fg-scale, 0));
+            transform: scale(var(--mdc-ripple-fg-scale, 0)); }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded::after, .mdc-toolbar mdc-tab.mdc-ripple-upgraded::after {
+    background-color: rgba(255, 255, 255, 0.16);
+    position: absolute;
+    top: calc(50% - 100%);
+    left: calc(50% - 100%);
+    width: 200%;
+    height: 200%;
+    -webkit-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: ""; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded::after {
+    top: 0;
+    left: 0;
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    opacity: 0; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after, .mdc-toolbar mdc-tab.mdc-ripple-upgraded:not(.mdc-ripple-upgraded--unbounded)::after {
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--unbounded::after {
+    /* @alternate */
+    top: 0;
+    top: var(--mdc-ripple-top, 0);
+    /* @alternate */
+    left: 0;
+    left: var(--mdc-ripple-left, 0);
+    /* @alternate */
+    width: 100%;
+    width: var(--mdc-ripple-fg-size, 100%);
+    /* @alternate */
+    height: 100%;
+    height: var(--mdc-ripple-fg-size, 100%);
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: center center;
+            transform-origin: center center; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-activation::after {
+    -webkit-animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards;
+            animation: 300ms mdc-ripple-fg-radius-in forwards, 83ms mdc-ripple-fg-opacity-in forwards; }
+  .mdc-toolbar .mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after, .mdc-toolbar mdc-tab.mdc-ripple-upgraded.mdc-ripple-upgraded--foreground-deactivation::after {
+    -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+    -webkit-animation: 83ms mdc-ripple-fg-opacity-out;
+            animation: 83ms mdc-ripple-fg-opacity-out; }
+  .mdc-tab.mdc-ripple-upgraded:focus, mdc-tab.mdc-ripple-upgraded:focus {
+    outline: none; }
+
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+.mdc-tab-bar, mdc-tab-bar {
+  display: table;
+  position: relative;
+  height: 48px;
+  margin: 0 auto;
+  text-transform: uppercase; }
+  .mdc-tab-bar__indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    /* @alternate */
+    background-color: rgba(0, 0, 0, 0.87);
+    background-color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87));
+    -webkit-transform-origin: left top;
+            transform-origin: left top;
+    -webkit-transition: -webkit-transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: -webkit-transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    transition: transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+    will-change: transform;
+    visibility: hidden; }
+    .mdc-tab-bar--theme-dark .mdc-tab-bar__indicator,
+    .mdc-theme--dark .mdc-tab-bar__indicator {
+      /* @alternate */
+      background-color: white;
+      background-color: var(--mdc-theme-text-primary-on-dark, white); }
+  .mdc-toolbar .mdc-tab-bar .mdc-tab, .mdc-toolbar mdc-tab-bar .mdc-tab, .mdc-toolbar .mdc-tab-bar mdc-tab, .mdc-toolbar mdc-tab-bar mdc-tab {
+    /* @alternate */
+    color: rgba(255, 255, 255, 0.7);
+    color: var(--mdc-theme-text-secondary-on-primary, rgba(255, 255, 255, 0.7)); }
+    .mdc-tab-bar--theme-dark .mdc-toolbar .mdc-tab-bar .mdc-tab, .mdc-tab-bar--theme-dark .mdc-toolbar mdc-tab-bar .mdc-tab, .mdc-tab-bar--theme-dark .mdc-toolbar .mdc-tab-bar mdc-tab, .mdc-tab-bar--theme-dark .mdc-toolbar mdc-tab-bar mdc-tab,
+    .mdc-theme--dark .mdc-toolbar .mdc-tab-bar .mdc-tab,
+    .mdc-theme--dark .mdc-toolbar mdc-tab-bar .mdc-tab,
+    .mdc-theme--dark .mdc-toolbar .mdc-tab-bar mdc-tab,
+    .mdc-theme--dark .mdc-toolbar mdc-tab-bar mdc-tab {
+      /* @alternate */
+      color: rgba(255, 255, 255, 0.7);
+      color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+  .mdc-toolbar .mdc-tab-bar .mdc-tab--active, .mdc-toolbar mdc-tab-bar .mdc-tab--active,
+  .mdc-toolbar .mdc-tab-bar .mdc-tab:hover,
+  .mdc-toolbar mdc-tab-bar .mdc-tab:hover,
+  .mdc-toolbar .mdc-tab-bar mdc-tab:hover,
+  .mdc-toolbar mdc-tab-bar mdc-tab:hover {
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-primary, white); }
+    .mdc-tab-bar--theme-dark .mdc-toolbar .mdc-tab-bar .mdc-tab--active, .mdc-tab-bar--theme-dark .mdc-toolbar mdc-tab-bar .mdc-tab--active,
+    .mdc-theme--dark .mdc-toolbar .mdc-tab-bar .mdc-tab--active,
+    .mdc-theme--dark .mdc-toolbar mdc-tab-bar .mdc-tab--active, .mdc-tab-bar--theme-dark
+    .mdc-toolbar .mdc-tab-bar .mdc-tab:hover, .mdc-tab-bar--theme-dark
+    .mdc-toolbar mdc-tab-bar .mdc-tab:hover, .mdc-tab-bar--theme-dark
+    .mdc-toolbar .mdc-tab-bar mdc-tab:hover, .mdc-tab-bar--theme-dark
+    .mdc-toolbar mdc-tab-bar mdc-tab:hover,
+    .mdc-theme--dark
+    .mdc-toolbar .mdc-tab-bar .mdc-tab:hover,
+    .mdc-theme--dark
+    .mdc-toolbar mdc-tab-bar .mdc-tab:hover,
+    .mdc-theme--dark
+    .mdc-toolbar .mdc-tab-bar mdc-tab:hover,
+    .mdc-theme--dark
+    .mdc-toolbar mdc-tab-bar mdc-tab:hover {
+      /* @alternate */
+      color: white;
+      color: var(--mdc-theme-text-primary-on-dark, white); }
+  .mdc-toolbar .mdc-tab-bar .mdc-tab-bar__indicator, .mdc-toolbar mdc-tab-bar .mdc-tab-bar__indicator {
+    /* @alternate */
+    background-color: white;
+    background-color: var(--mdc-theme-text-primary-on-primary, white); }
+    .mdc-tab-bar--theme-dark .mdc-toolbar .mdc-tab-bar .mdc-tab-bar__indicator, .mdc-tab-bar--theme-dark .mdc-toolbar mdc-tab-bar .mdc-tab-bar__indicator,
+    .mdc-theme--dark .mdc-toolbar .mdc-tab-bar .mdc-tab-bar__indicator,
+    .mdc-theme--dark .mdc-toolbar mdc-tab-bar .mdc-tab-bar__indicator {
+      /* @alternate */
+      background-color: white;
+      background-color: var(--mdc-theme-text-primary-on-dark, white); }
+
+.mdc-tab-bar--icons-with-text {
+  height: 72px; }
+
+.mdc-tab-bar--indicator-primary .mdc-tab-bar__indicator,
+.mdc-toolbar .mdc-tab-bar--indicator-primary .mdc-tab-bar__indicator {
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5); }
+  .mdc-tab-bar--theme-dark .mdc-tab-bar--indicator-primary .mdc-tab-bar__indicator,
+  .mdc-theme--dark .mdc-tab-bar--indicator-primary .mdc-tab-bar__indicator, .mdc-tab-bar--theme-dark
+  .mdc-toolbar .mdc-tab-bar--indicator-primary .mdc-tab-bar__indicator,
+  .mdc-theme--dark
+  .mdc-toolbar .mdc-tab-bar--indicator-primary .mdc-tab-bar__indicator {
+    /* @alternate */
+    background-color: #3f51b5;
+    background-color: var(--mdc-theme-primary, #3f51b5); }
+
+.mdc-tab-bar--indicator-primary.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, mdc-tab-bar.mdc-tab-bar--indicator-primary:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-tab-bar--indicator-primary.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after, mdc-tab-bar.mdc-tab-bar--indicator-primary:not(.mdc-tab-bar-upgraded) mdc-tab::after,
+.mdc-toolbar .mdc-tab-bar--indicator-primary.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after,
+.mdc-toolbar mdc-tab-bar.mdc-tab-bar--indicator-primary:not(.mdc-tab-bar-upgraded) .mdc-tab::after,
+.mdc-toolbar .mdc-tab-bar--indicator-primary.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after,
+.mdc-toolbar mdc-tab-bar.mdc-tab-bar--indicator-primary:not(.mdc-tab-bar-upgraded) mdc-tab::after {
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5); }
+
+.mdc-tab-bar--indicator-accent .mdc-tab-bar__indicator,
+.mdc-toolbar .mdc-tab-bar--indicator-accent .mdc-tab-bar__indicator {
+  /* @alternate */
+  background-color: #ff4081;
+  background-color: var(--mdc-theme-accent, #ff4081); }
+  .mdc-tab-bar--theme-dark .mdc-tab-bar--indicator-accent .mdc-tab-bar__indicator,
+  .mdc-theme--dark .mdc-tab-bar--indicator-accent .mdc-tab-bar__indicator, .mdc-tab-bar--theme-dark
+  .mdc-toolbar .mdc-tab-bar--indicator-accent .mdc-tab-bar__indicator,
+  .mdc-theme--dark
+  .mdc-toolbar .mdc-tab-bar--indicator-accent .mdc-tab-bar__indicator {
+    /* @alternate */
+    background-color: #ff4081;
+    background-color: var(--mdc-theme-accent, #ff4081); }
+
+.mdc-tab-bar--indicator-accent.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after, mdc-tab-bar.mdc-tab-bar--indicator-accent:not(.mdc-tab-bar-upgraded) .mdc-tab::after, .mdc-tab-bar--indicator-accent.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after, mdc-tab-bar.mdc-tab-bar--indicator-accent:not(.mdc-tab-bar-upgraded) mdc-tab::after,
+.mdc-toolbar .mdc-tab-bar--indicator-accent.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab::after,
+.mdc-toolbar mdc-tab-bar.mdc-tab-bar--indicator-accent:not(.mdc-tab-bar-upgraded) .mdc-tab::after,
+.mdc-toolbar .mdc-tab-bar--indicator-accent.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab::after,
+.mdc-toolbar mdc-tab-bar.mdc-tab-bar--indicator-accent:not(.mdc-tab-bar-upgraded) mdc-tab::after {
+  /* @alternate */
+  background-color: #ff4081;
+  background-color: var(--mdc-theme-accent, #ff4081); }
+
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+.mdc-tab-bar-scroller, mdc-tab-bar-scroller {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  background-color: inherit;
+  overflow: hidden; }
+  .mdc-tab-bar-scroller__scroll-frame {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    overflow: hidden; }
+    .mdc-tab-bar-scroller__scroll-frame__tabs {
+      -webkit-transition: -webkit-transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: -webkit-transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      transition: transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 240ms 0ms cubic-bezier(0, 0, 0.2, 1);
+      will-change: transform; }
+  .mdc-tab-bar-scroller__indicator {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 48px;
+    cursor: pointer;
+    visibility: hidden;
+    /* @alternate */
+    color: rgba(0, 0, 0, 0.54);
+    color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54)); }
+    .mdc-tab-bar--theme-dark .mdc-tab-bar-scroller__indicator,
+    .mdc-theme--dark .mdc-tab-bar-scroller__indicator {
+      /* @alternate */
+      color: rgba(255, 255, 255, 0.7);
+      color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+    .mdc-tab-bar-scroller__indicator:hover {
+      /* @alternate */
+      color: rgba(0, 0, 0, 0.87);
+      color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, 0.87)); }
+      .mdc-tab-bar--theme-dark .mdc-tab-bar-scroller__indicator:hover,
+      .mdc-theme--dark .mdc-tab-bar-scroller__indicator:hover {
+        /* @alternate */
+        color: white;
+        color: var(--mdc-theme-text-primary-on-dark, white); }
+    .mdc-tab-bar-scroller__indicator__inner {
+      color: inherit;
+      text-decoration: inherit;
+      cursor: inherit; }
+      .mdc-tab-bar-scroller__indicator__inner:focus {
+        outline-color: inherit; }
+      [dir="rtl"] .mdc-tab-bar-scroller .mdc-tab-bar-scroller__indicator__inner, [dir="rtl"] mdc-tab-bar-scroller .mdc-tab-bar-scroller__indicator__inner,
+      .mdc-tab-bar-scroller[dir="rtl"] .mdc-tab-bar-scroller__indicator__inner, mdc-tab-bar-scroller[dir="rtl"] .mdc-tab-bar-scroller__indicator__inner {
+        -webkit-transform: rotate(180deg);
+                transform: rotate(180deg); }
+    .mdc-tab-bar-scroller__indicator__inner:hover {
+      color: inherit; }
+      .mdc-tab-bar--theme-dark .mdc-tab-bar-scroller__indicator__inner:hover,
+      .mdc-theme--dark .mdc-tab-bar-scroller__indicator__inner:hover {
+        /* @alternate */
+        color: rgba(255, 255, 255, 0.7);
+        color: var(--mdc-theme-text-secondary-on-dark, rgba(255, 255, 255, 0.7)); }
+  .mdc-tab-bar-scroller__indicator--enabled {
+    visibility: visible; }
+
+/**
+ * The css property used for elevation. In most cases this should not be changed. It is exposed
+ * as a variable for abstraction / easy use when needing to reference the property directly, for
+ * example in a `will-change` rule.
+ */
+/**
+ * The default duration value for elevation transitions.
+ */
+/**
+ * The default easing value for elevation transitions.
+ */
+/**
+ * Applies the correct css rules to an element to give it the elevation specified by $z-value.
+ * The $z-value must be between 0 and 24.
+ */
+/**
+ * Returns a string that can be used as the value for a `transition` property for elevation.
+ * Calling this function directly is useful in situations where a component needs to transition
+ * more than one property.
+ *
+ * ```scss
+ * .foo {
+ *   transition: mdc-elevation-transition-rule(), opacity 100ms ease;
+ *   will-change: $mdc-elevation-property, opacity;
+ * }
+ * ```
+ */
+/**
+ * Applies the correct css rules needed to have an element transition between elevations.
+ * This mixin should be applied to elements whose elevation values will change depending on their
+ * context (e.g. when active or disabled).
+ */
+/**
+ * Creates a rule that will be applied when an MDC-Web component is within the context of an RTL layout.
+ *
+ * Usage Example:
+ * ```scss
+ * .mdc-foo {
+ *   position: absolute;
+ *   left: 0;
+ *
+ *   @include mdc-rtl {
+ *     left: auto;
+ *     right: 0;
+ *   }
+ *
+ *   &__bar {
+ *     margin-left: 4px;
+ *     @include mdc-rtl(".mdc-foo") {
+ *       margin-left: auto;
+ *       margin-right: 4px;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--mod {
+ *   padding-left: 4px;
+ *
+ *   @include mdc-rtl {
+ *     padding-left: auto;
+ *     padding-right: 4px;
+ *   }
+ * }
+ * ```
+ *
+ * Note that this works by checking for [dir="rtl"] on an ancestor element. While this will work
+ * in most cases, it will in some cases lead to false negatives, e.g.
+ *
+ * ```html
+ * <html dir="rtl">
+ *   <!-- ... -->
+ *   <div dir="ltr">
+ *     <div class="mdc-foo">Styled incorrectly as RTL!</div>
+ *   </div>
+ * </html>
+ * ```
+ *
+ * In the future, selectors such as :dir (http://mdn.io/:dir) will help us mitigate this.
+ */
+/**
+ * Takes a base box-model property - e.g. margin / border / padding - along with a default
+ * direction and value, and emits rules which apply the value to the
+ * "<base-property>-<default-direction>" property by default, but flips the direction
+ * when within an RTL context.
+ *
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, left, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 8px;
+ *     margin-left: 0;
+ *   }
+ * }
+ * ```
+ * whereas:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-box(margin, right, 8px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-right: 8px;
+ *
+ *   @include mdc-rtl {
+ *     margin-right: 0;
+ *     margin-left: 8px;
+ *   }
+ * }
+ * ```
+ *
+ * You can also pass a 4th optional $root-selector argument which will be forwarded to `mdc-rtl`,
+ * e.g. `@include mdc-rtl-reflexive-box(margin, left, 8px, ".mdc-component")`.
+ *
+ * Note that this function will always zero out the original value in an RTL context. If you're
+ * trying to flip the values, use mdc-rtl-reflexive-property().
+ */
+/**
+ * Takes a base property and emits rules that assign <base-property>-left to <left-value> and
+ * <base-property>-right to <right-value> in a LTR context, and vice versa in a RTL context.
+ * For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-property(margin, auto, 12px);
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   margin-left: auto;
+ *   margin-right: 12px;
+ *
+ *   @include mdc-rtl {
+ *     margin-left: 12px;
+ *     margin-right: auto;
+ *   }
+ * }
+ * ```
+ *
+ * A 4th optional $root-selector argument can be given, which will be passed to `mdc-rtl`.
+ */
+/**
+ * Takes an argument specifying a horizontal position property (either "left" or "right") as well
+ * as a value, and applies that value to the specified position in a LTR context, and flips it in a
+ * RTL context. For example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   @include mdc-rtl-reflexive-position(left, 0);
+ *   position: absolute;
+ * }
+ * ```
+ * is equivalent to:
+ *
+ * ```scss
+ *  .mdc-foo {
+ *    position: absolute;
+ *    left: 0;
+ *    right: initial;
+ *
+ *    @include mdc-rtl {
+ *      right: 0;
+ *      left: initial;
+ *    }
+ *  }
+ * ```
+ * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
+ */
+/*
+  Precomputed linear color channel values, for use in contrast calculations.
+  See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+
+  Algorithm, for c in 0 to 255:
+  f(c) {
+    c = c / 255;
+    return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  This lookup table is needed since there is no `pow` in SASS.
+*/
+/**
+ * Calculate the luminance for a color.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Calculate the contrast ratio between two colors.
+ * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ */
+/**
+ * Determine whether to use dark or light text on top of given color.
+ * Returns "dark" for dark text and "light" for light text.
+ */
+/*
+  Main theme colors.
+  If you're a user customizing your color scheme in SASS, these are probably the only variables you need to change.
+*/
+/* Indigo 500 */
+/* Pink A200 */
+/* White */
+/* Which set of text colors to use for each main theme color (light or dark) */
+/* Text colors according to light vs dark and text type */
+/* Primary text colors for each of the theme colors */
+/**
+ * Applies the correct theme color style to the specified property.
+ * $property is typically color or background-color, but can be any CSS property that accepts color values.
+ * $style should be one of the map keys in $mdc-theme-property-values (_variables.scss).
+ */
+/**
+ * Creates a rule to be used in MDC-Web components for dark theming, and applies the provided contents.
+ * Should provide the $root-selector option if applied to anything other than the root selector.
+ * When used with a modifier class, provide a second argument of `true` for the $compound parameter
+ * to specify that this should be attached as a compound class.
+ *
+ * Usage example:
+ *
+ * ```scss
+ * .mdc-foo {
+ *   color: black;
+ *
+ *   @include mdc-theme-dark {
+ *     color: white;
+ *   }
+ *
+ *   &__bar {
+ *     background: black;
+ *
+ *     @include mdc-theme-dark(".mdc-foo") {
+ *       background: white;
+ *     }
+ *   }
+ * }
+ *
+ * .mdc-foo--disabled {
+ *   opacity: .38;
+ *
+ *   @include mdc-theme-dark(".mdc-foo", true) {
+ *     opacity: .5;
+ *   }
+ * }
+ * ```
+ */
+/* TODO(sgomes): Figure out what to do about desktop font sizes. */
+/* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
+/**
+ * Applies styles to the different types of icons that can exist in toolbars.
+ * Both .mdc-toolbar__icon and .mdc-toolbar__icon--menu share all styles except for
+ * horizontal padding.
+ */
+.mdc-toolbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* @alternate */
+  background-color: #3f51b5;
+  background-color: var(--mdc-theme-primary, #3f51b5);
+  /* @alternate */
+  color: white;
+  color: var(--mdc-theme-text-primary-on-primary, white); }
+  .mdc-toolbar__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 64px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    @media (max-width: 959px) and (orientation: landscape) {
+      .mdc-toolbar__row {
+        min-height: 48px; } }
+    @media (max-width: 599px) {
+      .mdc-toolbar__row {
+        min-height: 56px; } }
+  .mdc-toolbar__section {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    min-width: 0;
+    height: 100%;
+    z-index: 1; }
+    .mdc-toolbar__section--align-start {
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-ordinal-group: 0;
+          -ms-flex-order: -1;
+              order: -1; }
+    .mdc-toolbar__section--align-end {
+      -webkit-box-pack: end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      -webkit-box-ordinal-group: 2;
+          -ms-flex-order: 1;
+              order: 1; }
+  .mdc-toolbar__title {
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-flex-item-align: center;
+        align-self: center;
+    margin: 0;
+    margin-left: 24px;
+    padding: 16px 0;
+    line-height: 1.5rem;
+    z-index: 1; }
+  .mdc-toolbar__icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 16px 8px;
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    text-decoration: none;
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-primary, white);
+    cursor: pointer; }
+  .mdc-toolbar__icon:last-child {
+    padding-right: 16px; }
+  .mdc-toolbar__icon--menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 16px;
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    text-decoration: none;
+    /* @alternate */
+    color: white;
+    color: var(--mdc-theme-text-primary-on-primary, white);
+    padding: 16px 24px;
+    cursor: pointer; }
+
+.mdc-toolbar__icon--menu + .mdc-toolbar__title {
+  margin-left: 8px; }
+
+@media (max-width: 599px) {
+  .mdc-toolbar__icon--menu {
+    padding: 16px; }
+  .mdc-toolbar__icon:last-child {
+    padding: 16px 8px; }
+  .mdc-toolbar__title {
+    margin-left: 16px !important; } }
+
+.mdc-toolbar--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+
+.mdc-toolbar--flexible {
+  --mdc-toolbar-ratio-to-extend-flexible: 4; }
+  .mdc-toolbar--flexible .mdc-toolbar__row:first-child {
+    height: 256px;
+    height: calc(64px * var(--mdc-toolbar-ratio-to-extend-flexible, 4)); }
+    @media (max-width: 599px) {
+      .mdc-toolbar--flexible .mdc-toolbar__row:first-child {
+        height: 224px;
+        height: calc(56px * var(--mdc-toolbar-ratio-to-extend-flexible, 4)); } }
+    .mdc-toolbar--flexible .mdc-toolbar__row:first-child::after {
+      position: absolute;
+      content: ""; }
+  .mdc-toolbar--flexible-default-behavior .mdc-toolbar__title {
+    font-family: Roboto, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 2.125rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 2.5rem;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    line-height: 1.5rem; }
+  .mdc-toolbar--flexible-default-behavior .mdc-toolbar__row:first-child::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+    opacity: 1; }
+  .mdc-toolbar--flexible-default-behavior.mdc-toolbar--flexible-space-minimized .mdc-toolbar__row:first-child::after {
+    opacity: 0; }
+  .mdc-toolbar--flexible-default-behavior.mdc-toolbar--flexible-space-minimized .mdc-toolbar__title {
+    font-weight: 500; }
+
+.mdc-toolbar--waterfall.mdc-toolbar--fixed {
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+  -webkit-transition: -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow; }
+  .mdc-toolbar--waterfall.mdc-toolbar--fixed.mdc-toolbar--flexible-space-minimized {
+    -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+  .mdc-toolbar--waterfall.mdc-toolbar--fixed.mdc-toolbar--fixed-lastrow-only.mdc-toolbar--flexible-space-minimized {
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12); }
+  .mdc-toolbar--waterfall.mdc-toolbar--fixed.mdc-toolbar--fixed-lastrow-only.mdc-toolbar--fixed-at-last-row {
+    -webkit-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
+
+.mdc-toolbar-fixed-adjust {
+  margin-top: 64px; }
+  @media (max-width: 959px) and (orientation: landscape) {
+    .mdc-toolbar-fixed-adjust {
+      margin-top: 48px; } }
+  @media (max-width: 599px) {
+    .mdc-toolbar-fixed-adjust {
+      margin-top: 56px; } }
+
+.mdc-toolbar__section--shrink-to-fit {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none; }
