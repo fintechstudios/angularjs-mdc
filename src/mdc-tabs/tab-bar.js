@@ -8,14 +8,16 @@ import {MDCTabBarFoundation} from '@material/tabs';
  *
  * @param {string} [indicator] Color of indicator, "primary" or "accent"
  * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
+ * @param {string} [ngModel] Assignable AngularJS expression to bind selected tab to
  */
 class MdcTabBarController {
   constructor($element, $window) {
-    this.activations = 0;
     this.window = $window;
     this.elem = $element;
     this.root_ = this.elem[0];
-    this.isInitialized = false;
+    this.selected_ = undefined;
+    this.initDone_ = false;
+    this.doBubble = true;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -36,13 +38,31 @@ class MdcTabBarController {
     this.foundation_ = this.getDefaultFoundation();
     this.elem.ready(() => {
       this.foundation_.init();
-      this.isInitialized = true;
-      if (this.toActivate) {
-        this.setActiveTab_(this.toActivate, false);
-      } else {
-        this.tabs[0].activate(true);
+      this.initDone_ = true;
+
+      if (this.selected_) { // if select is specified
+        this.ngModel = this.selected_;
+      } else if (this.toActivate) { // if an active tab is specified
+        this.setActiveTab_(this.toActivate, true);
+      } else { // otherwise select the first one
+        this.ngModel = 0;
+        this.tabs[0]._active = true;
       }
     });
+  }
+
+  get ngModel() {
+    return this.selected_;
+  }
+
+  set ngModel(index) {
+    this.selected_ = parseInt(index);
+    if (isNaN(this.selected_)) {
+      this.selected_ = undefined;
+    }
+    if (this.initDone_ && this.selected_ !== undefined) {
+      this.activeTabIndex = this.selected_;
+    }
   }
 
   $onChanges(changesObj) {
@@ -69,8 +89,8 @@ class MdcTabBarController {
     return this.tabs[activeIndex];
   }
 
-  set activeTab(tab) {
-    if (this.isInitialized) {
+  activate(tab) {
+    if (this.initDone_) {
       this.setActiveTab_(tab, false);
     } else { // shelve tab activation while foundation initializes
       this.toActivate = tab;
@@ -82,7 +102,7 @@ class MdcTabBarController {
   }
 
   set activeTabIndex(index) {
-    this.setActiveTabIndex_(index, false);
+    this.setActiveTabIndex_(index, true);
   }
 
   getDefaultFoundation() {
@@ -96,11 +116,15 @@ class MdcTabBarController {
       getOffsetWidth: () => this.root_.offsetWidth,
       setStyleForIndicator: (propertyName, value) => this.indicator_.style.setProperty(propertyName, value),
       getOffsetWidthForIndicator: () => this.indicator_.offsetWidth,
-      notifyChange: (evtData) => this.emit(MDCTabBarFoundation.strings.CHANGE_EVENT, evtData),
+      notifyChange: (evtData) => {
+        if (this.scroller) {
+          this.scroller.scrollTo(this.foundation_.getActiveTabIndex());
+        }
+      },
       getNumberOfTabs: () => this.tabs.length,
-      isTabActiveAtIndex: (index) => this.tabs[index].active,
+      isTabActiveAtIndex: (index) => this.tabs[index]._active,
       setTabActiveAtIndex: (index, isActive) => {
-        this.tabs[index].activate(isActive);
+        this.tabs[index]._active = isActive;
       },
       isDefaultPreventedOnClickForTabAtIndex: (index) => this.tabs[index].preventDefaultOnClick,
       setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) => {
@@ -110,10 +134,6 @@ class MdcTabBarController {
       getComputedWidthForTabAtIndex: (index) => this.tabs[index].computedWidth,
       getComputedLeftForTabAtIndex: (index) => this.tabs[index].computedLeft,
     });
-  }
-
-  setActiveTabIndex_(activeTabIndex, notifyChange) {
-    this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
   }
 
   layout() {
@@ -127,6 +147,13 @@ class MdcTabBarController {
     }
     this.setActiveTabIndex_(indexOfTab, notifyChange);
   }
+
+  setActiveTabIndex_(activeTabIndex, notifyChange) {
+    this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
+    if (this.ngModelCtrl) {
+      this.ngModelCtrl.$setViewValue(activeTabIndex);
+    }
+  }
 }
 
 
@@ -136,9 +163,11 @@ angular
     controller: MdcTabBarController,
     require: {
       scroller: '^^?mdcTabBarScroller',
+      ngModelCtrl: '?ngModel',
     },
     bindings: {
       indicator: '@',
       variant: '@',
+      ngModel: '=?',
     },
   });

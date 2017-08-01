@@ -21,6 +21,9 @@ class MdcTabController {
     this.elem.ready(() => {
       this.foundation_.init();
       this.ripple_ = new MDCRipple(this.root_);
+      if (this.willBeActive) {
+        this._active = true;
+      }
     });
   }
 
@@ -30,16 +33,12 @@ class MdcTabController {
     }
   }
 
-  $postLink() {
-    if (this.active) {
-      this.tabBar.activeTab = this;
-    }
-  }
-
   $onChanges(changesObj) {
-    if (changesObj.active && !changesObj.active.isFirstChange()) {
+    if (changesObj.active) {
+      this._active = changesObj.active.currentValue;
       if (changesObj.active.currentValue) {
-        this.tabBar.activeTab = this;
+        // on initialize, sync active state with tabbar
+        this.notifyTabBar();
       }
     }
   }
@@ -53,12 +52,6 @@ class MdcTabController {
     this.elem.toggleClass('mdc-tab--with-icon-and-text', toggle);
   }
 
-  notifySelected() {
-    if (this.tabBar) {
-      this.tabBar.activeTab = this;
-    }
-  }
-
   get computedWidth() {
     return this.foundation_.getComputedWidth();
   }
@@ -67,21 +60,16 @@ class MdcTabController {
     return this.foundation_.getComputedLeft();
   }
 
-  get active() {
-    return this.foundation_.isActive();
+  get _active() {
+    return this.foundation_ ? this.foundation_.isActive() : this.willBeActive;
   }
 
-  set active(isActive) {
+  set _active(isActive) {
     if (this.foundation_) {
-      if (this.tabBar && isActive && !this.active) {
-        this.tabBar.activeTab = this;
-      }
-      this.activate(isActive);
+      this.foundation_.setActive(isActive);
+    } else {
+      this.willBeActive = isActive;
     }
-  }
-
-  activate(isActive) {
-    this.foundation_.setActive(isActive);
   }
 
   get preventDefaultOnClick() {
@@ -92,6 +80,17 @@ class MdcTabController {
     this.foundation_.setPreventDefaultOnClick(preventDefaultOnClick);
   }
 
+  handleClick() {
+    this._active = true;
+    this.notifyTabBar();
+  }
+
+  notifyTabBar() {
+    if (this.tabBar) {
+      this.tabBar.activate(this);
+    }
+  }
+
   getDefaultFoundation() {
     return new MDCTabFoundation({
       addClass: (className) => this.root_.classList.add(className),
@@ -100,7 +99,7 @@ class MdcTabController {
       deregisterInteractionHandler: (type, handler) => this.root_.removeEventListener(type, handler),
       getOffsetWidth: () => this.root_.offsetWidth,
       getOffsetLeft: () => this.root_.offsetLeft,
-      notifySelected: () => this.notifySelected(),
+      notifySelected: () => this.handleClick(),
     });
   }
 
@@ -128,7 +127,7 @@ angular
       tabBar: '^^?mdcTabBar',
     },
     bindings: {
-      active: '=?',
+      active: '<?',
     },
   })
   .component('mdcTabText', {

@@ -9,13 +9,14 @@ import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
  *
  */
 class MdcTabBarScrollerController {
-  constructor($element, $window) {
+  constructor($element, $window, $timeout) {
     this.window = $window;
     this.elem = $element;
     this.root_ = this.elem[0];
 
     this.elem.ready(() => {
       this.foundation_.init();
+      $timeout(() => this.scrollToActive(), 1);
     });
   }
 
@@ -25,12 +26,6 @@ class MdcTabBarScrollerController {
     this.backIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
 
     this.foundation_ = this.getDefaultFoundation();
-  }
-
-  $onChanges(changesObj) {
-    if (changesObj.active) {
-      this.elem.triggerHandler('click');
-    }
   }
 
   $onDestroy() {
@@ -44,6 +39,14 @@ class MdcTabBarScrollerController {
   setTabBar(tabBar) {
     this.tabBar_ = tabBar;
     this.tabBarEl_ = this.tabBar_.root_;
+  }
+
+  scrollTo(index) {
+    this.foundation_.scrollToTabAtIndex_(index);
+  }
+
+  scrollToActive() {
+    this.scrollTo(this.tabBar.activeTabIndex);
   }
 
   getDefaultFoundation() {
@@ -97,8 +100,6 @@ angular
   .module('mdc.tabs')
   .component('mdcTabBarScroller', {
     controller: MdcTabBarScrollerController,
-    bindings: {
-    },
     transclude: true,
     template: require('raw-loader!./tab-bar-scroller.html'),
   });
