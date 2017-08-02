@@ -10546,6 +10546,7 @@ var MdcTabBarController = function () {
     this.root_ = this.elem[0];
     this.selected_ = undefined;
     this.initDone_ = false;
+    this.elemReady = false;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -10554,6 +10555,26 @@ var MdcTabBarController = function () {
   }
 
   _createClass(MdcTabBarController, [{
+    key: 'init',
+    value: function init() {
+      if (!this.initDone_ && this.elemReady && this.tabs.length > 0) {
+        this.foundation_.init();
+        this.initDone_ = true;
+
+        if (this.selected_) {
+          // if select is specified
+          this.ngModel = this.selected_;
+        } else if (this.toActivate) {
+          // if an active tab is specified
+          this.setActiveTab_(this.toActivate, true);
+        } else {
+          // otherwise select the first one
+          this.ngModel = 0;
+          this.tabs[0]._active = true;
+        }
+      }
+    }
+  }, {
     key: 'addTab',
     value: function addTab(tab) {
       var htmlIndex = Array.prototype.indexOf.call(this.elem.children(), tab.root_);
@@ -10570,6 +10591,8 @@ var MdcTabBarController = function () {
           this.activeTabIndex = activeTabIndex;
         }
         this.layout();
+      } else {
+        this.init();
       }
     }
   }, {
@@ -10588,7 +10611,13 @@ var MdcTabBarController = function () {
         }
       }
 
-      this.tabs.splice(indexOfTab, 1);
+      if (this.tabs.length === 1) {
+        // removing the last tab
+        this.tabs_ = [];
+        return;
+      } else {
+        this.tabs.splice(indexOfTab, 1);
+      }
 
       if (this.initDone_) {
         this.layout();
@@ -10611,21 +10640,10 @@ var MdcTabBarController = function () {
       }
 
       this.foundation_ = this.getDefaultFoundation();
+      this.init(); // if the element is already ready
       this.elem.ready(function () {
-        _this.foundation_.init();
-        _this.initDone_ = true;
-
-        if (_this.selected_) {
-          // if select is specified
-          _this.ngModel = _this.selected_;
-        } else if (_this.toActivate) {
-          // if an active tab is specified
-          _this.setActiveTab_(_this.toActivate, true);
-        } else {
-          // otherwise select the first one
-          _this.ngModel = 0;
-          _this.tabs[0]._active = true;
-        }
+        _this.elemReady = true;
+        _this.init();
       });
     }
   }, {
@@ -10643,6 +10661,7 @@ var MdcTabBarController = function () {
   }, {
     key: '$onDestroy',
     value: function $onDestroy() {
+      this.tabs_ = [];
       if (this.scroller) {
         this.scroller.removeTabBar();
       }
@@ -10815,9 +10834,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  */
 var MdcTabBarScrollerController = function () {
-  MdcTabBarScrollerController.$inject = ['$element', '$window', '$timeout'];
+  MdcTabBarScrollerController.$inject = ['$element', '$window'];
 
-  function MdcTabBarScrollerController($element, $window, $timeout) {
+  function MdcTabBarScrollerController($element, $window) {
     var _this = this;
 
     _classCallCheck(this, MdcTabBarScrollerController);
@@ -10825,38 +10844,52 @@ var MdcTabBarScrollerController = function () {
     this.window = $window;
     this.elem = $element;
     this.root_ = this.elem[0];
+    this.initDone_ = false;
+    this.elemReady = false;
 
     this.elem.ready(function () {
-      _this.foundation_.init();
-      $timeout(function () {
-        return _this.scrollToActive();
-      }, 1);
+      _this.elemReady = true;
+      _this.init();
     });
   }
 
   _createClass(MdcTabBarScrollerController, [{
+    key: 'init',
+    value: function init() {
+      if (!this.initDone_ && this.elemReady && this.tabBar) {
+        this.foundation_ = this.getDefaultFoundation();
+        this.foundation_.init();
+        this.initDone_ = true;
+      }
+    }
+  }, {
     key: '$postLink',
     value: function $postLink() {
       this.scrollFrame_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.FRAME_SELECTOR);
       this.forwardIndicator_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
       this.backIndicator_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
 
-      this.foundation_ = this.getDefaultFoundation();
+      this.init();
     }
   }, {
     key: '$onDestroy',
     value: function $onDestroy() {
-      this.foundation_.destroy();
+      if (this.foundation_) {
+        this.foundation_.destroy();
+      }
     }
   }, {
     key: 'setTabBar',
     value: function setTabBar(tabBar) {
       this.tabBar_ = tabBar;
       this.tabBarEl_ = this.tabBar_.root_;
+      this.init();
     }
   }, {
     key: 'removeTabBar',
     value: function removeTabBar() {
+      this.foundation_.destroy();
+      this.initDone_ = false;
       this.tabBar_ = undefined;
       this.tabBarEl_ = undefined;
     }
@@ -10864,11 +10897,6 @@ var MdcTabBarScrollerController = function () {
     key: 'scrollTo',
     value: function scrollTo(index) {
       this.foundation_.scrollToTabAtIndex_(index);
-    }
-  }, {
-    key: 'scrollToActive',
-    value: function scrollToActive() {
-      this.scrollTo(this.tabBar.activeTabIndex);
     }
   }, {
     key: 'getDefaultFoundation',
