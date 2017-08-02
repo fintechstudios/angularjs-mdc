@@ -17,7 +17,6 @@ class MdcTabBarController {
     this.root_ = this.elem[0];
     this.selected_ = undefined;
     this.initDone_ = false;
-    this.doBubble = true;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -26,7 +25,47 @@ class MdcTabBarController {
   }
 
   addTab(tab) {
-    this.tabs_.push(tab);
+    const htmlIndex = Array.prototype.indexOf.call(this.elem.children(), tab.root_);
+    let activeTabIndex = -1;
+    if (this.initDone_) {
+      activeTabIndex = this.activeTabIndex;
+    }
+
+    this.tabs.splice(htmlIndex, 0, tab);
+
+    if (this.initDone_) {
+      if (htmlIndex <= activeTabIndex) {
+        activeTabIndex += 1;
+        this.activeTabIndex = activeTabIndex;
+      }
+      this.layout();
+    }
+  }
+
+  removeTab(tab) {
+    const indexOfTab = this.tabs.indexOf(tab);
+    if (indexOfTab < 0) { // tab already removed
+      return;
+    }
+    let activeTabIndex = -1;
+    if (this.initDone_) {
+      activeTabIndex = this.activeTabIndex;
+      if (activeTabIndex === indexOfTab) {
+        this.tabs[indexOfTab].active_ = false;
+      }
+    }
+
+    this.tabs.splice(indexOfTab, 1);
+
+    if (this.initDone_) {
+      this.layout();
+      if (activeTabIndex === 0) {
+        this.foundation_.activeTabIndex_ = -1;
+        this.activeTabIndex = 0;
+      } else if (indexOfTab <= activeTabIndex) {
+        this.activeTabIndex = activeTabIndex - 1;
+      }
+    }
   }
 
   $postLink() {
@@ -77,6 +116,9 @@ class MdcTabBarController {
   }
 
   $onDestroy() {
+    if (this.scroller) {
+      this.scroller.removeTabBar();
+    }
     this.foundation_.destroy();
   }
 
@@ -124,7 +166,9 @@ class MdcTabBarController {
       getNumberOfTabs: () => this.tabs.length,
       isTabActiveAtIndex: (index) => this.tabs[index]._active,
       setTabActiveAtIndex: (index, isActive) => {
-        this.tabs[index]._active = isActive;
+        if (this.tabs[index]) {
+          this.tabs[index]._active = isActive;
+        }
       },
       isDefaultPreventedOnClickForTabAtIndex: (index) => this.tabs[index].preventDefaultOnClick,
       setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) => {

@@ -44,6 +44,9 @@ class MdcTabController {
   }
 
   $onDestroy() {
+    if (this.tabBar) {
+      this.tabBar.removeTab(this);
+    }
     this.ripple_.destroy();
     this.foundation_.destroy();
   }
@@ -116,6 +119,10 @@ class MdcTabController {
 class MdcTabTextController {
   $postLink() {
     this.tab.hasMdcText(true);
+  }
+
+  $onDestroy() {
+    this.tab.hasMdcText(false);
   }
 }
 

@@ -41,6 +41,11 @@ class MdcTabBarScrollerController {
     this.tabBarEl_ = this.tabBar_.root_;
   }
 
+  removeTabBar() {
+    this.tabBar_ = undefined;
+    this.tabBarEl_ = undefined;
+  }
+
   scrollTo(index) {
     this.foundation_.scrollToTabAtIndex_(index);
   }
