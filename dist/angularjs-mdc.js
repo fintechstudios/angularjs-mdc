@@ -9519,7 +9519,7 @@ var MdcTabController = function () {
         this._active = changesObj.active.currentValue;
         if (changesObj.active.currentValue) {
           // on initialize, sync active state with tabbar
-          this.notifyTabBar();
+          this.notifyTabBar(true);
         }
       }
     }
@@ -9546,8 +9546,10 @@ var MdcTabController = function () {
   }, {
     key: 'notifyTabBar',
     value: function notifyTabBar() {
+      var notifyScroller = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
       if (this.tabBar) {
-        this.tabBar.activate(this);
+        this.tabBar.activate(this, notifyScroller);
       }
     }
   }, {
@@ -10547,6 +10549,7 @@ var MdcTabBarController = function () {
     this.selected_ = undefined;
     this.initDone_ = false;
     this.elemReady = false;
+    this.needsNotify = false;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -10572,6 +10575,9 @@ var MdcTabBarController = function () {
           this.ngModel = 0;
           this.tabs[0]._active = true;
         }
+      }
+      if (this.needsNotify) {
+        this.notifyScroller();
       }
     }
   }, {
@@ -10670,8 +10676,10 @@ var MdcTabBarController = function () {
   }, {
     key: 'activate',
     value: function activate(tab) {
+      var notifyScroller = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
       if (this.initDone_) {
-        this.setActiveTab_(tab, false);
+        this.setActiveTab_(tab, notifyScroller);
       } else {
         // shelve tab activation while foundation initializes
         this.toActivate = tab;
@@ -10706,10 +10714,9 @@ var MdcTabBarController = function () {
         getOffsetWidthForIndicator: function getOffsetWidthForIndicator() {
           return _this2.indicator_.offsetWidth;
         },
-        notifyChange: function notifyChange(evtData) {
-          if (_this2.scroller) {
-            _this2.scroller.scrollTo(_this2.foundation_.getActiveTabIndex());
-          }
+        notifyChange: function notifyChange(_ref) {
+          var activeTabIndex = _ref.activeTabIndex;
+          return _this2.notifyScroller(activeTabIndex);
         },
         getNumberOfTabs: function getNumberOfTabs() {
           return _this2.tabs.length;
@@ -10740,6 +10747,19 @@ var MdcTabBarController = function () {
       });
     }
   }, {
+    key: 'notifyScroller',
+    value: function notifyScroller() {
+      var activeTabIndex = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+
+      if (this.scroller && this.needsNotify) {
+        if (activeTabIndex === undefined) {
+          activeTabIndex = this.foundation_.getActiveTabIndex();
+        }
+        this.scroller.scrollTo(activeTabIndex);
+        this.needsNotify = false;
+      }
+    }
+  }, {
     key: 'layout',
     value: function layout() {
       this.foundation_.layout();
@@ -10756,6 +10776,7 @@ var MdcTabBarController = function () {
   }, {
     key: 'setActiveTabIndex_',
     value: function setActiveTabIndex_(activeTabIndex, notifyChange) {
+      this.needsNotify = notifyChange;
       this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
       if (this.ngModelCtrl) {
         this.ngModelCtrl.$setViewValue(activeTabIndex);
@@ -10768,7 +10789,7 @@ var MdcTabBarController = function () {
     },
     set: function set(index) {
       this.selected_ = parseInt(index);
-      if (isNaN(this.selected_)) {
+      if (isNaN(this.selected_) || this.selected_ < 0 || this.selected_ >= this.tabs.length) {
         this.selected_ = undefined;
       }
       if (this.initDone_ && this.selected_ !== undefined) {
@@ -10834,18 +10855,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  */
 var MdcTabBarScrollerController = function () {
-  MdcTabBarScrollerController.$inject = ['$element', '$window'];
+  MdcTabBarScrollerController.$inject = ['$element', '$window', '$timeout'];
 
-  function MdcTabBarScrollerController($element, $window) {
+  function MdcTabBarScrollerController($element, $window, $timeout) {
     var _this = this;
 
     _classCallCheck(this, MdcTabBarScrollerController);
 
     this.window = $window;
     this.elem = $element;
+    this.timeout = $timeout;
     this.root_ = this.elem[0];
     this.initDone_ = false;
     this.elemReady = false;
+    this.willScrollIndex_ = undefined;
 
     this.elem.ready(function () {
       _this.elemReady = true;
@@ -10860,6 +10883,9 @@ var MdcTabBarScrollerController = function () {
         this.foundation_ = this.getDefaultFoundation();
         this.foundation_.init();
         this.initDone_ = true;
+        if (this.willScrollIndex_) {
+          this.scrollTo(this.willScrollIndex_);
+        }
       }
     }
   }, {
@@ -10896,85 +10922,93 @@ var MdcTabBarScrollerController = function () {
   }, {
     key: 'scrollTo',
     value: function scrollTo(index) {
-      this.foundation_.scrollToTabAtIndex_(index);
+      var _this2 = this;
+
+      if (this.initDone_) {
+        this.timeout(function () {
+          return _this2.foundation_.scrollToTabAtIndex_(index);
+        }, 1);
+      } else {
+        this.willScrollIndex_ = index;
+      }
     }
   }, {
     key: 'getDefaultFoundation',
     value: function getDefaultFoundation() {
-      var _this2 = this;
+      var _this3 = this;
 
       return new _tabBarScroller.MDCTabBarScrollerFoundation({
         addClass: function addClass(className) {
-          return _this2.root_.classList.add(className);
+          return _this3.root_.classList.add(className);
         },
         removeClass: function removeClass(className) {
-          return _this2.root_.classList.remove(className);
+          return _this3.root_.classList.remove(className);
         },
         eventTargetHasClass: function eventTargetHasClass(target, className) {
           return target.classList.contains(className);
         },
         addClassToForwardIndicator: function addClassToForwardIndicator(className) {
-          return _this2.forwardIndicator_.classList.add(className);
+          return _this3.forwardIndicator_.classList.add(className);
         },
         removeClassFromForwardIndicator: function removeClassFromForwardIndicator(className) {
-          return _this2.forwardIndicator_.classList.remove(className);
+          return _this3.forwardIndicator_.classList.remove(className);
         },
         addClassToBackIndicator: function addClassToBackIndicator(className) {
-          return _this2.backIndicator_.classList.add(className);
+          return _this3.backIndicator_.classList.add(className);
         },
         removeClassFromBackIndicator: function removeClassFromBackIndicator(className) {
-          return _this2.backIndicator_.classList.remove(className);
+          return _this3.backIndicator_.classList.remove(className);
         },
         isRTL: function isRTL() {
-          return getComputedStyle(_this2.root_).getPropertyValue('direction') === 'rtl';
+          return getComputedStyle(_this3.root_).getPropertyValue('direction') === 'rtl';
         },
         registerBackIndicatorClickHandler: function registerBackIndicatorClickHandler(handler) {
-          return _this2.backIndicator_.addEventListener('click', handler);
+          return _this3.backIndicator_.addEventListener('click', handler);
         },
         deregisterBackIndicatorClickHandler: function deregisterBackIndicatorClickHandler(handler) {
-          return _this2.backIndicator_.removeEventListener('click', handler);
+          return _this3.backIndicator_.removeEventListener('click', handler);
         },
         registerForwardIndicatorClickHandler: function registerForwardIndicatorClickHandler(handler) {
-          return _this2.forwardIndicator_.addEventListener('click', handler);
+          return _this3.forwardIndicator_.addEventListener('click', handler);
         },
         deregisterForwardIndicatorClickHandler: function deregisterForwardIndicatorClickHandler(handler) {
-          return _this2.forwardIndicator_.removeEventListener('click', handler);
+          return _this3.forwardIndicator_.removeEventListener('click', handler);
         },
         registerCapturedInteractionHandler: function registerCapturedInteractionHandler(evt, handler) {
-          return _this2.root_.addEventListener(evt, handler, true);
+          return _this3.root_.addEventListener(evt, handler, true);
         },
         deregisterCapturedInteractionHandler: function deregisterCapturedInteractionHandler(evt, handler) {
-          return _this2.root_.removeEventListener(evt, handler, true);
+          return _this3.root_.removeEventListener(evt, handler, true);
         },
         registerWindowResizeHandler: function registerWindowResizeHandler(handler) {
-          return _this2.window.addEventListener('resize', handler);
+          return _this3.window.addEventListener('resize', handler);
         },
         deregisterWindowResizeHandler: function deregisterWindowResizeHandler(handler) {
-          return _this2.window.removeEventListener('resize', handler);
+          return _this3.window.removeEventListener('resize', handler);
         },
         getNumberOfTabs: function getNumberOfTabs() {
-          return _this2.tabBar.tabs.length;
+          return _this3.tabBar.tabs.length;
         },
         getComputedWidthForTabAtIndex: function getComputedWidthForTabAtIndex(index) {
-          return _this2.tabBar.tabs[index].computedWidth;
+          return _this3.tabBar.tabs[index].computedWidth;
         },
         getComputedLeftForTabAtIndex: function getComputedLeftForTabAtIndex(index) {
-          return _this2.tabBar.tabs[index].computedLeft;
+          return _this3.tabBar.tabs[index].computedLeft;
         },
         getOffsetWidthForScrollFrame: function getOffsetWidthForScrollFrame() {
-          return _this2.scrollFrame_.offsetWidth;
+          return _this3.scrollFrame_.offsetWidth;
         },
         getScrollLeftForScrollFrame: function getScrollLeftForScrollFrame() {
-          return _this2.scrollFrame_.scrollLeft;
+          return _this3.scrollFrame_.scrollLeft;
         },
         setScrollLeftForScrollFrame: function setScrollLeftForScrollFrame(scrollLeftAmount) {
-          return _this2.scrollFrame_.scrollLeft = scrollLeftAmount;
+          return _this3.scrollFrame_.scrollLeft = scrollLeftAmount;
         },
         getOffsetWidthForTabBar: function getOffsetWidthForTabBar() {
-          return _this2.tabBarEl_.offsetWidth;
+          return _this3.tabBarEl_.offsetWidth;
         },
         setTransformStyleForTabBar: function setTransformStyleForTabBar(value) {
-          _this2.tabBarEl_.style.setProperty((0, _animation.getCorrectPropertyName)(_this2.window, 'transform'), value);
+          _this3.tabBarEl_.style.setProperty((0, _animation.getCorrectPropertyName)(_this3.window, 'transform'), value);
         },
         getOffsetLeftForEventTarget: function getOffsetLeftForEventTarget(target) {
           return target.offsetLeft;
