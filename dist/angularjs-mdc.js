@@ -9526,6 +9526,9 @@ var MdcTabController = function () {
   }, {
     key: '$onDestroy',
     value: function $onDestroy() {
+      if (this.tabBar) {
+        this.tabBar.removeTab(this);
+      }
       this.ripple_.destroy();
       this.foundation_.destroy();
     }
@@ -9632,6 +9635,11 @@ var MdcTabTextController = function () {
     key: '$postLink',
     value: function $postLink() {
       this.tab.hasMdcText(true);
+    }
+  }, {
+    key: '$onDestroy',
+    value: function $onDestroy() {
+      this.tab.hasMdcText(false);
     }
   }]);
 
@@ -10538,7 +10546,6 @@ var MdcTabBarController = function () {
     this.root_ = this.elem[0];
     this.selected_ = undefined;
     this.initDone_ = false;
-    this.doBubble = true;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -10549,7 +10556,49 @@ var MdcTabBarController = function () {
   _createClass(MdcTabBarController, [{
     key: 'addTab',
     value: function addTab(tab) {
-      this.tabs_.push(tab);
+      var htmlIndex = Array.prototype.indexOf.call(this.elem.children(), tab.root_);
+      var activeTabIndex = -1;
+      if (this.initDone_) {
+        activeTabIndex = this.activeTabIndex;
+      }
+
+      this.tabs.splice(htmlIndex, 0, tab);
+
+      if (this.initDone_) {
+        if (htmlIndex <= activeTabIndex) {
+          activeTabIndex += 1;
+          this.activeTabIndex = activeTabIndex;
+        }
+        this.layout();
+      }
+    }
+  }, {
+    key: 'removeTab',
+    value: function removeTab(tab) {
+      var indexOfTab = this.tabs.indexOf(tab);
+      if (indexOfTab < 0) {
+        // tab already removed
+        return;
+      }
+      var activeTabIndex = -1;
+      if (this.initDone_) {
+        activeTabIndex = this.activeTabIndex;
+        if (activeTabIndex === indexOfTab) {
+          this.tabs[indexOfTab].active_ = false;
+        }
+      }
+
+      this.tabs.splice(indexOfTab, 1);
+
+      if (this.initDone_) {
+        this.layout();
+        if (activeTabIndex === 0) {
+          this.foundation_.activeTabIndex_ = -1;
+          this.activeTabIndex = 0;
+        } else if (indexOfTab <= activeTabIndex) {
+          this.activeTabIndex = activeTabIndex - 1;
+        }
+      }
     }
   }, {
     key: '$postLink',
@@ -10594,6 +10643,9 @@ var MdcTabBarController = function () {
   }, {
     key: '$onDestroy',
     value: function $onDestroy() {
+      if (this.scroller) {
+        this.scroller.removeTabBar();
+      }
       this.foundation_.destroy();
     }
   }, {
@@ -10647,7 +10699,9 @@ var MdcTabBarController = function () {
           return _this2.tabs[index]._active;
         },
         setTabActiveAtIndex: function setTabActiveAtIndex(index, isActive) {
-          _this2.tabs[index]._active = isActive;
+          if (_this2.tabs[index]) {
+            _this2.tabs[index]._active = isActive;
+          }
         },
         isDefaultPreventedOnClickForTabAtIndex: function isDefaultPreventedOnClickForTabAtIndex(index) {
           return _this2.tabs[index].preventDefaultOnClick;
@@ -10799,6 +10853,12 @@ var MdcTabBarScrollerController = function () {
     value: function setTabBar(tabBar) {
       this.tabBar_ = tabBar;
       this.tabBarEl_ = this.tabBar_.root_;
+    }
+  }, {
+    key: 'removeTabBar',
+    value: function removeTabBar() {
+      this.tabBar_ = undefined;
+      this.tabBarEl_ = undefined;
     }
   }, {
     key: 'scrollTo',
