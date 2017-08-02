@@ -38,7 +38,7 @@ class MdcTabController {
       this._active = changesObj.active.currentValue;
       if (changesObj.active.currentValue) {
         // on initialize, sync active state with tabbar
-        this.notifyTabBar();
+        this.notifyTabBar(true);
       }
     }
   }
@@ -88,9 +88,9 @@ class MdcTabController {
     this.notifyTabBar();
   }
 
-  notifyTabBar() {
+  notifyTabBar(notifyScroller = false) {
     if (this.tabBar) {
-      this.tabBar.activate(this);
+      this.tabBar.activate(this, notifyScroller);
     }
   }
 

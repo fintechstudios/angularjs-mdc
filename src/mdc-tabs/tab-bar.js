@@ -18,6 +18,7 @@ class MdcTabBarController {
     this.selected_ = undefined;
     this.initDone_ = false;
     this.elemReady = false;
+    this.needsNotify = false;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
@@ -38,6 +39,9 @@ class MdcTabBarController {
         this.ngModel = 0;
         this.tabs[0]._active = true;
       }
+    }
+    if (this.needsNotify) {
+      this.notifyScroller();
     }
   }
 
@@ -112,7 +116,7 @@ class MdcTabBarController {
 
   set ngModel(index) {
     this.selected_ = parseInt(index);
-    if (isNaN(this.selected_)) {
+    if (isNaN(this.selected_) || this.selected_ < 0 || this.selected_ >= this.tabs.length) {
       this.selected_ = undefined;
     }
     if (this.initDone_ && this.selected_ !== undefined) {
@@ -148,9 +152,9 @@ class MdcTabBarController {
     return this.tabs[activeIndex];
   }
 
-  activate(tab) {
+  activate(tab, notifyScroller = false) {
     if (this.initDone_) {
-      this.setActiveTab_(tab, false);
+      this.setActiveTab_(tab, notifyScroller);
     } else { // shelve tab activation while foundation initializes
       this.toActivate = tab;
     }
@@ -175,11 +179,7 @@ class MdcTabBarController {
       getOffsetWidth: () => this.root_.offsetWidth,
       setStyleForIndicator: (propertyName, value) => this.indicator_.style.setProperty(propertyName, value),
       getOffsetWidthForIndicator: () => this.indicator_.offsetWidth,
-      notifyChange: (evtData) => {
-        if (this.scroller) {
-          this.scroller.scrollTo(this.foundation_.getActiveTabIndex());
-        }
-      },
+      notifyChange: ({activeTabIndex}) => this.notifyScroller(activeTabIndex),
       getNumberOfTabs: () => this.tabs.length,
       isTabActiveAtIndex: (index) => this.tabs[index]._active,
       setTabActiveAtIndex: (index, isActive) => {
@@ -197,6 +197,16 @@ class MdcTabBarController {
     });
   }
 
+  notifyScroller(activeTabIndex = undefined) {
+    if (this.scroller && this.needsNotify) {
+      if (activeTabIndex === undefined) {
+        activeTabIndex = this.foundation_.getActiveTabIndex();
+      }
+      this.scroller.scrollTo(activeTabIndex);
+      this.needsNotify = false;
+    }
+  }
+
   layout() {
     this.foundation_.layout();
   }
@@ -210,6 +220,7 @@ class MdcTabBarController {
   }
 
   setActiveTabIndex_(activeTabIndex, notifyChange) {
+    this.needsNotify = notifyChange;
     this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
     if (this.ngModelCtrl) {
       this.ngModelCtrl.$setViewValue(activeTabIndex);

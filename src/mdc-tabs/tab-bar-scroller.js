@@ -9,12 +9,14 @@ import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
  *
  */
 class MdcTabBarScrollerController {
-  constructor($element, $window) {
+  constructor($element, $window, $timeout) {
     this.window = $window;
     this.elem = $element;
+    this.timeout = $timeout;
     this.root_ = this.elem[0];
     this.initDone_ = false;
     this.elemReady = false;
+    this.willScrollIndex_ = undefined;
 
     this.elem.ready(() => {
       this.elemReady = true;
@@ -27,6 +29,9 @@ class MdcTabBarScrollerController {
       this.foundation_ = this.getDefaultFoundation();
       this.foundation_.init();
       this.initDone_ = true;
+      if (this.willScrollIndex_) {
+        this.scrollTo(this.willScrollIndex_);
+      }
     }
   }
 
@@ -62,7 +67,11 @@ class MdcTabBarScrollerController {
   }
 
   scrollTo(index) {
-    this.foundation_.scrollToTabAtIndex_(index);
+    if (this.initDone_) {
+      this.timeout(() => this.foundation_.scrollToTabAtIndex_(index), 1);
+    } else {
+      this.willScrollIndex_ = index;
+    }
   }
 
   getDefaultFoundation() {
