@@ -9,15 +9,25 @@ import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
  *
  */
 class MdcTabBarScrollerController {
-  constructor($element, $window, $timeout) {
+  constructor($element, $window) {
     this.window = $window;
     this.elem = $element;
     this.root_ = this.elem[0];
+    this.initDone_ = false;
+    this.elemReady = false;
 
     this.elem.ready(() => {
-      this.foundation_.init();
-      $timeout(() => this.scrollToActive(), 1);
+      this.elemReady = true;
+      this.init();
     });
+  }
+
+  init() {
+    if (!this.initDone_ && this.elemReady && this.tabBar) {
+      this.foundation_ = this.getDefaultFoundation();
+      this.foundation_.init();
+      this.initDone_ = true;
+    }
   }
 
   $postLink() {
@@ -25,11 +35,13 @@ class MdcTabBarScrollerController {
     this.forwardIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
     this.backIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
 
-    this.foundation_ = this.getDefaultFoundation();
+    this.init();
   }
 
   $onDestroy() {
-    this.foundation_.destroy();
+    if (this.foundation_) {
+      this.foundation_.destroy();
+    }
   }
 
   get tabBar() {
@@ -39,19 +51,18 @@ class MdcTabBarScrollerController {
   setTabBar(tabBar) {
     this.tabBar_ = tabBar;
     this.tabBarEl_ = this.tabBar_.root_;
+    this.init();
   }
 
   removeTabBar() {
+    this.foundation_.destroy();
+    this.initDone_ = false;
     this.tabBar_ = undefined;
     this.tabBarEl_ = undefined;
   }
 
   scrollTo(index) {
     this.foundation_.scrollToTabAtIndex_(index);
-  }
-
-  scrollToActive() {
-    this.scrollTo(this.tabBar.activeTabIndex);
   }
 
   getDefaultFoundation() {

@@ -17,11 +17,28 @@ class MdcTabBarController {
     this.root_ = this.elem[0];
     this.selected_ = undefined;
     this.initDone_ = false;
+    this.elemReady = false;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
     this.elem.append(this.indicator_);
 
     this.tabs_ = []; // tabs will automatically add themselves to the list using .addTab()
+  }
+
+  init() {
+    if (!this.initDone_ && this.elemReady && this.tabs.length > 0) {
+      this.foundation_.init();
+      this.initDone_ = true;
+
+      if (this.selected_) { // if select is specified
+        this.ngModel = this.selected_;
+      } else if (this.toActivate) { // if an active tab is specified
+        this.setActiveTab_(this.toActivate, true);
+      } else { // otherwise select the first one
+        this.ngModel = 0;
+        this.tabs[0]._active = true;
+      }
+    }
   }
 
   addTab(tab) {
@@ -39,6 +56,8 @@ class MdcTabBarController {
         this.activeTabIndex = activeTabIndex;
       }
       this.layout();
+    } else {
+      this.init();
     }
   }
 
@@ -55,7 +74,12 @@ class MdcTabBarController {
       }
     }
 
-    this.tabs.splice(indexOfTab, 1);
+    if (this.tabs.length === 1) { // removing the last tab
+      this.tabs_ = [];
+      return;
+    } else {
+      this.tabs.splice(indexOfTab, 1);
+    }
 
     if (this.initDone_) {
       this.layout();
@@ -75,18 +99,10 @@ class MdcTabBarController {
     }
 
     this.foundation_ = this.getDefaultFoundation();
+    this.init(); // if the element is already ready
     this.elem.ready(() => {
-      this.foundation_.init();
-      this.initDone_ = true;
-
-      if (this.selected_) { // if select is specified
-        this.ngModel = this.selected_;
-      } else if (this.toActivate) { // if an active tab is specified
-        this.setActiveTab_(this.toActivate, true);
-      } else { // otherwise select the first one
-        this.ngModel = 0;
-        this.tabs[0]._active = true;
-      }
+      this.elemReady = true;
+      this.init();
     });
   }
 
@@ -116,6 +132,7 @@ class MdcTabBarController {
   }
 
   $onDestroy() {
+    this.tabs_ = [];
     if (this.scroller) {
       this.scroller.removeTabBar();
     }
