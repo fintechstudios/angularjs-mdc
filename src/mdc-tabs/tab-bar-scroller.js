@@ -29,7 +29,9 @@ class MdcTabBarScrollerController {
       this.foundation_ = this.getDefaultFoundation();
       this.foundation_.init();
       this.initDone_ = true;
-      if (this.willScrollIndex_) {
+      if (this.tabBar.initDone_) {
+        this.scrollTo(this.tabBar.activeTabIndex);
+      } else if (this.willScrollIndex_) {
         this.scrollTo(this.willScrollIndex_);
       }
     }
