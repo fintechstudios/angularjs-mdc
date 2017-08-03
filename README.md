@@ -42,7 +42,7 @@ being an easy and suitable replacement for angular-material.
 | elevation       | :x:                 | |
 | fab             | :x:                 | |
 | form-field      | :x:                 | |
-| grid-list       | :x:                 | |
+| grid-list       | :white_check_mark:  | mdc.grid-list     |
 | icon            | :white_check_mark:  | mdc.icon          |
 | icon-toggle     | :white_check_mark:  | mdc.icon-toggle   |
 | linear-progress | :x:                 | |
