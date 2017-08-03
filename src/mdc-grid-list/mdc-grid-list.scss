@@ -1,0 +1,19 @@
+@import '~@material/grid-list/mdc-grid-list';
+
+mdc-grid-list {
+  @extend .mdc-grid-list;
+}
+
+mdc-grid-tile {
+  @extend .mdc-grid-tile;
+}
+
+.mdc-grid-tile__icon {
+  font-size: $mdc-grid-list-tile-secondary-icon-size;  // override
+}
+
+.mdc-grid-list--with-icon-align-end, .mdc-grid-list--with-icon-align-start {
+  mdc-icon {
+    @extend .mdc-grid-tile__icon;
+  }
+}
