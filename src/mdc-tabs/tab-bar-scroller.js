@@ -68,7 +68,7 @@ class MdcTabBarScrollerController {
 
   scrollTo(index) {
     if (this.initDone_) {
-      this.timeout(() => this.foundation_.scrollToTabAtIndex_(index), 1);
+      this.timeout(() => this.foundation_.scrollToTabAtIndex_(index), 100);
     } else {
       this.willScrollIndex_ = index;
     }
