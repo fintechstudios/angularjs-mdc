@@ -11,6 +11,7 @@ import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
 class MdcTabBarScrollerController {
   constructor($element, $window, $timeout) {
     this.window = $window;
+    this.document = this.window.document;
     this.elem = $element;
     this.timeout = $timeout;
     this.root_ = this.elem[0];
@@ -29,7 +30,9 @@ class MdcTabBarScrollerController {
       this.foundation_ = this.getDefaultFoundation();
       this.foundation_.init();
       this.initDone_ = true;
-      if (this.willScrollIndex_) {
+      if (this.tabBar.initDone_) {
+        this.scrollTo(this.tabBar.activeTabIndex);
+      } else if (this.willScrollIndex_) {
         this.scrollTo(this.willScrollIndex_);
       }
     }
@@ -68,10 +71,27 @@ class MdcTabBarScrollerController {
 
   scrollTo(index) {
     if (this.initDone_) {
-      this.timeout(() => this.foundation_.scrollToTabAtIndex_(index), 100);
+      this.scrollToTabIfNotVisible_(index);
     } else {
       this.willScrollIndex_ = index;
     }
+  }
+
+  scrollToTabIfNotVisible_(index) {
+    // This will probably be implemented into the foundation at some point - remove then
+    if (!this.isElementInViewport(this.tabBar.tabs[index].root_)) {
+      this.timeout(() => this.foundation_.scrollToTabAtIndex_(index), 100);
+    }
+  }
+
+  isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (this.window.innerHeight || this.document.documentElement.clientHeight) &&
+      rect.right <= (this.window.innerWidth || this.document.documentElement.clientWidth)
+    );
   }
 
   getDefaultFoundation() {

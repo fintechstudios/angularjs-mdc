@@ -202,18 +202,20 @@ class MdcTabBarController {
     });
   }
 
-  notifyScroller(activeTabIndex = undefined) {
-    if (this.scroller && this.needsNotify) {
-      if (activeTabIndex === undefined) {
-        activeTabIndex = this.foundation_.getActiveTabIndex();
+  notifyScroller(activeTabIndex = this.foundation_.getActiveTabIndex()) {
+    if (this.scroller) {
+      if (activeTabIndex >= 0) {
+        this.scroller.scrollTo(activeTabIndex);
+        this.needsNotify = false;
       }
-      this.scroller.scrollTo(activeTabIndex);
-      this.needsNotify = false;
     }
   }
 
   layout() {
     this.foundation_.layout();
+    if (this.scroller) {
+      this.scroller.layout();
+    }
   }
 
   setActiveTab_(activeTab, notifyChange) {

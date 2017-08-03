@@ -15,11 +15,14 @@ class MdcTabController {
   constructor($element) {
     this.elem = $element;
     this.root_ = this.elem[0];
+    this.added = false;
 
     this.foundation_ = this.getDefaultFoundation();
 
     this.elem.ready(() => {
+      this.addToTabBar();
       this.foundation_.init();
+      this.initDone_ = true;
       this.ripple_ = new MDCRipple(this.root_);
       if (this.willBeActive) {
         this._active = true;
@@ -27,14 +30,20 @@ class MdcTabController {
     });
   }
 
-  $onInit() {
-    if (this.tabBar) {
+  addToTabBar() {
+    if (!this.added && this.tabBar) {
       this.tabBar.addTab(this);
+      this.added = true;
     }
+  }
+
+  $onInit() {
+    this.addToTabBar();
   }
 
   $onChanges(changesObj) {
     if (changesObj.active) {
+      this.addToTabBar(); // if active, this may happen before $onInit
       this._active = changesObj.active.currentValue;
       if (changesObj.active.currentValue) {
         // on initialize, sync active state with tabbar
