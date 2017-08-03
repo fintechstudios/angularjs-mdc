@@ -103,7 +103,7 @@ class MdcTabBarController {
     }
 
     this.foundation_ = this.getDefaultFoundation();
-    this.init(); // if the element is already ready
+    this.init();
     this.elem.ready(() => {
       this.elemReady = true;
       this.init();
@@ -116,11 +116,16 @@ class MdcTabBarController {
 
   set ngModel(index) {
     this.selected_ = parseInt(index);
-    if (isNaN(this.selected_) || this.selected_ < 0 || this.selected_ >= this.tabs.length) {
+    if (isNaN(this.selected_)) {
       this.selected_ = undefined;
-    }
-    if (this.initDone_ && this.selected_ !== undefined) {
-      this.activeTabIndex = this.selected_;
+    } else if (this.initDone_) {
+      if (this.selected_ < 0 || this.selected_ >= this.tabs.length) {
+        this.selected_ = undefined;
+      }
+      if (this.selected_ !== undefined) {
+        this.activeTabIndex = this.selected_;
+        this.tabs[this.selected_]._active = true;
+      }
     }
   }
 
@@ -181,7 +186,7 @@ class MdcTabBarController {
       getOffsetWidthForIndicator: () => this.indicator_.offsetWidth,
       notifyChange: ({activeTabIndex}) => this.notifyScroller(activeTabIndex),
       getNumberOfTabs: () => this.tabs.length,
-      isTabActiveAtIndex: (index) => this.tabs[index]._active,
+      isTabActiveAtIndex: (index) => this.selected_ === index,
       setTabActiveAtIndex: (index, isActive) => {
         if (this.tabs[index]) {
           this.tabs[index]._active = isActive;
