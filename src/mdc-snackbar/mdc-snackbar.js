@@ -296,6 +296,13 @@ class $mdcSnackbar {
   }
 }
 
+
+/**
+ * @ngdoc component
+ * @name mdcSnackbar
+ * @module mdc.snackbar
+ */
+
 angular
   .module('mdc.snackbar', ['material.core.slim'])
   .factory('$mdcSnackbar', $mdcSnackbar.factory);
