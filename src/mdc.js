@@ -8,11 +8,12 @@ require('./mdc-list/mdc-list');
 require('./mdc-menu/mdc-menu');
 require('./mdc-radio/mdc-radio');
 require('./mdc-select/mdc-select');
+require('./mdc-snackbar/mdc-snackbar');
 require('./mdc-switch/mdc-switch');
 require('./mdc-tabs/mdc-tabs');
 
 angular.module('mdc', [
   'mdc.button', 'mdc.card', 'mdc.dialog', 'mdc.grid-list',
   'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu',
-  'mdc.radio', 'mdc.tabs', 'mdc.select', 'mdc.switch',
+  'mdc.radio', 'mdc.tabs', 'mdc.select', 'mdc.snackbar', 'mdc.switch',
 ]);

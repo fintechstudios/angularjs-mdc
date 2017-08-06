@@ -25,8 +25,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
-      /* initialize it off screen. */
-      .loading .example .mdc-snackbar { transform: translateY(100%); }
+      .mdc-theme--dark {
+        background-color: #333;
+      }
+
+      .mdc-theme--dark .hero {
+        background-color: #2d2d2d;
+      }
 
       /* Override style for hero example. */
       .hero .mdc-snackbar {
@@ -48,7 +53,8 @@
 
     </style>
   </head>
-  <body ng-app="demo" class="loading">
+  <body ng-app="demo" class="loading" ng-controller="MainCtrl"
+        ng-class="{'mdc-theme--dark': isDarkTheme}">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -60,7 +66,7 @@
       </div>
     </header>
 
-    <main ng-controller="MainCtrl">
+    <main>
       <div class="mdc-toolbar-fixed-adjust"></div>
       <section class="hero">
         <div class="mdc-snackbar mdc-snackbar--active"
@@ -75,7 +81,7 @@
       </section>
 
 
-      <section class="example">
+      <section class="example" dir="{{ isRTL ? 'rtl' : '' }}">
         <h2 class="mdc-typography--title">Basic Example</h2>
 
         <label>
@@ -87,7 +93,7 @@
         </label>
 
         <label>
-          <input type="checkbox" ng-model="dismissOnAction"> Dismiss On Action
+          <input type="checkbox" ng-model="dismissesOnAction"> Dismiss On Action
         </label>
 
         <label>
@@ -97,42 +103,62 @@
         <mdc-button color="primary" raised="true" ng-click="isDarkTheme = !isDarkTheme">Toggle Dark Theme</mdc-button>
 
         <label>
-          <input ng-model="message" value="Message deleted"> Message Text
+          Message Text <input ng-model="message">
         </label>
 
         <label>
-          <input ng-model="action" value="Undo"> Action Text
+          Action Text <input ng-model="actionText">
         </label>
 
-        <mdc-button raised="true" ng-click="showSnackbar()">Show</mdc-button>
-        <mdc-button raised="true" ng-click="showSnackbar()">Show Start Aligned</mdc-button>
+        <p>Output: {{ output }}</p>
 
-          <div id="mdc-js-snackbar"
-               class="mdc-snackbar demo-hidden"
-               aria-live="assertive"
-               aria-atomic="true"
-               aria-hidden="true">
-            <div class="mdc-snackbar__text"></div>
-            <div class="mdc-snackbar__action-wrapper">
-              <button type="button" class="mdc-button mdc-snackbar__action-button"></button>
-            </div>
-          </div>
-          <div dir="rtl">
-            <div id="mdc-rtl-js-snackbar"
-                 class="mdc-snackbar demo-hidden"
-                 aria-live="assertive"
-                 aria-atomic="true"
-                 aria-hidden="true">
-              <div class="mdc-snackbar__text"></div>
-              <div class="mdc-snackbar__action-wrapper">
-                <button type="button" class="mdc-button mdc-snackbar__action-button"></button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <mdc-button raised="true" ng-click="showSnackbar()">Show</mdc-button>
+        <mdc-button raised="true" ng-click="showSnackbar(true)">Show Start Aligned</mdc-button>
       </section>
     </main>
-    <script src="assets/material-components-web.js" charset="utf-8"></script>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', '$mdcSnackbar', function($scope, $mdcSnackbar) {
+          $scope.message = 'Message deleted';
+          $scope.actionText = 'Undo';
+
+          $scope.isDarkTheme = false;
+          $scope.isRTL = false;
+          $scope.actionOnBottom = false;
+          $scope.multiline = false;
+          $scope.dismissesOnAction = true;
+          $scope.output = '<none>';
+
+          $scope.setOutput = function(text) {
+            $scope.output = text;
+          };
+
+          $scope.showSnackbar = function(alignStart) {
+            const data = {
+              message: $scope.message,
+              multiline: $scope.multiline,
+              actionOnBottom: $scope.actionOnBottom,
+              dismissesOnAction: $scope.dismissesOnAction,
+              alignStart: alignStart,
+            };
+            if ($scope.actionText) {
+
+              data.actionText = $scope.actionText;
+              data.actionHandler = function() {
+                $scope.output = 'clicked "' + data.actionText + '"';
+                $scope.$apply();
+              }
+            }
+            if (alignStart) {
+              $mdcSnackbar.showStartAligned(data);
+            } else {
+              $mdcSnackbar.show(data);
+            }
+          }
+        }]);
+    </script>
     <script>
       function demo(global) {
         'use strict';
