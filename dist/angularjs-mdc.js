@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -183,6 +183,48 @@ exports.default = MDCFoundation;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SelectionControlState = exports.MDCComponent = exports.MDCFoundation = undefined;
+
+var _foundation = __webpack_require__(0);
+
+var _foundation2 = _interopRequireDefault(_foundation);
+
+var _component = __webpack_require__(2);
+
+var _component2 = _interopRequireDefault(_component);
+
+var _selectionControl = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.MDCFoundation = _foundation2.default;
+exports.MDCComponent = _component2.default;
+exports.SelectionControlState = _selectionControl.SelectionControlState; /**
+                                                                          * Copyright 2016 Google Inc.
+                                                                          *
+                                                                          * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                          * you may not use this file except in compliance with the License.
+                                                                          * You may obtain a copy of the License at
+                                                                          *
+                                                                          *   http://www.apache.org/licenses/LICENSE-2.0
+                                                                          *
+                                                                          * Unless required by applicable law or agreed to in writing, software
+                                                                          * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                          * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                          * See the License for the specific language governing permissions and
+                                                                          * limitations under the License.
+                                                                          */
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -359,48 +401,6 @@ var MDCComponent = function () {
 exports.default = MDCComponent;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SelectionControlState = exports.MDCComponent = exports.MDCFoundation = undefined;
-
-var _foundation = __webpack_require__(0);
-
-var _foundation2 = _interopRequireDefault(_foundation);
-
-var _component = __webpack_require__(1);
-
-var _component2 = _interopRequireDefault(_component);
-
-var _selectionControl = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.MDCFoundation = _foundation2.default;
-exports.MDCComponent = _component2.default;
-exports.SelectionControlState = _selectionControl.SelectionControlState; /**
-                                                                          * Copyright 2016 Google Inc.
-                                                                          *
-                                                                          * Licensed under the Apache License, Version 2.0 (the "License");
-                                                                          * you may not use this file except in compliance with the License.
-                                                                          * You may obtain a copy of the License at
-                                                                          *
-                                                                          *   http://www.apache.org/licenses/LICENSE-2.0
-                                                                          *
-                                                                          * Unless required by applicable law or agreed to in writing, software
-                                                                          * distributed under the License is distributed on an "AS IS" BASIS,
-                                                                          * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-                                                                          * See the License for the specific language governing permissions and
-                                                                          * limitations under the License.
-                                                                          */
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -414,15 +414,15 @@ exports.MDCRipple = exports.util = exports.MDCRippleFoundation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(6);
+var _adapter = __webpack_require__(7);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(21);
+var _foundation = __webpack_require__(23);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -650,6 +650,156 @@ RippleCapableSurface.prototype.disabled;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getCorrectEventName = getCorrectEventName;
+exports.getCorrectPropertyName = getCorrectPropertyName;
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @typedef {{
+ *   noPrefix: string,
+ *   webkitPrefix: string
+ * }}
+ */
+var VendorPropertyMapType = void 0;
+
+/** @const {Object<string, !VendorPropertyMapType>} */
+var eventTypeMap = {
+  'animationstart': {
+    noPrefix: 'animationstart',
+    webkitPrefix: 'webkitAnimationStart',
+    styleProperty: 'animation'
+  },
+  'animationend': {
+    noPrefix: 'animationend',
+    webkitPrefix: 'webkitAnimationEnd',
+    styleProperty: 'animation'
+  },
+  'animationiteration': {
+    noPrefix: 'animationiteration',
+    webkitPrefix: 'webkitAnimationIteration',
+    styleProperty: 'animation'
+  },
+  'transitionend': {
+    noPrefix: 'transitionend',
+    webkitPrefix: 'webkitTransitionEnd',
+    styleProperty: 'transition'
+  }
+};
+
+/** @const {Object<string, !VendorPropertyMapType>} */
+var cssPropertyMap = {
+  'animation': {
+    noPrefix: 'animation',
+    webkitPrefix: '-webkit-animation'
+  },
+  'transform': {
+    noPrefix: 'transform',
+    webkitPrefix: '-webkit-transform'
+  },
+  'transition': {
+    noPrefix: 'transition',
+    webkitPrefix: '-webkit-transition'
+  }
+};
+
+/**
+ * @param {!Object} windowObj
+ * @return {boolean}
+ */
+function hasProperShape(windowObj) {
+  return windowObj['document'] !== undefined && typeof windowObj['document']['createElement'] === 'function';
+}
+
+/**
+ * @param {string} eventType
+ * @return {boolean}
+ */
+function eventFoundInMaps(eventType) {
+  return eventType in eventTypeMap || eventType in cssPropertyMap;
+}
+
+/**
+ * @param {string} eventType
+ * @param {!Object<string, !VendorPropertyMapType>} map
+ * @param {!Element} el
+ * @return {string}
+ */
+function getJavaScriptEventName(eventType, map, el) {
+  return map[eventType].styleProperty in el.style ? map[eventType].noPrefix : map[eventType].webkitPrefix;
+}
+
+/**
+ * Helper function to determine browser prefix for CSS3 animation events
+ * and property names.
+ * @param {!Object} windowObj
+ * @param {string} eventType
+ * @return {string}
+ */
+function getAnimationName(windowObj, eventType) {
+  if (!hasProperShape(windowObj) || !eventFoundInMaps(eventType)) {
+    return eventType;
+  }
+
+  var map = /** @type {!Object<string, !VendorPropertyMapType>} */eventType in eventTypeMap ? eventTypeMap : cssPropertyMap;
+  var el = windowObj['document']['createElement']('div');
+  var eventName = '';
+
+  if (map === eventTypeMap) {
+    eventName = getJavaScriptEventName(eventType, map, el);
+  } else {
+    eventName = map[eventType].noPrefix in el.style ? map[eventType].noPrefix : map[eventType].webkitPrefix;
+  }
+
+  return eventName;
+}
+
+// Public functions to access getAnimationName() for JavaScript events or CSS
+// property names.
+
+var transformStyleProperties = exports.transformStyleProperties = ['transform', 'WebkitTransform', 'MozTransform', 'OTransform', 'MSTransform'];
+
+/**
+ * @param {!Object} windowObj
+ * @param {string} eventType
+ * @return {string}
+ */
+function getCorrectEventName(windowObj, eventType) {
+  return getAnimationName(windowObj, eventType);
+}
+
+/**
+ * @param {!Object} windowObj
+ * @param {string} eventType
+ * @return {string}
+ */
+function getCorrectPropertyName(windowObj, eventType) {
+  return getAnimationName(windowObj, eventType);
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Copyright 2017 Google Inc. All Rights Reserved.
  *
@@ -677,7 +827,7 @@ Object.defineProperty(exports, "__esModule", {
 var SelectionControlState = exports.SelectionControlState = void 0;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -848,7 +998,7 @@ function solvePositionFromXValue_(xVal, x1, x2) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1004,156 +1154,6 @@ var MDCRippleAdapter = function () {
 exports.default = MDCRippleAdapter;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getCorrectEventName = getCorrectEventName;
-exports.getCorrectPropertyName = getCorrectPropertyName;
-/**
- * Copyright 2016 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/**
- * @typedef {{
- *   noPrefix: string,
- *   webkitPrefix: string
- * }}
- */
-var VendorPropertyMapType = void 0;
-
-/** @const {Object<string, !VendorPropertyMapType>} */
-var eventTypeMap = {
-  'animationstart': {
-    noPrefix: 'animationstart',
-    webkitPrefix: 'webkitAnimationStart',
-    styleProperty: 'animation'
-  },
-  'animationend': {
-    noPrefix: 'animationend',
-    webkitPrefix: 'webkitAnimationEnd',
-    styleProperty: 'animation'
-  },
-  'animationiteration': {
-    noPrefix: 'animationiteration',
-    webkitPrefix: 'webkitAnimationIteration',
-    styleProperty: 'animation'
-  },
-  'transitionend': {
-    noPrefix: 'transitionend',
-    webkitPrefix: 'webkitTransitionEnd',
-    styleProperty: 'transition'
-  }
-};
-
-/** @const {Object<string, !VendorPropertyMapType>} */
-var cssPropertyMap = {
-  'animation': {
-    noPrefix: 'animation',
-    webkitPrefix: '-webkit-animation'
-  },
-  'transform': {
-    noPrefix: 'transform',
-    webkitPrefix: '-webkit-transform'
-  },
-  'transition': {
-    noPrefix: 'transition',
-    webkitPrefix: '-webkit-transition'
-  }
-};
-
-/**
- * @param {!Object} windowObj
- * @return {boolean}
- */
-function hasProperShape(windowObj) {
-  return windowObj['document'] !== undefined && typeof windowObj['document']['createElement'] === 'function';
-}
-
-/**
- * @param {string} eventType
- * @return {boolean}
- */
-function eventFoundInMaps(eventType) {
-  return eventType in eventTypeMap || eventType in cssPropertyMap;
-}
-
-/**
- * @param {string} eventType
- * @param {!Object<string, !VendorPropertyMapType>} map
- * @param {!Element} el
- * @return {string}
- */
-function getJavaScriptEventName(eventType, map, el) {
-  return map[eventType].styleProperty in el.style ? map[eventType].noPrefix : map[eventType].webkitPrefix;
-}
-
-/**
- * Helper function to determine browser prefix for CSS3 animation events
- * and property names.
- * @param {!Object} windowObj
- * @param {string} eventType
- * @return {string}
- */
-function getAnimationName(windowObj, eventType) {
-  if (!hasProperShape(windowObj) || !eventFoundInMaps(eventType)) {
-    return eventType;
-  }
-
-  var map = /** @type {!Object<string, !VendorPropertyMapType>} */eventType in eventTypeMap ? eventTypeMap : cssPropertyMap;
-  var el = windowObj['document']['createElement']('div');
-  var eventName = '';
-
-  if (map === eventTypeMap) {
-    eventName = getJavaScriptEventName(eventType, map, el);
-  } else {
-    eventName = map[eventType].noPrefix in el.style ? map[eventType].noPrefix : map[eventType].webkitPrefix;
-  }
-
-  return eventName;
-}
-
-// Public functions to access getAnimationName() for JavaScript events or CSS
-// property names.
-
-var transformStyleProperties = exports.transformStyleProperties = ['transform', 'WebkitTransform', 'MozTransform', 'OTransform', 'MSTransform'];
-
-/**
- * @param {!Object} windowObj
- * @param {string} eventType
- * @return {string}
- */
-function getCorrectEventName(windowObj, eventType) {
-  return getAnimationName(windowObj, eventType);
-}
-
-/**
- * @param {!Object} windowObj
- * @param {string} eventType
- * @return {string}
- */
-function getCorrectPropertyName(windowObj, eventType) {
-  return getAnimationName(windowObj, eventType);
-}
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1272,6 +1272,26 @@ function getNormalizedEventCoords(ev, pageOffset, clientRect) {
 "use strict";
 
 
+/**
+ * @ngdoc module
+ * @name material.core.slim
+ * @description Wraps only needed functionality borrowed from AngularJS Material
+ *
+ * Using code available in AngularJS Material v1.1.4
+ */
+angular.module('material.core.slim', []);
+
+__webpack_require__(30);
+__webpack_require__(31);
+__webpack_require__(32);
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -1284,13 +1304,13 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(48);
+var _adapter = __webpack_require__(49);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(49);
+var _constants = __webpack_require__(50);
 
-var _util = __webpack_require__(5);
+var _util = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1907,7 +1927,7 @@ var MDCSimpleMenuFoundation = function (_MDCFoundation) {
 exports.default = MDCSimpleMenuFoundation;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1918,7 +1938,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.util = exports.MDCSimpleMenuFoundation = exports.MDCSimpleMenu = undefined;
 
-var _simple = __webpack_require__(59);
+var _simple = __webpack_require__(60);
 
 Object.defineProperty(exports, 'MDCSimpleMenu', {
   enumerable: true,
@@ -1933,7 +1953,7 @@ Object.defineProperty(exports, 'MDCSimpleMenuFoundation', {
   }
 });
 
-var _util = __webpack_require__(5);
+var _util = __webpack_require__(6);
 
 var util = _interopRequireWildcard(_util);
 
@@ -1942,7 +1962,52 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 exports.util = util;
 
 /***/ }),
-/* 11 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var cssClasses = exports.cssClasses = {
+  ROOT: 'mdc-snackbar',
+  TEXT: 'mdc-snackbar__text',
+  ACTION_WRAPPER: 'mdc-snackbar__action-wrapper',
+  ACTION_BUTTON: 'mdc-snackbar__action-button',
+  ACTIVE: 'mdc-snackbar--active',
+  MULTILINE: 'mdc-snackbar--multiline',
+  ACTION_ON_BOTTOM: 'mdc-snackbar--action-on-bottom'
+};
+
+var strings = exports.strings = {
+  TEXT_SELECTOR: '.mdc-snackbar__text',
+  ACTION_WRAPPER_SELECTOR: '.mdc-snackbar__action-wrapper',
+  ACTION_BUTTON_SELECTOR: '.mdc-snackbar__action-button'
+};
+
+var numbers = exports.numbers = {
+  MESSAGE_TIMEOUT: 2750
+};
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1952,7 +2017,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _tab = __webpack_require__(12);
+var _tab = __webpack_require__(14);
 
 Object.defineProperty(exports, 'MDCTabFoundation', {
   enumerable: true,
@@ -1967,7 +2032,7 @@ Object.defineProperty(exports, 'MDCTab', {
   }
 });
 
-var _tabBar = __webpack_require__(14);
+var _tabBar = __webpack_require__(16);
 
 Object.defineProperty(exports, 'MDCTabBarFoundation', {
   enumerable: true,
@@ -1982,7 +2047,7 @@ Object.defineProperty(exports, 'MDCTabBar', {
   }
 });
 
-var _tabBarScroller = __webpack_require__(15);
+var _tabBarScroller = __webpack_require__(17);
 
 Object.defineProperty(exports, 'MDCTabBarScrollerFoundation', {
   enumerable: true,
@@ -1998,7 +2063,7 @@ Object.defineProperty(exports, 'MDCTabBarScroller', {
 });
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2013,15 +2078,15 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
 var _ripple = __webpack_require__(3);
 
-var _constants = __webpack_require__(13);
+var _constants = __webpack_require__(15);
 
-var _foundation = __webpack_require__(68);
+var _foundation = __webpack_require__(74);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -2151,7 +2216,7 @@ var MDCTab = exports.MDCTab = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2185,7 +2250,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2198,13 +2263,13 @@ exports.MDCTabBar = exports.MDCTabBarFoundation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _tab = __webpack_require__(12);
+var _tab = __webpack_require__(14);
 
-var _foundation = __webpack_require__(69);
+var _foundation = __webpack_require__(75);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -2381,7 +2446,7 @@ var MDCTabBar = exports.MDCTabBar = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2394,15 +2459,15 @@ exports.MDCTabBarScroller = exports.MDCTabBarScrollerFoundation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _animation = __webpack_require__(7);
+var _animation = __webpack_require__(4);
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _tabBar = __webpack_require__(14);
+var _tabBar = __webpack_require__(16);
 
-var _foundation = __webpack_require__(71);
+var _foundation = __webpack_require__(77);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -2559,29 +2624,30 @@ var MDCTabBarScroller = exports.MDCTabBarScroller = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(17);
-__webpack_require__(18);
 __webpack_require__(19);
-__webpack_require__(34);
-__webpack_require__(39);
+__webpack_require__(20);
+__webpack_require__(21);
+__webpack_require__(35);
 __webpack_require__(40);
-__webpack_require__(46);
+__webpack_require__(41);
 __webpack_require__(47);
-__webpack_require__(51);
-__webpack_require__(57);
-__webpack_require__(64);
-__webpack_require__(66);
+__webpack_require__(48);
+__webpack_require__(52);
+__webpack_require__(58);
+__webpack_require__(65);
+__webpack_require__(70);
+__webpack_require__(72);
 
-angular.module('mdc', ['mdc.button', 'mdc.card', 'mdc.dialog', 'mdc.grid-list', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu', 'mdc.radio', 'mdc.tabs', 'mdc.select', 'mdc.switch']);
+angular.module('mdc', ['mdc.button', 'mdc.card', 'mdc.dialog', 'mdc.grid-list', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu', 'mdc.radio', 'mdc.tabs', 'mdc.select', 'mdc.snackbar', 'mdc.switch']);
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2663,7 +2729,7 @@ angular.module('mdc.button', []).component('mdcButton', {
 });
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2804,7 +2870,7 @@ angular.module('mdc.card', [])
 });
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2812,13 +2878,13 @@ angular.module('mdc.card', [])
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dialog = __webpack_require__(20);
+var _dialog = __webpack_require__(22);
 
 $mdcDialogProvider.$inject = ['$$interimElementSlimProvider'];
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(28);
+__webpack_require__(9);
 
 /**
  * @ngdoc component
@@ -2905,7 +2971,7 @@ function $mdcDialogProvider($$interimElementSlimProvider) {
   /* @ngInject */
   function presetDialogOptions($mdcDialog) {
     return {
-      template: __webpack_require__(32),
+      template: __webpack_require__(33),
       controller: function mdcDialogCtrl() {
         var isPrompt = this.$type === 'prompt';
 
@@ -3175,7 +3241,7 @@ function $mdcDialogProvider($$interimElementSlimProvider) {
 
 angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', $mdcDialogProvider).component('mdcDialog', {
   controller: MdcDialogController,
-  template: __webpack_require__(33),
+  template: __webpack_require__(34),
   transclude: true
 }).component('mdcDialogBody', {
   controller: MdcDialogBodyController,
@@ -3185,7 +3251,7 @@ angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', $mdc
 });
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3200,15 +3266,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _base = __webpack_require__(2);
+var _base = __webpack_require__(1);
 
 var _ripple = __webpack_require__(3);
 
-var _foundation = __webpack_require__(23);
+var _foundation = __webpack_require__(25);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _util = __webpack_require__(25);
+var _util = __webpack_require__(27);
 
 var util = _interopRequireWildcard(_util);
 
@@ -3365,7 +3431,7 @@ var MDCDialog = exports.MDCDialog = function (_MDCComponent) {
 }(_base.MDCComponent);
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3383,11 +3449,11 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(6);
+var _adapter = __webpack_require__(7);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(22);
+var _constants = __webpack_require__(24);
 
 var _util = __webpack_require__(8);
 
@@ -4020,7 +4086,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCRippleFoundation;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4076,7 +4142,7 @@ var numbers = exports.numbers = {
 };
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4090,9 +4156,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _base = __webpack_require__(2);
+var _base = __webpack_require__(1);
 
-var _constants = __webpack_require__(24);
+var _constants = __webpack_require__(26);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4288,7 +4354,7 @@ var MDCDialogFoundation = function (_MDCFoundation) {
 exports.default = MDCDialogFoundation;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4332,7 +4398,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4343,7 +4409,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createFocusTrapInstance = createFocusTrapInstance;
 
-var _focusTrap = __webpack_require__(26);
+var _focusTrap = __webpack_require__(28);
 
 var _focusTrap2 = _interopRequireDefault(_focusTrap);
 
@@ -4373,13 +4439,13 @@ function createFocusTrapInstance(surfaceEl, acceptButtonEl) {
    */
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tabbable = __webpack_require__(27);
+var tabbable = __webpack_require__(29);
 
 var listeningFocusTrap = null;
 
@@ -4604,7 +4670,7 @@ function tryFocus(node) {
 module.exports = focusTrap;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4697,27 +4763,7 @@ function createIsUnavailable() {
 }
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * @ngdoc module
- * @name material.core.slim
- * @description Wraps only needed functionality borrowed from AngularJS Material
- *
- * Using code available in AngularJS Material v1.1.4
- */
-angular.module('material.core.slim', []);
-
-__webpack_require__(29);
-__webpack_require__(30);
-__webpack_require__(31);
-
-/***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4765,7 +4811,7 @@ function UtilFactory($interpolate) {
 }
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5097,7 +5143,7 @@ MdCompilerService.prototype._fetchContentElement = function (options) {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5826,19 +5872,19 @@ function InterimElementProvider() {
 }
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=\"mdc-dialog-title\"\n            aria-describedby=\"mdc-dialog-body\"\n            ng-class=\"dialog.css\">\n  <mdc-dialog-header>\n    <mdc-dialog-title id=\"mdc-dialog-title\">{{ dialog.title }}</mdc-dialog-title>\n  </mdc-dialog-header>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::dialog.mdcHtmlContent\" ng-bind-html=\"::dialog.mdcHtmlContent\">\n  </mdc-dialog-body>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::!dialog.mdcHtmlContent\">\n    <span ng-if=\"::dialog.mdcTextContent\">{{::dialog.mdcTextContent}}</span>\n    <label ng-if=\"::dialog.$type == 'prompt'\">\n      <input ng-keypress=\"dialog.keypress($event)\" ng-model=\"dialog.result\" placeholder=\"{{::dialog.placeholder}}\">\n    </label>\n  </mdc-dialog-body>\n  <mdc-dialog-footer>\n    <mdc-button dialog=\"cancel\" ng-if=\"dialog.$type === 'confirm' || dialog.$type === 'prompt'\">\n      {{ dialog.cancel }}\n    </mdc-button>\n    <mdc-button dialog=\"accept\">\n      {{ dialog.ok }}\n    </mdc-button>\n  </mdc-dialog-footer>\n</mdc-dialog>\n"
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-dialog__surface\" ng-transclude></div>\n<div class=\"mdc-dialog__backdrop\"></div>"
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5846,7 +5892,7 @@ module.exports = "<div class=\"mdc-dialog__surface\" ng-transclude></div>\n<div 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _gridList = __webpack_require__(35);
+var _gridList = __webpack_require__(36);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5955,7 +6001,7 @@ var MdcGridListController = function () {
 angular.module('mdc.grid-list', []).component('mdcGridList', {
   controller: MdcGridListController,
   transclude: true,
-  template: __webpack_require__(38),
+  template: __webpack_require__(39),
   bindings: {
     iconAlign: '@',
     gutter: '@',
@@ -5964,7 +6010,7 @@ angular.module('mdc.grid-list', []).component('mdcGridList', {
 });
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5977,9 +6023,9 @@ exports.MDCGridList = exports.MDCGridListFoundation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _base = __webpack_require__(2);
+var _base = __webpack_require__(1);
 
-var _foundation = __webpack_require__(36);
+var _foundation = __webpack_require__(37);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -6053,7 +6099,7 @@ var MDCGridList = exports.MDCGridList = function (_MDCComponent) {
 }(_base.MDCComponent);
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6067,9 +6113,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _base = __webpack_require__(2);
+var _base = __webpack_require__(1);
 
-var _constants = __webpack_require__(37);
+var _constants = __webpack_require__(38);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6177,7 +6223,7 @@ var MDCGridListFoundation = function (_MDCFoundation) {
 exports.default = MDCGridListFoundation;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6207,13 +6253,13 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-grid-list__tiles\" ng-transclude></div>"
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6287,7 +6333,7 @@ angular.module('mdc.icon', []).constant('MDC_ICON_SIZES', ['18', '24', '36', '48
 });
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6297,11 +6343,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _iconToggle = __webpack_require__(41);
+var _iconToggle = __webpack_require__(42);
 
 var _ripple = __webpack_require__(3);
 
-var _normalize = __webpack_require__(45);
+var _normalize = __webpack_require__(46);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6509,7 +6555,7 @@ angular.module('mdc.icon-toggle', []).component('mdcIconToggle', {
 });
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6526,15 +6572,15 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _foundation = __webpack_require__(42);
+var _foundation = __webpack_require__(43);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(6);
+var _adapter = __webpack_require__(7);
 
 var _ripple = __webpack_require__(3);
 
@@ -6742,7 +6788,7 @@ var MDCIconToggle = exports.MDCIconToggle = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6761,9 +6807,9 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(43);
+var _adapter = __webpack_require__(44);
 
-var _constants = __webpack_require__(44);
+var _constants = __webpack_require__(45);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7067,7 +7113,7 @@ IconToggleState.prototype.content;
 IconToggleState.prototype.cssClass;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7215,7 +7261,7 @@ exports.default = MDCIconToggleAdapter;
 var IconToggleEvent = exports.IconToggleEvent = void 0;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7257,7 +7303,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7305,7 +7351,7 @@ function convertStringsObjToBindingNames(obj, skip) {
 }
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7394,7 +7440,7 @@ angular.module('mdc.list', [])
 });
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7402,11 +7448,11 @@ angular.module('mdc.list', [])
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _foundation = __webpack_require__(9);
+var _foundation = __webpack_require__(10);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _util = __webpack_require__(5);
+var _util = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7691,7 +7737,7 @@ function MdcSimpleMenuToggleController($document, MDC_SIMPLE_MENU_TOGGLE_EVENT) 
 
 angular.module('mdc.menu', []).constant('MDC_SIMPLE_MENU_TOGGLE_EVENT', 'MDCSimpleMenu:toggle').component('mdcSimpleMenu', {
   controller: MdcSimpleMenuController,
-  template: __webpack_require__(50),
+  template: __webpack_require__(51),
   bindings: {
     id: '@',
     open: '<?',
@@ -7701,7 +7747,7 @@ angular.module('mdc.menu', []).constant('MDC_SIMPLE_MENU_TOGGLE_EVENT', 'MDCSimp
 }).directive('mdcSimpleMenuToggle', MdcSimpleMenuToggleController);
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7971,7 +8017,7 @@ var MDCSimpleMenuAdapter = function () {
 exports.default = MDCSimpleMenuAdapter;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8034,13 +8080,13 @@ var numbers = exports.numbers = {
 };
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-simple-menu__items mdc-list\" role=\"menu\" aria-hidden=\"true\" ng-transclude></div>\n"
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8048,7 +8094,7 @@ module.exports = "<div class=\"mdc-simple-menu__items mdc-list\" role=\"menu\" a
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _radio = __webpack_require__(52);
+var _radio = __webpack_require__(53);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8108,11 +8154,11 @@ angular.module('mdc.radio', []).component('mdcRadio', {
     ngModel: '=?',
     ngValue: '<?'
   },
-  template: __webpack_require__(56)
+  template: __webpack_require__(57)
 });
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8129,13 +8175,13 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _selectionControl = __webpack_require__(4);
+var _selectionControl = __webpack_require__(5);
 
-var _foundation = __webpack_require__(53);
+var _foundation = __webpack_require__(54);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -8342,7 +8388,7 @@ var MDCRadio = exports.MDCRadio = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8358,13 +8404,13 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _selectionControl = __webpack_require__(4);
+var _selectionControl = __webpack_require__(5);
 
-var _adapter = __webpack_require__(54);
+var _adapter = __webpack_require__(55);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(55);
+var _constants = __webpack_require__(56);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8511,7 +8557,7 @@ var MDCRadioFoundation = function (_MDCFoundation) {
 exports.default = MDCRadioFoundation;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8540,7 +8586,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 /* eslint-disable no-unused-vars */
 
 
-var _selectionControl = __webpack_require__(4);
+var _selectionControl = __webpack_require__(5);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8591,7 +8637,7 @@ var MDCRadioAdapter = function () {
 exports.default = MDCRadioAdapter;
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8628,13 +8674,13 @@ var cssClasses = exports.cssClasses = {
 };
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = "<input class=\"mdc-radio__native-control\" type=\"radio\" id=\"{{ $ctrl.inputId }}\"\n       ng-value=\"$ctrl.ngValue\" ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-radio__background\">\n  <div class=\"mdc-radio__outer-circle\"></div>\n  <div class=\"mdc-radio__inner-circle\"></div>\n</div>"
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8642,11 +8688,11 @@ module.exports = "<input class=\"mdc-radio__native-control\" type=\"radio\" id=\
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _select = __webpack_require__(58);
+var _select = __webpack_require__(59);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(62);
+__webpack_require__(63);
 
 /**
  * @ngdoc component
@@ -8776,7 +8822,7 @@ var MdcSelectController = function () {
 angular.module('mdc.select', ['rt.debounce']).component('mdcSelect', {
   controller: MdcSelectController,
   transclude: true,
-  template: __webpack_require__(63),
+  template: __webpack_require__(64),
   require: { ngModelCtrl: '?ngModel' },
   bindings: {
     ngModel: '=?',
@@ -8790,7 +8836,7 @@ angular.module('mdc.select', ['rt.debounce']).component('mdcSelect', {
 });
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8803,11 +8849,11 @@ exports.MDCSelect = exports.MDCSelectFoundation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _base = __webpack_require__(2);
+var _base = __webpack_require__(1);
 
-var _menu = __webpack_require__(10);
+var _menu = __webpack_require__(11);
 
-var _foundation = __webpack_require__(60);
+var _foundation = __webpack_require__(61);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -9024,7 +9070,7 @@ var MDCSelect = exports.MDCSelect = function (_MDCComponent) {
 }(_base.MDCComponent);
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9037,15 +9083,15 @@ exports.MDCSimpleMenu = exports.MDCSimpleMenuFoundation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _component = __webpack_require__(1);
+var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _foundation = __webpack_require__(9);
+var _foundation = __webpack_require__(10);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _util = __webpack_require__(5);
+var _util = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9291,7 +9337,7 @@ var MDCSimpleMenu = exports.MDCSimpleMenu = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9305,11 +9351,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _base = __webpack_require__(2);
+var _base = __webpack_require__(1);
 
-var _constants = __webpack_require__(61);
+var _constants = __webpack_require__(62);
 
-var _menu = __webpack_require__(10);
+var _menu = __webpack_require__(11);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9639,7 +9685,7 @@ var MDCSelectFoundation = function (_MDCFoundation) {
 exports.default = MDCSelectFoundation;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9674,7 +9720,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9745,13 +9791,933 @@ angular.module('rt.debounce', []).factory('debounce', ['$timeout', function ($ti
 }]);
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = "<div ng-show=\"!$ctrl.noAnimation && !$ctrl.multiple\" class=\"mdc-select\" role=\"listbox\" tabindex=\"0\">\n    <span class=\"mdc-select__selected-text\" ng-bind=\"$ctrl.prompt\"></span>\n    <div class=\"mdc-simple-menu mdc-select__menu\">\n        <ul class=\"mdc-list mdc-simple-menu__items\" ng-transclude></ul>\n    </div>\n</div>\n<select ng-show=\"$ctrl.noAnimation && !$ctrl.multiple\" class=\"mdc-select\"\n        ng-model=\"$ctrl.ngModel\" ng-disabled=\"$ctrl.ngDisabled\" ng-transclude></select>\n<select ng-show=\"$ctrl.multiple\" class=\"mdc-multi-select mdc-list\"\n        multiple ng-attr-size=\"{{ $ctrl.size }}\"\n        ng-model=\"$ctrl.ngModel\" ng-disabled=\"$ctrl.ngDisabled\" ng-transclude></select>"
 
 /***/ }),
-/* 64 */
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _snackbar = __webpack_require__(66);
+
+var _constants = __webpack_require__(12);
+
+var _animation = __webpack_require__(4);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+__webpack_require__(9);
+
+var WrappedMDCSnackbarFoundation = function (_MDCSnackbarFoundatio) {
+  _inherits(WrappedMDCSnackbarFoundation, _MDCSnackbarFoundatio);
+
+  function WrappedMDCSnackbarFoundation() {
+    _classCallCheck(this, WrappedMDCSnackbarFoundation);
+
+    return _possibleConstructorReturn(this, (WrappedMDCSnackbarFoundation.__proto__ || Object.getPrototypeOf(WrappedMDCSnackbarFoundation)).apply(this, arguments));
+  }
+
+  _createClass(WrappedMDCSnackbarFoundation, [{
+    key: 'showNext_',
+    value: function showNext_() {
+      if (!this.queue_.length) {
+        // we need to check when the queue is empty so the temporary element can be moved out of the DOM
+        this.adapter_.onLastShown();
+        return;
+      }
+      _get(WrappedMDCSnackbarFoundation.prototype.__proto__ || Object.getPrototypeOf(WrappedMDCSnackbarFoundation.prototype), 'showNext_', this).call(this);
+    }
+  }, {
+    key: 'show',
+    value: function show(data) {
+      var _this2 = this;
+
+      /*
+       * TODO: replace with super() when issue is fixed
+       * Issue: https://github.com/material-components/material-components-web/issues/1083
+       * Modified with fix from
+       * https://github.com/dpraul/material-components-web/commit/15ecbb4e97638758805ef020a1118c320b4231c7
+       */
+      if (!data) {
+        throw new Error('Please provide a data object with at least a message to display.');
+      }
+      if (!data.message) {
+        throw new Error('Please provide a message to be displayed.');
+      }
+      if (data.actionHandler && !data.actionText) {
+        throw new Error('Please provide action text with the handler.');
+      }
+      if (this.active) {
+        this.queue_.push(data);
+        return;
+      }
+      clearTimeout(this.timeoutId_);
+      this.snackbarData_ = data;
+      this.firstFocus_ = true;
+      this.adapter_.registerVisibilityChangeHandler(this.visibilitychangeHandler_);
+      this.adapter_.registerCapturedBlurHandler(this.blurHandler_);
+      ['touchstart', 'mousedown', 'focus'].forEach(function (evtType) {
+        _this2.adapter_.registerCapturedInteractionHandler(evtType, _this2.interactionHandler_);
+      });
+
+      var ACTIVE = _constants.cssClasses.ACTIVE,
+          MULTILINE = _constants.cssClasses.MULTILINE,
+          ACTION_ON_BOTTOM = _constants.cssClasses.ACTION_ON_BOTTOM;
+
+
+      this.adapter_.setMessageText(this.snackbarData_.message);
+
+      if (this.snackbarData_.multiline) {
+        this.adapter_.addClass(MULTILINE);
+        if (this.snackbarData_.actionOnBottom) {
+          this.adapter_.addClass(ACTION_ON_BOTTOM);
+        }
+      }
+
+      if (this.snackbarData_.actionHandler) {
+        this.adapter_.setActionText(this.snackbarData_.actionText);
+        this.actionHandler_ = this.snackbarData_.actionHandler;
+        this.setActionHidden_(false);
+      } else {
+        this.setActionHidden_(true);
+        this.actionHandler_ = null;
+        this.adapter_.setActionText(null);
+      }
+
+      this.active_ = true;
+      this.adapter_.addClass(ACTIVE);
+      this.adapter_.unsetAriaHidden();
+
+      this.timeoutId_ = setTimeout( // eslint-disable-line angular/timeout-service
+      this.cleanup_.bind(this), this.snackbarData_.timeout || _constants.numbers.MESSAGE_TIMEOUT);
+      /* End of super() */
+
+      if (data.dismissesOnAction === undefined) {
+        data.dismissesOnAction = true;
+      }
+
+      this.setDismissOnAction(data.dismissesOnAction);
+    }
+  }]);
+
+  return WrappedMDCSnackbarFoundation;
+}(_snackbar.MDCSnackbarFoundation);
+
+var MDCSnackbarController = function () {
+  function MDCSnackbarController($element, $window, $scope) {
+    var _this3 = this;
+
+    _classCallCheck(this, MDCSnackbarController);
+
+    this.elem = $element;
+    this.root_ = this.elem[0];
+    this.window = $window;
+    this.document = $window.document;
+    this.foundation_ = this.getDefaultFoundation();
+    this.onLastShown = undefined;
+
+    this.elemReady = false;
+    this.toShow = undefined;
+
+    this.elem.ready(function () {
+      _this3.elemReady = true;
+      _this3.init();
+    });
+
+    $scope.$on('$destroy', function () {
+      _this3.destroy();
+    });
+  }
+
+  _createClass(MDCSnackbarController, [{
+    key: 'init',
+    value: function init() {
+      if (this.elemReady) {
+        this.foundation_.init();
+        if (this.toShow) {
+          this.show(this.toShow);
+        }
+      }
+    }
+  }, {
+    key: 'getDefaultFoundation',
+    value: function getDefaultFoundation() {
+      var _this4 = this;
+
+      var _WrappedMDCSnackbarFo = WrappedMDCSnackbarFoundation.strings,
+          TEXT_SELECTOR = _WrappedMDCSnackbarFo.TEXT_SELECTOR,
+          ACTION_BUTTON_SELECTOR = _WrappedMDCSnackbarFo.ACTION_BUTTON_SELECTOR;
+
+      var textElem = this.root_.querySelector(TEXT_SELECTOR);
+      var actionElem = this.root_.querySelector(ACTION_BUTTON_SELECTOR);
+
+      /* eslint brace-style: "off" */
+      return new WrappedMDCSnackbarFoundation({
+        addClass: function addClass(className) {
+          return _this4.root_.classList.add(className);
+        },
+        removeClass: function removeClass(className) {
+          return _this4.root_.classList.remove(className);
+        },
+        setAriaHidden: function setAriaHidden() {
+          return _this4.root_.setAttribute('aria-hidden', 'true');
+        },
+        unsetAriaHidden: function unsetAriaHidden() {
+          return _this4.root_.removeAttribute('aria-hidden');
+        },
+        setActionAriaHidden: function setActionAriaHidden() {
+          return actionElem.setAttribute('aria-hidden', 'true');
+        },
+        unsetActionAriaHidden: function unsetActionAriaHidden() {
+          return actionElem.removeAttribute('aria-hidden');
+        },
+        setActionText: function setActionText(text) {
+          actionElem.textContent = text;
+        },
+        setMessageText: function setMessageText(text) {
+          textElem.textContent = text;
+        },
+        setFocus: function setFocus() {
+          return actionElem.focus();
+        },
+        visibilityIsHidden: function visibilityIsHidden() {
+          return _this4.document.hidden;
+        },
+        registerCapturedBlurHandler: function registerCapturedBlurHandler(handler) {
+          return actionElem.addEventListener('blur', handler, true);
+        },
+        deregisterCapturedBlurHandler: function deregisterCapturedBlurHandler(handler) {
+          return actionElem.removeEventListener('blur', handler, true);
+        },
+        registerVisibilityChangeHandler: function registerVisibilityChangeHandler(handler) {
+          return _this4.document.addEventListener('visibilitychange', handler);
+        },
+        deregisterVisibilityChangeHandler: function deregisterVisibilityChangeHandler(handler) {
+          return _this4.document.removeEventListener('visibilitychange', handler);
+        },
+        registerCapturedInteractionHandler: function registerCapturedInteractionHandler(evt, handler) {
+          return _this4.document.body.addEventListener(evt, handler, true);
+        },
+        deregisterCapturedInteractionHandler: function deregisterCapturedInteractionHandler(evt, handler) {
+          return _this4.document.body.removeEventListener(evt, handler, true);
+        },
+        registerActionClickHandler: function registerActionClickHandler(handler) {
+          return actionElem.addEventListener('click', handler);
+        },
+        deregisterActionClickHandler: function deregisterActionClickHandler(handler) {
+          return actionElem.removeEventListener('click', handler);
+        },
+        registerTransitionEndHandler: function registerTransitionEndHandler(handler) {
+          return _this4.root_.addEventListener((0, _animation.getCorrectEventName)(_this4.window, 'transitionend'), handler);
+        },
+        deregisterTransitionEndHandler: function deregisterTransitionEndHandler(handler) {
+          return _this4.root_.removeEventListener((0, _animation.getCorrectEventName)(_this4.window, 'transitionend'), handler);
+        },
+        onLastShown: function onLastShown() {
+          if (_this4.onLastShown) {
+            _this4.onLastShown();
+          }
+        }
+      });
+    }
+  }, {
+    key: 'show',
+    value: function show(data) {
+      if (!this.elemReady) {
+        this.toShow = data;
+        return;
+      }
+      this.foundation_.show(data);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      this.foundation_.destroy();
+    }
+  }]);
+
+  return MDCSnackbarController;
+}();
+
+var snackbarParents = new WeakMap();
+
+/**
+ * @ngdoc service
+ * @name $mdcSnackbar
+ * @module mdc.snackbar
+ */
+
+var $mdcSnackbar = function () {
+  _createClass($mdcSnackbar, null, [{
+    key: 'factory',
+    value: function factory($q, $rootElement, $mdCompilerSlim, $rootScope) {
+      return new $mdcSnackbar($q, $rootElement, $mdCompilerSlim, $rootScope);
+    }
+  }, {
+    key: 'parents_',
+    get: function get() {
+      return snackbarParents;
+    }
+  }]);
+
+  function $mdcSnackbar($q, $rootElement, $mdCompilerSlim, $rootScope) {
+    _classCallCheck(this, $mdcSnackbar);
+
+    this.$rootScope = $rootScope;
+    this.$rootElement = $rootElement;
+    this.$mdCompilerSlim = $mdCompilerSlim;
+    this.$q = $q;
+  }
+
+  _createClass($mdcSnackbar, [{
+    key: 'get_',
+    value: function get_(parent, _ref) {
+      var _this5 = this;
+
+      var contentElement = _ref.contentElement,
+          templateUrl = _ref.templateUrl,
+          template = _ref.template;
+      var locals = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      return this.$q(function (resolve, reject) {
+        var key = contentElement || templateUrl || template;
+        var controllers = void 0;
+        var ctrl = void 0;
+
+        if ($mdcSnackbar.parents_.has(parent)) {
+          controllers = $mdcSnackbar.parents_.get(parent);
+          if (key && controllers.has(key)) {
+            ctrl = controllers.get(key);
+          }
+        } else {
+          controllers = new Map();
+          $mdcSnackbar.parents_.set(parent, controllers);
+        }
+
+        if (ctrl) {
+          // controller already built, use it
+          resolve(ctrl);
+        } else {
+          // controller needs to be compiled
+          var options = {
+            templateUrl: templateUrl, template: template, locals: locals,
+            controller: MDCSnackbarController, controllerAs: 'snackbar'
+          };
+
+          _this5.$mdCompilerSlim.compile(options).then(function (compileData) {
+            var scope = _this5.$rootScope.$new(true);
+            parent.append(compileData.element);
+
+            compileData.link(scope); // returns compiled element
+            var controller = compileData.controller; // this is only available after link()
+
+            controller.onLastShown = function () {
+              // clean up the controller when the last snackbar is shown
+              controllers.delete(key);
+              scope.$destroy();
+              compileData.cleanup();
+            };
+
+            controllers.set(key, controller);
+            resolve(controller);
+          }, reject);
+        }
+      });
+    }
+
+    /**
+     * @ngdoc method
+     * @name $mdcSnackbar#show
+     * @description Shows a snackbar
+     *
+     * @param {object} data - Properties for the displayed snackbar. Only a message is required.
+     * @param {string} data.message - The text message to display.
+     * @param {number} [data.timeout=2750] - The amount of time in milliseconds to show the snackbar.
+     * @param {function} [data.actionHandler] - The function to execute when the action is clicked.
+     * @param {string} [data.actionText] - The text to display for the action button - required if actionHandler is set.
+     * @param {boolean} [data.multiline=false] - Whether to show the snackbar with space for multiple lines of text
+     * @param {boolean} [data.actionOnBottom=false] - Whether to show the action below the multiple lines of text.
+     * @param {boolean} [data.dismissesOnAction=true] - Whether to dismiss when actionHandler is triggered.
+     * @param {string|Element} [data.parent] - parent container to insert the snackbar inside of
+     * @param {string|Element} [data.contentElement] - can be provided instead of a template to reuse a DOM element
+     * @param {string} [data.template] - HTML template as a string
+     * @param {string} [data.templateUrl] - Path to an HTML template
+     */
+
+  }, {
+    key: 'show',
+    value: function show(_ref2) {
+      var message = _ref2.message,
+          _ref2$timeout = _ref2.timeout,
+          timeout = _ref2$timeout === undefined ? undefined : _ref2$timeout,
+          _ref2$actionText = _ref2.actionText,
+          actionText = _ref2$actionText === undefined ? undefined : _ref2$actionText,
+          _ref2$actionHandler = _ref2.actionHandler,
+          actionHandler = _ref2$actionHandler === undefined ? undefined : _ref2$actionHandler,
+          _ref2$multiline = _ref2.multiline,
+          multiline = _ref2$multiline === undefined ? undefined : _ref2$multiline,
+          _ref2$actionOnBottom = _ref2.actionOnBottom,
+          actionOnBottom = _ref2$actionOnBottom === undefined ? undefined : _ref2$actionOnBottom,
+          _ref2$dismissesOnActi = _ref2.dismissesOnAction,
+          dismissesOnAction = _ref2$dismissesOnActi === undefined ? undefined : _ref2$dismissesOnActi,
+          _ref2$templateUrl = _ref2.templateUrl,
+          templateUrl = _ref2$templateUrl === undefined ? undefined : _ref2$templateUrl,
+          _ref2$parent = _ref2.parent,
+          parent = _ref2$parent === undefined ? this.$rootElement : _ref2$parent,
+          _ref2$contentElement = _ref2.contentElement,
+          contentElement = _ref2$contentElement === undefined ? undefined : _ref2$contentElement,
+          _ref2$template = _ref2.template,
+          template = _ref2$template === undefined ? __webpack_require__(68) : _ref2$template;
+
+      this.get_(parent, { contentElement: contentElement, templateUrl: templateUrl, template: template }).then(function (mdc) {
+        mdc.show({
+          message: message, timeout: timeout, actionText: actionText,
+          actionHandler: actionHandler, multiline: multiline, actionOnBottom: actionOnBottom,
+          dismissesOnAction: dismissesOnAction
+        });
+      });
+    }
+
+    /**
+     * @ngdoc method
+     * @name $mdcSnackbar#showStartAligned
+     * @description Shows a snackbar that is start-aligned (RTL-aware) on tablet/desktop
+     *
+     * @param {object} data - Properties for the displayed snackbar. Only a message is required.
+     * @param {string} data.message - The text message to display.
+     * @param {number} [data.timeout=2750] - The amount of time in milliseconds to show the snackbar.
+     * @param {function} [data.actionHandler] - The function to execute when the action is clicked.
+     * @param {string} [data.actionText] - The text to display for the action button - required if actionHandler is set.
+     * @param {boolean} [data.multiline=false] - Whether to show the snackbar with space for multiple lines of text
+     * @param {boolean} [data.actionOnBottom=false] - Whether to show the action below the multiple lines of text.
+     * @param {boolean} [data.dismissesOnAction=true] - Whether to dismiss when actionHandler is triggered.
+     * @param {string|Element} [data.parent] - parent container to insert the snackbar inside of
+     */
+
+  }, {
+    key: 'showStartAligned',
+    value: function showStartAligned(_ref3) {
+      var message = _ref3.message,
+          _ref3$timeout = _ref3.timeout,
+          timeout = _ref3$timeout === undefined ? undefined : _ref3$timeout,
+          _ref3$actionText = _ref3.actionText,
+          actionText = _ref3$actionText === undefined ? undefined : _ref3$actionText,
+          _ref3$actionHandler = _ref3.actionHandler,
+          actionHandler = _ref3$actionHandler === undefined ? undefined : _ref3$actionHandler,
+          _ref3$multiline = _ref3.multiline,
+          multiline = _ref3$multiline === undefined ? undefined : _ref3$multiline,
+          _ref3$actionOnBottom = _ref3.actionOnBottom,
+          actionOnBottom = _ref3$actionOnBottom === undefined ? undefined : _ref3$actionOnBottom,
+          _ref3$dismissesOnActi = _ref3.dismissesOnAction,
+          dismissesOnAction = _ref3$dismissesOnActi === undefined ? undefined : _ref3$dismissesOnActi,
+          _ref3$alignStart = _ref3.alignStart,
+          alignStart = _ref3$alignStart === undefined ? undefined : _ref3$alignStart,
+          _ref3$parent = _ref3.parent,
+          parent = _ref3$parent === undefined ? undefined : _ref3$parent;
+
+      this.show({
+        template: __webpack_require__(69), parent: parent,
+        message: message, timeout: timeout, actionText: actionText,
+        actionHandler: actionHandler, multiline: multiline, actionOnBottom: actionOnBottom,
+        dismissesOnAction: dismissesOnAction, alignStart: alignStart
+      });
+    }
+  }]);
+
+  return $mdcSnackbar;
+}();
+
+angular.module('mdc.snackbar', ['material.core.slim']).factory('$mdcSnackbar', $mdcSnackbar.factory);
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCSnackbar = exports.MDCSnackbarFoundation = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _base = __webpack_require__(1);
+
+var _foundation = __webpack_require__(67);
+
+var _foundation2 = _interopRequireDefault(_foundation);
+
+var _animation = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright 2016 Google Inc. All Rights Reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * you may not use this file except in compliance with the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may obtain a copy of the License at
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Unless required by applicable law or agreed to in writing, software
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * See the License for the specific language governing permissions and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * limitations under the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+exports.MDCSnackbarFoundation = _foundation2.default;
+
+var MDCSnackbar = exports.MDCSnackbar = function (_MDCComponent) {
+  _inherits(MDCSnackbar, _MDCComponent);
+
+  function MDCSnackbar() {
+    _classCallCheck(this, MDCSnackbar);
+
+    return _possibleConstructorReturn(this, (MDCSnackbar.__proto__ || Object.getPrototypeOf(MDCSnackbar)).apply(this, arguments));
+  }
+
+  _createClass(MDCSnackbar, [{
+    key: 'show',
+    value: function show(data) {
+      this.foundation_.show(data);
+    }
+  }, {
+    key: 'getDefaultFoundation',
+    value: function getDefaultFoundation() {
+      var _this2 = this;
+
+      var _MDCSnackbarFoundatio = _foundation2.default.strings,
+          TEXT_SELECTOR = _MDCSnackbarFoundatio.TEXT_SELECTOR,
+          ACTION_BUTTON_SELECTOR = _MDCSnackbarFoundatio.ACTION_BUTTON_SELECTOR;
+
+      var getText = function getText() {
+        return _this2.root_.querySelector(TEXT_SELECTOR);
+      };
+      var getActionButton = function getActionButton() {
+        return _this2.root_.querySelector(ACTION_BUTTON_SELECTOR);
+      };
+
+      /* eslint brace-style: "off" */
+      return new _foundation2.default({
+        addClass: function addClass(className) {
+          return _this2.root_.classList.add(className);
+        },
+        removeClass: function removeClass(className) {
+          return _this2.root_.classList.remove(className);
+        },
+        setAriaHidden: function setAriaHidden() {
+          return _this2.root_.setAttribute('aria-hidden', 'true');
+        },
+        unsetAriaHidden: function unsetAriaHidden() {
+          return _this2.root_.removeAttribute('aria-hidden');
+        },
+        setActionAriaHidden: function setActionAriaHidden() {
+          return getActionButton().setAttribute('aria-hidden', 'true');
+        },
+        unsetActionAriaHidden: function unsetActionAriaHidden() {
+          return getActionButton().removeAttribute('aria-hidden');
+        },
+        setActionText: function setActionText(text) {
+          getActionButton().textContent = text;
+        },
+        setMessageText: function setMessageText(text) {
+          getText().textContent = text;
+        },
+        setFocus: function setFocus() {
+          return getActionButton().focus();
+        },
+        visibilityIsHidden: function visibilityIsHidden() {
+          return document.hidden;
+        },
+        registerCapturedBlurHandler: function registerCapturedBlurHandler(handler) {
+          return getActionButton().addEventListener('blur', handler, true);
+        },
+        deregisterCapturedBlurHandler: function deregisterCapturedBlurHandler(handler) {
+          return getActionButton().removeEventListener('blur', handler, true);
+        },
+        registerVisibilityChangeHandler: function registerVisibilityChangeHandler(handler) {
+          return document.addEventListener('visibilitychange', handler);
+        },
+        deregisterVisibilityChangeHandler: function deregisterVisibilityChangeHandler(handler) {
+          return document.removeEventListener('visibilitychange', handler);
+        },
+        registerCapturedInteractionHandler: function registerCapturedInteractionHandler(evt, handler) {
+          return document.body.addEventListener(evt, handler, true);
+        },
+        deregisterCapturedInteractionHandler: function deregisterCapturedInteractionHandler(evt, handler) {
+          return document.body.removeEventListener(evt, handler, true);
+        },
+        registerActionClickHandler: function registerActionClickHandler(handler) {
+          return getActionButton().addEventListener('click', handler);
+        },
+        deregisterActionClickHandler: function deregisterActionClickHandler(handler) {
+          return getActionButton().removeEventListener('click', handler);
+        },
+        registerTransitionEndHandler: function registerTransitionEndHandler(handler) {
+          return _this2.root_.addEventListener((0, _animation.getCorrectEventName)(window, 'transitionend'), handler);
+        },
+        deregisterTransitionEndHandler: function deregisterTransitionEndHandler(handler) {
+          return _this2.root_.removeEventListener((0, _animation.getCorrectEventName)(window, 'transitionend'), handler);
+        }
+      });
+    }
+  }, {
+    key: 'dismissesOnAction',
+    get: function get() {
+      return this.foundation_.dismissesOnAction();
+    },
+    set: function set(dismissesOnAction) {
+      this.foundation_.setDismissOnAction(dismissesOnAction);
+    }
+  }], [{
+    key: 'attachTo',
+    value: function attachTo(root) {
+      return new MDCSnackbar(root);
+    }
+  }]);
+
+  return MDCSnackbar;
+}(_base.MDCComponent);
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _base = __webpack_require__(1);
+
+var _constants = __webpack_require__(12);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright 2016 Google Inc. All Rights Reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * you may not use this file except in compliance with the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may obtain a copy of the License at
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Unless required by applicable law or agreed to in writing, software
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * See the License for the specific language governing permissions and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * limitations under the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var MDCSnackbarFoundation = function (_MDCFoundation) {
+  _inherits(MDCSnackbarFoundation, _MDCFoundation);
+
+  _createClass(MDCSnackbarFoundation, [{
+    key: 'active',
+    get: function get() {
+      return this.active_;
+    }
+  }], [{
+    key: 'cssClasses',
+    get: function get() {
+      return _constants.cssClasses;
+    }
+  }, {
+    key: 'strings',
+    get: function get() {
+      return _constants.strings;
+    }
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return {
+        addClass: function addClass() /* className: string */{},
+        removeClass: function removeClass() /* className: string */{},
+        setAriaHidden: function setAriaHidden() {},
+        unsetAriaHidden: function unsetAriaHidden() {},
+        setActionAriaHidden: function setActionAriaHidden() {},
+        unsetActionAriaHidden: function unsetActionAriaHidden() {},
+        setActionText: function setActionText() /* actionText: string */{},
+        setMessageText: function setMessageText() /* message: string */{},
+        setFocus: function setFocus() {},
+        visibilityIsHidden: function visibilityIsHidden() {
+          return (/* boolean */false
+          );
+        },
+        registerCapturedBlurHandler: function registerCapturedBlurHandler() /* handler: EventListener */{},
+        deregisterCapturedBlurHandler: function deregisterCapturedBlurHandler() /* handler: EventListener */{},
+        registerVisibilityChangeHandler: function registerVisibilityChangeHandler() /* handler: EventListener */{},
+        deregisterVisibilityChangeHandler: function deregisterVisibilityChangeHandler() /* handler: EventListener */{},
+        registerCapturedInteractionHandler: function registerCapturedInteractionHandler() /* evtType: string, handler: EventListener */{},
+        deregisterCapturedInteractionHandler: function deregisterCapturedInteractionHandler() /* evtType: string, handler: EventListener */{},
+        registerActionClickHandler: function registerActionClickHandler() /* handler: EventListener */{},
+        deregisterActionClickHandler: function deregisterActionClickHandler() /* handler: EventListener */{},
+        registerTransitionEndHandler: function registerTransitionEndHandler() /* handler: EventListener */{},
+        deregisterTransitionEndHandler: function deregisterTransitionEndHandler() /* handler: EventListener */{}
+      };
+    }
+  }]);
+
+  function MDCSnackbarFoundation(adapter) {
+    _classCallCheck(this, MDCSnackbarFoundation);
+
+    var _this = _possibleConstructorReturn(this, (MDCSnackbarFoundation.__proto__ || Object.getPrototypeOf(MDCSnackbarFoundation)).call(this, _extends(MDCSnackbarFoundation.defaultAdapter, adapter)));
+
+    _this.active_ = false;
+    _this.actionWasClicked_ = false;
+    _this.dismissOnAction_ = true;
+    _this.firstFocus_ = true;
+    _this.pointerDownRecognized_ = false;
+    _this.snackbarHasFocus_ = false;
+    _this.snackbarData_ = null;
+    _this.queue_ = [];
+    _this.actionClickHandler_ = function () {
+      _this.actionWasClicked_ = true;
+      _this.invokeAction_();
+    };
+    _this.visibilitychangeHandler_ = function () {
+      clearTimeout(_this.timeoutId_);
+      _this.snackbarHasFocus_ = true;
+
+      if (!_this.adapter_.visibilityIsHidden()) {
+        setTimeout(_this.cleanup_.bind(_this), _this.snackbarData_.timeout || _constants.numbers.MESSAGE_TIMEOUT);
+      }
+    };
+    _this.interactionHandler_ = function (evt) {
+      if (evt.type == 'touchstart' || evt.type == 'mousedown') {
+        _this.pointerDownRecognized_ = true;
+      }
+      _this.handlePossibleTabKeyboardFocus_(evt);
+
+      if (evt.type == 'focus') {
+        _this.pointerDownRecognized_ = false;
+      }
+    };
+    _this.blurHandler_ = function () {
+      clearTimeout(_this.timeoutId_);
+      _this.snackbarHasFocus_ = false;
+      _this.timeoutId_ = setTimeout(_this.cleanup_.bind(_this), _this.snackbarData_.timeout || _constants.numbers.MESSAGE_TIMEOUT);
+    };
+    return _this;
+  }
+
+  _createClass(MDCSnackbarFoundation, [{
+    key: 'init',
+    value: function init() {
+      this.adapter_.registerActionClickHandler(this.actionClickHandler_);
+      this.adapter_.setAriaHidden();
+      this.adapter_.setActionAriaHidden();
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      var _this2 = this;
+
+      this.adapter_.deregisterActionClickHandler(this.actionClickHandler_);
+      this.adapter_.deregisterCapturedBlurHandler(this.blurHandler_);
+      this.adapter_.deregisterVisibilityChangeHandler(this.visibilitychangeHandler_);
+      ['touchstart', 'mousedown', 'focus'].forEach(function (evtType) {
+        _this2.adapter_.deregisterCapturedInteractionHandler(evtType, _this2.interactionHandler_);
+      });
+    }
+  }, {
+    key: 'dismissesOnAction',
+    value: function dismissesOnAction() {
+      return this.dismissOnAction_;
+    }
+  }, {
+    key: 'setDismissOnAction',
+    value: function setDismissOnAction(dismissOnAction) {
+      this.dismissOnAction_ = !!dismissOnAction;
+    }
+  }, {
+    key: 'show',
+    value: function show(data) {
+      var _this3 = this;
+
+      clearTimeout(this.timeoutId_);
+      this.snackbarData_ = data;
+      this.firstFocus_ = true;
+      this.adapter_.registerVisibilityChangeHandler(this.visibilitychangeHandler_);
+      this.adapter_.registerCapturedBlurHandler(this.blurHandler_);
+      ['touchstart', 'mousedown', 'focus'].forEach(function (evtType) {
+        _this3.adapter_.registerCapturedInteractionHandler(evtType, _this3.interactionHandler_);
+      });
+
+      if (!this.snackbarData_) {
+        throw new Error('Please provide a data object with at least a message to display.');
+      }
+      if (!this.snackbarData_.message) {
+        throw new Error('Please provide a message to be displayed.');
+      }
+      if (this.snackbarData_.actionHandler && !this.snackbarData_.actionText) {
+        throw new Error('Please provide action text with the handler.');
+      }
+      if (this.active) {
+        this.queue_.push(this.snackbarData_);
+      }
+
+      var ACTIVE = _constants.cssClasses.ACTIVE,
+          MULTILINE = _constants.cssClasses.MULTILINE,
+          ACTION_ON_BOTTOM = _constants.cssClasses.ACTION_ON_BOTTOM;
+
+
+      this.adapter_.setMessageText(this.snackbarData_.message);
+
+      if (this.snackbarData_.multiline) {
+        this.adapter_.addClass(MULTILINE);
+        if (this.snackbarData_.actionOnBottom) {
+          this.adapter_.addClass(ACTION_ON_BOTTOM);
+        }
+      }
+
+      if (this.snackbarData_.actionHandler) {
+        this.adapter_.setActionText(this.snackbarData_.actionText);
+        this.actionHandler_ = this.snackbarData_.actionHandler;
+        this.setActionHidden_(false);
+      } else {
+        this.setActionHidden_(true);
+        this.actionHandler_ = null;
+        this.adapter_.setActionText(null);
+      }
+
+      this.active_ = true;
+      this.adapter_.addClass(ACTIVE);
+      this.adapter_.unsetAriaHidden();
+
+      this.timeoutId_ = setTimeout(this.cleanup_.bind(this), this.snackbarData_.timeout || _constants.numbers.MESSAGE_TIMEOUT);
+    }
+  }, {
+    key: 'handlePossibleTabKeyboardFocus_',
+    value: function handlePossibleTabKeyboardFocus_() {
+      var hijackFocus = this.firstFocus_ && !this.pointerDownRecognized_;
+
+      if (hijackFocus) {
+        this.setFocusOnAction_();
+      }
+
+      this.firstFocus_ = false;
+    }
+  }, {
+    key: 'setFocusOnAction_',
+    value: function setFocusOnAction_() {
+      this.adapter_.setFocus();
+      this.snackbarHasFocus_ = true;
+      this.firstFocus_ = false;
+    }
+  }, {
+    key: 'invokeAction_',
+    value: function invokeAction_() {
+      try {
+        if (!this.actionHandler_) {
+          return;
+        }
+
+        this.actionHandler_();
+      } finally {
+        if (this.dismissOnAction_) {
+          this.cleanup_();
+        }
+      }
+    }
+  }, {
+    key: 'cleanup_',
+    value: function cleanup_() {
+      var _this4 = this;
+
+      var allowDismissal = !this.snackbarHasFocus_ || this.actionWasClicked_;
+
+      if (allowDismissal) {
+        var ACTIVE = _constants.cssClasses.ACTIVE,
+            MULTILINE = _constants.cssClasses.MULTILINE,
+            ACTION_ON_BOTTOM = _constants.cssClasses.ACTION_ON_BOTTOM;
+
+
+        this.adapter_.removeClass(ACTIVE);
+
+        var handler = function handler() {
+          clearTimeout(_this4.timeoutId_);
+          _this4.adapter_.deregisterTransitionEndHandler(handler);
+          _this4.adapter_.removeClass(MULTILINE);
+          _this4.adapter_.removeClass(ACTION_ON_BOTTOM);
+          _this4.setActionHidden_(true);
+          _this4.adapter_.setAriaHidden();
+          _this4.active_ = false;
+          _this4.snackbarHasFocus_ = false;
+          _this4.showNext_();
+        };
+
+        this.adapter_.registerTransitionEndHandler(handler);
+      }
+    }
+  }, {
+    key: 'showNext_',
+    value: function showNext_() {
+      if (!this.queue_.length) {
+        return;
+      }
+      this.show(this.queue_.shift());
+    }
+  }, {
+    key: 'setActionHidden_',
+    value: function setActionHidden_(isHidden) {
+      if (isHidden) {
+        this.adapter_.setActionAriaHidden();
+      } else {
+        this.adapter_.unsetActionAriaHidden();
+      }
+    }
+  }]);
+
+  return MDCSnackbarFoundation;
+}(_base.MDCFoundation);
+
+exports.default = MDCSnackbarFoundation;
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports) {
+
+module.exports = "<mdc-snackbar aria-live=\"assertive\" aria-atomic=\"true\" aria-hidden=\"true\">\n  <div class=\"mdc-snackbar__text\"></div>\n  <div class=\"mdc-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdc-button mdc-snackbar__action-button\"></button>\n  </div>\n</mdc-snackbar>\n"
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+module.exports = "<mdc-snackbar aria-live=\"assertive\" aria-atomic=\"true\" aria-hidden=\"true\" class=\"mdc-snackbar--align-start\">\n  <div class=\"mdc-snackbar__text\"></div>\n  <div class=\"mdc-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdc-button mdc-snackbar__action-button\"></button>\n  </div>\n</mdc-snackbar>\n"
+
+/***/ }),
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9808,17 +10774,17 @@ angular.module('mdc.switch', []).component('mdcSwitch', {
     ngDisabled: '<?',
     ngModel: '=?'
   },
-  template: __webpack_require__(65)
+  template: __webpack_require__(71)
 });
 
 /***/ }),
-/* 65 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>"
 
 /***/ }),
-/* 66 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9833,12 +10799,12 @@ module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" 
  */
 angular.module('mdc.tabs', []);
 
-__webpack_require__(67);
 __webpack_require__(73);
-__webpack_require__(74);
+__webpack_require__(79);
+__webpack_require__(80);
 
 /***/ }),
-/* 67 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9848,7 +10814,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _ripple = __webpack_require__(3);
 
-var _tabs = __webpack_require__(11);
+var _tabs = __webpack_require__(13);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10050,7 +11016,7 @@ angular.module('mdc.tabs').component('mdcTab', {
 });
 
 /***/ }),
-/* 68 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10068,7 +11034,7 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(13);
+var _constants = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10214,7 +11180,7 @@ var MDCTabFoundation = function (_MDCFoundation) {
 exports.default = MDCTabFoundation;
 
 /***/ }),
-/* 69 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10232,9 +11198,9 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _animation = __webpack_require__(7);
+var _animation = __webpack_require__(4);
 
-var _constants = __webpack_require__(70);
+var _constants = __webpack_require__(76);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10466,7 +11432,7 @@ var MDCTabBarFoundation = function (_MDCFoundation) {
 exports.default = MDCTabBarFoundation;
 
 /***/ }),
-/* 70 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10502,7 +11468,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 71 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10520,7 +11486,7 @@ var _foundation = __webpack_require__(0);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(72);
+var _constants = __webpack_require__(78);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10861,7 +11827,7 @@ var MDCTabBarScrollerFoundation = function (_MDCFoundation) {
 exports.default = MDCTabBarScrollerFoundation;
 
 /***/ }),
-/* 72 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10902,7 +11868,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 73 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10910,7 +11876,7 @@ var strings = exports.strings = {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _tabs = __webpack_require__(11);
+var _tabs = __webpack_require__(13);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11227,7 +12193,7 @@ angular.module('mdc.tabs').component('mdcTabBar', {
 });
 
 /***/ }),
-/* 74 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11235,9 +12201,9 @@ angular.module('mdc.tabs').component('mdcTabBar', {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _animation = __webpack_require__(7);
+var _animation = __webpack_require__(4);
 
-var _tabBarScroller = __webpack_require__(15);
+var _tabBarScroller = __webpack_require__(17);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11446,11 +12412,11 @@ var MdcTabBarScrollerController = function () {
 angular.module('mdc.tabs').component('mdcTabBarScroller', {
   controller: MdcTabBarScrollerController,
   transclude: true,
-  template: __webpack_require__(75)
+  template: __webpack_require__(81)
 });
 
 /***/ }),
-/* 75 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--back\">\n  <a class=\"mdc-tab-bar-scroller__indicator__inner material-icons\" href=\"javascript:void(0)\" aria-label=\"scroll back button\">\n    navigate_before\n  </a>\n</div>\n<div class=\"mdc-tab-bar-scroller__scroll-frame\" ng-transclude></div>\n<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--forward\">\n  <a class=\"mdc-tab-bar-scroller__indicator__inner material-icons\" href=\"javascript:void(0)\" aria-label=\"scroll forward button\">\n    navigate_next\n  </a>\n</div>"
