@@ -12,9 +12,11 @@ require('./mdc-select/mdc-select');
 require('./mdc-snackbar/mdc-snackbar');
 require('./mdc-switch/mdc-switch');
 require('./mdc-tabs/mdc-tabs');
+require('./mdc-textfield/mdc-textfield');
 
 angular.module('mdc', [
   'mdc.button', 'mdc.card', 'mdc.dialog', 'mdc.drawer', 'mdc.grid-list',
   'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu',
-  'mdc.radio', 'mdc.tabs', 'mdc.select', 'mdc.snackbar', 'mdc.switch',
+  'mdc.radio', 'mdc.select', 'mdc.snackbar', 'mdc.switch',
+  'mdc.tabs', 'mdc.textfield',
 ]);

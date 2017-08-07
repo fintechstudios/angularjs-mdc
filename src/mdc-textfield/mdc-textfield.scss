@@ -1,0 +1,17 @@
+@import '~@material/textfield/mdc-textfield';
+
+mdc-textfield {
+  @extend .mdc-textfield;
+}
+
+mdc-textfield, .mdc-textfield--box,
+.mdc-textfield--multiline, .mdc-textfield--dense, .mdc-textfield--fullwidth {
+  input, textarea {
+    @extend .mdc-textfield__input;
+  }
+
+  label {
+    @extend .mdc-textfield__label;
+  }
+
+}

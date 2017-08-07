@@ -55,7 +55,7 @@ being an easy and suitable replacement for angular-material.
 | snackbar        | :white_check_mark:  | mdc.snackbar     |
 | switch          | :white_check_mark:  | mdc.switch       |
 | tabs            | :white_check_mark:  | mdc.tabs         |
-| textfield       | :x:                 | |
+| textfield       | :white_check_mark:  | mdc.textfield    |
 | theme           | :white_check_mark:  | SCSS & CSS only  |
 | toolbar         | :x:                 | |
 | typography      | :white_check_mark:  | SCSS & CSS only  |

@@ -54,7 +54,7 @@
     "@material/snackbar": "^0.3.1",
     "@material/switch": "^0.1.10",
     "@material/tabs": "^0.2.4",
-    "@material/textfield": "^0.3.2",
+    "@material/textfield": "^0.3.3",
     "@material/theme": "^0.1.6",
     "@material/toolbar": "^0.4.3",
     "@material/typography": "^0.2.3",
