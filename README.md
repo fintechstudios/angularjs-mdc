@@ -39,23 +39,23 @@ being an easy and suitable replacement for angular-material.
 | checkbox        | :x:                 | |
 | dialog          | :white_check_mark:  | mdc.dialog       |
 | drawer          | :x:                 | |
-| elevation       | :x:                 | |
+| elevation       | :white_check_mark:  | SCSS & CSS only  |
 | fab             | :x:                 | |
 | form-field      | :x:                 | |
-| grid-list       | :white_check_mark:  | mdc.grid-list     |
-| icon            | :white_check_mark:  | mdc.icon          |
-| icon-toggle     | :white_check_mark:  | mdc.icon-toggle   |
+| grid-list       | :white_check_mark:  | mdc.grid-list    |
+| icon            | :white_check_mark:  | mdc.icon         |
+| icon-toggle     | :white_check_mark:  | mdc.icon-toggle  |
 | linear-progress | :x:                 | |
-| list            | :white_check_mark:  | mdc.list          |
-| menu            | :white_check_mark:  | mdc.menu          |
-| radio           | :white_check_mark:  | mdc.radio         |
+| list            | :white_check_mark:  | mdc.list         |
+| menu            | :white_check_mark:  | mdc.menu         |
+| radio           | :white_check_mark:  | mdc.radio        |
 | ripple          | :x:                 | |
-| select          | :white_check_mark:  | mdc.select        |
+| select          | :white_check_mark:  | mdc.select       |
 | slider          | :x:                 | |
-| snackbar        | :white_check_mark:  | mdc.snackbar      |
-| switch          | :white_check_mark:  | mdc.switch        |
-| tabs            | :white_check_mark:  | mdc.tabs          |
+| snackbar        | :white_check_mark:  | mdc.snackbar     |
+| switch          | :white_check_mark:  | mdc.switch       |
+| tabs            | :white_check_mark:  | mdc.tabs         |
 | textfield       | :x:                 | |
-| theme           | :x:                 | |
+| theme           | :white_check_mark:  | SCSS & CSS only  |
 | toolbar         | :x:                 | |
-| typography      | :x:                 | |
+| typography      | :white_check_mark:  | SCSS & CSS only  |
