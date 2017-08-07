@@ -52,7 +52,7 @@ being an easy and suitable replacement for angular-material.
 | ripple          | :x:                 | |
 | select          | :white_check_mark:  | mdc.select        |
 | slider          | :x:                 | |
-| snackbar        | :x:                 | |
+| snackbar        | :white_check_mark:  | mdc.snackbar      |
 | switch          | :white_check_mark:  | mdc.switch        |
 | tabs            | :white_check_mark:  | mdc.tabs          |
 | textfield       | :x:                 | |

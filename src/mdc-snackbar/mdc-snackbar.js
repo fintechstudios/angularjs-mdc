@@ -285,13 +285,13 @@ class $mdcSnackbar {
    */
   showStartAligned({
     message, timeout = undefined, actionText = undefined, actionHandler = undefined, multiline = undefined,
-    actionOnBottom = undefined, dismissesOnAction = undefined, alignStart = undefined, parent = undefined,
+    actionOnBottom = undefined, dismissesOnAction = undefined, parent = undefined,
   }) {
     this.show({
       template: require('raw-loader!./mdc-snackbar-service-start.html'), parent: parent,
       message: message, timeout: timeout, actionText: actionText,
       actionHandler: actionHandler, multiline: multiline, actionOnBottom: actionOnBottom,
-      dismissesOnAction: dismissesOnAction, alignStart: alignStart,
+      dismissesOnAction: dismissesOnAction,
     });
   }
 }
