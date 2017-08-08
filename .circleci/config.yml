@@ -99,10 +99,8 @@ jobs:
       - deploy:
           name: Deploy to GH Pages
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              chmod +x ./ghpages-deploy.sh;
-              ./ghpages-deploy.sh demos;
-            fi
+            chmod +x ./ghpages-deploy.sh
+            ./ghpages-deploy.sh demos
 
 
 default_filters: &job_filters
