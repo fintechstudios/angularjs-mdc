@@ -92,7 +92,7 @@ jobs:
           name: Deploy to GH Pages
           command: npm run deploy:pages
 
-worflows:
+workflows:
   version: 2
   build_and_deploy:
     jobs:
