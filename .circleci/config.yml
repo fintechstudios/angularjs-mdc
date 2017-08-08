@@ -11,9 +11,6 @@ jobs:
         - image: circleci/node:6.10-browsers
     working_directory: ~/
     steps:
-      - attach_workspace:
-          at: ~/
-
       - checkout:
           path: ~/mdc
 
@@ -44,15 +41,25 @@ jobs:
           name: Running Lint
           command: npm run lint
 
-  build:
+  build_dev:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/
 
       - run:
-          name: Building Distributions
-          command: "npm run build:all"
+          name: Building Development Distribution
+          command: "npm run build"
+
+  build_prod:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run:
+          name: Building Production Distribution
+          command: "npm run build:min"
 
   test:
     <<: *defaults
@@ -82,7 +89,7 @@ jobs:
 
       - run:
           name: Copy AngularJS to Demo
-          command: cp -R ~/mdc/node_modles/angular ~/mdc/demos/angular
+          command: cp -R ~/mdc/node_modules/angular ~/mdc/demos/angular
 
       - run:
           name: Build Demo CSS
@@ -102,14 +109,19 @@ workflows:
           requires:
             - install
 
-      - build:
+      - build_dev:
+          requires:
+            - install
+
+      - build_prod:
           requires:
             - install
 
       - test:
           requires:
             - lint
-            - build
+            - build_dev
+            - build_prod
 
       - deploy_demo:
           requires:
