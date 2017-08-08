@@ -13001,6 +13001,13 @@ var WrappedMDCSnackbarFoundation = function (_MDCSnackbarFoundatio) {
 }(_snackbar.MDCSnackbarFoundation);
 
 var MDCSnackbarController = function () {
+  _createClass(MDCSnackbarController, null, [{
+    key: '$inject',
+    get: function get() {
+      return ['$element', '$window', '$scope'];
+    }
+  }]);
+
   function MDCSnackbarController($element, $window, $scope) {
     var _this3 = this;
 
