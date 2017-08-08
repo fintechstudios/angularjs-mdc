@@ -14,7 +14,7 @@
     "serve": "cross-env MDC_ENV=development webpack-dev-server --content-base demos --inline --hot --host 0.0.0.0",
     "preversion": "npm run test -- --single-run",
     "version": "npm run build:all && git add -A dist",
-    "postversion": "git push && git push --tags && npm publish --access public",
+    "postversion": "git push --follow-tags && npm publish --access public",
     "deploy:pages": "./ghpages-deploy.sh demos"
   },
   "repository": {
