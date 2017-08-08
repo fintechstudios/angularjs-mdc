@@ -1,38 +1,61 @@
-version: 2
-jobs:
-  build:
-    docker:
+defaults: &defaults
+  working_directory: ~/mdc
+  docker:
       - image: circleci/node:6.10-browsers
 
-    working_directory: ~/mdc
 
-    branches:
-      ignore:
-        - gh-pages
-        - /no-test-.*/
-
+version: 2
+jobs:
+  install:
+    docker:
+        - image: circleci/node:6.10-browsers
+    working_directory: ~/
     steps:
-      - checkout
+      - checkout:
+          path: ~/mdc
 
       - restore_cache:
           key: v1-repo-deps-{{ checksum "package-lock.json" }}
 
       - run:
           name: Installing Dependencies
-          command: npm install
+          command: cd ~/mdc && npm install
 
       - save_cache:
           key: v1-repo-deps-{{ checksum "package-lock.json" }}
           paths:
             - ~/mdc/node_modules
 
+      - persist_to_workspace:
+          root: ~
+          paths:
+            - mdc/*
+
+  lint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~
+
       - run:
           name: Running Lint
           command: npm run lint
 
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~
+
       - run:
           name: Building Distributions
           command: "npm run build:all"
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~
 
       - run:
           name: Running Unit Tests
@@ -43,3 +66,51 @@ jobs:
 
       - store_artifacts:
           path: ~/mdc/dist/
+
+  deploy_demo:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~
+
+      - run:
+          name: Copy Distributible to Demo
+          command: cp -R ~/mdc/dist ~/mdc/demos/assets
+
+      - run:
+          name: Copy AngularJS to Demo
+          command: cp -R ~/mdc/node_modles/angular ~/mdc/demos/angular
+
+      - run:
+          name: Build Demo CSS
+          command: npm run build:demos
+
+      - deploy:
+          name: Deploy to GH Pages
+          command: npm run deploy:pages
+
+worflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - install
+
+      - lint:
+          requires:
+            - install
+
+      - build:
+          requires:
+            - install
+
+      - test:
+          requires:
+            - lint
+            - build
+
+      - deploy_demo:
+          requires:
+            - test
+          filters:
+            tags:
+              ignore: /skip-.*/
