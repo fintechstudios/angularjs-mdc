@@ -97,7 +97,11 @@ jobs:
 
       - deploy:
           name: Deploy to GH Pages
-          command: npm run deploy:pages
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              chmod +x ./ghpages-deploy.sh;
+              ./ghpages-deploy.sh demos;
+            fi
 
 workflows:
   version: 2
@@ -128,4 +132,6 @@ workflows:
             - test
           filters:
             tags:
-              ignore: /skip-.*/
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /no-test-.*/  #TODO: replace with /.*/
