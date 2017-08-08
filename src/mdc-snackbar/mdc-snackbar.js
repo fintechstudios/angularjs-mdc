@@ -85,6 +85,10 @@ class WrappedMDCSnackbarFoundation extends MDCSnackbarFoundation {
 }
 
 class MDCSnackbarController {
+  static get $inject() {
+    return ['$element', '$window', '$scope'];
+  }
+
   constructor($element, $window, $scope) {
     this.elem = $element;
     this.root_ = this.elem[0];

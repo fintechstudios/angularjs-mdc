@@ -165,45 +165,5 @@
           }
         }]);
     </script>
-    <script>
-      function demo(global) {
-        'use strict';
-        var MDCSnackbar = global.mdc.snackbar.MDCSnackbar;
-        var snackbar = new MDCSnackbar(document.getElementById('mdc-js-snackbar'));
-        var rtlSnackbar = new MDCSnackbar(document.getElementById('mdc-rtl-js-snackbar'));
-        var messageInput = document.getElementById('message');
-        var actionInput = document.getElementById('action');
-        var multilineInput = document.getElementById('multiline');
-        var actionOnBottomInput = document.getElementById('action-on-bottom');
-        var dismissOnActionInput = document.getElementById('dismiss-on-action');
-
-        var show = function(sb) {
-          snackbar.dismissesOnAction = dismissOnActionInput.checked;
-          var data =  {
-            message: messageInput.value,
-            actionOnBottom: actionOnBottomInput.checked,
-            multiline: multilineInput.checked
-          };
-          if (actionInput.value) {
-            data.actionText = actionInput.value;
-            data.actionHandler = function() {
-              console.log(data);
-            }
-          }
-          sb.show(data);
-        };
-
-        document.getElementById('show-snackbar').addEventListener('click', function() {
-          show(snackbar);
-        });
-
-        document.getElementById('show-rtl-snackbar').addEventListener('click', function() {
-          show(rtlSnackbar);
-        });
-
-        // Remove any element hiding after loading.
-        window.onload = function() { document.body.className = ''; };
-      }
-    </script>
   </body>
 </html>
