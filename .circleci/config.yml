@@ -110,6 +110,8 @@ workflows:
     jobs:
       - install:
           filters:
+            tags:
+              only: /.*/
             branches:
               ignore:
                 - gh-pages
