@@ -179,10 +179,6 @@ class $mdcSnackbar {
     return snackbarParents;
   }
 
-  static factory($q, $rootElement, $mdCompilerSlim, $rootScope) {
-    return new $mdcSnackbar($q, $rootElement, $mdCompilerSlim, $rootScope);
-  }
-
   constructor($q, $rootElement, $mdCompilerSlim, $rootScope) {
     this.$rootScope = $rootScope;
     this.$rootElement = $rootElement;
@@ -296,6 +292,10 @@ class $mdcSnackbar {
   }
 }
 
+function $mdcSnackbarFactory($q, $rootElement, $mdCompilerSlim, $rootScope) {
+  return new $mdcSnackbar($q, $rootElement, $mdCompilerSlim, $rootScope);
+}
+
 
 /**
  * @ngdoc component
@@ -305,4 +305,4 @@ class $mdcSnackbar {
 
 angular
   .module('mdc.snackbar', ['material.core.slim'])
-  .factory('$mdcSnackbar', $mdcSnackbar.factory);
+  .factory('$mdcSnackbar', $mdcSnackbarFactory);
