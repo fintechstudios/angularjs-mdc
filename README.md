@@ -14,6 +14,7 @@ and more consistently across all modern browsers.
 This package aims to wrap core MDC functionality in AngularJS components with the primary goal of
 being an easy and suitable replacement for angular-material.
 
+[Demos](https://fintechstudios.github.io/angularjs-mdc/) - automatically updated with every release
 
 ## Building
 
@@ -24,6 +25,7 @@ being an easy and suitable replacement for angular-material.
 - `npm run build` - build a development ready version in `dist/`
 - `npm run serve` - build a development version to memory, demos available at `localhost:8080`
 - `npm run build:min` - build a production-ready version in `dist/`
+- `npm run build:demo` - just build the demo css into /demos/assets/
 
 ## Testing
 - `npm run test` - run auto-refreshing unit tests against source
