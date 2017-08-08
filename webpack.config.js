@@ -111,7 +111,8 @@ const DEMO_CSS_EXPORT = {
 };
 
 if (IS_DEMOS) {
+  // just build the demo CSS
   module.exports = [DEMO_CSS_EXPORT];
 } else if (IS_DEV) {
-  module.exports.push();
+  module.exports.push(DEMO_CSS_EXPORT);
 }
