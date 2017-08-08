@@ -15,19 +15,19 @@ jobs:
           path: ~/mdc
 
       - restore_cache:
-          key: v1-repo-deps-{{ checksum "package-lock.json" }}
+          key: v1-repo-deps-{{ checksum "~/mdc/package-lock.json" }}
 
       - run:
           name: Installing Dependencies
           command: cd ~/mdc && npm install
 
       - save_cache:
-          key: v1-repo-deps-{{ checksum "package-lock.json" }}
+          key: v1-repo-deps-{{ checksum "~/mdc/package-lock.json" }}
           paths:
             - ~/mdc/node_modules
 
       - persist_to_workspace:
-          root: ~
+          root: ~/
           paths:
             - mdc/*
 
@@ -35,7 +35,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~
+          at: ~/
 
       - run:
           name: Running Lint
@@ -45,7 +45,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~
+          at: ~/
 
       - run:
           name: Building Distributions
@@ -55,7 +55,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~
+          at: ~/
 
       - run:
           name: Running Unit Tests
@@ -71,7 +71,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~
+          at: ~/
 
       - run:
           name: Copy Distributible to Demo
