@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html class="mdc-typography">
+  <head>
+    <meta charset="utf-8">
+    <title>Select Menu - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style type="text/css">
+      .mdc-theme--dark {
+        background-color: #303030;
+      }
+
+      #demo-wrapper {
+        padding: 4px;
+        padding-left: 0;
+      }
+
+      .example {
+        margin: 24px;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Select</span>
+        </section>
+      </div>
+    </header>
+
+    <main ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <mdc-select prompt="Pick a food group" auto-resize="false">
+          <option>Bread, Cereal, Rice, and Pasta</option>
+          <option ng-disabled="true">Vegetables</option>
+          <option>Fruit</option>
+          <option>Milk, Yogurt, and Cheese</option>
+          <option>Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
+          <option>Fats, Oils, and Sweets</option>
+        </mdc-select>
+      </section>
+
+      <section class="example">
+        <h2 class="mdc-typography--title">Fully-Featured Component</h2>
+        <section id="demo-wrapper" dir="{{ isRTL ? 'rtl': '' }}"
+                 ng-class="{'mdc-theme--dark': isDarkTheme}">
+          <mdc-select prompt="Pick a food group" ng-disabled="isDisabled1" ng-model="selected1">
+            <option value="grains">Bread, Cereal, Rice, and Pasta</option>
+            <option value="vegetables" ng-disabled="true">Vegetables</option>
+            <option value="fruit">Fruit</option>
+            <option value="dairy">Milk, Yogurt, and Cheese</option>
+            <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
+            <option value="fats">Fats, Oils, and Sweets</option>
+          </mdc-select>
+        </section>
+        <mdc-textfield>
+          <input id="selected1" ng-model="selected1">
+          <label for="selected1">Currently selected</label>
+        </mdc-textfield>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
+          <label for="isDarkTheme">Dark Theme</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+          <label for="isRTL">RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDisabled1" ng-model="isDisabled1"></mdc-checkbox>
+          <label for="isDisabled1">Disabled</label>
+        </mdc-form-field>
+      </section>
+      <section class="example">
+        <h2 class="mdc-typography--title">CSS Only</h2>
+        <mdc-select prompt="Pick a food group" no-animation="true" ng-model="selected2" ng-disabled="isDisabled2">
+          <option value="" default selected>Pick a food group</option>
+          <option value="grains">Bread, Cereal, Rice, and Pasta</option>
+          <option value="vegetables" ng-disabled="true">Vegetables</option>
+          <option value="fruit">Fruit</option>
+          <option value="dairy">Milk, Yogurt, and Cheese</option>
+          <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
+          <option value="fats">Fats, Oils, and Sweets</option>
+        </mdc-select>
+        <p>Currently selected: {{ selected2 }}</p>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDisabled2" ng-model="isDisabled2"></mdc-checkbox>
+          <label for="isDisabled2">Disabled</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Select Multiple - CSS Only</h2>
+        <mdc-select multiple="true" size="8" ng-disabled="isDisabled3" ng-model="selected3">
+          <optgroup label="Fats, Oils, &amp; Sweets">
+            <option>Olive Oil</option>
+            <option ng-disabled="true">Brown Sugar</option>
+            <option>Ice Cream</option>
+          </optgroup>
+          <option class="mdc-list-divider" role="presentation" disabled></option>
+
+          <optgroup label="Dairy">
+            <option>Milk</option>
+            <option>Cheese</option>
+            <option>More Cheese</option>
+          </optgroup>
+        </mdc-select>
+        <p>Currently selected: {{ selected3 }}</p>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDisabled3" ng-model="isDisabled3"></mdc-checkbox>
+          <label for="isDisabled3">Disabled</label>
+        </mdc-form-field>
+      </section>
+
+    </main>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.isDarkTheme = false;
+          $scope.isRTL = false;
+          $scope.isDisabled1 = $scope.isDisabled2 = $scope.isDisabled3 = false;
+          $scope.selected1 = $scope.selected2 = $scope.selected3 = '';
+        }]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2017 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dialog - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+    	.demo-body {
+    	  padding: 24px;
+    	  margin: 0;
+    	  box-sizing: border-box;
+    	}
+      .mdc-theme--dark {
+        background-color: #303030;
+      }
+
+      section.demo-content {
+        padding: 24px;
+      }
+
+      section.example {
+        text-align: center;
+      }
+
+      .catalog-dialog-demo {
+        position: relative;
+        width: 320px;
+      }
+    </style>
+  </head>
+  <body class="mdc-typography" ng-app="demo" ng-controller="MainCtrl"
+        dir="{{ isRTL ? 'rtl': ''}}" ng-class="{'mdc-theme--dark': isDarkTheme}">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Dialog</span>
+        </section>
+      </div>
+    </header>
+    <main>
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero" dir="{{ isRTL ? 'rtl': ''}}">
+        <aside class="catalog-dialog-demo mdc-dialog mdc-dialog--open">
+      	  <div class="mdc-dialog__surface">
+      	    <mdc-dialog-header>
+      	      <mdc-dialog-title>
+      	        Are you happy?
+      	      </mdc-dialog-title>
+      	    </mdc-dialog-header>
+      	    <mdc-dialog-body>
+      	       Please check the left and right side of this element for fun.
+      	    </mdc-dialog-body>
+      	    <mdc-dialog-footer>
+      	      <mdc-button dialog="cancel">Cancel</mdc-button>
+              <mdc-button dialog="accept">Continue</mdc-button>
+      	    </mdc-dialog-footer>
+      	  </div>
+      	</aside>
+      </section>
+
+      <div class="demo-body">
+        <mdc-dialog id="mdc-dialog-default"
+        	  role="alertdialog"
+        	  aria-labelledby="mdc-dialog-default-label"
+        	  aria-describedby="mdc-dialog-default-description">
+          <mdc-dialog-header>
+            <mdc-dialog-title id="mdc-dialog-default-label">Use Google's location service?</mdc-dialog-title>
+          </mdc-dialog-header>
+          <mdc-dialog-body id="mdc-dialog-default-description">
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </mdc-dialog-body>
+          <mdc-dialog-footer>
+            <mdc-button dialog="cancel">Decline</mdc-button>
+            <mdc-button dialog="accept">Accept</mdc-button>
+          </mdc-dialog-footer>
+      	</mdc-dialog>
+
+      	<mdc-dialog id="mdc-dialog-with-list"
+        	  role="alertdialog"
+        	  aria-labelledby="mdc-dialog-with-list-label"
+        	  aria-describedby="mdc-dialog-with-list-description">
+          <mdc-dialog-header>
+            <mdc-dialog-title id="mdc-dialog-with-list-label">Choose a Ringtone</mdc-dialog-title>
+          </mdc-dialog-header>
+          <mdc-dialog-body id="mdc-dialog-with-list-description" scrollable="true">
+            <mdc-list>
+              <mdc-list-item>None</mdc-list-item>
+              <mdc-list-item>Callisto</mdc-list-item>
+              <mdc-list-item>Ganymede</mdc-list-item>
+              <mdc-list-item>Luna</mdc-list-item>
+              <mdc-list-item>Marimba</mdc-list-item>
+              <mdc-list-item>Schwifty</mdc-list-item>
+              <mdc-list-item>Callisto</mdc-list-item>
+              <mdc-list-item>Ganymede</mdc-list-item>
+              <mdc-list-item>Luna</mdc-list-item>
+              <mdc-list-item>Marimba</mdc-list-item>
+              <mdc-list-item>Schwifty</mdc-list-item>
+            </mdc-list>
+          </mdc-dialog-body>
+          <mdc-dialog-footer>
+            <mdc-button dialog="cancel">Decline</mdc-button>
+            <mdc-button dialog="accept">Accept</mdc-button>
+          </mdc-dialog-footer>
+      	</mdc-dialog>
+    	</div>
+      <section class="example" dir="ltr">
+        <mdc-form-field>
+          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+          <label for="isRTL">Toggle RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
+          <label for="isDarkTheme">Toggle Dark</label>
+        </mdc-form-field>
+        <br><br>
+        <mdc-button raised="true" color="primary" ng-click="openDialog()">Show Dialog</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="openScrollingDialog()">Show Scrolling Dialog</mdc-button>
+        <br><br>
+        <mdc-button raised="true" color="primary" ng-click="alertOpen()">Open Alert</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="confirmOpen()">Open Confirm</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="promptOpen()">Open Prompt</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="openTemplate()">Open Template</mdc-button><br>
+        <br>Status: <em ng-bind="status"></em><br>
+      </section>
+    </main>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', '$mdcDialog', function($scope, $mdcDialog) {
+          function onResolve(result) {
+            $scope.status = 'You accepted the dialog' + (result ? ' and entered ' + result : '');
+          }
+          function onReject() {
+            $scope.status = 'You cancelled the dialog';
+          }
+
+          $scope.name = '';
+          $scope.isDarkTheme = false;
+          $scope.isRTL = false;
+          $scope.status = '<no dialog opened>';
+          $scope.openDialog = function() {
+            $mdcDialog.show({
+              contentElement: '#mdc-dialog-default',
+              parent: '.demo-body',
+            }).then(onResolve, onReject);
+          };
+          $scope.openScrollingDialog = function() {
+            $mdcDialog.show({
+              contentElement: '#mdc-dialog-with-list',
+              parent: '.demo-body',
+            }).then(onResolve, onReject);
+          };
+          $scope.presets = ['alert', 'confirm', 'prompt'];
+          $scope.presets.forEach(function(preset) {
+            $scope[preset + 'Open'] = function() {
+              const dialog = $mdcDialog[preset]()
+                .title('Title for ' + preset)
+                .textContent('Text body for ' + preset)
+                .ok('Okay');
+              switch (preset) {
+                case 'alert':
+                  break;
+                case 'prompt':
+                  dialog.initialValue('30');
+                  dialog.placeholder('Enter something please');
+                default:
+                  dialog.cancel('Cancel');
+              }
+              $mdcDialog.show(dialog).then(onResolve, onReject);
+            }
+          });
+          $scope.openTemplate = function() {
+            $mdcDialog.show({
+              templateUrl: 'dialog-demo-template.html',
+            }).then(onResolve, onReject);
+          }
+        }]);
+    </script>
+  </body>
+</html>

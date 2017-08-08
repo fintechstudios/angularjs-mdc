@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Grid List - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      .demo-grid-tile-content {
+        background-image: url("images/16-9.jpg");
+      }
+
+      .example {
+        padding: 24px;
+      }
+
+      .example h2 {
+        font-size: 1.3em;
+        margin-bottom: 0.8em;
+        margin-top: 0.8em;
+      }
+
+      .hero mdc-grid-list {
+        max-width: 320px;
+        background-color: white;
+      }
+
+      .hero .mdc-grid-tile__primary {
+        background-color: #212121;
+      }
+
+      .hero mdc-grid-tile {
+        width: 76px;
+      }
+    </style>
+  </head>
+  <body class="mdc-typography mdc-grid-list-demo" ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Grid List</span>
+        </section>
+      </div>
+    </header>
+    <main ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <mdc-grid-list>
+          <mdc-grid-tile ng-repeat="i in twelve">
+            <div class="mdc-grid-tile__primary"></div>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+      </section>
+
+      <section class="example">
+          <mdc-form-field>
+            <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+            <label for="isRTL">Toggle RTL</label>
+          </mdc-form-field>
+      </section>
+
+      <section class="example examples" dir="{{ isRTL ? 'rtl' : '' }}">
+        <h2>Grid List (Default): empty grid</h2>
+        <mdc-grid-list></mdc-grid-list>
+
+        <h2>Grid List (Default): tile aspect ratio 1x1 with oneline footer caption</h2>
+        <mdc-grid-list>
+            <mdc-grid-tile ng-repeat="i in six">
+              <div class="mdc-grid-tile__primary">
+                <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+              </div>
+              <span class="mdc-grid-tile__secondary">
+                <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+              </span>
+            </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with 1px gutter</h2>
+        <mdc-grid-list gutter="1">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 image only</h2>
+        <mdc-grid-list>
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with oneline header caption</h2>
+        <mdc-grid-list class="mdc-grid-list--header-caption">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with twoline footer caption</h2>
+        <mdc-grid-list class="mdc-grid-list--twoline-caption">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+              <span class="mdc-grid-tile__support-text">Support text that is really really long</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with oneline footer caption and icon at start of the caption</h2>
+        <mdc-grid-list icon-align="start">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <mdc-icon>star_border</mdc-icon>
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with twoline footer caption and icon at start of the caption</h2>
+        <mdc-grid-list icon-align="start" class="mdc-grid-list--twoline-caption">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <mdc-icon>star_border</mdc-icon>
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+              <span class="mdc-grid-tile__support-text">Support text</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with oneline footer caption and icon at end of the caption</h2>
+        <mdc-grid-list icon-align="end">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <mdc-icon>star_border</mdc-icon>
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: tile aspect ratio 1x1 with twoline footer caption and icon at end of the caption</h2>
+        <mdc-grid-list icon-align="end" class="mdc-grid-list--twoline-caption">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/1-1.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <mdc-icon>star_border</mdc-icon>
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+              <span class="mdc-grid-tile__support-text">Support text</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2>Grid List: use div's background instead of img tag (useful when image ratio cannot be ensured)</h2>
+        <mdc-grid-list class="mdc-grid-list--header-caption">
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <div class="mdc-grid-tile__primary-content demo-grid-tile-content"></div>
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+        <h2 ng-repeat-start="aspect in aspectRatios">
+          Grid List: tile aspect ratio {{ aspect }} with oneline footer caption
+        </h2>
+        <mdc-grid-list aspect="{{ aspect }}" ng-repeat-end>
+          <mdc-grid-tile ng-repeat="i in six">
+            <div class="mdc-grid-tile__primary">
+              <img class="mdc-grid-tile__primary-content" src="images/16-9.jpg" />
+            </div>
+            <span class="mdc-grid-tile__secondary">
+              <span class="mdc-grid-tile__title">Single Very Long Grid Title Line</span>
+            </span>
+          </mdc-grid-tile>
+        </mdc-grid-list>
+      </section>
+
+    </main>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.isRTL = false;
+          $scope.twelve = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+          $scope.six = [0, 1, 2, 3, 4, 5];
+          $scope.aspectRatios = ['1x1', '16x9', '2x3', '3x2', '4x3', '3x4'];
+        }]);
+    </script>
+  </body>
+</html>

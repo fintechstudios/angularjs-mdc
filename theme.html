@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Theme - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      .demo-theme__color {
+        display: inline-flex;
+        flex-direction: column;
+      }
+      .demo-theme__color__label {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 130px;
+        margin-bottom: 1em;
+      }
+      .demo-theme__color__block {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 130px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border: 1px solid #f0f0f0;
+      }
+      .demo-theme__text-styles {
+        display: inline-flex;
+        box-sizing: border-box;
+        padding: 16px;
+        border: 1px solid #f0f0f0;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      @media(min-width: 768px) {
+        .demo-theme__text-styles {
+          flex-direction: row;
+        }
+      }
+
+      .demo-theme__text-styles > span {
+        padding: 0 16px;
+      }
+      .demo-theme--custom-light-bg {
+        background-color: #dddddd;
+      }
+      .demo-theme--custom-dark-bg {
+        background-color: #1d1d1d;
+      }
+
+      .example {
+        margin: 24px;
+        padding: 24px;
+      }
+
+      h2 {
+        margin-left: 48px;
+        margin-bottom: 0.8em;
+        margin-top: 0.8em;
+      }
+
+      h3 {
+        margin-bottom: 0.8em;
+        margin-top: 0.8em;
+      }
+
+      .hero button {
+        margin: 24px;
+      }
+
+    </style>
+  </head>
+  <body ng-app="demo" ng-controller="MainCtrl">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Theme</span>
+        </section>
+      </div>
+    </header>
+    <main>
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <button class="mdc-button mdc-button--raised mdc-theme--primary-bg mdc-theme--text-primary-on-primary">Primary</button>
+        <button class="mdc-button mdc-button--raised button mdc-theme--accent-bg mdc-theme--text-primary-on-accent">Accent</button>
+      </section>
+
+      <h2 class="mdc-typography--display1">Theme colors</h2>
+
+      <section class="example">
+        <h3 class="mdc-typography--title">Theme colors as text</h3>
+        <div class="demo-theme__color">
+          <div class="demo-theme__color__label">Primary</div>
+          <div class="demo-theme__color__block mdc-theme--primary mdc-typography mdc-typography--body2">Lorem ipsum</div>
+        </div>
+        <div class="demo-theme__color">
+          <div class="demo-theme__color__label">Accent</div>
+          <div class="demo-theme__color__block mdc-theme--accent mdc-typography mdc-typography--body2">Lorem ipsum</div>
+        </div>
+      </section>
+
+      <section class="example">
+        <h3 class="mdc-typography--title">Theme colors as background</h3>
+        <div class="demo-theme__color">
+          <div class="demo-theme__color__label">Primary</div>
+          <div class="demo-theme__color__block mdc-theme--primary-bg"></div>
+        </div>
+        <div class="demo-theme__color">
+          <div class="demo-theme__color__label">Accent</div>
+          <div class="demo-theme__color__block mdc-theme--accent-bg"></div>
+        </div>
+        <div class="demo-theme__color">
+          <div class="demo-theme__color__label">Background</div>
+          <div class="demo-theme__color__block mdc-theme--background"></div>
+        </div>
+      </section>
+
+      <h2 class="mdc-typography--display1">Text colors for contrast</h2>
+
+      <section class="example">
+        <h3 class="mdc-typography--title">Text on background</h3>
+        <div class="demo-theme__text-styles mdc-theme--background mdc-typography mdc-typography--body2">
+          <span class="mdc-theme--text-primary-on-background">Primary</span>
+          <span class="mdc-theme--text-secondary-on-background">Secondary</span>
+          <span class="mdc-theme--text-hint-on-background">Hint</span>
+          <span class="mdc-theme--text-disabled-on-background">Disabled</span>
+          <span class="mdc-theme--text-icon-on-background material-icons">favorite</span>
+        </div>
+        <h3 class="mdc-typography--title">Text on primary</h3>
+        <div class="demo-theme__text-styles mdc-theme--primary-bg mdc-typography mdc-typography--body2">
+          <span class="mdc-theme--text-primary-on-primary">Primary</span>
+          <span class="mdc-theme--text-secondary-on-primary">Secondary</span>
+          <span class="mdc-theme--text-hint-on-primary">Hint</span>
+          <span class="mdc-theme--text-disabled-on-primary">Disabled</span>
+          <span class="mdc-theme--text-icon-on-primary material-icons">favorite</span>
+        </div>
+        <h3 class="mdc-typography--title">Text on accent</h3>
+        <div class="demo-theme__text-styles mdc-theme--accent-bg mdc-typography mdc-typography--body2">
+          <span class="mdc-theme--text-primary-on-accent">Primary</span>
+          <span class="mdc-theme--text-secondary-on-accent">Secondary</span>
+          <span class="mdc-theme--text-hint-on-accent">Hint</span>
+          <span class="mdc-theme--text-disabled-on-accent">Disabled</span>
+          <span class="mdc-theme--text-icon-on-accent material-icons">favorite</span>
+        </div>
+        <h3 class="mdc-typography--title">Text on user-defined light background</h3>
+        <div class="demo-theme__text-styles demo-theme--custom-light-bg mdc-typography mdc-typography--body2">
+          <span class="mdc-theme--text-primary-on-light">Primary</span>
+          <span class="mdc-theme--text-secondary-on-light">Secondary</span>
+          <span class="mdc-theme--text-hint-on-light">Hint</span>
+          <span class="mdc-theme--text-disabled-on-light">Disabled</span>
+          <span class="mdc-theme--text-icon-on-light material-icons">favorite</span>
+        </div>
+        <h3 class="mdc-typography--title">Text on user-defined dark background</h3>
+        <div class="demo-theme__text-styles demo-theme--custom-dark-bg mdc-typography mdc-typography--body2">
+          <span class="mdc-theme--text-primary-on-dark">Primary</span>
+          <span class="mdc-theme--text-secondary-on-dark">Secondary</span>
+          <span class="mdc-theme--text-hint-on-dark">Hint</span>
+          <span class="mdc-theme--text-disabled-on-dark">Disabled</span>
+          <span class="mdc-theme--text-icon-on-dark material-icons">favorite</span>
+        </div>
+      </section>
+    </main>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+        }]);
+    </script>
+  </body>
+</html>

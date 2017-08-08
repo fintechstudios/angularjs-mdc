@@ -1,0 +1,15 @@
+<mdc-dialog role="alertdialog"
+            aria-labelledby="mdc-dialog-title"
+            aria-describedby="mdc-dialog-body"
+            ng-class="dialog.css">
+  <mdc-dialog-header>
+    <mdc-dialog-title id="mdc-dialog-title">This dialog was opened from a separate file</mdc-dialog-title>
+  </mdc-dialog-header>
+  <mdc-dialog-body id="mdc-dialog-body" class="mdc-dialog__body--scrollable">
+    The body intentionally has a scrollbar, too, even though there's not a lot of content.
+  </mdc-dialog-body>
+  <mdc-dialog-footer>
+    <mdc-button dialog="cancel">Boring</mdc-button>
+    <mdc-button dialog="accept">Wow pretty cool</mdc-button>
+  </mdc-dialog-footer>
+</mdc-dialog>

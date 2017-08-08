@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular@^1.6.5",
+        "scope": null,
+        "escapedName": "angular",
+        "name": "angular",
+        "rawSpec": "^1.6.5",
+        "spec": ">=1.6.5 <2.0.0",
+        "type": "range"
+      },
+      "/home/circleci/mdc"
+    ]
+  ],
+  "_from": "angular@>=1.6.5 <2.0.0",
+  "_id": "angular@1.6.5",
+  "_inCache": true,
+  "_location": "/angular",
+  "_nodeVersion": "6.11.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/angular-1.6.5.tgz_1499111532398_0.05125633766874671"
+  },
+  "_npmUser": {
+    "name": "angularcore",
+    "email": "angular-core+npm@google.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "angular@^1.6.5",
+    "scope": null,
+    "escapedName": "angular",
+    "name": "angular",
+    "rawSpec": "^1.6.5",
+    "spec": ">=1.6.5 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular/-/angular-1.6.5.tgz",
+  "_shasum": "37f788eebec5ce2e3fa02b17bbcb2a231576a0d6",
+  "_shrinkwrap": null,
+  "_spec": "angular@^1.6.5",
+  "_where": "/home/circleci/mdc",
+  "author": {
+    "name": "Angular Core Team",
+    "email": "angular-core+npm@google.com"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "dependencies": {},
+  "description": "HTML enhanced for web apps",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "37f788eebec5ce2e3fa02b17bbcb2a231576a0d6",
+    "tarball": "https://registry.npmjs.org/angular/-/angular-1.6.5.tgz"
+  },
+  "gitHead": "c5accffceeee635c740434046d3b06079ea47a58",
+  "homepage": "http://angularjs.org",
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "client-side"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "name": "angular",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.6.5"
+}
