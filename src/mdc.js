@@ -1,7 +1,9 @@
 require('./mdc-button/mdc-button');
 require('./mdc-card/mdc-card');
+require('./mdc-checkbox/mdc-checkbox');
 require('./mdc-dialog/mdc-dialog');
 require('./mdc-drawer/mdc-drawer');
+require('./mdc-form-field/mdc-form-field');
 require('./mdc-grid-list/mdc-grid-list');
 require('./mdc-icon/mdc-icon');
 require('./mdc-icon-toggle/mdc-icon-toggle');
@@ -15,8 +17,21 @@ require('./mdc-tabs/mdc-tabs');
 require('./mdc-textfield/mdc-textfield');
 
 angular.module('mdc', [
-  'mdc.button', 'mdc.card', 'mdc.dialog', 'mdc.drawer', 'mdc.grid-list',
-  'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu',
-  'mdc.radio', 'mdc.select', 'mdc.snackbar', 'mdc.switch',
-  'mdc.tabs', 'mdc.textfield',
+  'mdc.button',
+  'mdc.card',
+  'mdc.checkbox',
+  'mdc.dialog',
+  'mdc.drawer',
+  'mdc.form-field',
+  'mdc.grid-list',
+  'mdc.icon',
+  'mdc.icon-toggle',
+  'mdc.list',
+  'mdc.menu',
+  'mdc.radio',
+  'mdc.select',
+  'mdc.snackbar',
+  'mdc.switch',
+  'mdc.tabs',
+  'mdc.textfield',
 ]);

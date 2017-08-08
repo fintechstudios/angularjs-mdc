@@ -76,8 +76,14 @@
         <div>
           <mdc-switch ng-disabled="isDisabled" ng-model="isToggled"></mdc-switch>
           <br><br>
-          <label><input type="checkbox" ng-model="isToggled"> Toggled </label>
-          <label><input type="checkbox" ng-model="isDisabled"> Disabled </label>
+          <mdc-form-field>
+            <mdc-checkbox input-id="isToggled" ng-model="isToggled"></mdc-checkbox>
+            <label for="isToggled">Toggled</label>
+          </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox input-id="isDisabled" ng-model="isDisabled"></mdc-checkbox>
+            <label for="isDisabled">Disabled</label>
+          </mdc-form-field>
         </div>
       </section>
 

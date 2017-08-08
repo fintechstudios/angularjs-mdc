@@ -128,8 +128,14 @@
           <br><br>
           <label>On: <input type="text" ng-model="contentOn"></label>
           <label>Off: <input type="text" ng-model="contentOff"></label><br>
-          <label><input type="checkbox" ng-model="isToggled"> Toggled</label>
-          <label><input type="checkbox" ng-model="isDisabled"> Disabled</label>
+          <mdc-form-field>
+          	<mdc-checkbox input-id="isToggled" ng-model="isToggled"></mdc-checkbox>
+          	<label for="isToggled">Toggled</label>
+          </mdc-form-field>
+          <mdc-form-field>
+          	<mdc-checkbox input-id="isDisabled" ng-model="isDisabled"></mdc-checkbox>
+          	<label for="isDisabled">Disabled</label>
+          </mdc-form-field>
           <br>
           Color:
           <label><input type="radio" ng-model="whichColor" value="primary"> Primary</label>

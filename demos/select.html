@@ -78,16 +78,22 @@
             <option value="fats">Fats, Oils, and Sweets</option>
           </mdc-select>
         </section>
-        <label>Currently selected: <input ng-model="selected1"> </label>
-        <label>
-          <input type="checkbox" ng-model="isDarkTheme"> Dark Theme
-        </label>
-        <label>
-          <input type="checkbox" ng-model="isRTL"> RTL
-        </label>
-        <label>
-          <input type="checkbox" ng-model="isDisabled1"> Disabled
-        </label>
+        <mdc-textfield>
+          <input id="selected1" ng-model="selected1">
+          <label for="selected1">Currently selected</label>
+        </mdc-textfield>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
+          <label for="isDarkTheme">Dark Theme</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+          <label for="isRTL">RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDisabled1" ng-model="isDisabled1"></mdc-checkbox>
+          <label for="isDisabled1">Disabled</label>
+        </mdc-form-field>
       </section>
       <section class="example">
         <h2 class="mdc-typography--title">CSS Only</h2>
@@ -101,9 +107,10 @@
           <option value="fats">Fats, Oils, and Sweets</option>
         </mdc-select>
         <p>Currently selected: {{ selected2 }}</p>
-        <label>
-          <input type="checkbox" ng-model="isDisabled2"> Disabled
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDisabled2" ng-model="isDisabled2"></mdc-checkbox>
+          <label for="isDisabled2">Disabled</label>
+        </mdc-form-field>
       </section>
 
       <section class="example">
@@ -123,9 +130,10 @@
           </optgroup>
         </mdc-select>
         <p>Currently selected: {{ selected3 }}</p>
-        <label>
-          <input type="checkbox" ng-model="isDisabled3"> Disabled
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDisabled3" ng-model="isDisabled3"></mdc-checkbox>
+          <label for="isDisabled3">Disabled</label>
+        </mdc-form-field>
       </section>
 
     </main>

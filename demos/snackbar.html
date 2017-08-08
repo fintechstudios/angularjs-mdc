@@ -54,7 +54,7 @@
     </style>
   </head>
   <body ng-app="demo" class="loading" ng-controller="MainCtrl"
-        ng-class="{'mdc-theme--dark': isDarkTheme}">
+        ng-class="{'mdc-theme--dark': isDarkTheme}" dir="{{ isRTL ? 'rtl' : '' }}">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -81,34 +81,40 @@
       </section>
 
 
-      <section class="example" dir="{{ isRTL ? 'rtl' : '' }}">
+      <section class="example">
         <h2 class="mdc-typography--title">Basic Example</h2>
 
-        <label>
-          <input type="checkbox" ng-model="multiline"> Multiline
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="multiline" ng-model="multiline"></mdc-checkbox>
+          <label for="multiline">Multiline</label>
+        </mdc-form-field>
 
-        <label>
-          <input type="checkbox" ng-model="actionOnBottom" ng-disabled="!multiline"> Action On Bottom
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="actionOnBottom" ng-model="actionOnBottom" ng-disabled="!multiline"></mdc-checkbox>
+          <label for="actionOnBottom">Action On Bottom</label>
+        </mdc-form-field>
 
-        <label>
-          <input type="checkbox" ng-model="dismissesOnAction"> Dismiss On Action
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="dismissesOnAction" ng-model="dismissesOnAction"></mdc-checkbox>
+          <label for="dismissesOnAction">Dismiss On Action</label>
+        </mdc-form-field>
 
-        <label>
-          <input type="checkbox" ng-model="isRTL"> Toggle RTL
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+          <label for="isRTL">Toggle RTL</label>
+        </mdc-form-field>
 
         <mdc-button color="primary" raised="true" ng-click="isDarkTheme = !isDarkTheme">Toggle Dark Theme</mdc-button>
+        <br>
+        <mdc-textfield>
+          <input id="message" ng-model="message">
+          <label for="message">Message Text</label>
+        </mdc-textfield>
 
-        <label>
-          Message Text <input ng-model="message">
-        </label>
-
-        <label>
-          Action Text <input ng-model="actionText">
-        </label>
+        <mdc-textfield>
+          <input id="actionText" ng-model="actionText">
+          <label for="actionText">Action Text</label>
+        </mdc-textfield>
 
         <p>Output: {{ output }}</p>
 

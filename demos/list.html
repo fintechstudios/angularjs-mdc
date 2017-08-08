@@ -149,10 +149,10 @@
           take up as much width as possible (since it's a block element).
           </p>
         </aside>
-        <label id="toggle-rtl-label">
-          <input type="checkbox" ng-model="isRtl">
-          Toggle RTL
-        </label>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isRTL" ng-model="isRtl"></mdc-checkbox>
+          <label for="isRTL">RTL</label>
+        </mdc-form-field>
       </section>
 
       <div id="demo-wrapper" dir="{{ isRtl ? 'rtl' : '' }}">

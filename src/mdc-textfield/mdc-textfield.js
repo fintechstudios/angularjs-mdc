@@ -1,3 +1,5 @@
+require('angular-debounce');
+
 import {MDCTextfield, MDCTextfieldFoundation} from '@material/textfield';
 
 import {MDCRipple} from '@material/ripple';
@@ -30,7 +32,7 @@ class WrappedMDCTextField extends MDCTextfield {
  * @param {expression} [fullwidth] - T/F display the textfield fullwidth
  */
 class MdcTextfieldController {
-  constructor($element, $scope) {
+  constructor($element, $scope, debounce) {
     this.elem = $element;
     this.scope = $scope;
     this.root_ = this.elem[0];
@@ -40,7 +42,7 @@ class MdcTextfieldController {
     });
 
     // changes in the inner DOM will require the MDCTextField to be rebuilt as it hooks onto DOM items
-    this.domObserver = new MutationObserver(() => this.rebuild());
+    this.domObserver = new MutationObserver(debounce(10, () => this.rebuild()));
     // only way to detect inner input being disabled is through mutations
     this.disabledObserver = new MutationObserver((mutations) => this.onDisableMutation(mutations));
   }
@@ -102,7 +104,7 @@ class MdcTextfieldController {
  * Material Design Textfield
  */
 angular
-  .module('mdc.textfield', [])
+  .module('mdc.textfield', ['rt.debounce'])
   .component('mdcTextfield', {
     controller: MdcTextfieldController,
     bindings: {

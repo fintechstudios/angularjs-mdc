@@ -72,9 +72,10 @@
       </section>
 
       <section class="example">
-          <label>
-            <input type="checkbox" ng-model="isRTL"> Toggle RTL
-          </label>
+          <mdc-form-field>
+            <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+            <label for="isRTL">Toggle RTL</label>
+          </mdc-form-field>
       </section>
 
       <section class="example examples" dir="{{ isRTL ? 'rtl' : '' }}">

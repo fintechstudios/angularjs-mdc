@@ -36,12 +36,12 @@ being an easy and suitable replacement for angular-material.
 | --------------- | ------------------- | ---------------- |
 | button          | :white_check_mark:  | mdc.button       |
 | card            | :white_check_mark:  | mdc.card         |
-| checkbox        | :x:                 | |
+| checkbox        | :white_check_mark:  | mdc.checkbox     |
 | dialog          | :white_check_mark:  | mdc.dialog       |
 | drawer          | :x:                 | |
 | elevation       | :white_check_mark:  | SCSS & CSS only  |
 | fab             | :x:                 | |
-| form-field      | :x:                 | |
+| form-field      | :white_check_mark:  | mdc.form-field   |
 | grid-list       | :white_check_mark:  | mdc.grid-list    |
 | icon            | :white_check_mark:  | mdc.icon         |
 | icon-toggle     | :white_check_mark:  | mdc.icon-toggle  |

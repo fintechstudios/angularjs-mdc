@@ -128,8 +128,15 @@
       	</mdc-dialog>
     	</div>
       <section class="example" dir="ltr">
-        <label><input ng-model="isRTL" type="checkbox">Toggle RTL</label>
-        <label><input ng-model="isDarkTheme" type="checkbox">Toggle Dark</label><br><br>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
+          <label for="isRTL">Toggle RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
+          <label for="isDarkTheme">Toggle Dark</label>
+        </mdc-form-field>
+        <br><br>
         <mdc-button raised="true" color="primary" ng-click="openDialog()">Show Dialog</mdc-button>
         <mdc-button raised="true" color="primary" ng-click="openScrollingDialog()">Show Scrolling Dialog</mdc-button>
         <br><br>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html class="mdc-typography">
+  <head>
+    <meta charset="utf-8">
+    <title>Checkbox - Material Compoonents Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+
+    <style media="screen">
+      .mdc-theme--dark {
+        background: #262626;
+        color: white;
+      }
+      .mdc-theme--dark > h2 {
+        margin-top: 0;
+      }
+      /* Example of manually theming a checkbox. Note that this does not take JS-provided animations
+         into account. */
+      .mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
+      .mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
+        background-color: #64DD17;
+        border-color: #64DD17;
+      }
+      .mdc-theme--dark .mdc-checkbox__background::before {
+        background-color: #64DD17;
+      }
+      .mdc-theme--dark .mdc-checkbox__checkmark__path {
+        stroke: #262626 !important;
+      }
+      .mdc-theme--dark .mdc-checkbox__mixedmark {
+        background-color: #262626;
+      }
+    </style>
+  </head>
+  <body ng-app="demo" ng-controller="MainCtrl">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="/" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Checkbox</span>
+        </section>
+      </div>
+    </header>
+    <main>
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <mdc-checkbox input-id="hero-checkbox" indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
+        <label for="hero-checkbox" id="hero-checkbox-label">Checkbox</label>
+      </section>
+
+      <section class="example">
+        <mdc-button raised="true" color="primary" ng-click="isIndeterminate = !isIndeterminate">Toggle indeterminate</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="isRTL = !isRTL">Toggle RTL</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="isEndAligned = !isEndAligned">Toggle End Aligned</mdc-button>
+        <mdc-button raised="true" color="primary" ng-click="isDisabled = !isDisabled">Toggle Disabled</mdc-button>
+      </section>
+
+      <section class="example" dir="{{ isRTL ? 'rtl' : '' }}">
+        <h2>Light Theme</h2>
+        <mdc-form-field align-end="isEndAligned">
+          <mdc-checkbox input-id="basic-checkbox" indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
+          <label for="basic-checkbox" id="basic-checkbox-label">This is my checkbox</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example mdc-theme--dark" dir="{{ isRTL ? 'rtl' : '' }}">
+        <h2>Dark Theme</h2>
+        <mdc-form-field align-end="isEndAligned">
+          <mdc-checkbox input-id="dark-checkbox" indeterminate="isIndeterminate" ng-disabled="isDisabled" class="mdc-checkbox--theme-dark"></mdc-checkbox>
+          <label for="dark-checkbox" id="dark-checkbox-label">This is my checkbox</label>
+        </mdc-form-field>
+      </section>
+    </main>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.isIndeterminate = false;
+          $scope.isRTL = false;
+          $scope.isDisabled = false;
+          $scope.isEndAligned = false;
+        }]);
+    </script>
+  </body>
+</html>

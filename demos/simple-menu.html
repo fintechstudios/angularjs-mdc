@@ -140,7 +140,12 @@
             <label><input type="radio" name="position" ng-click="isTop = true; isLeft = false;"> Top right</label><br>
             <label><input type="radio" name="position" ng-click="isTop = false; isLeft = true;"> Bottom left</label>
             <label><input type="radio" name="position" ng-click="isTop = false; isLeft = false;"> Bottom right</label><br><br>
-            <label><input type="checkbox" ng-model="darkTheme"> Dark mode</label><br><br>
+            <mdc-form-field>
+              <mdc-checkbox input-id="darkTheme" ng-model="darkTheme"></mdc-checkbox>
+              <label for="darkTheme">Dark mode</label>
+            </mdc-form-field>
+
+            <br><br>
 
             <span>Last Selected item: <em ng-bind="out.selected"></em></span>
           </div>
