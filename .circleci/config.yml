@@ -111,8 +111,9 @@ workflows:
       - install:
           filters:
             branches:
-              - gh-pages
-              - /no-test-.*/
+              ignore:
+                - gh-pages
+                - /no-test-.*/
 
       - lint:
           requires:
