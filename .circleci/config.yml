@@ -30,6 +30,7 @@ jobs:
           root: .
           paths:
             - mdc/*
+            - .ssh/*
 
   lint:
     <<: *defaults
