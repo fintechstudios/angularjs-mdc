@@ -27,8 +27,6 @@ class MdcFormFieldController {
         } else {
           this.mdc.input = children[0];
         }
-      } else {
-        console.log('fuk');
       }
     });
 
