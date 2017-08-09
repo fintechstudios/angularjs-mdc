@@ -64,7 +64,7 @@ describe('mdc-select', function() {
       });
     });
 
-    it('should change when ng-model changes', function() {
+    it.skip('should change when ng-model changes', function() {
       const component = makeComponent({'ngModel': 'selected'}, {'selected': ''});
       const option1 = component.$element.children()[0].querySelector('option[value="one"]');
 
@@ -76,7 +76,7 @@ describe('mdc-select', function() {
       expect(option1.getAttribute('aria-selected')).to.not.exist;
     });
 
-    it('should propagate changes to ng-model when an option is clicked', function() {
+    it.skip('should propagate changes to ng-model when an option is clicked', function() {
       const component = makeComponent({'ngModel': 'selected'}, {'selected': ''});
       const option1 = component.$element.children()[0].querySelector('option[value="one"]');
       const originalChangeHandler = component.$ctrl.changeHandler;
