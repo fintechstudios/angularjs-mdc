@@ -10131,12 +10131,74 @@ var MdcSelectController = function () {
   MdcSelectController.$inject = ['$element', '$scope', '$window', 'debounce'];
 
   function MdcSelectController($element, $scope, $window, debounce) {
+    var _this = this;
+
     _classCallCheck(this, MdcSelectController);
 
     this.elem = $element;
     this.scope = $scope;
     this.window = angular.element($window);
     this.debounce = debounce;
+
+    this.build = this.debounce(10, function () {
+      // the MDCSelect element won't be initialized when noAnimation or multiple because it will never be shown
+      if (!_this.multiple && !_this.noAnimation) {
+        console.log('build');
+        if (_this.boundResizeHandler) {
+          _this.window.off('resize', _this.boundResizeHandler);
+        }
+        if (_this.boundChangeHandler) {
+          _this.mdc.unlisten(_select.MDCSelectFoundation.strings.CHANGE_EVENT, _this.boundChangeHandler);
+        }
+        if (_this.mdc) {
+          _this.mdc.destroy();
+        }
+
+        var mdcOptions = _this.elem.children()[0].querySelectorAll('option');
+        angular.forEach(mdcOptions, function (e) {
+          e.setAttribute('role', 'option');
+          e.className += ' mdc-list-item';
+          e.setAttribute('id', e.getAttribute('value'));
+        });
+
+        _this.mdc = new _select.MDCSelect(_this.elem.children()[0]);
+        _this.boundChangeHandler = function (e) {
+          return _this.changeHandler(e);
+        };
+        _this.mdc.listen(_select.MDCSelectFoundation.strings.CHANGE_EVENT, _this.boundChangeHandler);
+
+        // setup resize handler
+        _this.autoResize = _this.autoResize === undefined && _this.noAnimation === undefined ? true : _this.autoResize;
+        if (_this.autoResize) {
+          _this.boundResizeHandler = _this.debounce(200, function () {
+            return _this.resizeHandler();
+          });
+          _this.window.on('resize', _this.boundResizeHandler);
+          _this.boundResizeHandler();
+        }
+
+        // setup ngModelCtrl
+        if (_this.ngModelCtrl) {
+          _this.ngModelCtrl.$render = function () {
+            var selectedIndex = -1;
+            _this.mdc.options.forEach(function (option, i) {
+              if (option.value === _this.ngModelCtrl.$viewValue) {
+                selectedIndex = i;
+                return 0;
+              }
+            });
+            _this.mdc.selectedIndex = selectedIndex;
+          };
+        }
+      }
+
+      if (_this.ngDisabled && _this.mdc) {
+        _this.mdc.disabled = _this.ngDisabled;
+      }
+    });
+    this.observer = new MutationObserver(function () {
+      return _this.build();
+    });
   }
 
   _createClass(MdcSelectController, [{
@@ -10159,51 +10221,13 @@ var MdcSelectController = function () {
   }, {
     key: '$postLink',
     value: function $postLink() {
-      var _this = this;
+      var _this2 = this;
 
-      // the MDCSelect element won't be initialized when noAnimation or multiple because it will never be shown
-      if (!this.multiple && !this.noAnimation) {
-        var mdcOptions = this.elem.children()[0].querySelectorAll('option');
-        angular.forEach(mdcOptions, function (e) {
-          e.setAttribute('role', 'option');
-          e.className += ' mdc-list-item';
-          e.setAttribute('id', e.getAttribute('value'));
-        });
+      this.elem.ready(function () {
+        _this2.build();
 
-        this.mdc = new _select.MDCSelect(this.elem.children()[0]);
-        this.boundChangeHandler = function (e) {
-          return _this.changeHandler(e);
-        };
-        this.mdc.listen(_select.MDCSelectFoundation.strings.CHANGE_EVENT, this.boundChangeHandler);
-
-        // setup resize handler
-        this.autoResize = this.autoResize === undefined && this.noAnimation === undefined ? true : this.autoResize;
-        if (this.autoResize) {
-          this.boundResizeHandler = this.debounce(200, function () {
-            return _this.resizeHandler();
-          });
-          this.window.on('resize', this.boundResizeHandler);
-          this.boundResizeHandler();
-        }
-
-        // setup ngModelCtrl
-        if (this.ngModelCtrl) {
-          this.ngModelCtrl.$render = function () {
-            var selectedIndex = -1;
-            _this.mdc.options.forEach(function (option, i) {
-              if (option.value === _this.ngModelCtrl.$viewValue) {
-                selectedIndex = i;
-                return 0;
-              }
-            });
-            _this.mdc.selectedIndex = selectedIndex;
-          };
-        }
-      }
-
-      if (this.ngDisabled && this.mdc) {
-        this.mdc.disabled = this.ngDisabled;
-      }
+        _this2.observer.observe(_this2.elem.children()[1], { childList: true, subtree: true });
+      });
     }
   }, {
     key: '$onChanges',
@@ -10217,6 +10241,7 @@ var MdcSelectController = function () {
   }, {
     key: '$onDestory',
     value: function $onDestory() {
+      this.observer.disconnect();
       if (this.boundResizeHandler) {
         this.window.off('resize', this.boundResizeHandler);
       }
