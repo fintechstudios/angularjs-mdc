@@ -7012,8 +7012,6 @@ var MdcFormFieldController = function () {
         } else {
           _this.mdc.input = children[0];
         }
-      } else {
-        console.log('fuk');
       }
     });
 
@@ -10143,7 +10141,6 @@ var MdcSelectController = function () {
     this.build = this.debounce(10, function () {
       // the MDCSelect element won't be initialized when noAnimation or multiple because it will never be shown
       if (!_this.multiple && !_this.noAnimation) {
-        console.log('build');
         if (_this.boundResizeHandler) {
           _this.window.off('resize', _this.boundResizeHandler);
         }
@@ -10189,6 +10186,9 @@ var MdcSelectController = function () {
             });
             _this.mdc.selectedIndex = selectedIndex;
           };
+          if (_this.ngModel) {
+            _this.ngModelCtrl.$render();
+          }
         }
       }
 
@@ -10225,7 +10225,6 @@ var MdcSelectController = function () {
 
       this.elem.ready(function () {
         _this2.build();
-
         _this2.observer.observe(_this2.elem.children()[1], { childList: true, subtree: true });
       });
     }
