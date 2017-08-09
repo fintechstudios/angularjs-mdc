@@ -59,7 +59,7 @@ class MdcSelectController {
           this.ngModelCtrl.$render = () => {
             let selectedIndex = -1;
             this.mdc.options.forEach((option, i) => {
-              if (option.value === this.ngModelCtrl.$viewValue) {
+              if (option.value == this.ngModelCtrl.$viewValue) {
                 selectedIndex = i;
                 return 0;
               }
