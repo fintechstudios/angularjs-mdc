@@ -10179,7 +10179,7 @@ var MdcSelectController = function () {
           _this.ngModelCtrl.$render = function () {
             var selectedIndex = -1;
             _this.mdc.options.forEach(function (option, i) {
-              if (option.value === _this.ngModelCtrl.$viewValue) {
+              if (option.value == _this.ngModelCtrl.$viewValue) {
                 selectedIndex = i;
                 return 0;
               }
