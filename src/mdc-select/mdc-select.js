@@ -25,7 +25,6 @@ class MdcSelectController {
     this.build = this.debounce(10, () => {
       // the MDCSelect element won't be initialized when noAnimation or multiple because it will never be shown
       if (!this.multiple && !this.noAnimation) {
-        console.log('build');
         if (this.boundResizeHandler) {
           this.window.off('resize', this.boundResizeHandler);
         }
@@ -67,6 +66,9 @@ class MdcSelectController {
             });
             this.mdc.selectedIndex = selectedIndex;
           };
+          if (this.ngModel) {
+            this.ngModelCtrl.$render();
+          }
         }
       }
 
@@ -94,7 +96,6 @@ class MdcSelectController {
   $postLink() {
     this.elem.ready(() => {
       this.build();
-
       this.observer.observe(this.elem.children()[1], {childList: true, subtree: true});
     });
   }

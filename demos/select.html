@@ -96,7 +96,21 @@
         </mdc-form-field>
       </section>
       <section class="example">
-        <h2 class="mdc-typography--title">CSS Only</h2>
+        <h2 class="mdc-typography--title">With ng-repeat</h2>
+        <mdc-select ng-model="repeatSelected">
+          <option ng-repeat="i in six" ng-value="i" ng-bind="::$index + 1"></option>
+        </mdc-select>
+        <p>Currently selected: {{ repeatSelected }}</p>
+      </section>
+      <section class="example">
+        <h2 class="mdc-typography--title">With ng-repeat (no animation)</h2>
+        <mdc-select no-animation="true" ng-model="repeatSelectedNoAnimation">
+          <option ng-repeat="i in six" ng-value="i" ng-bind="::$index + 1"></option>
+        </mdc-select>
+        <p>Currently selected: {{ repeatSelectedNoAnimation }}</p>
+      </section>
+      <section class="example">
+        <h2 class="mdc-typography--title">No Animation</h2>
         <mdc-select prompt="Pick a food group" no-animation="true" ng-model="selected2" ng-disabled="isDisabled2">
           <option value="" default selected>Pick a food group</option>
           <option value="grains">Bread, Cereal, Rice, and Pasta</option>
@@ -114,7 +128,7 @@
       </section>
 
       <section class="example">
-        <h2>Select Multiple - CSS Only</h2>
+        <h2>Select Multiple</h2>
         <mdc-select multiple="true" size="8" ng-disabled="isDisabled3" ng-model="selected3">
           <optgroup label="Fats, Oils, &amp; Sweets">
             <option>Olive Oil</option>
@@ -145,6 +159,9 @@
           $scope.name = '';
           $scope.isDarkTheme = false;
           $scope.isRTL = false;
+          $scope.repeatSelected = 'three';
+          $scope.repeatSelectedNoAnimation = 'four';
+          $scope.six = ['one', 'two', 'three', 'four', 'five', 'six'];
           $scope.isDisabled1 = $scope.isDisabled2 = $scope.isDisabled3 = false;
           $scope.selected1 = $scope.selected2 = $scope.selected3 = '';
         }]);
