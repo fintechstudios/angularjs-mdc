@@ -14,14 +14,19 @@ import {MDCRadio} from '@material/radio';
  *
  */
 class MdcRadioController {
-  constructor($element) {
+  constructor($scope, $element) {
     this.elem = $element;
     this.mdc = new MDCRadio(this.elem[0]);
+    this.defaultId = 'mdc-radio-' + $scope.$id;
   }
 
   $onChanges(changesObj) {
+    console.log(changesObj);
     if (changesObj.ngDisabled) {
       this.mdc.disabled = this.ngDisabled;
+    }
+    if (changesObj.inputId && changesObj.inputId.isFirstChange() && changesObj.inputId.currentValue === undefined) {
+      this.inputId = this.defaultId;
     }
   };
 

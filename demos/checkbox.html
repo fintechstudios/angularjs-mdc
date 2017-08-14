@@ -65,8 +65,10 @@
     <main>
       <div class="mdc-toolbar-fixed-adjust"></div>
       <section class="hero">
-        <mdc-checkbox input-id="hero-checkbox" indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
-        <label for="hero-checkbox" id="hero-checkbox-label">Checkbox</label>
+        <mdc-form-field>
+          <mdc-checkbox indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
+          <label>Checkbox</label>
+        </mdc-form-field>
       </section>
 
       <section class="example">
@@ -80,7 +82,7 @@
         <h2>Light Theme</h2>
         <mdc-form-field align-end="isEndAligned">
           <mdc-checkbox input-id="basic-checkbox" indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
-          <label for="basic-checkbox" id="basic-checkbox-label">This is my checkbox</label>
+          <label id="basic-checkbox-label">This is my checkbox</label>
         </mdc-form-field>
       </section>
 

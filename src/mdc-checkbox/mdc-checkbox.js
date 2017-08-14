@@ -11,10 +11,11 @@ import {MDCCheckbox} from '@material/checkbox';
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  */
 class MdcCheckboxController {
-  constructor($element) {
+  constructor($scope, $element) {
     this.elem = $element;
     this.root_ = this.elem[0];
     this.mdc = new MDCCheckbox(this.root_);
+    this.defaultId = 'mdc-checkbox-' + $scope.$id;
   }
 
   $onChanges(changesObj) {
@@ -23,6 +24,9 @@ class MdcCheckboxController {
     }
     if (changesObj.indeterminate) {
       this.mdc.indeterminate = this.indeterminate;
+    }
+    if (changesObj.inputId && changesObj.inputId.isFirstChange() && changesObj.inputId.currentValue === undefined) {
+      this.inputId = this.defaultId;
     }
   }
 

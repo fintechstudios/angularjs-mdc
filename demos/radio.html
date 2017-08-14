@@ -74,44 +74,52 @@
 
       <section class="example">
         <h2>Light Theme</h2>
-        <label>
-          <mdc-radio input-id="ex0-radio1" ng-model="ex0" ng-value="'yes'"></mdc-radio> Radio 1
-        </label>
-        <label>
-          <mdc-radio input-id="ex0-radio2" ng-model="ex0" ng-value="'no'"></mdc-radio> Radio 2
-        </label>
+        <mdc-form-field>
+          <mdc-radio ng-model="ex0" ng-value="'yes'"></mdc-radio>
+          <label>Radio 1</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-radio ng-model="ex0" ng-value="'no'"></mdc-radio>
+          <label>Radio 2</label>
+        </mdc-form-field>
         <br><br>Selection: {{ ex0 }}
       </section>
 
       <section class="example mdc-theme--dark">
         <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
-        <label>
-          <mdc-radio input-id="ex3-radio1" ng-model="ex3" ng-value="true"></mdc-radio> Radio 1
-        </label>
-        <label>
-          <mdc-radio input-id="ex3-radio2" ng-model="ex3" ng-value="false"></mdc-radio> Radio 2
-        </label>
+        <mdc-form-field>
+          <mdc-radio ng-model="ex3" ng-value="true"></mdc-radio>
+          <label>Radio 1</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-radio ng-model="ex3" ng-value="false"></mdc-radio>
+          <label>Radio 2</label>
+        </mdc-form-field>
         <br><br>Selection: {{ ex3 }}
       </section>
 
       <section class="example">
         <h2>Light Theme - Disabled</h2>
-        <label>
-          <mdc-radio ng-disabled="isDisabled" input-id="ex4a-radio1" ng-model="ex4a" ng-value="1"></mdc-radio> Radio 1
-        </label>
-        <label>
-          <mdc-radio ng-disabled="isDisabled" input-id="ex4a-radio2" ng-model="ex4a" ng-value="2"></mdc-radio> Radio 2
-        </label>
+        <mdc-form-field>
+          <mdc-radio ng-disabled="isDisabled" ng-model="ex4a" ng-value="1"></mdc-radio>
+          <label>Radio 1</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-radio ng-disabled="isDisabled" ng-model="ex4a" ng-value="2"></mdc-radio>
+          <label>Radio 2</label>
+        </mdc-form-field>
         <br><br>Selection: {{ ex4a }}
       </section>
       <section class="example mdc-theme--dark">
         <h2 class="mdc-theme--text-primary-on-dark">Dark Theme - Disabled</h2>
-        <label>
-          <mdc-radio ng-disabled="isDisabled" input-id="ex4b-radio1" ng-model="ex4b" ng-value="1"></mdc-radio> Radio 1
-        </label>
-        <label>
-          <mdc-radio ng-disabled="isDisabled" input-id="ex4b-radio2" ng-model="ex4b" ng-value="2"></mdc-radio> Radio 2
-        </label>
+        <mdc-form-field>
+          <mdc-radio ng-disabled="isDisabled" ng-model="ex4b" ng-value="1"></mdc-radio>
+          <label>Radio 1</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-radio ng-disabled="isDisabled" ng-model="ex4b" ng-value="2"></mdc-radio>
+          <label>Radio 2</label>
+        </mdc-form-field>
         <br><br>Selection: {{ ex4b }}
       </section>
     </main>
