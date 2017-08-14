@@ -2864,7 +2864,7 @@ var MdcButtonController = function () {
         e.toggleClass('mdc-button--compact mdc-card__action', this.cardAction);
       }
       if (changesObj.dialog) {
-        e.toggleClass('mdc-dialog__footer__button', ctrl.dialog !== '');
+        e.toggleClass('mdc-dialog__footer__button', ctrl.dialog === 'cancel' || ctrl.dialog === 'accept');
         e.toggleClass('mdc-dialog__footer__button--cancel', ctrl.dialog === 'cancel');
         e.toggleClass('mdc-dialog__footer__button--accept', ctrl.dialog === 'accept');
       }
@@ -3059,14 +3059,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  */
 var MdcCheckboxController = function () {
-  MdcCheckboxController.$inject = ['$element'];
+  MdcCheckboxController.$inject = ['$scope', '$element'];
 
-  function MdcCheckboxController($element) {
+  function MdcCheckboxController($scope, $element) {
     _classCallCheck(this, MdcCheckboxController);
 
     this.elem = $element;
     this.root_ = this.elem[0];
     this.mdc = new _checkbox.MDCCheckbox(this.root_);
+    this.defaultId = 'mdc-checkbox-' + $scope.$id;
   }
 
   _createClass(MdcCheckboxController, [{
@@ -3077,6 +3078,9 @@ var MdcCheckboxController = function () {
       }
       if (changesObj.indeterminate) {
         this.mdc.indeterminate = this.indeterminate;
+      }
+      if (changesObj.inputId && changesObj.inputId.isFirstChange() && changesObj.inputId.currentValue === undefined) {
+        this.inputId = this.defaultId;
       }
     }
   }, {
@@ -6992,9 +6996,9 @@ _formField.MDCFormFieldFoundation.strings['LABEL_SELECTOR'] = 'mdc-form-field > 
  */
 
 var MdcFormFieldController = function () {
-  MdcFormFieldController.$inject = ['$element', 'debounce'];
+  MdcFormFieldController.$inject = ['$scope', '$element', 'debounce'];
 
-  function MdcFormFieldController($element, debounce) {
+  function MdcFormFieldController($scope, $element, debounce) {
     var _this = this;
 
     _classCallCheck(this, MdcFormFieldController);
@@ -7006,11 +7010,26 @@ var MdcFormFieldController = function () {
       _this.mdc = new _formField.MDCFormField(_this.root_);
 
       var children = _this.elem.children();
+      var input = void 0;
+      var label = void 0;
       if (children.length === 2) {
         if (children[0].tagName.toUpperCase() === 'LABEL') {
-          _this.mdc.input = children[1];
+          label = children[0];
+          input = children[1];
         } else {
-          _this.mdc.input = children[0];
+          label = children[1];
+          input = children[0];
+        }
+        _this.mdc.input = input;
+        // only certain elements can be labeled
+        // https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form_labelable
+        var labelable = input.querySelector('input, textarea, select, button, meter, output, progress, keygen');
+        var inputId = labelable.getAttribute('id') || label.getAttribute('for') || 'mdc-form-field-' + $scope.$id;
+        if (!labelable.hasAttribute('id')) {
+          labelable.setAttribute('id', inputId);
+        }
+        if (!label.hasAttribute('for')) {
+          label.setAttribute('for', inputId);
         }
       }
     });
@@ -7042,7 +7061,9 @@ var MdcFormFieldController = function () {
     key: '$onDestroy',
     value: function $onDestroy() {
       this.observer.disconnect();
-      this.mdc.destroy();
+      if (this.mdc) {
+        this.mdc.destroy();
+      }
     }
   }]);
 
@@ -7943,7 +7964,9 @@ var MdcIconToggleController = function () {
       if (this.ripple_) {
         this.ripple_.destroy();
       }
-      this.foundation_.destroy();
+      if (this.foundation_) {
+        this.foundation_.destroy();
+      }
     }
   }, {
     key: 'iconEl_',
@@ -9529,20 +9552,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  *
  */
 var MdcRadioController = function () {
-  MdcRadioController.$inject = ['$element'];
+  MdcRadioController.$inject = ['$scope', '$element'];
 
-  function MdcRadioController($element) {
+  function MdcRadioController($scope, $element) {
     _classCallCheck(this, MdcRadioController);
 
     this.elem = $element;
     this.mdc = new _radio.MDCRadio(this.elem[0]);
+    this.defaultId = 'mdc-radio-' + $scope.$id;
   }
 
   _createClass(MdcRadioController, [{
     key: '$onChanges',
     value: function $onChanges(changesObj) {
+      console.log(changesObj);
       if (changesObj.ngDisabled) {
         this.mdc.disabled = this.ngDisabled;
+      }
+      if (changesObj.inputId && changesObj.inputId.isFirstChange() && changesObj.inputId.currentValue === undefined) {
+        this.inputId = this.defaultId;
       }
     }
   }, {
@@ -10247,7 +10275,9 @@ var MdcSelectController = function () {
       if (this.boundChangeHandler) {
         this.mdc.unlisten(_select.MDCSelectFoundation.strings.CHANGE_EVENT, this.boundChangeHandler);
       }
-      this.mdc.destroy();
+      if (this.mdc) {
+        this.mdc.destroy();
+      }
     }
   }]);
 
@@ -13398,7 +13428,9 @@ var MdcTabBarController = function () {
       if (this.scroller) {
         this.scroller.removeTabBar();
       }
-      this.foundation_.destroy();
+      if (this.foundation_) {
+        this.foundation_.destroy();
+      }
     }
   }, {
     key: 'activate',
@@ -13885,9 +13917,21 @@ var MdcTextfieldController = function () {
     this.disabledObserver = new MutationObserver(function (mutations) {
       return _this2.onDisableMutation(mutations);
     });
+    this.valueObserver = new MutationObserver(function (mutations) {
+      return _this2.onValueMutation(mutations);
+    });
   }
 
   _createClass(MdcTextfieldController, [{
+    key: 'onValueMutation',
+    value: function onValueMutation() {
+      if (this.mdc.input_.classList.contains('ng-empty')) {
+        this.mdc.input_.dispatchEvent(new Event('blur'));
+      } else if (this.mdc.input_.classList.contains('ng-not-empty')) {
+        this.mdc.input_.dispatchEvent(new Event('input'));
+      }
+    }
+  }, {
     key: 'onDisableMutation',
     value: function onDisableMutation(mutations) {
       this.elem.toggleClass('mdc-textfield--disabled', mutations[0].target.getAttribute('disabled') !== null);
@@ -13902,6 +13946,8 @@ var MdcTextfieldController = function () {
       this.mdc = new WrappedMDCTextField(this.root_);
       this.disabledObserver.disconnect(); // don't continue observing lost DOM
       this.disabledObserver.observe(this.mdc.input_, { attributes: true, attributeFilter: ['disabled'] });
+      // if ng-model is on the input, it will modify the classlist but not fire native events - we will manually trigger
+      this.valueObserver.observe(this.mdc.input_, { attributes: true, attributeFilter: ['class'] });
     }
   }, {
     key: '$postLink',
@@ -13936,8 +13982,11 @@ var MdcTextfieldController = function () {
     key: '$onDestroy',
     value: function $onDestroy() {
       this.disabledObserver.disconnect();
+      this.valueObserver.disconnect();
       this.domObserver.disconnect();
-      this.mdc.destroy();
+      if (this.mdc) {
+        this.mdc.destroy();
+      }
     }
   }]);
 
