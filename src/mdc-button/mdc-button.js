@@ -32,7 +32,7 @@ class MdcButtonController {
       e.toggleClass('mdc-button--compact mdc-card__action', this.cardAction);
     }
     if (changesObj.dialog) {
-      e.toggleClass('mdc-dialog__footer__button', ctrl.dialog !== '');
+      e.toggleClass('mdc-dialog__footer__button', ctrl.dialog === 'cancel' || ctrl.dialog === 'accept');
       e.toggleClass('mdc-dialog__footer__button--cancel', ctrl.dialog === 'cancel');
       e.toggleClass('mdc-dialog__footer__button--accept', ctrl.dialog === 'accept');
     }
