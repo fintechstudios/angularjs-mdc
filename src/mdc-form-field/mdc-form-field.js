@@ -13,7 +13,7 @@ MDCFormFieldFoundation.strings['LABEL_SELECTOR'] = 'mdc-form-field > label';
  * @param {expression} [alignEnd] T/F align the form element after the label
  */
 class MdcFormFieldController {
-  constructor($element, debounce) {
+  constructor($scope, $element, debounce) {
     this.elem = $element;
     this.root_ = this.elem[0];
 
@@ -21,11 +21,26 @@ class MdcFormFieldController {
       this.mdc = new MDCFormField(this.root_);
 
       const children = this.elem.children();
+      let input;
+      let label;
       if (children.length === 2) {
         if (children[0].tagName.toUpperCase() === 'LABEL') {
-          this.mdc.input = children[1];
+          label = children[0];
+          input = children[1];
         } else {
-          this.mdc.input = children[0];
+          label = children[1];
+          input = children[0];
+        }
+        this.mdc.input = input;
+        // only certain elements can be labeled
+        // https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form_labelable
+        const labelable = input.querySelector('input, textarea, select, button, meter, output, progress, keygen');
+        const inputId = labelable.getAttribute('id') || label.getAttribute('for') || 'mdc-form-field-' + $scope.$id;
+        if (!labelable.hasAttribute('id')) {
+          labelable.setAttribute('id', inputId);
+        }
+        if (!label.hasAttribute('for')) {
+          label.setAttribute('for', inputId);
         }
       }
     });
