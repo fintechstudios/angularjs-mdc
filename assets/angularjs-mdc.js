@@ -13917,18 +13917,17 @@ var MdcTextfieldController = function () {
     this.disabledObserver = new MutationObserver(function (mutations) {
       return _this2.onDisableMutation(mutations);
     });
-    this.valueObserver = new MutationObserver(function (mutations) {
-      return _this2.onValueMutation(mutations);
-    });
   }
 
   _createClass(MdcTextfieldController, [{
-    key: 'onValueMutation',
-    value: function onValueMutation() {
-      if (this.mdc.input_.classList.contains('ng-empty')) {
-        this.mdc.input_.dispatchEvent(new Event('blur'));
-      } else if (this.mdc.input_.classList.contains('ng-not-empty')) {
+    key: 'onInputModelRender',
+    value: function onInputModelRender() {
+      this.mdc.input_.value = this.inputModelCtrl.$viewValue;
+
+      if (this.inputModelCtrl.$viewValue) {
         this.mdc.input_.dispatchEvent(new Event('input'));
+      } else {
+        this.mdc.input_.dispatchEvent(new Event('blur'));
       }
     }
   }, {
@@ -13939,6 +13938,8 @@ var MdcTextfieldController = function () {
   }, {
     key: 'rebuild',
     value: function rebuild() {
+      var _this3 = this;
+
       if (this.mdc) {
         this.mdc.destroy();
       }
@@ -13947,7 +13948,12 @@ var MdcTextfieldController = function () {
       this.disabledObserver.disconnect(); // don't continue observing lost DOM
       this.disabledObserver.observe(this.mdc.input_, { attributes: true, attributeFilter: ['disabled'] });
       // if ng-model is on the input, it will modify the classlist but not fire native events - we will manually trigger
-      this.valueObserver.observe(this.mdc.input_, { attributes: true, attributeFilter: ['class'] });
+      if (this.mdc.input_.hasAttribute('ng-model')) {
+        this.inputModelCtrl = angular.element(this.mdc.input_).controller('ngModel');
+        this.inputModelCtrl.$render = function () {
+          return _this3.onInputModelRender();
+        };
+      }
     }
   }, {
     key: '$postLink',
@@ -13982,7 +13988,6 @@ var MdcTextfieldController = function () {
     key: '$onDestroy',
     value: function $onDestroy() {
       this.disabledObserver.disconnect();
-      this.valueObserver.disconnect();
       this.domObserver.disconnect();
       if (this.mdc) {
         this.mdc.destroy();
