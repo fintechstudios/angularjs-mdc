@@ -91,7 +91,9 @@ class MdcTextfieldController {
   $onDestroy() {
     this.disabledObserver.disconnect();
     this.domObserver.disconnect();
-    this.mdc.destroy();
+    if (this.mdc) {
+      this.mdc.destroy();
+    }
   }
 }
 

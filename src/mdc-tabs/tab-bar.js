@@ -145,7 +145,9 @@ class MdcTabBarController {
     if (this.scroller) {
       this.scroller.removeTabBar();
     }
-    this.foundation_.destroy();
+    if (this.foundation_) {
+      this.foundation_.destroy();
+    }
   }
 
   get tabs() {

@@ -116,7 +116,9 @@ class MdcSelectController {
     if (this.boundChangeHandler) {
       this.mdc.unlisten(MDCSelectFoundation.strings.CHANGE_EVENT, this.boundChangeHandler);
     }
-    this.mdc.destroy();
+    if (this.mdc) {
+      this.mdc.destroy();
+    }
   }
 }
 

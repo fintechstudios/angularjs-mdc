@@ -65,7 +65,9 @@ class MdcFormFieldController {
 
   $onDestroy() {
     this.observer.disconnect();
-    this.mdc.destroy();
+    if (this.mdc) {
+      this.mdc.destroy();
+    }
   }
 }
 

@@ -151,7 +151,9 @@ class MdcIconToggleController {
     if (this.ripple_) {
       this.ripple_.destroy();
     }
-    this.foundation_.destroy();
+    if (this.foundation_) {
+      this.foundation_.destroy();
+    }
   }
 }
 
