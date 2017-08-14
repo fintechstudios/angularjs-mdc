@@ -86,7 +86,7 @@
              ng-show="useHelpText" ng-class="{'mdc-textfield-helptext--persistent': helpTextPersistent, 'mdc-textfield-helptext--validation-msg': helpTextValidation}">
             Help Text (possibly validation message)
           </p>
-          <p>Value: {{ fullDemoValue }}</p>
+          <p>Value: <input ng-model="fullDemoValue"></p>
         </section>
         <mdc-form-field>
           <mdc-checkbox input-id="isDisabled" ng-model="isDisabled"></mdc-checkbox>
