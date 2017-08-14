@@ -21,7 +21,6 @@ class MdcRadioController {
   }
 
   $onChanges(changesObj) {
-    console.log(changesObj);
     if (changesObj.ngDisabled) {
       this.mdc.disabled = this.ngDisabled;
     }
