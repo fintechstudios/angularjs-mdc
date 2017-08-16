@@ -6,6 +6,11 @@ mdc-grid-list {
 
 mdc-grid-tile {
   @extend .mdc-grid-tile;
+
+  //TODO: remove when https://github.com/material-components/material-components-web/pull/1136 is merged
+  /* @alternate */
+  width: $mdc-grid-list-tile-width;
+  width: var(--mdc-grid-list-tile-width, $mdc-grid-list-tile-width);
 }
 
 .mdc-grid-tile__icon {
