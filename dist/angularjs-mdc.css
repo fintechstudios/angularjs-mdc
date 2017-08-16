@@ -5662,6 +5662,11 @@ fieldset:disabled .mdc-checkbox__native-control,
     top: calc(50% - 24px / 2);
     font-size: 0; }
 
+mdc-grid-tile {
+  /* @alternate */
+  width: 200px;
+  width: var(--mdc-grid-list-tile-width, 200px); }
+
 .mdc-grid-tile__icon, .mdc-grid-list--with-icon-align-end mdc-icon, .mdc-grid-list--with-icon-align-start mdc-icon {
   font-size: 24px; }
 

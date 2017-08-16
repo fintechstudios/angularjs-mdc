@@ -9565,7 +9565,6 @@ var MdcRadioController = function () {
   _createClass(MdcRadioController, [{
     key: '$onChanges',
     value: function $onChanges(changesObj) {
-      console.log(changesObj);
       if (changesObj.ngDisabled) {
         this.mdc.disabled = this.ngDisabled;
       }
