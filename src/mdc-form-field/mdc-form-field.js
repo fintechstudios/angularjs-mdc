@@ -2,6 +2,8 @@ require('angular-debounce');
 
 import {MDCFormField, MDCFormFieldFoundation} from '@material/form-field';
 
+import {bindLabelId} from '../util/bind-input-and-label';
+
 MDCFormFieldFoundation.strings['LABEL_SELECTOR'] = 'mdc-form-field > label';
 
 
@@ -35,13 +37,7 @@ class MdcFormFieldController {
         // only certain elements can be labeled
         // https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form_labelable
         const labelable = input.querySelector('input, textarea, select, button, meter, output, progress, keygen');
-        const inputId = labelable.getAttribute('id') || label.getAttribute('for') || 'mdc-form-field-' + $scope.$id;
-        if (!labelable.hasAttribute('id')) {
-          labelable.setAttribute('id', inputId);
-        }
-        if (!label.hasAttribute('for')) {
-          label.setAttribute('for', inputId);
-        }
+        bindLabelId(labelable, label, '--mdc-form-field-' + $scope.$id);
       }
     });
 

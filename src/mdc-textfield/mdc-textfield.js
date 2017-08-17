@@ -1,8 +1,10 @@
 require('angular-debounce');
 
 import {MDCTextfield, MDCTextfieldFoundation} from '@material/textfield';
-
 import {MDCRipple} from '@material/ripple';
+
+import {bindLabelId} from '../util/bind-input-and-label';
+
 
 class WrappedMDCTextField extends MDCTextfield {
   initialize(rippleFactory = (el) => new MDCRipple(el)) {
@@ -36,6 +38,7 @@ class MdcTextfieldController {
     this.elem = $element;
     this.scope = $scope;
     this.root_ = this.elem[0];
+    this.isPostLink = false;
     this.boxBottomLineElem = undefined;
     this.elem.ready(() => {
       this.rebuild();
@@ -61,24 +64,39 @@ class MdcTextfieldController {
     this.elem.toggleClass('mdc-textfield--disabled', mutations[0].target.getAttribute('disabled') !== null);
   }
 
+  observeDom() {
+    this.domObserver.disconnect(); // make sure we're not observing twice
+    this.domObserver.observe(this.root_, {childList: true, subtree: true});
+  }
+
   rebuild() {
+    console.log('rebuild' + this.scope.$id);
+    this.domObserver.disconnect();
+    this.disabledObserver.disconnect();
+
     if (this.mdc) {
       this.mdc.destroy();
     }
     this.elem.toggleClass('mdc-textfield--multiline', this.root_.getElementsByTagName('textarea').length > 0);
     this.mdc = new WrappedMDCTextField(this.root_);
-    this.disabledObserver.disconnect(); // don't continue observing lost DOM
-    this.disabledObserver.observe(this.mdc.input_, {attributes: true, attributeFilter: ['disabled']});
-    // if ng-model is on the input, it will modify the classlist but not fire native events - we will manually trigger
-    if (this.mdc.input_.hasAttribute('ng-model')) {
-      this.inputModelCtrl = angular.element(this.mdc.input_).controller('ngModel');
-      this.inputModelCtrl.$render = () => this.onInputModelRender();
+    if (this.mdc.input_) { // if rebuilding during destruction,
+      if (this.mdc.label_) { // not all  mdc-textfield types have a label
+        bindLabelId(this.mdc.input_, this.mdc.label_, '--mdc-textfield-' + this.scope.$id);
+      }
+      this.disabledObserver.observe(this.mdc.input_, {attributes: true, attributeFilter: ['disabled']});
+      this.observeDom();
+      // if ng-model is on the input, it will modify the classlist but not fire native events - we will manually trigger
+      if (this.mdc.input_.hasAttribute('ng-model')) {
+        this.inputModelCtrl = angular.element(this.mdc.input_).controller('ngModel');
+        this.inputModelCtrl.$render = () => this.onInputModelRender();
+      }
     }
   }
 
   $postLink() {
     // DOM observer isn't activated until $postLink so that $onChanges can apply first
-    this.domObserver.observe(this.root_, {childList: true, subtree: true});
+    this.observeDom();
+    this.isPostLink = true;
   }
 
   $onChanges(changesObj) {
