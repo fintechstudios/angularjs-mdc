@@ -88,7 +88,9 @@ class MdcTextfieldController {
       // if ng-model is on the input, it will modify the classlist but not fire native events - we will manually trigger
       if (this.mdc.input_.hasAttribute('ng-model')) {
         this.inputModelCtrl = angular.element(this.mdc.input_).controller('ngModel');
-        this.inputModelCtrl.$render = () => this.onInputModelRender();
+        if (this.inputModelCtrl) {
+          this.inputModelCtrl.$render = () => this.onInputModelRender();
+        }
       }
     }
   }
