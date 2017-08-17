@@ -29,6 +29,7 @@ rules:
   valid-jsdoc: off
 
   prefer-const: error
+  no-console: error
 
   angular/function-type: [1, "named"]
   angular/file-name: off

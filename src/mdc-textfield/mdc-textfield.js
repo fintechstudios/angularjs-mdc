@@ -70,7 +70,6 @@ class MdcTextfieldController {
   }
 
   rebuild() {
-    console.log('rebuild' + this.scope.$id);
     this.domObserver.disconnect();
     this.disabledObserver.disconnect();
 
