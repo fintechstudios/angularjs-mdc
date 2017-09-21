@@ -1,6 +1,21 @@
 import MDCSimpleMenuFoundation from '@material/menu/simple/foundation';
 import {getTransformPropertyName} from '@material/menu/util';
 
+class WrappedMdcSimpleMenuFoundation extends MDCSimpleMenuFoundation {
+  init() {
+    const {OPEN} = MDCSimpleMenuFoundation.cssClasses;
+
+    if (this.adapter_.hasClass(OPEN)) {
+      this.isOpen_ = true;
+    }
+
+    this.adapter_.registerInteractionHandler('click', this.clickHandler_);
+    this.adapter_.registerInteractionHandler('keyup', this.keyupHandler_);
+    this.adapter_.registerInteractionHandler('keydown', this.keydownHandler_);
+  }
+}
+
+
 /**
  * @ngdoc component
  * @name mdcSimpleMenu
@@ -42,7 +57,7 @@ class MdcSimpleMenuController {
 
   /** @return {!MDCSimpleMenuFoundation} */
   getDefaultFoundation() {
-    return new MDCSimpleMenuFoundation({
+    return new WrappedMdcSimpleMenuFoundation({
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
       hasClass: (className) => this.root_.classList.contains(className),
@@ -112,7 +127,7 @@ class MdcSimpleMenuController {
   }
 
   emit(name, args) {
-    this.scope.$emit(name.replace(name, this.id), args);
+    this.scope.$emit(name, args);
   }
 
   show() {
@@ -130,6 +145,8 @@ class MdcSimpleMenuController {
   $postLink() {
     this.toggleHandler = () => this.toggle();
     this.elem.on(this.TOGGLE_EVENT, this.toggleHandler);
+
+    this.foundation_.init();
   }
 
   $onChanges(changesObj) {
