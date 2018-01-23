@@ -40,20 +40,6 @@ describe('mdc-button', function() {
     expect(elem.hasClass('mdc-card__action')).to.be.false;
   });
 
-  ['primary', 'accent'].forEach(function(color) {
-    it('should have the `mdc-button--' + color + '` class when color=' + color, function() {
-      const component = new $mockComponent({'color': '{{ buttonColor }}'}, {buttonColor: ''});
-      const elem = component.$element;
-      expect(elem.hasClass('mdc-button--' + color)).to.be.false;
-
-      component.$parent('buttonColor', color);
-      expect(elem.hasClass('mdc-button--' + color)).to.be.true;
-
-      component.$parent('buttonColor', '');
-      expect(elem.hasClass('mdc-button--' + color)).to.be.false;
-    });
-  });
-
   ['accept', 'cancel'].forEach(function(action) {
     it('should have proper classes when dialog=' + action, function() {
       const component = new $mockComponent({'dialog': '{{ action }}'}, {action: undefined});

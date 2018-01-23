@@ -30,7 +30,7 @@ BINDINGS['ngModel'] = '<?';
  * @param {string} toggleOff Config for when the button is off.
  * @param {string} [ariaPressed=false] True/False whether the button is toggled or not
  * @param {string} [iconInnerSelector] Treat internal element as icon to bind to.
- * @param {string} [color] Color for toggle: "primary", "accent", or nothing
+ * @param {string} [color] Color for toggle: "primary", "secondary", or nothing
  * @param {string} [ngModel] Assignable AngularJS expression to data-bind to.
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  *
@@ -136,13 +136,13 @@ class MdcIconToggleController {
     if (changesObj.color) {
       if (this.color === 'primary') {
         this.elem.addClass('mdc-icon-toggle--primary');
-        this.elem.removeClass('mdc-icon-toggle--accent');
-      } else if (this.color === 'accent') {
-        this.elem.addClass('mdc-icon-toggle--accent');
+        this.elem.removeClass('mdc-icon-toggle--secondary');
+      } else if (this.color === 'secondary') {
+        this.elem.addClass('mdc-icon-toggle--secondary');
         this.elem.removeClass('mdc-icon-toggle--primary');
       } else {
         this.elem.removeClass('mdc-icon-toggle--primary');
-        this.elem.removeClass('mdc-icon-toggle--accent');
+        this.elem.removeClass('mdc-icon-toggle--secondary');
       }
     }
   }

@@ -6,7 +6,7 @@ import {MDCTabBarFoundation} from '@material/tabs';
  * @name mdcTabBar
  * @module mdc.tabs
  *
- * @param {string} [indicator] Color of indicator, "primary" or "accent"
+ * @param {string} [indicator] Color of indicator, "primary" or "secondary"
  * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
  * @param {string} [ngModel] Assignable AngularJS expression to bind selected tab to
  */
@@ -132,7 +132,7 @@ class MdcTabBarController {
   $onChanges(changesObj) {
     if (changesObj.indicator) {
       this.elem.toggleClass('mdc-tab-bar--indicator-primary', this.indicator === 'primary');
-      this.elem.toggleClass('mdc-tab-bar--indicator-accent', this.indicator === 'accent');
+      this.elem.toggleClass('mdc-tab-bar--indicator-secondary', this.indicator === 'secondary');
     }
     if (changesObj.variant) {
       this.elem.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');

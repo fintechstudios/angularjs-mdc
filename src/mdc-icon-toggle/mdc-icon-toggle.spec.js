@@ -196,7 +196,7 @@ describe('mdc-icon-toggle', function() {
     expect(innerElem.hasClass('fa-star')).to.be.true;
   });
 
-  ['primary', 'accent'].forEach(function(color) {
+  ['primary', 'secondary'].forEach(function(color) {
     it('should have the `mdc-icon-toggle--' + color + '` class when color=' + color, function() {
       const component = new $mockComponent({'color': '{{ iconColor }}'}, {iconColor: ''});
       const elem = component.$element;
