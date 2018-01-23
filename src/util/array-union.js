@@ -6,12 +6,12 @@
  * @return {Array}
  */
 export function arrayUnion(x = [], y = []) {
-  if (x.length === 0) {
-    return y;
-  }
-
   if (y.length === 0) {
     return x;
+  }
+
+  if (x.length === 0) {
+    return y;
   }
 
   const obj = {};

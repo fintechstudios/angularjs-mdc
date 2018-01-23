@@ -16,15 +16,4 @@ describe('mdc-ripple', () => {
 
     expect(elem.hasClass('mdc-ripple-surface'), 'missing class mdc-ripple-surface').to.be.true;
   });
-
-  it('should have the `mdc-ripple-upgraded--unbounded` class when mdcRippleIsUnbounded=true', () => {
-    const component = new MockRipple({mdcRippleIsUnbounded: 'isUnbounded'}, {'isUnbounded': true});
-    const elem = component.$element;
-
-    expect(elem.hasClass('mdc-ripple-upgraded--unbounded')).to.be.true;
-    component.$parent('isUnbounded', false);
-    expect(elem.hasClass('mdc-ripple-upgraded--unbounded')).to.be.false;
-    component.$parent('isUnbounded', true);
-    expect(elem.hasClass('mdc-ripple-upgraded--unbounded')).to.be.true;
-  });
 });

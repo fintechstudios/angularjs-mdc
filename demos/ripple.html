@@ -44,14 +44,6 @@
         border-radius: 50%;
       }
 
-      .mdc-ripple-surface[data-mdc-ripple-is-unbounded][data-demo-no-js]::before,
-      .mdc-ripple-surface[data-mdc-ripple-is-unbounded][data-demo-no-js]::after {
-        height: 100%;
-        left: 0;
-        top: 0;
-        width: 100%;
-      }
-
       button.demo-surface {
         display: inline-block; /* Safari does not center button text otherwise :( */
         background: none;
@@ -143,7 +135,7 @@
       <section class="example">
         <div>
           <h2>Unbounded</h2>
-          <div class="demo-surface mdc-elevation--z2" mdc-ripple mdc-ripple-is-unbounded="true">
+          <div class="demo-surface mdc-elevation--z2" mdc-ripple data-mdc-ripple-is-unbounded="true">
             <mdc-icon>favorite</mdc-icon>
           </div>
         </div>

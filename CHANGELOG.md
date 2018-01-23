@@ -8,4 +8,4 @@
 ### Features
 * **ripple**:
     * Added `mdcRipple` directive
-    * `HasMDCRipple` mixin to apply ripples to other controllers
+    * `MDCRippleMixin` to apply ripples to component controllers
