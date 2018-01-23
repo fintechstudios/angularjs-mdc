@@ -10,7 +10,7 @@ require('./mdc-icon-toggle/mdc-icon-toggle');
 require('./mdc-list/mdc-list');
 require('./mdc-menu/mdc-menu');
 require('./mdc-radio/mdc-radio');
-require('./mdc-ripple/directive');
+require('./mdc-ripple/mdc-ripple');
 require('./mdc-select/mdc-select');
 require('./mdc-snackbar/mdc-snackbar');
 require('./mdc-switch/mdc-switch');

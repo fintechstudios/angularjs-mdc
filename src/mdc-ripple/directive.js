@@ -1,4 +1,4 @@
-import {BindInjections} from '../util/bind-injections';
+import {BaseComponent} from '../util/base-component';
 import {arrayUnion} from '../util/array-union';
 
 import {MDCRippleMixin} from './mixin';
@@ -12,13 +12,13 @@ import {MDCRippleMixin} from './mixin';
  *
  * @param {bool} [dataMdcRippleIsUnbounded] - override the unbounded property
  */
-export class MDCRippleController extends MDCRippleMixin(BindInjections) {
+export class MDCRippleController extends MDCRippleMixin(BaseComponent) {
   static get name() {
     return 'mdcRipple';
   }
 
   static get $inject() {
-    return arrayUnion(super.$inject, ['$element']);
+    return arrayUnion(['$element'], super.$inject);
   }
 
   constructor(...args) {
@@ -27,17 +27,3 @@ export class MDCRippleController extends MDCRippleMixin(BindInjections) {
     this.$element.addClass('mdc-ripple-surface');
   }
 }
-
-
-/**
- * Ripple
- *
- * @ngdoc module
- * @name mdc.ripple
- */
-angular
-  .module('mdc.ripple', [])
-  .directive(MDCRippleController.name, () => ({
-    controller: MDCRippleController,
-    priority: Number.MIN_SAFE_INTEGER,
-  }));

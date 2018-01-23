@@ -6,8 +6,10 @@ import {MDCRipple} from '@material/ripple';
 /**
  * Applies a ripple to this.$element and exposes as this.ripple.
  *
+ * The element must have or extend the `mdc-ripple-surface` class
+ *
  * @mixin MDCRippleMixin
- * @param Base - should extend BindInjections or a subclass thereof
+ * @param Base - should extend BaseComponent
  */
 export const MDCRippleMixin = (Base) => class extends Base {
   static get $inject() {
@@ -27,16 +29,8 @@ export const MDCRippleMixin = (Base) => class extends Base {
     });
   }
 
-  $postLink() {
-    if (super.$postLink) {
-      super.$postLink();
-    }
-  }
-
   $onDestroy() {
-    if (super.$onDestroy) {
-      super.$onDestroy();
-    }
+    super.$onDestroy();
 
     if (this.ripple.destroy) {
       this.ripple.destroy();

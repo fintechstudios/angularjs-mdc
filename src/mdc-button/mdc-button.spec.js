@@ -10,7 +10,7 @@ describe('mdc-button', function() {
     $mockComponent = $componentGenerator('mdcButton');
   }));
 
-  ['dense', 'raised', 'compact'].forEach(function(attr) {
+  ['dense', 'raised', 'compact', 'unelevated', 'stroked'].forEach(function(attr) {
     it('should have the `mdc-button--' + attr + '` class when ' + attr + '=true', function() {
       const bindings = {};
       bindings[attr] = 'buttonStyle';

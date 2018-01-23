@@ -4,6 +4,8 @@
 ### BREAKING CHANGES
 * **text-field**:
     * Renamed `mdcTextfield` to `mdcTextField`
+* **button**:
+    * `mdcButton` is now a directive. To properly support `:disabled`, use it on `button` or `a` elements
 
 ### Features
 * **ripple**:

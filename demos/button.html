@@ -27,7 +27,7 @@
         margin-top: 0;
         margin-bottom: 16px;
       }
-      fieldset mdc-button {
+      fieldset button {
         margin: 16px;
       }
       .mdc-theme--dark fieldset {
@@ -69,37 +69,42 @@
 
       <section class="hero">
         <div>
-          <mdc-button raised="isRaised" dense="isDense" compact="isCompact" color="{{ whichColor }}" ng-disabled="isDisabled">Click Me!</mdc-button>
+          <button mdc-button 
+                  raised="whichHeight === 'raised'" unelevated="whichHeight === 'unelevated'"
+                  stroked="whichHeight === 'stroked'"
+                  dense="isDense" compact="isCompact" ng-disabled="isDisabled">Click Me!</button>
+
           <br><br>
           <mdc-form-field>
-          	<mdc-checkbox input-id="isDense" ng-model="isDense"></mdc-checkbox>
-          	<label for="isDense">Dense</label>
+          	<mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          	<label>Dense</label>
           </mdc-form-field>
           <mdc-form-field>
-          	<mdc-checkbox input-id="isCompact" ng-model="isCompact"></mdc-checkbox>
-          	<label for="isCompact">Compact</label>
+          	<mdc-checkbox ng-model="isCompact"></mdc-checkbox>
+          	<label>Compact</label>
           </mdc-form-field>
           <mdc-form-field>
-          	<mdc-checkbox input-id="isRaised" checked="checked" ng-model="isRaised" checked="checked"></mdc-checkbox>
-          	<label for="isRaised" checked="checked">Raised</label>
+          	<mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          	<label>Disabled</label>
           </mdc-form-field>
-          <mdc-form-field>
-          	<mdc-checkbox input-id="isDisabled" ng-model="isDisabled"></mdc-checkbox>
-          	<label for="isDisabled">Disabled</label>
-          </mdc-form-field>
+
+
           <br>
-          Color:
           <mdc-form-field>
-          	<mdc-radio input-id="whichColor1" ng-model="whichColor" ng-value="'primary'"></mdc-radio>
-          	<label for="whichColor1">Primary</label>
+            <mdc-radio ng-model="whichHeight" ng-value="'raised'"></mdc-radio>
+            <label>Raised</label>
           </mdc-form-field>
           <mdc-form-field>
-          	<mdc-radio input-id="whichColor2" ng-model="whichColor" ng-value="'accent'"></mdc-radio>
-          	<label for="whichColor2">Accent </label>
+            <mdc-radio ng-model="whichHeight" ng-value="'stroked'"></mdc-radio>
+            <label>Stroked</label>
           </mdc-form-field>
           <mdc-form-field>
-          	<mdc-radio input-id="whichColor3" ng-model="whichColor"></mdc-radio>
-          	<label for="whichColor3">Default </label>
+            <mdc-radio ng-model="whichHeight" ng-value="'unelevated'"></mdc-radio>
+            <label>Unelevated</label>
+          </mdc-form-field>
+          <mdc-form-field>
+            <mdc-radio ng-model="whichHeight"></mdc-radio>
+            <label>Flat (Default)</label>
           </mdc-form-field>
         </div>
       </section>
@@ -107,59 +112,59 @@
       <section>
         <fieldset>
           <legend class="mdc-typography--title">Buttons</legend>
-          <mdc-button>Default</mdc-button>
-          <mdc-button raised="true">Raised</mdc-button>
-          <mdc-button dense="true">Dense Default</mdc-button>
-          <mdc-button dense="true" raised="true">Dense Raised</mdc-button>
-          <mdc-button compact="true">Compact</mdc-button>
-          <mdc-button compact="true" raised="true">Compact Raised</mdc-button>
-          <mdc-button color="primary">Default with Primary</mdc-button>
-          <mdc-button raised="true" color="primary">Raised with Primary</mdc-button>
-          <mdc-button color="accent">Default with Accent</mdc-button>
-          <mdc-button raised="true" color="accent">Raised with Accent</mdc-button>
+          <button mdc-button>Default</button>
+          <button mdc-button raised="true">Raised</button>
+          <button mdc-button dense="true">Dense Default</button>
+          <button mdc-button dense="true" raised="true">Dense Raised</button>
+          <button mdc-button compact="true">Compact</button>
+          <button mdc-button compact="true" raised="true">Compact Raised</button>
+          <button mdc-button color="primary">Default with Primary</button>
+          <button mdc-button raised="true" color="primary">Raised with Primary</button>
+          <button mdc-button color="accent">Default with Accent</button>
+          <button mdc-button raised="true" color="accent">Raised with Accent</button>
         </fieldset>
 
         <fieldset>
           <legend class="mdc-typography--title">Disabled</legend>
-          <mdc-button ng-disabled="true">Default</mdc-button>
-          <mdc-button raised="true" ng-disabled="true">Raised</mdc-button>
-          <mdc-button dense="true" ng-disabled="true">Dense Default</mdc-button>
-          <mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</mdc-button>
-          <mdc-button compact="true" ng-disabled="true">Compact</mdc-button>
-          <mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</mdc-button>
-          <mdc-button color="primary" ng-disabled="true">Default with Primary</mdc-button>
-          <mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</mdc-button>
-          <mdc-button color="accent" ng-disabled="true">Default with Accent</mdc-button>
-          <mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</mdc-button>
+          <button mdc-button ng-disabled="true">Default</button>
+          <button mdc-button raised="true" ng-disabled="true">Raised</button>
+          <button mdc-button dense="true" ng-disabled="true">Dense Default</button>
+          <button mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</button>
+          <button mdc-button compact="true" ng-disabled="true">Compact</button>
+          <button mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</button>
+          <button mdc-button color="primary" ng-disabled="true">Default with Primary</button>
+          <button mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</button>
+          <button mdc-button color="accent" ng-disabled="true">Default with Accent</button>
+          <button mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</button>
         </fieldset>
       </section>
 
       <section class="mdc-theme--dark">
         <fieldset>
           <legend class="mdc-typography--title">Dark Theme - Buttons</legend>
-          <mdc-button>Default</mdc-button>
-          <mdc-button raised="true">Raised</mdc-button>
-          <mdc-button dense="true">Dense Default</mdc-button>
-          <mdc-button dense="true" raised="true">Dense Raised</mdc-button>
-          <mdc-button compact="true">Compact</mdc-button>
-          <mdc-button compact="true" raised="true">Compact Raised</mdc-button>
-          <mdc-button color="primary">Default with Primary</mdc-button>
-          <mdc-button raised="true" color="primary">Raised with Primary</mdc-button>
-          <mdc-button color="accent">Default with Accent</mdc-button>
-          <mdc-button raised="true" color="accent">Raised with Accent</mdc-button>
+          <button mdc-button>Default</button>
+          <button mdc-button raised="true">Raised</button>
+          <button mdc-button dense="true">Dense Default</button>
+          <button mdc-button dense="true" raised="true">Dense Raised</button>
+          <button mdc-button compact="true">Compact</button>
+          <button mdc-button compact="true" raised="true">Compact Raised</button>
+          <button mdc-button color="primary">Default with Primary</button>
+          <button mdc-button raised="true" color="primary">Raised with Primary</button>
+          <button mdc-button color="accent">Default with Accent</button>
+          <button mdc-button raised="true" color="accent">Raised with Accent</button>
         </fieldset>
         <fieldset>
           <legend class="mdc-typography--title">Dark Theme - Disabled</legend>
-          <mdc-button ng-disabled="true">Default</mdc-button>
-          <mdc-button raised="true" ng-disabled="true">Raised</mdc-button>
-          <mdc-button dense="true" ng-disabled="true">Dense Default</mdc-button>
-          <mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</mdc-button>
-          <mdc-button compact="true" ng-disabled="true">Compact</mdc-button>
-          <mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</mdc-button>
-          <mdc-button color="primary" ng-disabled="true">Default with Primary</mdc-button>
-          <mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</mdc-button>
-          <mdc-button color="accent" ng-disabled="true">Default with Accent</mdc-button>
-          <mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</mdc-button>
+          <button mdc-button ng-disabled="true">Default</button>
+          <button mdc-button raised="true" ng-disabled="true">Raised</button>
+          <button mdc-button dense="true" ng-disabled="true">Dense Default</button>
+          <button mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</button>
+          <button mdc-button compact="true" ng-disabled="true">Compact</button>
+          <button mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</button>
+          <button mdc-button color="primary" ng-disabled="true">Default with Primary</button>
+          <button mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</button>
+          <button mdc-button color="accent" ng-disabled="true">Default with Accent</button>
+          <button mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</button>
         </fieldset>
       </section>
     </main>
@@ -168,9 +173,7 @@
     <script>
       angular.module('demo', ['mdc'])
         .controller('MainCtrl', ['$scope', function($scope) {
-          $scope.name = '';
-          $scope.isRaised = true;
-          $scope.whichColor = "primary";
+          $scope.whichHeight = 'raised';
         }]);
     </script>
   </body>
