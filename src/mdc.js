@@ -10,6 +10,7 @@ require('./mdc-icon-toggle/mdc-icon-toggle');
 require('./mdc-list/mdc-list');
 require('./mdc-menu/mdc-menu');
 require('./mdc-radio/mdc-radio');
+require('./mdc-ripple/directive');
 require('./mdc-select/mdc-select');
 require('./mdc-snackbar/mdc-snackbar');
 require('./mdc-switch/mdc-switch');
@@ -29,6 +30,7 @@ angular.module('mdc', [
   'mdc.list',
   'mdc.menu',
   'mdc.radio',
+  'mdc.ripple',
   'mdc.select',
   'mdc.snackbar',
   'mdc.switch',

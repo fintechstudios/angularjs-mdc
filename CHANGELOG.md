@@ -4,3 +4,8 @@
 ### BREAKING CHANGES
 * **text-field**:
     * Renamed `mdcTextfield` to `mdcTextField`
+
+### Features
+* **ripple**:
+    * Added `mdcRipple` directive
+    * `HasMDCRipple` mixin to apply ripples to other controllers

@@ -51,7 +51,7 @@ being an easy and suitable replacement for angular-material.
 | list            | :white_check_mark:  | mdc.list         |
 | menu            | :white_check_mark:  | mdc.menu         |
 | radio           | :white_check_mark:  | mdc.radio        |
-| ripple          | :x:                 | |
+| ripple          | :white_check_mark:  | mdc.ripple       |
 | select          | :white_check_mark:  | mdc.select       |
 | slider          | :x:                 | |
 | snackbar        | :white_check_mark:  | mdc.snackbar     |
