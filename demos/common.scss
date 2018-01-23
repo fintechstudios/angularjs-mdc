@@ -19,8 +19,18 @@
 
 // Base style
 
-$mdc-theme-primary: #212121 !default;
-$mdc-theme-accent: #64dd17 !default;
+$mdc-theme-primary: #6200ee !default; // baseline purple, 500 tone
+$mdc-theme-secondary: #018786 !default; // baseline teal, 600 tone
+
+// Import button and ripple mixins to apply overrides for dark theme
+// TODO(kfranqueiro): Pending further design discussion around how to manage dark theme
+@import "~@material/button/mixins";
+@import "~@material/ripple/mixins";
+// All demo pages have a top toolbar, and most of them use theme variables.
+// Import these *after* setting theme colors to override defaults in mdc-theme.
+@import "~@material/theme/mdc-theme";
+@import "~@material/toolbar/mdc-toolbar";
+@import "~@material/typography/mdc-typography";
 
 @import "../src/mdc";
 
