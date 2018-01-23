@@ -1,12 +1,12 @@
 require('angular-debounce');
 
-import {MDCTextfield, MDCTextfieldFoundation} from '@material/textfield';
+import {MDCTextField, MDCTextFieldFoundation} from '@material/textfield';
 import {MDCRipple} from '@material/ripple';
 
 import {bindLabelId} from '../util/bind-input-and-label';
 
 
-class WrappedMDCTextField extends MDCTextfield {
+class WrappedMDCTextField extends MDCTextField {
   initialize(rippleFactory = (el) => new MDCRipple(el)) {
     this.input_ = this.root_.querySelector('input, textarea');
     this.label_ = this.root_.querySelector('label');
@@ -17,7 +17,7 @@ class WrappedMDCTextField extends MDCTextfield {
         this.input_.getAttribute('aria-controls')
       );
     }
-    if (this.root_.classList.contains(MDCTextfieldFoundation.cssClasses.BOX)) {
+    if (this.root_.classList.contains(MDCTextFieldFoundation.cssClasses.BOX)) {
       this.ripple = rippleFactory(this.root_);
     }
   }
@@ -26,14 +26,14 @@ class WrappedMDCTextField extends MDCTextfield {
 
 /**
  * @ngdoc component
- * @name mdcTextfield
+ * @name mdcTextField
  * @module mdc.textfield
  *
  * @param {expression} [dense] - T/F display the textfield densely
  * @param {expression} [box] - T/F display the textfield with box styling
  * @param {expression} [fullwidth] - T/F display the textfield fullwidth
  */
-class MdcTextfieldController {
+class MdcTextFieldController {
   constructor($element, $scope, debounce) {
     this.elem = $element;
     this.scope = $scope;
@@ -137,12 +137,12 @@ class MdcTextfieldController {
  * @name mdc.textfield
  * @description
  *
- * Material Design Textfield
+ * Material Design TextField
  */
 angular
   .module('mdc.textfield', ['rt.debounce'])
-  .component('mdcTextfield', {
-    controller: MdcTextfieldController,
+  .component('mdcTextField', {
+    controller: MdcTextFieldController,
     bindings: {
       dense: '<?',
       box: '<?',

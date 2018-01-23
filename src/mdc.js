@@ -14,7 +14,7 @@ require('./mdc-select/mdc-select');
 require('./mdc-snackbar/mdc-snackbar');
 require('./mdc-switch/mdc-switch');
 require('./mdc-tabs/mdc-tabs');
-require('./mdc-textfield/mdc-textfield');
+require('./mdc-text-field/mdc-text-field');
 
 angular.module('mdc', [
   'mdc.button',

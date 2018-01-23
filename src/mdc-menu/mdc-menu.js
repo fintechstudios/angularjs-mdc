@@ -1,4 +1,4 @@
-import MDCSimpleMenuFoundation from '@material/menu/simple/foundation';
+import {MDCSimpleMenuFoundation} from '@material/menu/simple/foundation';
 import {getTransformPropertyName} from '@material/menu/util';
 
 class WrappedMdcSimpleMenuFoundation extends MDCSimpleMenuFoundation {
