@@ -11,6 +11,12 @@
     * no longer has default styling
 * **icon-toggle**:
     * Color is removed, and up to the client to determine using `@material/icon-toggle/mixins`
+* **list**:
+    * The `mdc-list-item__text__secondary` class was renamed to `mdc-list-item__secondary-text` to follow BEM conventions
+    * List padding is now per-item rather than across the entire list. Separators now span the entire list width
+      by default, with the addition of a mdc-list-divider--padded modifier class to achieve the old default behavior.
+    * `__start-detail` has been renamed to `__graphic`, and `__end-detail` has been renamed to `__meta`.
+      In addition, meta data tiles no longer have a default width/height (fixes #1644).
 
 ### Features
 * **ripple**:
