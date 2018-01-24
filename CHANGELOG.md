@@ -9,6 +9,8 @@
     * Color is removed, and up to the client to determine using `@material/button/mixins`
 * **icon**:
     * no longer has default styling
+* **icon-toggle**:
+    * Color is removed, and up to the client to determine using `@material/icon-toggle/mixins`
 
 ### Features
 * **ripple**:

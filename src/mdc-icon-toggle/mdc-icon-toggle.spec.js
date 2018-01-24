@@ -195,17 +195,4 @@ describe('mdc-icon-toggle', function() {
     expect(innerElem.hasClass('fa')).to.be.true;
     expect(innerElem.hasClass('fa-star')).to.be.true;
   });
-
-  ['primary', 'secondary'].forEach(function(color) {
-    it('should have the `mdc-icon-toggle--' + color + '` class when color=' + color, function() {
-      const component = new $mockComponent({'color': '{{ iconColor }}'}, {iconColor: ''});
-      const elem = component.$element;
-
-      expect(elem.hasClass('mdc-icon-toggle--' + color)).to.be.false;
-      component.$parent('iconColor', color);
-      expect(elem.hasClass('mdc-icon-toggle--' + color)).to.be.true;
-      component.$parent('iconColor', '');
-      expect(elem.hasClass('mdc-icon-toggle--' + color)).to.be.false;
-    });
-  });
 });
