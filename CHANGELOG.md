@@ -6,8 +6,14 @@
     * Renamed `mdcTextfield` to `mdcTextField`
 * **button**:
     * `mdcButton` is now a directive. To properly support `:disabled`, use it on `button` or `a` elements
+    * Color is removed, and up to the client to determine using `@material/button/mixins`
+* **icon**:
+    * no longer has default styling
 
 ### Features
 * **ripple**:
     * Added `mdcRipple` directive
     * `MDCRippleMixin` to apply ripples to component controllers
+* **button**:
+    * Nested `mdc-icon` is properly styled
+    * Support `unelevated` and `stroked` style

@@ -1,57 +1,36 @@
 'use strict';
 
 describe('mdc-icon', function() {
-  let $mockComponent;
+  let MockIcon;
+  let MockButton;
   const icon1 = 'home';
-  const icon2 = 'arrow_back';
 
   beforeEach(angular.mock.module('mdc'));
   beforeEach(angular.mock.module('ngMockComponent'));
 
-  beforeEach(inject(function($componentGenerator) {
-    $mockComponent = $componentGenerator('mdcIcon');
+  beforeEach(inject(($componentGenerator) => {
+    MockIcon = $componentGenerator('mdcIcon');
+    MockButton = $componentGenerator('mdcButton');
   }));
 
-  it('should have the `material-icons` class by default', function() {
-    const elem = new $mockComponent().$element;
+  it('should have the `material-icons` class by default', () => {
+    const elem = new MockIcon().$element;
 
     expect(elem.hasClass('material-icons')).to.be.true;
   });
 
-  it('should use the `mdc-font-icon` attribute as its text contents', function() {
-    const elem = new $mockComponent({'mdcFontIcon': icon1}).$element;
-
-    expect(elem.text()).to.equal(icon1);
+  it('should set the font-size to whatever is given in size', () => {
+    const component = new MockIcon({'ng-bind': icon1, 'size': 42});
+    expect(component.$element[0].style.fontSize).to.equal('42px');
   });
 
-  it('should update the text contents as `mdc-font-icon` changes', function() {
-    const component = new $mockComponent({'mdcFontIcon': '{{ iconName }}'}, {iconName: icon1});
-    const elem = component.$element;
+  it('should add mdc-button__icon class if inside a button', () => {
+    const button = new MockButton(undefined, undefined, false);
+    const icon = new MockIcon(undefined, undefined, false);
+    button.$element.append(icon.$element);
 
-    expect(elem.text()).to.equal(icon1);
-    component.$parent('iconName', icon2);
+    button.compile(); // will compile icon
 
-    expect(elem.text()).to.equal(icon2);
-  });
-
-  it('should add the `mdc-icon--SIZE` class for each of the MDC_ICON_SIZES', inject(function(MDC_ICON_SIZES) {
-    const component = new $mockComponent({'mdcFontIcon': icon1, 'size': '{{ iconSize }}'}, {iconSize: ''});
-    const elem = component.$element;
-    const initialClassSize = elem[0].classList.length;
-
-    MDC_ICON_SIZES.forEach(function(size) {
-      component.$parent('iconSize', size);
-      expect(elem.hasClass('mdc-icon--' + size));
-      expect(elem[0].classList.length).to.equal(initialClassSize + 1);
-    });
-  }));
-
-  it('should not add any classes if an invalid size is added', function() {
-    const component = new $mockComponent({'mdcFontIcon': icon1, 'size': '{{ iconSize }}'}, {iconSize: ''});
-    const elem = component.$element;
-    const initialClassSize = elem[0].classList.length;
-    component.$parent('iconSize', 'aaa');
-
-    expect(elem[0].classList.length).to.equal(initialClassSize);
+    expect(icon.$element.hasClass('mdc-button__icon')).to.be.true;
   });
 });

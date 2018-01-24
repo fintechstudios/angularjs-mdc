@@ -23,14 +23,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
       fieldset {
-        margin: 24px;
-        margin-top: 0;
-        margin-bottom: 16px;
+        padding: 24px;
+        padding-top: 0;
+        padding-bottom: 16px;
       }
       fieldset button {
         margin: 16px;
       }
-      .mdc-theme--dark fieldset {
+      .mdc-theme--dark {
         background-color: #333;
       }
 
@@ -109,62 +109,90 @@
         </div>
       </section>
 
-      <section>
+      <section ng-class="{'mdc-theme--dark': isDarkTheme}">
         <fieldset>
-          <legend class="mdc-typography--title">Buttons</legend>
-          <button mdc-button>Default</button>
-          <button mdc-button raised="true">Raised</button>
-          <button mdc-button dense="true">Dense Default</button>
-          <button mdc-button dense="true" raised="true">Dense Raised</button>
-          <button mdc-button compact="true">Compact</button>
-          <button mdc-button compact="true" raised="true">Compact Raised</button>
-          <button mdc-button color="primary">Default with Primary</button>
-          <button mdc-button raised="true" color="primary">Raised with Primary</button>
-          <button mdc-button color="accent">Default with Accent</button>
-          <button mdc-button raised="true" color="accent">Raised with Accent</button>
-        </fieldset>
-
-        <fieldset>
-          <legend class="mdc-typography--title">Disabled</legend>
-          <button mdc-button ng-disabled="true">Default</button>
-          <button mdc-button raised="true" ng-disabled="true">Raised</button>
-          <button mdc-button dense="true" ng-disabled="true">Dense Default</button>
-          <button mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</button>
-          <button mdc-button compact="true" ng-disabled="true">Compact</button>
-          <button mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</button>
-          <button mdc-button color="primary" ng-disabled="true">Default with Primary</button>
-          <button mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</button>
-          <button mdc-button color="accent" ng-disabled="true">Default with Accent</button>
-          <button mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</button>
+          <mdc-form-field>
+            <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+            <label>Dark Theme</label>
+          </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+            <label>Disable Buttons (excluding links)</label>
+          </mdc-form-field>
         </fieldset>
       </section>
 
-      <section class="mdc-theme--dark">
+      <section ng-class="{'mdc-theme--dark': isDarkTheme}">
         <fieldset>
-          <legend class="mdc-typography--title">Dark Theme - Buttons</legend>
-          <button mdc-button>Default</button>
-          <button mdc-button raised="true">Raised</button>
-          <button mdc-button dense="true">Dense Default</button>
-          <button mdc-button dense="true" raised="true">Dense Raised</button>
-          <button mdc-button compact="true">Compact</button>
-          <button mdc-button compact="true" raised="true">Compact Raised</button>
-          <button mdc-button color="primary">Default with Primary</button>
-          <button mdc-button raised="true" color="primary">Raised with Primary</button>
-          <button mdc-button color="accent">Default with Accent</button>
-          <button mdc-button raised="true" color="accent">Raised with Accent</button>
+          <legend class="mdc-typography--title">Text Button</legend>
+          
+          <button mdc-button ng-disabled="isDisabled">Baseline</button>
+          <button mdc-button compact="true" ng-disabled="isDisabled">Compact</button>
+          <button mdc-button dense="true" ng-disabled="isDisabled">Dense</button>
+          <button mdc-button class="secondary-text-button" ng-disabled="isDisabled">Secondary</button>
+          <button mdc-button ng-disabled="isDisabled">
+            <mdc-icon>favorite</mdc-icon> Icon
+          </button>
+          <a mdc-button href="javascript:void(0);" ng-disabled="isDisabled">
+            Link
+          </a>
         </fieldset>
-        <fieldset>
-          <legend class="mdc-typography--title">Dark Theme - Disabled</legend>
-          <button mdc-button ng-disabled="true">Default</button>
-          <button mdc-button raised="true" ng-disabled="true">Raised</button>
-          <button mdc-button dense="true" ng-disabled="true">Dense Default</button>
-          <button mdc-button dense="true" raised="true" ng-disabled="true">Dense Raised</button>
-          <button mdc-button compact="true" ng-disabled="true">Compact</button>
-          <button mdc-button compact="true" raised="true" ng-disabled="true">Compact Raised</button>
-          <button mdc-button color="primary" ng-disabled="true">Default with Primary</button>
-          <button mdc-button raised="true" color="primary" ng-disabled="true">Raised with Primary</button>
-          <button mdc-button color="accent" ng-disabled="true">Default with Accent</button>
-          <button mdc-button raised="true" color="accent" ng-disabled="true">Raised with Accent</button>
+
+        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+          <legend class="mdc-typography--title">Raised Button</legend>
+          
+          <button mdc-button raised="true" ng-disabled="isDisabled">Baseline</button>
+          <button mdc-button raised="true" compact="true" ng-disabled="isDisabled">Compact</button>
+          <button mdc-button raised="true" dense="true" ng-disabled="isDisabled">Dense</button>
+          <button mdc-button raised="true" class="secondary-filled-button" ng-disabled="isDisabled">Secondary</button>
+          <button mdc-button raised="true" ng-disabled="isDisabled">
+            <mdc-icon>favorite</mdc-icon> Icon
+          </button>
+          <a mdc-button raised="true" href="javascript:void(0);" ng-disabled="isDisabled">
+            Link
+          </a>
+        </fieldset>
+
+        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+          <legend class="mdc-typography--title">Unelevated Button (Experimental)</legend>
+
+          <button mdc-button unelevated="true" ng-disabled="isDisabled">Baseline</button>
+          <button mdc-button unelevated="true" compact="true" ng-disabled="isDisabled">Compact</button>
+          <button mdc-button unelevated="true" dense="true" ng-disabled="isDisabled">Dense</button>
+          <button mdc-button unelevated="true" class="secondary-filled-button" ng-disabled="isDisabled">Secondary</button>
+          <button mdc-button unelevated="true" ng-disabled="isDisabled">
+            <mdc-icon>favorite</mdc-icon> Icon
+          </button>
+          <a mdc-button unelevated="true" href="javascript:void(0);" ng-disabled="isDisabled">
+            Link
+          </a>
+        </fieldset>
+
+        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+          <legend class="mdc-typography--title">Stroked Button (Experimental)</legend>
+
+          <button mdc-button stroked="true" ng-disabled="isDisabled">Baseline</button>
+          <button mdc-button stroked="true" compact="true" ng-disabled="isDisabled">Compact</button>
+          <button mdc-button stroked="true" dense="true" ng-disabled="isDisabled">Dense</button>
+          <button mdc-button stroked="true" class="secondary-stroked-button" ng-disabled="isDisabled">Secondary</button>
+          <button mdc-button stroked="true" ng-disabled="isDisabled">
+            <mdc-icon>favorite</mdc-icon> Icon
+          </button>
+          <a mdc-button stroked="true" href="javascript:void(0);" ng-disabled="isDisabled">
+            Link
+          </a>
+        </fieldset>
+
+        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+          <legend class="mdc-typography--title">Custom Button (Experimental)</legend>
+
+          <button mdc-button unelevated="true" class="big-round-corner-button" ng-disabled="isDisabled">
+            Corner Radius
+          </button>
+          <button mdc-button stroked="true" class="thick-stroke-button" ng-disabled="isDisabled">
+            Thick Stroke Width
+          </button>
+
         </fieldset>
       </section>
     </main>
