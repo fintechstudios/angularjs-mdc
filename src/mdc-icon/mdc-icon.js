@@ -1,4 +1,4 @@
-import {BindInjections} from '../util/bind-injections';
+import {BaseComponent} from '../util/base-component';
 
 /**
  * @ngdoc component
@@ -7,7 +7,7 @@ import {BindInjections} from '../util/bind-injections';
  *
  * @param {string} [size] - Font-size, suggested 48, 32, 24, or 18. Default: 24
  */
-export class MdcIconController extends BindInjections {
+export class MdcIconController extends BaseComponent {
   static get name() {
     return 'mdcIcon';
   }

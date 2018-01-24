@@ -18,7 +18,6 @@ import {MDCRippleMixin} from '../mdc-ripple/mixin';
  * @param {bool} [stroked] Display the button stroked
  * @param {bool} [cardAction] Use when within mdc-card to apply proper styles
  * @param {string} [dialog] Set to 'accept' or 'cancel' when creating buttons in mdc-dialog-footer
- * @param {expression} [ngDisabled] En/Disable based on the expression
  */
 export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
   static get $inject() {
@@ -36,8 +35,13 @@ export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
       compact: '<?',
       unelevated: '<?',
       stroked: '<?',
-      cardAction: '<?',
       dialog: '@?',
+    };
+  }
+
+  static get require() {
+    return {
+      mdcCardActionsCtrl: '^^?mdcCardActions',
     };
   }
 
@@ -55,13 +59,19 @@ export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
         this.$element.toggleClass('mdc-button--' + attr, Boolean(this[attr]));
       }
     });
-    if (changes.cardAction) {
-      this.$element.toggleClass('mdc-button--compact mdc-card__action', Boolean(this.cardAction));
-    }
     if (changes.dialog) {
       this.$element.toggleClass('mdc-dialog__footer__button', this.dialog === 'cancel' || this.dialog === 'accept');
       this.$element.toggleClass('mdc-dialog__footer__button--cancel', this.dialog === 'cancel');
       this.$element.toggleClass('mdc-dialog__footer__button--accept', this.dialog === 'accept');
     }
   };
+
+  set mdcCardActionsCtrl(ctrl) {
+    this._mdcCardActionsCtrl = ctrl;
+    this.$element.toggleClass('mdc-button--compact mdc-card__action', Boolean(ctrl));
+  }
+
+  get mdcCardActionsCtrl() {
+    return this._mdcCardActionsCtrl;
+  }
 }

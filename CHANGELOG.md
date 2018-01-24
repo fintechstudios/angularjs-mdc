@@ -17,3 +17,4 @@
 * **button**:
     * Nested `mdc-icon` is properly styled
     * Support `unelevated` and `stroked` style
+    * `card-action` setting is removed, as it is handled automatically

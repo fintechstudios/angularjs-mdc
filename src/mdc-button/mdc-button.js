@@ -12,4 +12,5 @@ angular
   .directive(MDCButtonController.name, () => ({
     controller: MDCButtonController,
     bindToController: MDCButtonController.bindings,
+    require: MDCButtonController.require,
   }));

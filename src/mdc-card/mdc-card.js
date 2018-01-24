@@ -1,3 +1,5 @@
+import {BaseComponent} from '../util/base-component';
+
 /**
  * @ngdoc component
  * @name mdcCardTitle
@@ -5,14 +7,24 @@
  *
  * @param {expression} [large] whether to display the title larger
  */
-class MdcCardTitleController {
-  constructor($element) {
-    this.elem = $element;
+export class MdcCardTitleController extends BaseComponent {
+  static get name() {
+    return 'mdcCardTitle';
   }
 
-  $onChanges(changesObj) {
-    if (changesObj.large) {
-      this.elem.toggleClass('mdc-card__title--large', this.large);
+  static get bindings() {
+    return {
+      large: '<?',
+    };
+  }
+
+  static get $inject() {
+    return ['$element'];
+  }
+
+  $onChanges(changes) {
+    if (changes.large) {
+      this.$element.toggleClass('mdc-card__title--large', this.large);
     }
   }
 }
@@ -24,14 +36,24 @@ class MdcCardTitleController {
  *
  * @param {expression} [vertical] T/F show the actions vertically
  */
-class MdcCardActionsController {
-  constructor($element) {
-    this.elem = $element;
+export class MdcCardActionsController extends BaseComponent {
+  static get name() {
+    return 'mdcCardActions';
   }
 
-  $onChanges(changesObj) {
-    if (changesObj.vertical) {
-      this.elem.toggleClass('mdc-card__actions--vertical', this.vertical);
+  static get bindings() {
+    return {
+      vertical: '<?',
+    };
+  }
+
+  static get $inject() {
+    return ['$element'];
+  }
+
+  $onChanges(changes) {
+    if (changes.vertical) {
+      this.$element.toggleClass('mdc-card__actions--vertical', this.vertical);
     }
   }
 }
@@ -102,15 +124,11 @@ angular
 //  .component('mdcCardSubtitle', {})
 //  .component('mdcCardSupportingText', {});
 //  .component('mdcCardMedia', {})
-  .component('mdcCardTitle', {
+  .component(MdcCardTitleController.name, {
     controller: MdcCardTitleController,
-    bindings: {
-      large: '<?',
-    },
+    bindings: MdcCardTitleController.bindings,
   })
-  .component('mdcCardActions', {
+  .component(MdcCardActionsController.name, {
     controller: MdcCardActionsController,
-    bindings: {
-      vertical: '<?',
-    },
+    bindings: MdcCardActionsController.bindings,
   });
