@@ -17,6 +17,9 @@
       by default, with the addition of a mdc-list-divider--padded modifier class to achieve the old default behavior.
     * `__start-detail` has been renamed to `__graphic`, and `__end-detail` has been renamed to `__meta`.
       In addition, meta data tiles no longer have a default width/height (fixes #1644).
+* **menu**:
+    * `mdc-simple-menu-toggle` requires a menu `id` to be specified - it will no longer auto-find the menu.
+    * `open-from` changed to `anchor-corner` -- supports TOP_START, TOP_END, BOTTOM_START, BOTTOM_END
 
 ### Features
 * **ripple**:

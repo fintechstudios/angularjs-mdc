@@ -1,13 +1,1 @@
 @import '~@material/menu/mdc-menu';
-
-mdc-simple-menu {
-  @extend .mdc-simple-menu;
-}
-
-mdc-menu-anchor {
-  @extend .mdc-menu-anchor;
-}
-
-mdc-simple-menu-item {
-  @extend .mdc-list-item;
-}

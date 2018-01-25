@@ -5,11 +5,11 @@ import {MDCRippleMixin} from '../mdc-ripple/mixin';
 
 
 /**
- * Material-spec aligned button. Use on `button` or `a` element for full support
- *
  * @ngdoc directive
  * @name mdcButton
+ * @restrict AEC
  * @module mdc.button
+ * @description Material-spec aligned button. Use on `button` or `a` element for full support
  *
  * @param {bool} [dense] Display the button densely
  * @param {bool} [raised] Display the button raised (false -> flat)
