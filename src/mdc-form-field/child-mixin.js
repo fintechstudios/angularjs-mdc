@@ -34,8 +34,10 @@ export const IsFormFieldChild = (Base) => class extends Base {
 
   set mdcFormFieldCtrl(ctrl) {
     this._mdcFormFieldCtrl = ctrl;
-    ctrl.setChildCtrl(this);
-    ctrl.setInputId(this.inputId);
+    if (ctrl) {
+      ctrl.setChildCtrl(this);
+      ctrl.setInputId(this.inputId);
+    }
   }
 
   set inputId(id) {

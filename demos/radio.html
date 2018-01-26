@@ -29,22 +29,6 @@
         background-color: #303030;
       }
 
-      /* Example of manually theming a radio. In a real app, the primary color would have enough
-         contrast from the dark background that this wouldn't be necessary. */
-      .mdc-theme--dark .mdc-radio__native-control:checked:not(:disabled) ~ .mdc-radio__background .mdc-radio__outer-circle {
-        border-color: #e91e63;
-      }
-      .mdc-theme--dark .mdc-radio__native-control:checked:not(:disabled) ~ .mdc-radio__background .mdc-radio__inner-circle {
-        background-color: #e91e63;
-      }
-      .mdc-theme--dark .mdc-radio__background::before {
-        background-color: #e91e63;
-      }
-      .mdc-theme--dark .mdc-radio.mdc-ripple-upgraded::before,
-      .mdc-theme--dark .mdc-radio.mdc-ripple-upgraded::after {
-        background-color: rgba(233, 31, 99, .2);
-      }
-
       .example {
         margin: 24px;
         padding: 24px;
@@ -78,10 +62,22 @@
           <mdc-radio ng-model="ex0" ng-value="'yes'"></mdc-radio>
           <label>Radio 1</label>
         </mdc-form-field>
+
         <mdc-form-field>
           <mdc-radio ng-model="ex0" ng-value="'no'"></mdc-radio>
           <label>Radio 2</label>
         </mdc-form-field>
+
+        <mdc-form-field>
+          <mdc-radio class="demo-radio--custom"  ng-model="ex0" ng-value="'maybe'"></mdc-radio>
+          <label>Custom Radio 1</label>
+        </mdc-form-field>
+
+        <mdc-form-field>
+          <mdc-radio class="demo-radio--custom" ng-model="ex0" ng-value="'never'"></mdc-radio>
+          <label>Custom Radio 2</label>
+        </mdc-form-field>
+
         <br><br>Selection: {{ ex0 }}
       </section>
 
@@ -91,9 +87,20 @@
           <mdc-radio ng-model="ex3" ng-value="true"></mdc-radio>
           <label>Radio 1</label>
         </mdc-form-field>
+
         <mdc-form-field>
           <mdc-radio ng-model="ex3" ng-value="false"></mdc-radio>
           <label>Radio 2</label>
+        </mdc-form-field>
+
+        <mdc-form-field>
+          <mdc-radio class="demo-radio--custom"  ng-model="ex3" ng-value="'maybe'"></mdc-radio>
+          <label>Custom Radio 1</label>
+        </mdc-form-field>
+
+        <mdc-form-field>
+          <mdc-radio class="demo-radio--custom" ng-model="ex3" ng-value="'never'"></mdc-radio>
+          <label>Custom Radio 2</label>
         </mdc-form-field>
         <br><br>Selection: {{ ex3 }}
       </section>
@@ -110,6 +117,7 @@
         </mdc-form-field>
         <br><br>Selection: {{ ex4a }}
       </section>
+
       <section class="example mdc-theme--dark">
         <h2 class="mdc-theme--text-primary-on-dark">Dark Theme - Disabled</h2>
         <mdc-form-field>
