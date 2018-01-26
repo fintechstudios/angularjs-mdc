@@ -1,4 +1,4 @@
-import {BaseComponent} from '../../util/base-component';
+import {BaseComponent} from '../../../util/base-component';
 
 export const MDC_SIMPLE_MENU_TOGGLE_EVENT = 'MDCSimpleMenu:toggle';
 

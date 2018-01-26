@@ -117,7 +117,8 @@
       <div class="demo-content" ng-class="{'mdc-theme--dark': darkTheme}">
         <div mdc-menu-anchor ng-class="{top: isTop, bottom: !isTop, left: isLeft, right: !isLeft}">
           <button mdc-button raised="true" mdc-simple-menu-toggle="bodyDemo">Reveal Menu</button>
-          <mdc-simple-menu id="bodyDemo"
+          <mdc-simple-menu id="bodyDemo" open="isOpen"
+                           anchor-margin="{top: margin.top, bottom: margin.bottom, left: margin.left, right: margin.right}"
                            anchor-corner="{{ anchorCorner }}">
             <mdc-simple-menu-item on-select="select('Back', index)">Back</mdc-simple-menu-item>
             <mdc-simple-menu-item on-select="select('Forward', index)">Forward</mdc-simple-menu-item>
@@ -165,9 +166,22 @@
 
             <br><br>
 
+            Anchor Margins:
+            <div id="margin-inputs" class="margin-inputs">
+              <label>T: <input type="text" ng-model="margin.top" size="3"></label>
+              <label>B: <input type="text" ng-model="margin.bottom" size="3"></label>
+              <label>L: <input type="text" ng-model="margin.left" size="3"></label>
+              <label>R: <input type="text" ng-model="margin.right" size="3"></label>
+            </div>
+
             <mdc-form-field>
-              <mdc-checkbox input-id="darkTheme" ng-model="darkTheme"></mdc-checkbox>
-              <label for="darkTheme">Dark mode</label>
+              <mdc-checkbox ng-model="darkTheme"></mdc-checkbox>
+              <label>Dark mode</label>
+            </mdc-form-field>
+
+            <mdc-form-field>
+              <mdc-checkbox ng-model="isOpen"></mdc-checkbox>
+              <label>Open</label>
             </mdc-form-field>
 
             <br><br>
@@ -190,6 +204,10 @@
           $scope.isTop = true;
           $scope.out = '<none selected>';
           $scope.listLength = 0;
+          $scope.margin = {
+            top: 0, left: 0, right: 0, bottom: 0,
+          };
+          $scope.isOpen = false;
 
           $scope.select = function onSelect(text, index) {
             $scope.out = text + ', index=' + index;

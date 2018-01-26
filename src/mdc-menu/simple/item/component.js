@@ -1,5 +1,5 @@
-import {BaseComponent} from '../../util/base-component';
-import {MDCSimpleMenuController} from '../simple/component';
+import {BaseComponent} from '../../../util/base-component';
+import {MDCSimpleMenuController} from '../menu/component';
 
 import {cssClasses} from '@material/menu/simple/constants';
 
@@ -9,8 +9,9 @@ import {cssClasses} from '@material/menu/simple/constants';
  * @restrict AEC
  * @module mdc.menu
  * @description Used as a child of mdcMenu to create menu items
+ * Use mdc-simple-menu-item="expression()" or <mdc-simple-menu-item on-select="expression()">
  *
- * @param {function($index)} [onSelect] - expression to evaluate if item is selected
+ * @param {function(index: Number, item: HTMLElement)} [onSelect] - expression to evaluate if item is selected
  */
 export class MDCSimpleMenuItemController extends BaseComponent {
   static get name() {
@@ -66,7 +67,7 @@ export class MDCSimpleMenuItemController extends BaseComponent {
     }
 
     if (fn) {
-      this.$scope.$apply(() => fn({index}));
+      this.$scope.$apply(() => fn({index, item: this.$element[0]}));
     }
   }
 }

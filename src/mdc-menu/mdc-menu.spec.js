@@ -1,120 +1,87 @@
-'use strict';
+import {MDC_SIMPLE_MENU_TOGGLE_EVENT} from './simple/toggle/directive';
 
-describe('mdc-simple-menu', function() {
-  let $mockComponent;
+describe('mdc-simple-menu', () => {
+  let MockMenu;
+  let $rootScope;
 
   beforeEach(angular.mock.module('ngMockComponent'));
   beforeEach(angular.mock.module('mdc'));
 
-  beforeEach(inject(function($componentGenerator) {
-    $mockComponent = $componentGenerator('mdcSimpleMenu');
+  beforeEach(inject(($componentGenerator, _$rootScope_) => {
+    MockMenu = $componentGenerator('mdcSimpleMenu');
+    $rootScope = _$rootScope_;
   }));
 
-  context('should set the proper class for the `openFrom` property', function() {
-    ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'].forEach(function(value) {
-      it('should set the class for openFrom=' + value, inject(function($camelToKebab) {
-        const className = 'mdc-simple-menu--open-from-' + $camelToKebab(value);
-        const component = new $mockComponent({'openFrom': '{{ from }}'}, {'from': value});
-        const elem = component.$element;
-        expect(elem.hasClass(className)).to.be.true;
+  it('should have the `mdc-simple-menu` class', () => {
+    const menu = new MockMenu();
 
-        component.$parent('from', '');
-        expect(elem.hasClass(className)).to.be.false;
-
-        component.$parent('from', value);
-        expect(elem.hasClass(className)).to.be.true;
-      }));
-    });
+    expect(menu.$element.hasClass('mdc-simple-menu')).to.be.true;
   });
 
-  it('should respond to the toggle event', inject(function(MDC_SIMPLE_MENU_TOGGLE_EVENT) {
-    const component = new $mockComponent();
+  it('should set tabindex=-1 by default', () => {
+    const menu = new MockMenu();
+
+    expect(menu.$element.attr('tabindex')).to.equal('-1');
+  });
+
+  it('should not override tabindex if specified', () => {
+    const menu = new MockMenu({tabindex: 3});
+
+    expect(menu.$element.attr('tabindex')).to.equal('3');
+  });
+
+  it('should open when `MDCSimpleMenu:toggle` is fired with {id=menuId}', () => {
+    const component = new MockMenu({id: 'menu'});
     const elem = component.$element;
 
-    expect(elem.hasClass('mdc-simple-menu--animating')).to.be.false;
-    elem.triggerHandler(MDC_SIMPLE_MENU_TOGGLE_EVENT);
-    component.digest();
-    expect(elem.hasClass('mdc-simple-menu--animating') || elem.hasClass('mdc-simple-menu--open')).to.be.true;
-  }));
+    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.false;
 
-  it('should be open when open=true', function() {
-    const component = new $mockComponent({'open': 'isOpen'}, {'isOpen': true});
+    $rootScope.$broadcast(MDC_SIMPLE_MENU_TOGGLE_EVENT, {id: 'menu'});
+    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.true;
+  });
+
+  it('should not open when `MDCSimpleMenu:toggle` is fired with {id!=menuId}', () => {
+    const component = new MockMenu({id: 'menu'});
     const elem = component.$element;
 
-    component.$parent('isOpen', true);
-    expect(elem.hasClass('mdc-simple-menu--animating') || elem.hasClass('mdc-simple-menu--open')).to.be.true;
+    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+
+    $rootScope.$broadcast(MDC_SIMPLE_MENU_TOGGLE_EVENT, {id: 'notmenu'});
+    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.false;
   });
 });
 
 
-describe('mdc-simple-menu-toggle', function() {
-  let $compile;
-  let $scope;
-  let $document;
+describe('mdc-menu-anchor', () => {
+  let MockAnchor;
 
+  beforeEach(angular.mock.module('ngMockComponent'));
   beforeEach(angular.mock.module('mdc'));
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
-    $compile = _$compile_;
-    $scope = _$rootScope_.$new();
-    $document = _$document_;
+
+  beforeEach(inject(($componentGenerator) => {
+    MockAnchor = $componentGenerator('mdcMenuAnchor');
   }));
 
-  it('should open an mdc-simple-menu in the same parent element when clicked', function() {
-    const parent = angular.element('<div></div>');
-    const toggle = angular.element('<div mdc-simple-menu-toggle></div>');
-    const menu = angular.element('<mdc-simple-menu></mdc-simple-menu>');
-    parent.append(toggle);
-    parent.append(menu);
-    $compile(parent)($scope);
-    $scope.$digest();
+  it('should have the `mdc-menu-anchor` class', () => {
+    const menu = new MockAnchor();
 
-    expect(menu.hasClass('mdc-simple-menu--animating') || menu.hasClass('mdc-simple-menu--open')).to.be.false;
-
-    toggle.triggerHandler('click');
-    expect(menu.hasClass('mdc-simple-menu--animating') || menu.hasClass('mdc-simple-menu--open')).to.be.true;
+    expect(menu.$element.hasClass('mdc-menu-anchor')).to.be.true;
   });
+});
 
-  it('should only bind to mdc-simple-menu within the same direct parent', function() {
+
+describe('mdc-simple-menu-toggle', () => {
+  let $compile;
+  let $scope;
+
+  beforeEach(angular.mock.module('mdc'));
+  beforeEach(inject((_$compile_, _$rootScope_) => {
+    $compile = _$compile_;
+    $scope = _$rootScope_.$new();
+  }));
+
+  it('should open mdc-simple-menu with the given id when an id is specified', () => {
     const parent = angular.element('<div></div>');
-    const toggle = angular.element('<div mdc-simple-menu-toggle></div>');
-    const menu1 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
-    const menu2 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
-
-    menu1.append(menu2);
-    parent.append(toggle);
-    parent.append(menu1);
-    $compile(parent)($scope);
-    $scope.$digest();
-
-    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.false;
-    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
-
-    toggle.triggerHandler('click');
-    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.true;
-    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
-  });
-
-  it('should not bind to any mdc-simple-menu when multiple are in the same parent', function() {
-    const parent = angular.element('<div></div>');
-    const toggle = angular.element('<div mdc-simple-menu-toggle></div>');
-    const menu1 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
-    const menu2 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
-    parent.append(toggle);
-    parent.append(menu1);
-    parent.append(menu2);
-    $compile(parent)($scope);
-    $scope.$digest();
-
-    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.false;
-    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
-
-    toggle.triggerHandler('click');
-    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.false;
-    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
-  });
-
-  it('should bind to mdc-simple-menu with the given id when an id is specified', function() {
-    const parent = angular.element($document[0].body); // mdc-simple-menu-toggle searches body for id
     const toggle = angular.element('<div mdc-simple-menu-toggle="testMenu"></div>');
     const menu1 = angular.element('<mdc-simple-menu id="testMenu"></mdc-simple-menu>');
     const menu2 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
@@ -122,13 +89,14 @@ describe('mdc-simple-menu-toggle', function() {
     parent.append(menu1);
     parent.append(menu2);
     $compile(parent)($scope);
+
     $scope.$digest();
 
-    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.false;
-    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
+    expect(menu1.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+    expect(menu2.hasClass('mdc-simple-menu--animating-open')).to.be.false;
 
     toggle.triggerHandler('click');
-    expect(menu1.hasClass('mdc-simple-menu--animating') || menu1.hasClass('mdc-simple-menu--open')).to.be.true;
-    expect(menu2.hasClass('mdc-simple-menu--animating') || menu2.hasClass('mdc-simple-menu--open')).to.be.false;
+    expect(menu1.hasClass('mdc-simple-menu--animating-open')).to.be.true;
+    expect(menu2.hasClass('mdc-simple-menu--animating-open')).to.be.false;
   });
 });

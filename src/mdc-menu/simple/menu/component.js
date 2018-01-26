@@ -1,5 +1,5 @@
-import {BaseComponent} from '../../util/base-component';
-import {MDCMenuAnchorController} from '../anchor/directive';
+import {BaseComponent} from '../../../util/base-component';
+import {MDCMenuAnchorController} from '../../anchor/directive';
 import {MDC_SIMPLE_MENU_TOGGLE_EVENT} from '../toggle/directive';
 
 import {MDCSimpleMenuFoundation} from '@material/menu/simple/foundation';
@@ -23,6 +23,7 @@ const template = require('raw-loader!./mdc-simple-menu.html');
  * @param {string} id - Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
  * @param {bool} [open] - Whether the menu is currently opened or closed
  * @param {string} [anchorCorner=TOP_START] - TOP_START, TOP_END, BOTTOM_START, BOTTOM_END
+ * @param {AnchorMargin} [anchorMargin] - default {top: 0, right: 0, bottom: 0, left: 0}
  */
 export class MDCSimpleMenuController extends BaseComponent {
   static get name() {
@@ -34,6 +35,7 @@ export class MDCSimpleMenuController extends BaseComponent {
       id: '@?',
       open: '<?',
       anchorCorner: '@?',
+      anchorMargin: '<?',
     };
   }
 
@@ -48,7 +50,7 @@ export class MDCSimpleMenuController extends BaseComponent {
   }
 
   static get $inject() {
-    return ['$element', '$document', '$scope', '$window', '$rootScope'];
+    return ['$element', '$document', '$scope', '$window', '$rootScope', '$timeout'];
   }
 
   static get template() {
@@ -87,6 +89,12 @@ export class MDCSimpleMenuController extends BaseComponent {
       if (asProp !== undefined) {
         this.foundation_.setAnchorCorner(asProp);
       }
+    }
+    if (changesObj.anchorMargin && this.anchorMargin) {
+      this.foundation_.setAnchorMargin({
+        top: Number(this.anchorMargin.top), bottom: Number(this.anchorMargin.bottom),
+        left: Number(this.anchorMargin.left), right: Number(this.anchorMargin.right),
+      });
     }
   }
 
