@@ -55,13 +55,13 @@
     <main ng-controller="MainCtrl">
       <div class="mdc-toolbar-fixed-adjust"></div>
       <section class="hero">
-        <mdc-select prompt="Pick a food group" auto-resize="false">
-          <option>Bread, Cereal, Rice, and Pasta</option>
-          <option ng-disabled="true">Vegetables</option>
-          <option>Fruit</option>
-          <option>Milk, Yogurt, and Cheese</option>
-          <option>Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
-          <option>Fats, Oils, and Sweets</option>
+        <mdc-select label="Pick a food group" auto-resize="false">
+          <mdc-select-item>Bread, Cereal, Rice, and Pasta</mdc-select-item>
+          <mdc-select-item ng-disabled="true">Vegetables</mdc-select-item>
+          <mdc-select-item>Fruit</mdc-select-item>
+          <mdc-select-item>Milk, Yogurt, and Cheese</mdc-select-item>
+          <mdc-select-item>Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</mdc-select-item>
+          <mdc-select-item>Fats, Oils, and Sweets</mdc-select-item>
         </mdc-select>
       </section>
 
@@ -69,19 +69,21 @@
         <h2 class="mdc-typography--title">Fully-Featured Component</h2>
         <section id="demo-wrapper" dir="{{ isRTL ? 'rtl': '' }}"
                  ng-class="{'mdc-theme--dark': isDarkTheme}">
-          <mdc-select prompt="Pick a food group" ng-disabled="isDisabled1" ng-model="selected1">
-            <option value="grains">Bread, Cereal, Rice, and Pasta</option>
-            <option value="vegetables" ng-disabled="true">Vegetables</option>
-            <option value="fruit">Fruit</option>
-            <option value="dairy">Milk, Yogurt, and Cheese</option>
-            <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
-            <option value="fats">Fats, Oils, and Sweets</option>
+          <mdc-select label="Pick a food group"
+                      ng-disabled="isDisabled1"
+                      ng-model="selected1">
+            <mdc-select-item value="grains">Bread, Cereal, Rice, and Pasta</mdc-select-item>
+            <mdc-select-item value="vegetables" ng-disabled="true">Vegetables</mdc-select-item>
+            <mdc-select-item value="fruit">Fruit</mdc-select-item>
+            <mdc-select-item value="dairy">Milk, Yogurt, and Cheese</mdc-select-item>
+            <mdc-select-item value="protein">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</mdc-select-item>
+            <mdc-select-item value="fats">Fats, Oils, and Sweets</mdc-select-item>
           </mdc-select>
         </section>
-        <mdc-textfield>
+        <mdc-text-field>
           <input id="selected1" ng-model="selected1">
           <label for="selected1">Currently selected</label>
-        </mdc-textfield>
+        </mdc-text-field>
         <mdc-form-field>
           <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
           <label for="isDarkTheme">Dark Theme</label>
@@ -95,61 +97,14 @@
           <label for="isDisabled1">Disabled</label>
         </mdc-form-field>
       </section>
+
       <section class="example">
         <h2 class="mdc-typography--title">With ng-repeat</h2>
-        <mdc-select ng-model="repeatSelected">
-          <option ng-repeat="i in six" ng-value="i" ng-bind="::$index + 1"></option>
+        <mdc-select label="Items" ng-model="repeatSelected">
+          <mdc-select-item ng-repeat="i in six" ng-value="i" ng-bind="::$index + 1"></mdc-select-item>
         </mdc-select>
         <p>Currently selected: {{ repeatSelected }}</p>
       </section>
-      <section class="example">
-        <h2 class="mdc-typography--title">With ng-repeat (no animation)</h2>
-        <mdc-select no-animation="true" ng-model="repeatSelectedNoAnimation">
-          <option ng-repeat="i in six" ng-value="i" ng-bind="::$index + 1"></option>
-        </mdc-select>
-        <p>Currently selected: {{ repeatSelectedNoAnimation }}</p>
-      </section>
-      <section class="example">
-        <h2 class="mdc-typography--title">No Animation</h2>
-        <mdc-select prompt="Pick a food group" no-animation="true" ng-model="selected2" ng-disabled="isDisabled2">
-          <option value="" default selected>Pick a food group</option>
-          <option value="grains">Bread, Cereal, Rice, and Pasta</option>
-          <option value="vegetables" ng-disabled="true">Vegetables</option>
-          <option value="fruit">Fruit</option>
-          <option value="dairy">Milk, Yogurt, and Cheese</option>
-          <option value="meat">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</option>
-          <option value="fats">Fats, Oils, and Sweets</option>
-        </mdc-select>
-        <p>Currently selected: {{ selected2 }}</p>
-        <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled2" ng-model="isDisabled2"></mdc-checkbox>
-          <label for="isDisabled2">Disabled</label>
-        </mdc-form-field>
-      </section>
-
-      <section class="example">
-        <h2>Select Multiple</h2>
-        <mdc-select multiple="true" size="8" ng-disabled="isDisabled3" ng-model="selected3">
-          <optgroup label="Fats, Oils, &amp; Sweets">
-            <option>Olive Oil</option>
-            <option ng-disabled="true">Brown Sugar</option>
-            <option>Ice Cream</option>
-          </optgroup>
-          <option class="mdc-list-divider" role="presentation" disabled></option>
-
-          <optgroup label="Dairy">
-            <option>Milk</option>
-            <option>Cheese</option>
-            <option>More Cheese</option>
-          </optgroup>
-        </mdc-select>
-        <p>Currently selected: {{ selected3 }}</p>
-        <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled3" ng-model="isDisabled3"></mdc-checkbox>
-          <label for="isDisabled3">Disabled</label>
-        </mdc-form-field>
-      </section>
-
     </main>
     <script src="angular/angular.js"></script>
     <script src="assets/angularjs-mdc.js"></script>

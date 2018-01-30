@@ -20,6 +20,12 @@
 * **menu**:
     * `mdc-simple-menu-toggle` requires a menu `id` to be specified - it will no longer auto-find the menu.
     * `open-from` changed to `anchor-corner` -- supports TOP_START, TOP_END, BOTTOM_START, BOTTOM_END
+* **select**:
+    * `mdc-select-item` directive added - use this for children of mdc-select
+    * `prompt` changed to `label`
+    * `noAnimation` removed
+    * `autoResize` removed
+    * `multiple` removed
 
 ### Features
 * **ripple**:
