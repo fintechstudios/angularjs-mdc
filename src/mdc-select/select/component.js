@@ -60,7 +60,7 @@ export class MDCSelectController extends MDCComponentNg {
   $onChanges(changes) {
     super.$onChanges(changes);
 
-    if (changes.ngDisabled && !changes.ngDisabled.isFirstChange()) {
+    if (changes.ngDisabled && this.foundationReady) {
       this.disabled = Boolean(this.ngDisabled);
     }
   }

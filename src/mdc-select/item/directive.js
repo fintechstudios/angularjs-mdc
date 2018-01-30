@@ -50,7 +50,7 @@ export class MDCSelectItemController extends BaseComponent {
   $onChanges(changes) {
     if (changes.ngDisabled) {
       this.$element.attr('aria-disabled', Boolean(this.ngDisabled));
-      this.$element.attr('tabindex', -1);
+      this.$element.attr('tabindex', Boolean(this.ngDisabled) ? -1 : 0);
     }
   }
 

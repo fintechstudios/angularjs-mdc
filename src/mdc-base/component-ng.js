@@ -4,6 +4,8 @@ import {BaseComponent} from '../util/base-component';
 /**
  * Sync MDCComponent functions with AngularJS lifecycle events.
  *
+ * Exposes foundationReady for when initialSyncWithDOM is completed.
+ *
  * @class MDCComponentNg
  */
 export class MDCComponentNg extends BaseComponent {
@@ -17,11 +19,14 @@ export class MDCComponentNg extends BaseComponent {
     this.unlisteners__ = {};
     this.root_ = this.$element[0];
     this.foundation_ = this.getDefaultFoundation();
+  }
 
+  $postLink() {
     this.$element.ready(() => {
       this.initialize();
       this.foundation_.init();
       this.initialSyncWithDOM();
+      this.foundationReady = true;
     });
   }
 
@@ -49,7 +54,9 @@ export class MDCComponentNg extends BaseComponent {
   destroy() {
     // Subclasses may implement this method to release any resources / deregister any listeners they have
     // attached. An example of this might be deregistering a resize event from the window object.
-    this.foundation_.destroy();
+    if (this.foundationReady) {
+      this.foundation_.destroy();
+    }
   }
 
   /**

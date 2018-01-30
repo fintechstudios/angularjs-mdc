@@ -1,81 +1,138 @@
 'use strict';
 
 describe('mdc-select', () => {
-  let $mockComponent;
-
-  beforeEach(angular.mock.module('ngMockComponent'));
-  beforeEach(angular.mock.module('mdc'));
-
-  beforeEach(inject(($componentGenerator) => {
-    $mockComponent = $componentGenerator('mdcSelect');
-  }));
-
-  function makeComponent(bindings = {}, locals = {}, doCompile = true, htmlContent = undefined) {
-    const component = new $mockComponent(bindings, locals, false);
+  let MockSelect;
+  const getMockSelect = (bindings = {}, locals = {}, doCompile = true, htmlContent = undefined) => {
+    const component = new MockSelect(bindings, locals, false);
 
     if (!htmlContent) {
       htmlContent = ['one', 'two', 'three']
         .map((text) => `<mdc-select-item value="${text}"></mdc-select-item>`)
         .join('');
     }
-    component.$element.html(htmlContent);
+    component.$element[0].innerHTML = htmlContent;
 
     if (doCompile) {
       component.compile();
     }
     return component;
-  }
+  };
+
+  beforeEach(angular.mock.module('ngMockComponent'));
+  beforeEach(angular.mock.module('mdc'));
+
+  beforeEach(inject(($componentGenerator) => {
+    MockSelect = $componentGenerator('mdcSelect');
+  }));
+
+  it('should have the mdc-select class', () => {
+    expect(new MockSelect().$element.hasClass('mdc-select')).to.be.true;
+  });
+
+  it('should have attribute role=listbox', () => {
+    expect(new MockSelect().$element.attr('role')).to.equal('listbox');
+  });
 
   it('should toggle between disabled and enabled when ngDisabled changes', () => {
-    const component = makeComponent({'ngDisabled': 'isDisabled'}, {'isDisabled': true});
-    const elem = component.$element;
+    const select = getMockSelect({ngDisabled: 'isDisabled'});
+    const elem = select.$element;
 
-    expect(elem.attr('disabled')).to.equal('disabled');
-    component.$parent('isDisabled', false);
-    expect(elem.attr('disabled')).to.not.exist;
-    component.$parent('isDisabled', true);
-    expect(elem.attr('disabled')).to.equal('disabled');
+    return new Promise((resolve) => elem.ready(() => resolve()))
+      .then(() => {
+        expect(elem.hasClass('mdc-select--disabled')).to.be.false;
+        select.$parent('isDisabled', true);
+        expect(elem.hasClass('mdc-select--disabled')).to.be.true;
+        select.$parent('isDisabled', false);
+        expect(elem.hasClass('mdc-select--disabled')).to.be.false;
+      });
   });
 
-  it('should add role="option" to options', () => {
-    const component = makeComponent();
-    angular.forEach(component.$element.children()[0], (option) => {
-      expect(option.getAttribute('role')).to.equal('option');
+  it('should change when ngModel changes', () => {
+    const select = getMockSelect({ngModel: 'selected'});
+
+    return new Promise((resolve) => select.$element.ready(() => resolve()))
+      .then(() => {
+        const option = select.$element[0].querySelector('mdc-select-item');
+
+        expect(option.getAttribute('aria-selected')).to.not.exist;
+
+        select.$parent('selected', option.getAttribute('value'));
+        expect(option.getAttribute('aria-selected')).to.equal('true');
+
+        select.$parent('selected', 'invalid');
+        expect(option.getAttribute('aria-selected')).to.not.exist;
+      });
+  });
+});
+
+describe('mdc-select-item', () => {
+  let MockSelectItem;
+
+  beforeEach(angular.mock.module('ngMockComponent'));
+  beforeEach(angular.mock.module('mdc'));
+
+  beforeEach(inject(($componentGenerator) => {
+    MockSelectItem = $componentGenerator('mdcSelectItem');
+  }));
+
+  it('should have class mdc-list-item', () => {
+    const item = new MockSelectItem();
+    expect(item.$element.hasClass('mdc-list-item')).to.be.true;
+  });
+
+  it('should add role="option"', () => {
+    const item = new MockSelectItem();
+    expect(item.$element.attr('role')).to.equal('option');
+  });
+
+  it('should add tabindex="0" by default', () => {
+    const item = new MockSelectItem();
+    expect(item.$element.attr('tabindex')).to.equal('0');
+  });
+
+  it('should not change tabindex if it is specified', () => {
+    const item = new MockSelectItem({tabindex: 2});
+    expect(item.$element.attr('tabindex')).to.equal('2');
+  });
+
+  it('should set aria-disabled=true if ngDisabled=true', () => {
+    const item = new MockSelectItem({ngDisabled: 'isDisabled'});
+
+    expect(item.$element.attr('aria-disabled')).to.equal('false');
+
+    item.$parent('isDisabled', 'true');
+    expect(item.$element.attr('aria-disabled')).to.equal('true');
+  });
+
+  it('should set tabindex=-1 if ngDisabled=true', () => {
+    const item = new MockSelectItem({ngDisabled: 'isDisabled'});
+
+    expect(item.$element.attr('tabindex')).to.equal('0');
+
+    item.$parent('isDisabled', 'true');
+    expect(item.$element.attr('tabindex')).to.equal('-1');
+  });
+
+  it('should return ngValue || value || id || textContent for getValue()', () => {
+    const item = new MockSelectItem({
+      ngValue: 'ngValue', value: '{{ value }}', id: '{{ id }}',
+    });
+    const ctrl = item.$element.controller('mdcSelectItem');
+    item.$element.html('inner text');
+
+    expect(ctrl.getValue()).to.equal('inner text');
+
+    ['id', 'value', 'ngValue'].forEach((attr) => {
+      item.$parent(attr, `${attr}-value`);
+      expect(ctrl.getValue()).to.equal(`${attr}-value`);
     });
   });
 
-  it('should add class mdc-list-item to options', () => {
-    const component = makeComponent();
-    angular.forEach(component.$element.children()[0], (option) => {
-      expect(option.hasClass('mdc-list-item')).to.be.true;
-    });
-  });
+  it('hasHTMLElement() should return true only if given the element of the item', () => {
+    const item = new MockSelectItem();
+    const ctrl = item.$element.controller('mdcSelectItem');
 
-  it.skip('should change when ng-model changes', () => {
-    const component = makeComponent({'ngModel': 'selected'}, {'selected': ''});
-    const option1 = component.$element.children()[0].querySelector('option[value="one"]');
-
-    expect(option1.getAttribute('aria-selected')).to.not.exist;
-    component.$parent('selected', 'one');
-    expect(option1.getAttribute('aria-selected')).to.equal('true');
-
-    component.$parent('selected', 'two');
-    expect(option1.getAttribute('aria-selected')).to.not.exist;
-  });
-
-  it.skip('should propagate changes to ng-model when an option is clicked', () => {
-    const component = makeComponent({'ngModel': 'selected'}, {'selected': ''});
-    const option1 = component.$element.children()[0].querySelector('option[value="one"]');
-    const originalChangeHandler = component.$ctrl.changeHandler;
-    return new Promise(function(resolve, reject) {
-      component.$ctrl.changeHandler = function(e) {
-        originalChangeHandler.call(component.$ctrl, e);
-        expect(component.$parent('selected')).to.equal('one');
-        resolve();
-      };
-
-      expect(component.$parent('selected')).to.equal('');
-      option1.click();
-    });
+    expect(ctrl.hasHTMLElement(item.$element[0])).to.be.true;
+    expect(ctrl.hasHTMLElement(3)).to.be.false;
   });
 });
