@@ -53,10 +53,10 @@ jobs:
           command: "npm run build"
 
       - persist_to_workspace:
-          root: /
+          root: dist
           paths:
-            - dist/angularjs-mdc.js
-            - dist/angularjs-mdc.css
+            - angularjs-mdc.js
+            - angularjs-mdc.css
 
   build_prod:
     <<: *defaults
@@ -69,10 +69,10 @@ jobs:
           command: "npm run build:min"
 
       - persist_to_workspace:
-          root: /
+          root: dist
           paths:
-            - dist/angularjs-mdc.min.js
-            - dist/angularjs-mdc.min.css
+            - angularjs-mdc.min.js
+            - angularjs-mdc.min.css
 
   test:
     <<: *defaults
