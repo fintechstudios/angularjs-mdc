@@ -55,8 +55,8 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - mdc/dist/angularjs-mdc.js
-            - mdc/dist/angularjs-mdc.css
+            - dist/angularjs-mdc.js
+            - dist/angularjs-mdc.css
 
   build_prod:
     <<: *defaults
@@ -71,8 +71,8 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - mdc/dist/angularjs-mdc.min.js
-            - mdc/dist/angularjs-mdc.min.css
+            - dist/angularjs-mdc.min.js
+            - dist/angularjs-mdc.min.css
 
   test:
     <<: *defaults
