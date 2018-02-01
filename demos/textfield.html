@@ -84,36 +84,36 @@
           <p>Value: <input ng-model="fullDemoValue"></p>
         </section>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled" ng-model="isDisabled"></mdc-checkbox>
-          <label for="isDisabled">Disabled</label>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
-          <label for="isRTL">RTL</label>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
-          <label for="isDarkTheme">Dark Theme</label>
+          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDense" ng-model="isDense"></mdc-checkbox>
-          <label for="isDense">Dense</label>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isRequired" ng-model="isRequired"></mdc-checkbox>
-          <label for="isRequired">Required</label>
+          <mdc-checkbox ng-model="isRequired"></mdc-checkbox>
+          <label>Required</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="useHelpText" ng-model="useHelpText"></mdc-checkbox>
-          <label for="useHelpText">Use Helper Text</label>
+          <mdc-checkbox ng-model="useHelpText"></mdc-checkbox>
+          <label>Use Helper Text</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="helpTextPersistent" ng-model="helpTextPersistent" ng-disabled="!useHelpText"></mdc-checkbox>
-          <label for="helpTextPersistent">Make helper text persistent</label>
+          <mdc-checkbox ng-model="helpTextPersistent" ng-disabled="!useHelpText"></mdc-checkbox>
+          <label>Make helper text persistent</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="helpTextValidation" ng-model="helpTextValidation" ng-disabled="!useHelpText"></mdc-checkbox>
-          <label for="helpTextValidation">Use helper text as validation message</label>
+          <mdc-checkbox ng-model="helpTextValidation" ng-disabled="!useHelpText"></mdc-checkbox>
+          <label>Use helper text as validation message</label>
         </mdc-form-field>
       </section>
       <section class="example">
@@ -128,63 +128,128 @@
           Must be at least 8 characters long
         </p>
       </section>
+
       <section class="example">
-        <h2>Textfield box</h2>
+        <h2>Outlined Text Field</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-text-field label="Your name" box="true" dense="isDense">
-            <input id="tf-box" required ng-disabled="isDisabled"
-                   aria-controls="name-validation-message">
+          <mdc-text-field label="Your name" outlined="true" dense="isDense">
+            <input required ng-disabled="isDisabled">
           </mdc-text-field>
-          <p class="mdc-text-field-helptext mdc-text-field-helptext--validation-msg"
-             id="name-validation-msg">
-            Must provide a name
-          </p>
         </div>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled2" ng-model="isDisabled"></mdc-checkbox>
-          <label for="isDisabled2">Disabled</label>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isRTL2" ng-model="isRTL"></mdc-checkbox>
-          <label for="isRTL2">RTL</label>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDarkTheme2" ng-model="isDarkTheme"></mdc-checkbox>
-          <label for="isDarkTheme2">Dark Theme</label>
+          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDense2" ng-model="isDense"></mdc-checkbox>
-          <label for="isDense2">Dense</label>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
         </mdc-form-field>
       </section>
 
       <section class="example">
-        <h2>Multi-line Textfields</h2>
+        <h2>Text Field box</h2>
+        <div dir="{{ isRTL ? 'rtl' : ''}}">
+          <mdc-text-field label="Your name" box="true" dense="isDense">
+            <input required ng-disabled="isDisabled">
+          </mdc-text-field>
+        </div>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+          <label>Dark Theme</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Text Field with Icons</h2>
+        <div dir="{{ isRTL ? 'rtl' : ''}}">
+          <mdc-text-field label="Your name" box="true" dense="isDense">
+            <mdc-icon>event</mdc-icon>
+            <input required ng-disabled="isDisabled">
+          </mdc-text-field>
+
+          <br>
+          <mdc-text-field label="Your other name" box="true" dense="isDense">
+            <input required ng-disabled="isDisabled" ng-model="value1">
+            <mdc-icon ng-click="value1 = ''">delete</mdc-icon>
+          </mdc-text-field>
+
+          <br>
+          <mdc-text-field label="Your name" outlined="true" dense="isDense">
+            <mdc-icon>event</mdc-icon>
+            <input required ng-disabled="isDisabled">
+          </mdc-text-field>
+
+          <br>
+          <mdc-text-field label="Your name" outlined="true" dense="isDense">
+            <input required ng-disabled="isDisabled" ng-model="value2">
+            <mdc-icon ng-click="value2 = ''">delete</mdc-icon>
+          </mdc-text-field>
+        </div>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+          <label>Dark Theme</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Multi-line Text Fields</h2>
         <section id="demo-textfield-multiline-wrapper" style="overflow:hidden;" dir="{{ isRTL ? 'rtl' : '' }}">
           <mdc-text-field label="Multi-line input">
             <textarea id="multi-line" rows="8" cols="40" ng-disabled="isDisabled" ng-required="isRequired"></textarea>
           </mdc-text-field>
         </section>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled3" ng-model="isDisabled"></mdc-checkbox>
-          <label for="isDisabled3">Disabled</label>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isRTL3" ng-model="isRTL"></mdc-checkbox>
-          <label for="isRTL3">RTL</label>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDarkTheme3" ng-model="isDarkTheme"></mdc-checkbox>
-          <label for="isDarkTheme3">Dark Theme</label>
+          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isRequired3" ng-model="isRequired"></mdc-checkbox>
-          <label for="isRequired3">Required</label>
+          <mdc-checkbox ng-model="isRequired"></mdc-checkbox>
+          <label>Required</label>
         </mdc-form-field>
       </section>
 
       <section class="example">
-        <h2>Full-Width Textfields</h2>
+        <h2>Full-Width Text Fields</h2>
         <div id="demo-fullwidth-wrapper">
           <mdc-text-field label="Subject" fullwidth="true" dense="isDense">
             <input type="text" ng-disabled="isDisabled">
@@ -194,16 +259,16 @@
           </mdc-text-field>
         </div>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled4" ng-model="isDisabled"></mdc-checkbox>
-          <label for="isDisabled4">Disabled</label>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDarkTheme4" ng-model="isDarkTheme"></mdc-checkbox>
-          <label for="isDarkTheme4">Dark Theme</label>
+          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
+          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDense4" ng-model="isDense"></mdc-checkbox>
-          <label for="isDense4">Dense</label>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
         </mdc-form-field>
       </section>
     </main>

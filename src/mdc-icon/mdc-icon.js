@@ -16,9 +16,17 @@ export class MdcIconController extends BaseComponent {
     return ['$element'];
   }
 
+  static get require() {
+    return {
+      mdcButtonCtrl: '^^?mdcButton',
+      mdcTextFieldCtrl: '^^?mdcTextField',
+    };
+  }
+
   static get bindings() {
     return {
       size: '@',
+      ngClick: '&?',
     };
   }
 
@@ -34,6 +42,10 @@ export class MdcIconController extends BaseComponent {
     }
   }
 
+  $postLink() {
+    this.$element.attr('tabindex', this.ngClick ? '0' : '-1');
+  }
+
   get mdcButtonCtrl() {
     return this._mdcButtonCtrl;
   }
@@ -41,6 +53,23 @@ export class MdcIconController extends BaseComponent {
   set mdcButtonCtrl(ctrl) {
     this._mdcButtonCtrl = ctrl;
     this.$element.toggleClass('mdc-button__icon', Boolean(ctrl));
+  }
+
+  get mdcTextFieldCtrl() {
+    return this._mdcTextFieldCtrl;
+  }
+
+  set mdcTextFieldCtrl(ctrl) {
+    this._mdcTextFieldCtrl = ctrl;
+    if (ctrl) {
+      ctrl.toggleIconCtrl(this, true);
+    }
+
+    this.$element.toggleClass('mdc-text-field__icon', Boolean(ctrl));
+  }
+
+  $onDestroy() {
+    this.mdcTextFieldCtrl.toggleIconCtrl(this, false);
   }
 }
 
@@ -57,7 +86,5 @@ angular
   .component(MdcIconController.name, {
     controller: MdcIconController,
     bindings: MdcIconController.bindings,
-    require: {
-      mdcButtonCtrl: '^^?mdcButton',
-    },
+    require: MdcIconController.require,
   });
