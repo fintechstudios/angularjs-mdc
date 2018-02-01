@@ -39,7 +39,7 @@
         padding: 24px;
       }
 
-      .hero mdc-textfield {
+      .hero mdc-text-field {
         min-width: 240px;
       }
     </style>
@@ -58,11 +58,9 @@
     <main>
       <div class="mdc-toolbar-fixed-adjust"></div>
       <section class="hero">
-        <mdc-textfield>
-          <input name="email" aria-controls="my-textfield-helptext"
-                 data-demo-no-auto-js autocomplete="email">
-          <label>Text Field</label>
-        </mdc-textfield>
+        <mdc-text-field label="Text field">
+          <input type="text">
+        </mdc-text-field>
       </section>
 
       <section class="example"><em>
@@ -74,15 +72,13 @@
       <section class="example">
         <h2>Full Functionality JS Component (Floating Label, Validation, Autocomplete)</h2>
         <section dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-textfield dense="isDense">
-            <input id="my-textfield"
-                   name="email" aria-controls="my-textfield-helptext"
-                   data-demo-no-auto-js autocomplete="email"
+          <mdc-text-field label="Email Address" dense="isDense">
+            <input name="email" aria-controls="my-textfield-helptext"
+                   autocomplete="email"
                    ng-disabled="isDisabled" ng-required="isRequired" ng-model="fullDemoValue">
-            <label for="my-textfield">Email Address</label>
-          </mdc-textfield>
-          <p id="my-textfield-helptext" class="mdc-textfield-helptext"
-             ng-show="useHelpText" ng-class="{'mdc-textfield-helptext--persistent': helpTextPersistent, 'mdc-textfield-helptext--validation-msg': helpTextValidation}">
+          </mdc-text-field>
+          <p id="my-textfield-helptext" class="mdc-text-field-helptext"
+             ng-show="useHelpText" ng-class="{'mdc-text-field-helptext--persistent': helpTextPersistent, 'mdc-text-field-helptext--validation-msg': helpTextValidation}">
             Help Text (possibly validation message)
           </p>
           <p>Value: <input ng-model="fullDemoValue"></p>
@@ -122,13 +118,12 @@
       </section>
       <section class="example">
         <h2>Password field with validation</h2>
-        <mdc-textfield>
-          <input required pattern=".{8,}" type="password" id="pw"
+        <mdc-text-field label="Choose password">
+          <input required pattern=".{8,}" type="password"
                  aria-controls="pw-validation-msg"
                  autocomplete="current-password">
-          <label for="pw">Choose password</label>
-        </mdc-textfield>
-        <p class="mdc-textfield-helptext mdc-textfield-helptext--persistent mdc-textfield-helptext--validation-msg"
+        </mdc-text-field>
+        <p class="mdc-text-field-helptext mdc-text-field-helptext--persistent mdc-text-field-helptext--validation-msg"
            id="pw-validation-msg">
           Must be at least 8 characters long
         </p>
@@ -136,12 +131,11 @@
       <section class="example">
         <h2>Textfield box</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-textfield box="true" dense="isDense">
+          <mdc-text-field label="Your name" box="true" dense="isDense">
             <input id="tf-box" required ng-disabled="isDisabled"
                    aria-controls="name-validation-message">
-            <label for="tf-box">Your Name</label>
-          </mdc-textfield>
-          <p class="mdc-textfield-helptext mdc-textfield-helptext--validation-msg"
+          </mdc-text-field>
+          <p class="mdc-text-field-helptext mdc-text-field-helptext--validation-msg"
              id="name-validation-msg">
             Must provide a name
           </p>
@@ -163,33 +157,13 @@
           <label for="isDense2">Dense</label>
         </mdc-form-field>
       </section>
-      <section class="example-no-js">
-        <h2>CSS Only Textfield</h2>
-        <div>
-          <label for="css-only-textfield">Your name:</label>
-          <div class="mdc-textfield">
-            <input class="mdc-textfield__input" id="css-only-textfield"
-                   placeholder="Name">
-          </div>
-        </div>
-      </section>
-      <section class="example-no-js">
-        <h2>CSS Only Textfield box</h2>
-        <div>
-          <label for="css-only-textfield-box">Your name:</label>
-          <div class="mdc-textfield mdc-textfield--box">
-            <input type="text" class="mdc-textfield__input" id="css-only-textfield-box"
-                   placeholder="Name">
-          </div>
-        </div>
-      </section>
+
       <section class="example">
         <h2>Multi-line Textfields</h2>
         <section id="demo-textfield-multiline-wrapper" style="overflow:hidden;" dir="{{ isRTL ? 'rtl' : '' }}">
-          <mdc-textfield>
+          <mdc-text-field label="Multi-line input">
             <textarea id="multi-line" rows="8" cols="40" ng-disabled="isDisabled" ng-required="isRequired"></textarea>
-            <label for="multi-line">Multi-line Label</label>
-          </mdc-textfield>
+          </mdc-text-field>
         </section>
         <mdc-form-field>
           <mdc-checkbox input-id="isDisabled3" ng-model="isDisabled"></mdc-checkbox>
@@ -208,25 +182,16 @@
           <label for="isRequired3">Required</label>
         </mdc-form-field>
       </section>
-      <section class="example-no-js">
-        <h2>Multi-line Textfields - CSS Only</h2>
-        <label for="css-only-multiline" style="margin-bottom:4px;">About you:</label>
-        <div class="mdc-textfield mdc-textfield--multiline">
-          <textarea class="mdc-textfield__input"
-                    id="css-only-multiline"
-                    rows="8" cols="40"
-                    placeholder="Tell the world something about yourself!"></textarea>
-        </div>
-      </section>
+
       <section class="example">
         <h2>Full-Width Textfields</h2>
         <div id="demo-fullwidth-wrapper">
-          <mdc-textfield fullwidth="true" dense="isDense">
-            <input type="text" placeholder="Subject" aria-label="Subject" ng-disabled="isDisabled">
-          </mdc-textfield>
-          <mdc-textfield fullwidth="true" dense="isDense">
-            <textarea placeholder="Message" rows="8" cols="40" aria-label="Message" ng-disabled="isDisabled"></textarea>
-          </mdc-textfield>
+          <mdc-text-field label="Subject" fullwidth="true" dense="isDense">
+            <input type="text" ng-disabled="isDisabled">
+          </mdc-text-field>
+          <mdc-text-field label="Message" fullwidth="true" dense="isDense">
+            <textarea rows="8" cols="40" aria-label="Message" ng-disabled="isDisabled"></textarea>
+          </mdc-text-field>
         </div>
         <mdc-form-field>
           <mdc-checkbox input-id="isDisabled4" ng-model="isDisabled"></mdc-checkbox>

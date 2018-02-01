@@ -35,5 +35,5 @@ angular.module('mdc', [
   'mdc.snackbar',
   'mdc.switch',
   'mdc.tabs',
-  'mdc.textfield',
+  'mdc.text-field',
 ]);
