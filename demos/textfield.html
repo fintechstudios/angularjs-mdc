@@ -72,15 +72,13 @@
       <section class="example">
         <h2>Full Functionality JS Component (Floating Label, Validation, Autocomplete)</h2>
         <section dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-text-field label="Email Address" dense="isDense">
-            <input name="email" aria-controls="my-textfield-helptext"
-                   autocomplete="email" ng-model="fullDemoValue"
+          <mdc-text-field label="Email Address" dense="isDense"
+                          helper-text="{{ useHelpText ? 'Help Text (possibly validation message)' : '' }}"
+                          helper-text-persistent="helpTextPersistent"
+                          helper-text-validation="helpTextValidation">
+            <input name="email" autocomplete="email" ng-model="fullDemoValue"
                    ng-disabled="isDisabled" ng-required="isRequired">
           </mdc-text-field>
-          <p id="my-textfield-helptext" class="mdc-text-field-helptext"
-             ng-show="useHelpText" ng-class="{'mdc-text-field-helptext--persistent': helpTextPersistent, 'mdc-text-field-helptext--validation-msg': helpTextValidation}">
-            Help Text (possibly validation message)
-          </p>
           <p>Value: <input ng-model="fullDemoValue"></p>
         </section>
         <mdc-form-field>
@@ -273,7 +271,6 @@
     <script>
       angular.module('demo', ['mdc'])
         .controller('MainCtrl', ['$scope', function($scope) {
-          $scope.name = '';
           $scope.fullDemoValue = '';
           $scope.isDisabled = false;
           $scope.isRTL = false;

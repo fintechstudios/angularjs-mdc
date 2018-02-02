@@ -1,6 +1,6 @@
 import {BaseComponent} from '../../util/base-component';
 
-import {MDCTextField, MDCTextFieldFoundation} from '@material/textfield';
+import {MDCTextField, MDCTextFieldFoundation, MDCTextFieldHelperTextFoundation} from '@material/textfield';
 
 const outlineTemplate = require('raw-loader!./outline.html');
 
@@ -15,6 +15,9 @@ const outlineTemplate = require('raw-loader!./outline.html');
  * @param {bool} [fullwidth] - whether to apply the fullwidth styling
  * @param {bool} [box] - whether to apply the box styling
  * @param {bool} [outlined] - whether to apply the outline styling (supercedes box)
+ * @param {string} [helperText] - for providing supplemental information to users, as well for validation messages
+ * @param {bool} [helperTextPersistent] - whether the help text is persistent
+ * @param {bool} [helperTextValidation] - whether the help text is used for validation
  */
 export class MDCTextFieldController extends BaseComponent {
   static get name() {
@@ -28,11 +31,14 @@ export class MDCTextFieldController extends BaseComponent {
       fullwidth: '<?',
       box: '<?',
       outlined: '<?',
+      helperText: '@?',
+      helperTextPersistent: '<?',
+      helperTextValidation: '<?',
     };
   }
 
   static get $inject() {
-    return ['$element', '$scope', '$document', '$compile'];
+    return ['$element', '$scope', '$document'];
   }
 
   constructor(...args) {
@@ -48,6 +54,7 @@ export class MDCTextFieldController extends BaseComponent {
     this.setupLabelAndFullwidth_();
     this.setupOutlinedAndBox_();
     this.setupDense_();
+    this.setupHelperText_();
     this.setupNgDisabled_();
 
     this.$element.ready(() => {
@@ -79,6 +86,11 @@ export class MDCTextFieldController extends BaseComponent {
 
     if (changes.dense) {
       this.setupDense_();
+    }
+
+    if (changes.helperText || changes.helperTextPersistent || changes.helperTextValidation) {
+      this.setupHelperText_();
+      doRebuild = true;
     }
 
     if (doRebuild) {
@@ -140,8 +152,8 @@ export class MDCTextFieldController extends BaseComponent {
     const idleOutlineElement = this.root_.getElementsByClassName('mdc-text-field__idle-outline')[0];
     const bottomLineElement = this.root_.getElementsByClassName('mdc-text-field__bottom-line')[0];
 
-    this.$element.toggleClass('mdc-text-field--outlined', Boolean(this.outlined));
-    this.$element.toggleClass('mdc-text-field--box', !Boolean(this.outlined) && Boolean(this.box));
+    this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.OUTLINED, Boolean(this.outlined));
+    this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.BOX, !Boolean(this.outlined) && Boolean(this.box));
 
     const wantsOutline = this.outlined && !this.isTextArea;
     const wantsBottomLine = !this.outlined && !this.isTextArea;
@@ -167,7 +179,7 @@ export class MDCTextFieldController extends BaseComponent {
   }
 
   setupDense_() {
-    this.$element.toggleClass('mdc-text-field--dense', !this.isTextArea && Boolean(this.dense));
+    this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.DENSE, !this.isTextArea && Boolean(this.dense));
   }
 
   setupNgModel_() {
@@ -177,6 +189,47 @@ export class MDCTextFieldController extends BaseComponent {
       ngModel.$render = () => {
         this.mdc.value = ngModel.$viewValue;
       };
+    }
+  }
+
+  setupHelperText_() {
+    const wantsHelpText = Boolean(this.helperText);
+
+    if (wantsHelpText) {
+      if (!this.helperTextElement_) {
+        this.helperTextElement_ = this.$document[0].createElement('p');
+        this.helperTextElement_.className = 'mdc-text-field-helper-text';
+        this.helperTextElement_.id = `${this.inputElement_.id}--help`;
+
+        this.inputElement_.setAttribute('aria-controls', this.helperTextElement_.id);
+        this.root_.insertAdjacentElement('afterend', this.helperTextElement_);
+      }
+
+      this.helperTextElement_.textContent = this.helperText;
+
+      if (this.helperTextPersistent) {
+        this.helperTextElement_.classList.add(
+          MDCTextFieldHelperTextFoundation.cssClasses.HELPER_TEXT_PERSISTENT
+        );
+      } else {
+        this.helperTextElement_.classList.remove(
+          MDCTextFieldHelperTextFoundation.cssClasses.HELPER_TEXT_PERSISTENT
+        );
+      }
+
+      if (this.helperTextValidation) {
+        this.helperTextElement_.classList.add(
+          MDCTextFieldHelperTextFoundation.cssClasses.HELPER_TEXT_VALIDATION_MSG
+        );
+      } else {
+        this.helperTextElement_.classList.remove(
+          MDCTextFieldHelperTextFoundation.cssClasses.HELPER_TEXT_VALIDATION_MSG
+        );
+      }
+    } else if (!wantsHelpText && this.helperTextElement_) {
+      this.helperTextElement_.remove();
+      delete this.helperTextElement_;
+      this.inputElement_.removeAttribute('aria-controls');
     }
   }
 
@@ -210,12 +263,16 @@ export class MDCTextFieldController extends BaseComponent {
   }
 
   $onDestroy() {
+    if (this.inputObserver) {
+      this.inputObserver.disconnect();
+    }
+
     if (this.mdc) {
       this.mdc.destroy();
     }
 
-    if (this.inputObserver) {
-      this.inputObserver.disconnect();
+    if (this.helperTextElement_) {
+      this.helperTextElement_.remove();
     }
   }
 }
