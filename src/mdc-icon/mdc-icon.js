@@ -69,7 +69,9 @@ export class MdcIconController extends BaseComponent {
   }
 
   $onDestroy() {
-    this.mdcTextFieldCtrl.toggleIconCtrl(this, false);
+    if (this.mdcTextFieldCtrl) {
+      this.mdcTextFieldCtrl.toggleIconCtrl(this, false);
+    }
   }
 }
 
