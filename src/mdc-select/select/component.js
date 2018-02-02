@@ -153,11 +153,7 @@ export class MDCSelectController extends MDCComponentNg {
       rmAttr: (attr, value) => this.root_.removeAttribute(attr, value),
       computeBoundingRect: () => this.surface_.getBoundingClientRect(),
       registerInteractionHandler: (type, handler) => this.surface_.addEventListener(type, handler),
-      deregisterInteractionHandler: (type, handler) => {
-        if (this.surface_) {
-          this.surface_.removeEventListener(type, handler);
-        }
-      },
+      deregisterInteractionHandler: (type, handler) => this.surface_.removeEventListener(type, handler),
       focus: () => this.surface_.focus(),
       makeTabbable: () => {
         this.surface_.tabIndex = 0;
