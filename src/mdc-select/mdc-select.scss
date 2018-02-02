@@ -1,5 +1,1 @@
 @import '~@material/select/mdc-select';
-
-.mdc-select .mdc-list-item[disabled="disabled"] {
-  @extend .mdc-list-item[aria-disabled="true"];
-}
