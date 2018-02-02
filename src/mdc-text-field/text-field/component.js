@@ -24,15 +24,15 @@ export class MDCTextFieldController extends BaseComponent {
   static get bindings() {
     return {
       label: '@',
-      fullwidth: '<?',
-      outlined: '<?',
-      box: '<?',
       dense: '<?',
+      fullwidth: '<?',
+      box: '<?',
+      outlined: '<?',
     };
   }
 
   static get $inject() {
-    return ['$element', '$scope', '$document'];
+    return ['$element', '$scope', '$document', '$compile'];
   }
 
   constructor(...args) {
@@ -48,9 +48,11 @@ export class MDCTextFieldController extends BaseComponent {
     this.setupLabelAndFullwidth_();
     this.setupOutlinedAndBox_();
     this.setupDense_();
+    this.setupNgDisabled_();
 
     this.$element.ready(() => {
       this.recreate_();
+      this.setupNgModel_();
     });
   }
 
@@ -168,6 +170,27 @@ export class MDCTextFieldController extends BaseComponent {
     this.$element.toggleClass('mdc-text-field--dense', !this.isTextArea && Boolean(this.dense));
   }
 
+  setupNgModel_() {
+    const ngModel = angular.element(this.inputElement_).controller('ngModel');
+
+    if (ngModel) {
+      ngModel.$render = () => {
+        this.mdc.value = ngModel.$viewValue;
+      };
+    }
+  }
+
+  setupNgDisabled_() {
+    this.inputObserver = new MutationObserver(() => {
+      // if we do mdc.disabled directly, it applies to the native element, thus re-firing the observer
+      this.mdc.foundation_.styleDisabled_(this.inputElement_.disabled);
+    });
+
+    this.inputObserver.observe(this.inputElement_, {
+      attributes: true, attributeFilter: ['disabled'],
+    });
+  }
+
   toggleIconCtrl(iconCtrl, enabled) {
     const isLeading = iconCtrl.$element[0] === this.$element.children()[0];
 
@@ -189,6 +212,10 @@ export class MDCTextFieldController extends BaseComponent {
   $onDestroy() {
     if (this.mdc) {
       this.mdc.destroy();
+    }
+
+    if (this.inputObserver) {
+      this.inputObserver.disconnect();
     }
   }
 }

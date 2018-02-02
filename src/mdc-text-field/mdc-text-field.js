@@ -13,4 +13,5 @@ angular
   .component(MDCTextFieldController.name, {
     controller: MDCTextFieldController,
     bindings: MDCTextFieldController.bindings,
+    require: MDCTextFieldController.require,
   });

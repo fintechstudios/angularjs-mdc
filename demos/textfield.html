@@ -74,8 +74,8 @@
         <section dir="{{ isRTL ? 'rtl' : ''}}">
           <mdc-text-field label="Email Address" dense="isDense">
             <input name="email" aria-controls="my-textfield-helptext"
-                   autocomplete="email"
-                   ng-disabled="isDisabled" ng-required="isRequired" ng-model="fullDemoValue">
+                   autocomplete="email" ng-model="fullDemoValue"
+                   ng-disabled="isDisabled" ng-required="isRequired">
           </mdc-text-field>
           <p id="my-textfield-helptext" class="mdc-text-field-helptext"
              ng-show="useHelpText" ng-class="{'mdc-text-field-helptext--persistent': helpTextPersistent, 'mdc-text-field-helptext--validation-msg': helpTextValidation}">
@@ -100,10 +100,6 @@
           <label>Dense</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox ng-model="isRequired"></mdc-checkbox>
-          <label>Required</label>
-        </mdc-form-field>
-        <mdc-form-field>
           <mdc-checkbox ng-model="useHelpText"></mdc-checkbox>
           <label>Use Helper Text</label>
         </mdc-form-field>
@@ -119,7 +115,7 @@
       <section class="example">
         <h2>Password field with validation</h2>
         <mdc-text-field label="Choose password">
-          <input required pattern=".{8,}" type="password"
+          <input ng-required="isRequired" pattern=".{8,}" type="password"
                  aria-controls="pw-validation-msg"
                  autocomplete="current-password">
         </mdc-text-field>
@@ -133,7 +129,7 @@
         <h2>Outlined Text Field</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
           <mdc-text-field label="Your name" outlined="true" dense="isDense">
-            <input required ng-disabled="isDisabled">
+            <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
         </div>
         <mdc-form-field>
@@ -158,7 +154,7 @@
         <h2>Text Field box</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
           <mdc-text-field label="Your name" box="true" dense="isDense">
-            <input required ng-disabled="isDisabled">
+            <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
         </div>
         <mdc-form-field>
@@ -184,24 +180,24 @@
         <div dir="{{ isRTL ? 'rtl' : ''}}">
           <mdc-text-field label="Your name" box="true" dense="isDense">
             <mdc-icon>event</mdc-icon>
-            <input required ng-disabled="isDisabled">
+            <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
 
           <br>
           <mdc-text-field label="Your other name" box="true" dense="isDense">
-            <input required ng-disabled="isDisabled" ng-model="value1">
+            <input ng-required="isRequired" ng-disabled="isDisabled" ng-model="value1">
             <mdc-icon ng-click="value1 = ''">delete</mdc-icon>
           </mdc-text-field>
 
           <br>
           <mdc-text-field label="Your name" outlined="true" dense="isDense">
             <mdc-icon>event</mdc-icon>
-            <input required ng-disabled="isDisabled">
+            <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
 
           <br>
           <mdc-text-field label="Your name" outlined="true" dense="isDense">
-            <input required ng-disabled="isDisabled" ng-model="value2">
+            <input ng-disabled="isDisabled" ng-model="value2" ng-required="isRequired">
             <mdc-icon ng-click="value2 = ''">delete</mdc-icon>
           </mdc-text-field>
         </div>
@@ -252,10 +248,10 @@
         <h2>Full-Width Text Fields</h2>
         <div id="demo-fullwidth-wrapper">
           <mdc-text-field label="Subject" fullwidth="true" dense="isDense">
-            <input type="text" ng-disabled="isDisabled">
+            <input type="text" ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
           <mdc-text-field label="Message" fullwidth="true" dense="isDense">
-            <textarea rows="8" cols="40" aria-label="Message" ng-disabled="isDisabled"></textarea>
+            <textarea rows="8" cols="40" aria-label="Message" ng-required="isRequired" ng-disabled="isDisabled"></textarea>
           </mdc-text-field>
         </div>
         <mdc-form-field>
@@ -283,7 +279,7 @@
           $scope.isRTL = false;
           $scope.isDarkTheme = false;
           $scope.isDense = false;
-          $scope.isRequired = false;
+          $scope.isRequired = true;
           $scope.useHelpText = false;
           $scope.helpTextPersistent = false;
           $scope.helpTextValidation = false;
