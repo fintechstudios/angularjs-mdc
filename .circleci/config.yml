@@ -58,7 +58,7 @@ jobs:
           command: "npm run build"
 
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - mdc/dist
 
@@ -73,7 +73,7 @@ jobs:
           command: "npm run build:min"
 
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
             - mdc/dist
 
