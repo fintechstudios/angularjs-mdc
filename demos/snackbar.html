@@ -25,14 +25,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
-      .mdc-theme--dark {
-        background-color: #333;
-      }
-
-      .mdc-theme--dark .hero {
-        background-color: #2d2d2d;
-      }
-
       /* Override style for hero example. */
       .hero .mdc-snackbar {
         position: relative;
@@ -49,12 +41,10 @@
       label {
         display: block;
       }
-
-
     </style>
   </head>
   <body ng-app="demo" class="loading" ng-controller="MainCtrl"
-        ng-class="{'mdc-theme--dark': isDarkTheme}" dir="{{ isRTL ? 'rtl' : '' }}">
+        dir="{{ isRTL ? 'rtl' : '' }}">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -75,51 +65,50 @@
              aria-hidden="true">
           <div class="mdc-snackbar__text">Message sent</div>
           <div class="mdc-snackbar__action-wrapper">
-            <button type="button" class="mdc-button mdc-snackbar__action-button">Undo</button>
+            <button mdc-button type="button" class="mdc-snackbar__action-button">Undo</button>
           </div>
         </div>
       </section>
 
 
       <section class="example">
-        <h2 class="mdc-typography--title">Basic Example</h2>
+        <div>
+          <h2 class="mdc-typography--title">Basic Example</h2>
 
-        <mdc-form-field>
-          <mdc-checkbox input-id="multiline" ng-model="multiline"></mdc-checkbox>
-          <label for="multiline">Multiline</label>
-        </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox ng-model="multiline"></mdc-checkbox>
+            <label>Multiline</label>
+          </mdc-form-field>
 
-        <mdc-form-field>
-          <mdc-checkbox input-id="actionOnBottom" ng-model="actionOnBottom" ng-disabled="!multiline"></mdc-checkbox>
-          <label for="actionOnBottom">Action On Bottom</label>
-        </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox ng-model="actionOnBottom" ng-disabled="!multiline"></mdc-checkbox>
+            <label>Action On Bottom</label>
+          </mdc-form-field>
 
-        <mdc-form-field>
-          <mdc-checkbox input-id="dismissesOnAction" ng-model="dismissesOnAction"></mdc-checkbox>
-          <label for="dismissesOnAction">Dismiss On Action</label>
-        </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox ng-model="dismissesOnAction"></mdc-checkbox>
+            <label>Dismiss On Action</label>
+          </mdc-form-field>
 
-        <mdc-form-field>
-          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
-          <label for="isRTL">Toggle RTL</label>
-        </mdc-form-field>
+          <mdc-form-field>
+            <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+            <label>Toggle RTL</label>
+          </mdc-form-field>
 
-        <mdc-button color="primary" raised="true" ng-click="isDarkTheme = !isDarkTheme">Toggle Dark Theme</mdc-button>
-        <br>
-        <mdc-textfield>
-          <input id="message" ng-model="message">
-          <label for="message">Message Text</label>
-        </mdc-textfield>
+          <br>
+          <mdc-text-field label="Message text">
+            <input ng-model="message">
+          </mdc-text-field>
 
-        <mdc-textfield>
-          <input id="actionText" ng-model="actionText">
-          <label for="actionText">Action Text</label>
-        </mdc-textfield>
+          <mdc-text-field label="Action Text">
+            <input ng-model="actionText">
+          </mdc-text-field>
 
-        <p>Output: {{ output }}</p>
+          <p>Output: {{ output }}</p>
 
-        <mdc-button raised="true" ng-click="showSnackbar()">Show</mdc-button>
-        <mdc-button raised="true" ng-click="showSnackbar(true)">Show Start Aligned</mdc-button>
+          <button mdc-button raised="true" ng-click="showSnackbar()">Show</button>
+          <button mdc-button raised="true" ng-click="showSnackbar(true)">Show Start Aligned</button>
+        </div>
       </section>
     </main>
     <script src="angular/angular.js"></script>
@@ -129,8 +118,6 @@
         .controller('MainCtrl', ['$scope', '$mdcSnackbar', function($scope, $mdcSnackbar) {
           $scope.message = 'Message deleted';
           $scope.actionText = 'Undo';
-
-          $scope.isDarkTheme = false;
           $scope.isRTL = false;
           $scope.actionOnBottom = false;
           $scope.multiline = false;
@@ -147,22 +134,22 @@
               multiline: $scope.multiline,
               actionOnBottom: $scope.actionOnBottom,
               dismissesOnAction: $scope.dismissesOnAction,
-              alignStart: alignStart,
             };
-            if ($scope.actionText) {
 
+            if ($scope.actionText) {
               data.actionText = $scope.actionText;
               data.actionHandler = function() {
                 $scope.output = 'clicked "' + data.actionText + '"';
                 $scope.$apply();
               }
             }
+
             if (alignStart) {
               $mdcSnackbar.showStartAligned(data);
             } else {
               $mdcSnackbar.show(data);
             }
-          }
+          };
         }]);
     </script>
   </body>
