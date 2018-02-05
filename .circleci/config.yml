@@ -60,7 +60,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - mdc/dist
+            - mdc/dist/angularjs-mdc*
 
   build_prod:
     <<: *defaults
@@ -75,7 +75,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - mdc/dist
+            - mdc/dist/angularjs-mdc*
 
   test:
     <<: *defaults
