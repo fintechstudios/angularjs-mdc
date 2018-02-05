@@ -1,7 +1,7 @@
 import {arrayUnion} from '../../util/array-union';
 import {MDCComponentNg} from '../../mdc-base/component-ng';
+import {MDCRippleMixin} from '../../mdc-ripple/mixin';
 
-import {MDCRipple} from '@material/ripple';
 import {MDCSimpleMenu} from '@material/menu';
 
 import {MDCSelectFoundation} from '@material/select';
@@ -19,7 +19,7 @@ const template = require('raw-loader!./mdc-select.html');
  * @param {string} [ngModel] Assignable AngularJS expression to data-bind to
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  */
-export class MDCSelectController extends MDCComponentNg {
+export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
   static get name() {
     return 'mdcSelect';
   }
@@ -49,6 +49,10 @@ export class MDCSelectController extends MDCComponentNg {
     return arrayUnion(['$element', '$document', '$window'], super.$inject);
   }
 
+  get rippleElement() {
+    return angular.element(this.root_.querySelector(MDCSelectFoundation.strings.SURFACE_SELECTOR));
+  }
+
   constructor(...args) {
     super(...args);
 
@@ -68,9 +72,6 @@ export class MDCSelectController extends MDCComponentNg {
   $onDestroy() {
     super.$onDestroy();
 
-    if (this.ripple) {
-      this.ripple.destroy();
-    }
     if (this.menu_) {
       this.menu_.destroy();
     }
@@ -136,8 +137,6 @@ export class MDCSelectController extends MDCComponentNg {
     this.selectedText_ = this.root_.querySelector(MDCSelectFoundation.strings.SELECTED_TEXT_SELECTOR);
     this.menuEl_ = this.root_.querySelector(MDCSelectFoundation.strings.MENU_SELECTOR);
     this.menu_ = menuFactory(this.menuEl_);
-
-    this.ripple = new MDCRipple(this.surface_);
   }
 
   getDefaultFoundation() {

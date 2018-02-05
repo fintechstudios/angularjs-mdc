@@ -21,9 +21,12 @@ export class MDCComponentNg extends BaseComponent {
     this.foundation_ = this.getDefaultFoundation();
   }
 
+  $onInit() {
+    this.initialize();
+  }
+
   $postLink() {
     this.$element.ready(() => {
-      this.initialize();
       this.foundation_.init();
       this.initialSyncWithDOM();
       this.foundationReady = true;

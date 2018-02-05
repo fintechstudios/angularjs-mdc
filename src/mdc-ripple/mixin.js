@@ -4,7 +4,7 @@ import {MDCRipple} from '@material/ripple';
 
 
 /**
- * Applies a ripple to this.$element and exposes as this.ripple.
+ * Applies a ripple to this.rippleElement and exposes as this.ripple.
  *
  * The element must have or extend the `mdc-ripple-surface` class
  *
@@ -16,26 +16,38 @@ export const MDCRippleMixin = (Base) => class extends Base {
     return arrayUnion(['$element'], super.$inject);
   }
 
+  /**
+   * The element to bind the ripple to. Should have or extend the `mdc-ripple-surface` class
+   * @return {JQLite}
+   */
+  get rippleElement() {
+    return this.$element;
+  }
+
   constructor(...args) {
     super(...args);
 
     this.ripple = {};
-    this.$element.ready(() => {
+    this.rippleElement.ready(() => {
       if (this.ripple.doDestroy) {
         return;
       }
       // if unbounded is assigned before ready, we pass it in
-      this.ripple = MDCRipple.attachTo(this.$element[0], {isUnbounded: this.ripple.unbounded});
+      this.ripple = MDCRipple.attachTo(this.rippleElement[0], {isUnbounded: this.ripple.unbounded});
     });
   }
 
   $onDestroy() {
     super.$onDestroy();
 
-    if (this.ripple.destroy) {
-      this.ripple.destroy();
-    } else {
-      this.ripple.doDestroy = true;
+    if (!this.ripple.destroy) {
+      this.ripple.doDestroy = true; // destroyed before element ready
+      return;
     }
+    // ensure MDCRipple has DOM to attach to so destroy doesn't fail
+    if (!this.ripple.root_) {
+      this.ripple.root_ = angular.element('<div></div>')[0];
+    }
+    this.ripple.destroy();
   }
 };
