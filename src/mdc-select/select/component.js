@@ -152,7 +152,11 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
       rmAttr: (attr, value) => this.root_.removeAttribute(attr, value),
       computeBoundingRect: () => this.surface_.getBoundingClientRect(),
       registerInteractionHandler: (type, handler) => this.surface_.addEventListener(type, handler),
-      deregisterInteractionHandler: (type, handler) => this.surface_.removeEventListener(type, handler),
+      deregisterInteractionHandler: (type, handler) => {
+        if (this.surface_) { // DOM might be removed before deregistration
+          this.surface_.removeEventListener(type, handler);
+        }
+      },
       focus: () => this.surface_.focus(),
       makeTabbable: () => {
         this.surface_.tabIndex = 0;
