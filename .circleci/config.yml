@@ -26,6 +26,11 @@ jobs:
           paths:
             - ~/mdc/node_modules
 
+      - run:
+          name: Remove old distributables
+          command: |
+            rm ~/mdc/dist/angularjs-mdc*
+
       - persist_to_workspace:
           root: .
           paths:
