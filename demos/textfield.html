@@ -25,11 +25,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
-      .mdc-theme--dark {
-        --mdc-theme-primary: var(--mdc-theme-accent, #64dd17);
-        background-color: #303030;
-      }
-
       .example label {
         display: block;
       }
@@ -44,7 +39,7 @@
       }
     </style>
   </head>
-  <body ng-app="demo" ng-controller="MainCtrl" ng-class="{'mdc-theme--dark': isDarkTheme}">
+  <body ng-app="demo" ng-controller="MainCtrl">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -62,12 +57,6 @@
           <input type="text">
         </mdc-text-field>
       </section>
-
-      <section class="example"><em>
-        Note that in browsers that support custom properties, we alter theme's primary
-        color when using the dark theme toggles so that the text fields appears more
-        visible.
-      </em></section>
 
       <section class="example">
         <h2>Full Functionality JS Component (Floating Label, Validation, Autocomplete)</h2>
@@ -88,10 +77,6 @@
         <mdc-form-field>
           <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
           <label>RTL</label>
-        </mdc-form-field>
-        <mdc-form-field>
-          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
@@ -139,10 +124,6 @@
           <label>RTL</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-          <label>Dark Theme</label>
-        </mdc-form-field>
-        <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
         </mdc-form-field>
@@ -162,10 +143,6 @@
         <mdc-form-field>
           <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
           <label>RTL</label>
-        </mdc-form-field>
-        <mdc-form-field>
-          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
@@ -208,10 +185,6 @@
           <label>RTL</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-          <label>Dark Theme</label>
-        </mdc-form-field>
-        <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
         </mdc-form-field>
@@ -231,10 +204,6 @@
         <mdc-form-field>
           <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
           <label>RTL</label>
-        </mdc-form-field>
-        <mdc-form-field>
-          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-          <label>Dark Theme</label>
         </mdc-form-field>
         <mdc-form-field>
           <mdc-checkbox ng-model="isRequired"></mdc-checkbox>
@@ -257,10 +226,6 @@
           <label>Disabled</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-          <label>Dark Theme</label>
-        </mdc-form-field>
-        <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
         </mdc-form-field>
@@ -274,7 +239,6 @@
           $scope.fullDemoValue = '';
           $scope.isDisabled = false;
           $scope.isRTL = false;
-          $scope.isDarkTheme = false;
           $scope.isDense = false;
           $scope.isRequired = true;
           $scope.useHelpText = false;

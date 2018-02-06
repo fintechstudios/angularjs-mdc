@@ -24,32 +24,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-
-    <style media="screen">
-      .mdc-theme--dark {
-        background: #262626;
-        color: white;
-      }
-      .mdc-theme--dark > h2 {
-        margin-top: 0;
-      }
-      /* Example of manually theming a checkbox. Note that this does not take JS-provided animations
-         into account. */
-      .mdc-theme--dark .mdc-checkbox__native-control:checked:not(:disabled) ~ .mdc-checkbox__background,
-      .mdc-theme--dark .mdc-checkbox__native-control:indeterminate:not(:disabled) ~ .mdc-checkbox__background {
-        background-color: #64DD17;
-        border-color: #64DD17;
-      }
-      .mdc-theme--dark .mdc-checkbox__background::before {
-        background-color: #64DD17;
-      }
-      .mdc-theme--dark .mdc-checkbox__checkmark__path {
-        stroke: #262626 !important;
-      }
-      .mdc-theme--dark .mdc-checkbox__mixedmark {
-        background-color: #262626;
-      }
-    </style>
   </head>
   <body ng-app="demo" ng-controller="MainCtrl">
     <header class="mdc-toolbar mdc-toolbar--fixed">
@@ -83,30 +57,6 @@
         <mdc-form-field align-end="isEndAligned">
           <mdc-checkbox input-id="an-input-id"
                         indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
-          <label>Checkbox</label>
-        </mdc-form-field>
-
-        <br>
-        <mdc-form-field align-end="isEndAligned">
-          <mdc-checkbox indeterminate="isIndeterminate"
-                        ng-disabled="isDisabled"
-                        class="demo-checkbox--custom-all"></mdc-checkbox>
-          <label>Custom colored checkbox (stroke, fill, ripple, and focus)</label>
-        </mdc-form-field>
-
-        <br>
-        <mdc-form-field align-end="isEndAligned">
-          <mdc-checkbox indeterminate="isIndeterminate"
-                        ng-disabled="isDisabled"
-                        class="demo-checkbox--custom-stroke-and-fill"></mdc-checkbox>
-          <label>Custom colored checkbox (stroke and fill only)</label>
-        </mdc-form-field>
-      </section>
-
-      <section class="example mdc-theme--dark" dir="{{ isRTL ? 'rtl' : '' }}">
-        <h2>Dark Theme</h2>
-        <mdc-form-field align-end="isEndAligned">
-          <mdc-checkbox indeterminate="isIndeterminate" ng-disabled="isDisabled"></mdc-checkbox>
           <label>Checkbox</label>
         </mdc-form-field>
 

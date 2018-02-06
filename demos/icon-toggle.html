@@ -27,14 +27,6 @@
         text-align: center;
       }
 
-      .mdc-theme--dark {
-        background: #303030;
-      }
-
-      .mdc-theme--dark:not(.demo-color-combo) {
-        padding-bottom: 1rem;
-      }
-
       #demo-color-combos {
         display: flex;
         align-items: center;
@@ -140,16 +132,6 @@
           </div>
         </div>
 
-        <div class="toggle-example mdc-theme--dark">
-          <h2 class="mdc-theme--text-primary-on-dark">Dark Theme</h2>
-          <div class="demo-wrapper">
-            <mdc-icon-toggle tabindex="0"
-                             toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
-                             toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
-            </mdc-icon-toggle>
-          </div>
-        </div>
-
         <div class="toggle-example">
           <h2>Disabled Icons</h2>
           <div class="demo-wrapper">
@@ -157,14 +139,6 @@
                              toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
                              toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
             </mdc-icon-toggle>
-          </div>
-          <div class="mdc-theme--dark">
-            <div class="demo-wrapper">
-              <mdc-icon-toggle ng-disabled="true" tabindex="0"
-                               toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
-                               toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
-              </mdc-icon-toggle>
-            </div>
           </div>
         </div>
 
@@ -190,14 +164,14 @@
               </div>
               <p>Dark icon on background</p>
             </div>
-            <div id="custom-on-dark" class="demo-color-combo mdc-theme--dark">
+            <div id="custom-on-dark" class="demo-color-combo">
               <div>
                 <mdc-icon-toggle tabindex="0"
                                  toggle-on='{"content": "favorite", "label": "Remove From Favorites"}'
                                  toggle-off='{"content": "favorite_border", "label": "Add to Favorites"}'>
                 </mdc-icon-toggle>
               </div>
-              <p class="mdc-theme--text-primary-on-dark">Custom color on dark background</p>
+              <p>Custom color</p>
             </div>
           </div>
         </div>

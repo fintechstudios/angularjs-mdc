@@ -45,18 +45,6 @@
       label {
         font-size: 16px;
       }
-
-      section.example.mdc-theme--dark {
-        background-color: #333;
-      }
-
-      section.example.mdc-theme--dark > h2 {
-        color: white;
-      }
-
-      section.example.mdc-theme--dark > label {
-        color: white;
-      }
     </style>
   </head>
   <body ng-app="demo" class="mdc-typography">
@@ -88,30 +76,14 @@
       </section>
 
       <section class="example">
-        <h2>Switch on Light Theme</h2>
+        <h2>Switch</h2>
         <mdc-form-field>
           <mdc-switch></mdc-switch>
           <label>off/on</label>
         </mdc-form-field>
       </section>
       <section class="example">
-        <h2>Switch on Light Theme - Disabled</h2>
-        <mdc-form-field>
-          <mdc-switch ng-disabled="true"></mdc-switch>
-          <label>off/on</label>
-        </mdc-form-field>
-      </section>
-
-      <section class="example mdc-theme--dark">
-        <h2>Switch on Dark Theme</h2>
-        <mdc-form-field>
-          <mdc-switch></mdc-switch>
-          <label>off/on</label>
-        </mdc-form-field>
-      </section>
-
-      <section class="example mdc-theme--dark">
-        <h2>Switch on Dark Theme - Disabled</h2>
+        <h2>Switch - Disabled</h2>
         <mdc-form-field>
           <mdc-switch ng-disabled="true"></mdc-switch>
           <label>off/on</label>
