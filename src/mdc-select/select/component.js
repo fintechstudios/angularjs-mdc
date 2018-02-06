@@ -15,9 +15,10 @@ const template = require('raw-loader!./mdc-select.html');
  * @name mdcSelect
  * @module mdc.select
  *
- * @param {string} [label] Default empty-value option to present to user
- * @param {string} [ngModel] Assignable AngularJS expression to data-bind to
- * @param {expression} [ngDisabled] Enable/Disable based on the expression
+ * @param {string} [label] - Text shown if no value has been selected.
+ * @param {boolean} [box] - whether to apply box styling
+ * @param {string} [ngModel] - Assignable AngularJS expression to data-bind to
+ * @param {expression} [ngDisabled] - Enable/Disable based on the expression
  */
 export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
   static get name() {
@@ -38,6 +39,7 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
     return {
       ngDisabled: '<?',
       label: '@?',
+      box: '<?',
     };
   }
 
@@ -66,6 +68,10 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
 
     if (changes.ngDisabled && this.foundationReady) {
       this.disabled = Boolean(this.ngDisabled);
+    }
+
+    if (changes.box) {
+      this.$element.toggleClass('mdc-select--box', Boolean(this.box));
     }
   }
 

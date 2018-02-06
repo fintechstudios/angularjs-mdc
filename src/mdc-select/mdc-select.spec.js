@@ -33,6 +33,11 @@ describe('mdc-select', () => {
     expect(new MockSelect().$element.attr('role')).to.equal('listbox');
   });
 
+  it('should have class mdc-select--box when box=true', () => {
+    const select = new MockSelect({box: true});
+    expect(select.$element.hasClass('mdc-select--box')).to.be.true;
+  });
+
   it('should toggle between disabled and enabled when ngDisabled changes', () => {
     const select = getMockSelect({ngDisabled: 'isDisabled'});
     const elem = select.$element;

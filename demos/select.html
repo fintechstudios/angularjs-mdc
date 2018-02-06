@@ -25,15 +25,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style type="text/css">
-      .mdc-theme--dark {
-        background-color: #303030;
-      }
-
-      #demo-wrapper {
-        padding: 4px;
-        padding-left: 0;
-      }
-
       .example {
         margin: 24px;
         padding: 24px;
@@ -45,7 +36,7 @@
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
           <span class="mdc-toolbar__title catalog-title">Select</span>
         </section>
@@ -67,9 +58,9 @@
 
       <section class="example">
         <h2 class="mdc-typography--title">Fully-Featured Component</h2>
-        <section id="demo-wrapper" dir="{{ isRTL ? 'rtl': '' }}"
-                 ng-class="{'mdc-theme--dark': isDarkTheme}">
+        <section dir="{{ isRTL ? 'rtl': '' }}">
           <mdc-select label="Pick a food group"
+                      ng-class="{'demo-select-custom-colors': altColors}"
                       ng-disabled="isDisabled1"
                       ng-model="selected1">
             <mdc-select-item value="grains">Bread, Cereal, Rice, and Pasta</mdc-select-item>
@@ -80,21 +71,52 @@
             <mdc-select-item value="fats">Fats, Oils, and Sweets</mdc-select-item>
           </mdc-select>
         </section>
-        <mdc-text-field>
-          <input id="selected1" ng-model="selected1">
-          <label for="selected1">Currently selected</label>
+        <mdc-text-field label="Currently selected">
+          <input ng-model="selected1">
         </mdc-text-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
-          <label for="isDarkTheme">Dark Theme</label>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
-          <label for="isRTL">RTL</label>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
         </mdc-form-field>
         <mdc-form-field>
-          <mdc-checkbox input-id="isDisabled1" ng-model="isDisabled1"></mdc-checkbox>
-          <label for="isDisabled1">Disabled</label>
+          <mdc-checkbox ng-model="isDisabled1"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2 class="mdc-typography--title">Select box</h2>
+        <section dir="{{ isRTL ? 'rtl': '' }}">
+          <mdc-select label="Pick a food group" box="true"
+                      ng-class="{'demo-select-custom-colors': altColors}"
+                      ng-disabled="isDisabled1"
+                      ng-model="selectedBox">
+            <mdc-select-item value="grains">Bread, Cereal, Rice, and Pasta</mdc-select-item>
+            <mdc-select-item value="vegetables" ng-disabled="true">Vegetables</mdc-select-item>
+            <mdc-select-item value="fruit">Fruit</mdc-select-item>
+            <mdc-select-item value="dairy">Milk, Yogurt, and Cheese</mdc-select-item>
+            <mdc-select-item value="protein">Meat, Poultry, Fish, Dry Beans, Eggs, and Nuts</mdc-select-item>
+            <mdc-select-item value="fats">Fats, Oils, and Sweets</mdc-select-item>
+          </mdc-select>
+        </section>
+        <mdc-text-field label="Currently selected">
+          <input ng-model="selectedBox">
+        </mdc-text-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled1"></mdc-checkbox>
+          <label>Disabled</label>
         </mdc-form-field>
       </section>
 
@@ -112,7 +134,6 @@
       angular.module('demo', ['mdc'])
         .controller('MainCtrl', ['$scope', function($scope) {
           $scope.name = '';
-          $scope.isDarkTheme = false;
           $scope.isRTL = false;
           $scope.repeatSelected = 'three';
           $scope.repeatSelectedNoAnimation = 'four';
