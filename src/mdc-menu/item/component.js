@@ -1,11 +1,9 @@
-import {BaseComponent} from '../../../util/base-component';
-import {MDCSimpleMenuController} from '../menu/component';
-
-import {cssClasses} from '@material/menu/simple/constants';
+import {BaseComponent} from '../../util/base-component';
+import {MDCMenuController} from '../menu/component';
 
 /**
  * @ngdoc directive
- * @name mdcSimpleMenuItem
+ * @name mdcMenuItem
  * @restrict AEC
  * @module mdc.menu
  * @description Used as a child of mdcMenu to create menu items
@@ -13,9 +11,9 @@ import {cssClasses} from '@material/menu/simple/constants';
  *
  * @param {function(index: Number, item: HTMLElement)} [onSelect] - expression to evaluate if item is selected
  */
-export class MDCSimpleMenuItemController extends BaseComponent {
+export class MDCMenuItemController extends BaseComponent {
   static get name() {
-    return 'mdcSimpleMenuItem';
+    return 'mdcMenuItem';
   }
 
   static get $inject() {
@@ -31,14 +29,14 @@ export class MDCSimpleMenuItemController extends BaseComponent {
 
   static get require() {
     return {
-      mdcSimpleMenuController: `^^${MDCSimpleMenuController.name}`,
+      mdcMenuController: `^^${MDCMenuController.name}`,
     };
   }
 
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass(cssClasses.LIST_ITEM);
+    this.$element.addClass('mdc-list-item');
     this.$element.attr('role', 'menuitem');
   }
 
@@ -47,11 +45,11 @@ export class MDCSimpleMenuItemController extends BaseComponent {
       this.$element.attr('tabindex', 0);
     }
 
-    this.mdcSimpleMenuController._addItem(this);
+    this.mdcMenuController._addItem(this);
   }
 
   $onDestroy() {
-    this.mdcSimpleMenuController._removeItem(this);
+    this.mdcMenuController._removeItem(this);
   }
 
   hasElement(htmlElement) {

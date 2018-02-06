@@ -1,8 +1,8 @@
-import {BaseComponent} from '../../../util/base-component';
-import {MDCMenuAnchorController} from '../../anchor/directive';
-import {MDC_SIMPLE_MENU_TOGGLE_EVENT} from '../toggle/directive';
+import {BaseComponent} from '../../util/base-component';
+import {MDCMenuAnchorController} from '../anchor/directive';
+import {MDC_MENU_TOGGLE_EVENT} from '../toggle/directive';
 
-import {MDCSimpleMenuFoundation} from '@material/menu/simple/foundation';
+import {MDCMenuFoundation} from '@material/menu';
 import {getTransformPropertyName} from '@material/menu/util';
 
 
@@ -12,28 +12,32 @@ function convertToCornerProperty(anchorFrom) {
 }
 
 
-const template = require('raw-loader!./mdc-simple-menu.html');
+const template = require('raw-loader!./mdc-menu.html');
 
 
 /**
  * @ngdoc component
- * @name mdcSimpleMenu
+ * @name mdcMenu
  * @module mdc.menu
  *
  * @param {string} id - Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
- * @param {bool} [open] - Whether the menu is currently opened or closed
+ * @param {boolean} [open] - Whether the menu is currently opened or closed
+ * @param {boolean} [rememberSelection] - whether to remember that an item is selected
+ * @param {boolean} [quickOpen] - whether to disable open animation
  * @param {string} [anchorCorner=TOP_START] - TOP_START, TOP_END, BOTTOM_START, BOTTOM_END
  * @param {AnchorMargin} [anchorMargin] - default {top: 0, right: 0, bottom: 0, left: 0}
  */
-export class MDCSimpleMenuController extends BaseComponent {
+export class MDCMenuController extends BaseComponent {
   static get name() {
-    return 'mdcSimpleMenu';
+    return 'mdcMenu';
   }
 
   static get bindings() {
     return {
       id: '@?',
       open: '<?',
+      rememberSelection: '<?',
+      quickOpen: '<?',
       anchorCorner: '@?',
       anchorMargin: '<?',
     };
@@ -60,7 +64,7 @@ export class MDCSimpleMenuController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-simple-menu');
+    this.$element.addClass('mdc-menu');
     this.foundation_ = this.getDefaultFoundation();
     this.root_ = this.$element[0];
     this.itemControllers = [];
@@ -73,28 +77,34 @@ export class MDCSimpleMenuController extends BaseComponent {
 
     this.foundation_.init();
 
-    this.stopListening = this.$rootScope.$on(MDC_SIMPLE_MENU_TOGGLE_EVENT, (event, {id}) => {
+    this.stopListening = this.$rootScope.$on(MDC_MENU_TOGGLE_EVENT, (event, {id}) => {
       if (id === this.id) {
         this.toggle();
       }
     });
   }
 
-  $onChanges(changesObj) {
-    if (changesObj.open) {
+  $onChanges(changes) {
+    if (changes.open) {
       this.open ? this.show() : this.hide();
     }
-    if (changesObj.anchorCorner && this.anchorCorner) {
-      const asProp = MDCSimpleMenuFoundation.Corner[convertToCornerProperty(this.anchorCorner)];
+    if (changes.anchorCorner && this.anchorCorner) {
+      const asProp = MDCMenuFoundation.Corner[convertToCornerProperty(this.anchorCorner)];
       if (asProp !== undefined) {
         this.foundation_.setAnchorCorner(asProp);
       }
     }
-    if (changesObj.anchorMargin && this.anchorMargin) {
+    if (changes.anchorMargin && this.anchorMargin) {
       this.foundation_.setAnchorMargin({
         top: Number(this.anchorMargin.top), bottom: Number(this.anchorMargin.bottom),
         left: Number(this.anchorMargin.left), right: Number(this.anchorMargin.right),
       });
+    }
+    if (changes.rememberSelection) {
+      this.foundation_.setRememberSelection(this.rememberSelection);
+    }
+    if (changes.quickOpen) {
+      this.foundation_.setQuickOpen(this.quickOpen);
     }
   }
 
@@ -124,7 +134,7 @@ export class MDCSimpleMenuController extends BaseComponent {
    * @return {?Element}
    */
   get itemsContainer_() {
-    return this.root_.querySelector(MDCSimpleMenuFoundation.strings.ITEMS_SELECTOR);
+    return this.root_.querySelector(MDCMenuFoundation.strings.ITEMS_SELECTOR);
   }
 
   /**
@@ -135,12 +145,12 @@ export class MDCSimpleMenuController extends BaseComponent {
    */
   get items() {
     const {itemsContainer_: itemsContainer} = this;
-    return [].slice.call(itemsContainer.querySelectorAll(`.${MDCSimpleMenuFoundation.cssClasses.LIST_ITEM}`));
+    return [].slice.call(itemsContainer.querySelectorAll('.mdc-list-item[role]'));
   }
 
-  /** @return {!MDCSimpleMenuFoundation} */
+  /** @return {!MDCMenuFoundation} */
   getDefaultFoundation() {
-    return new MDCSimpleMenuFoundation({
+    return new MDCMenuFoundation({
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
       hasClass: (className) => this.root_.classList.contains(className),
@@ -168,7 +178,7 @@ export class MDCSimpleMenuController extends BaseComponent {
           item: this.items[evtData.index],
         });
       },
-      notifyCancel: () => this.emit(MDCSimpleMenuFoundation.strings.CANCEL_EVENT, {}),
+      notifyCancel: () => this.emit(MDCMenuFoundation.strings.CANCEL_EVENT, {}),
       saveFocus: () => {
         this.previousFocus_ = this.$document[0].activeElement;
       },
@@ -196,6 +206,10 @@ export class MDCSimpleMenuController extends BaseComponent {
       setMaxHeight: (height) => {
         this.root_.style.maxHeight = height;
       },
+      setAttrForOptionAtIndex: (index, attr, value) => this.items[index].setAttribute(attr, value),
+      rmAttrForOptionAtIndex: (index, attr) => this.items[index].removeAttribute(attr),
+      addClassForOptionAtIndex: (index, className) => this.items[index].classList.add(className),
+      rmClassForOptionAtIndex: (index, className) => this.items[index].classList.remove(className),
     });
   }
 

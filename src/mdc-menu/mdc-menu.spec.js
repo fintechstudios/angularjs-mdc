@@ -1,6 +1,6 @@
-import {MDC_SIMPLE_MENU_TOGGLE_EVENT} from './simple/toggle/directive';
+import {MDC_MENU_TOGGLE_EVENT} from './toggle/directive';
 
-describe('mdc-simple-menu', () => {
+describe('mdc-menu', () => {
   let MockMenu;
   let $rootScope;
 
@@ -8,14 +8,14 @@ describe('mdc-simple-menu', () => {
   beforeEach(angular.mock.module('mdc'));
 
   beforeEach(inject(($componentGenerator, _$rootScope_) => {
-    MockMenu = $componentGenerator('mdcSimpleMenu');
+    MockMenu = $componentGenerator('mdcMenu');
     $rootScope = _$rootScope_;
   }));
 
-  it('should have the `mdc-simple-menu` class', () => {
+  it('should have the `mdc-menu` class', () => {
     const menu = new MockMenu();
 
-    expect(menu.$element.hasClass('mdc-simple-menu')).to.be.true;
+    expect(menu.$element.hasClass('mdc-menu')).to.be.true;
   });
 
   it('should set tabindex=-1 by default', () => {
@@ -30,24 +30,24 @@ describe('mdc-simple-menu', () => {
     expect(menu.$element.attr('tabindex')).to.equal('3');
   });
 
-  it('should open when `MDCSimpleMenu:toggle` is fired with {id=menuId}', () => {
+  it('should open when `MDCMenu:toggle` is fired with {id=menuId}', () => {
     const component = new MockMenu({id: 'menu'});
     const elem = component.$element;
 
-    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+    expect(elem.hasClass('mdc-menu--animating-open')).to.be.false;
 
-    $rootScope.$broadcast(MDC_SIMPLE_MENU_TOGGLE_EVENT, {id: 'menu'});
-    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.true;
+    $rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, {id: 'menu'});
+    expect(elem.hasClass('mdc-menu--animating-open')).to.be.true;
   });
 
-  it('should not open when `MDCSimpleMenu:toggle` is fired with {id!=menuId}', () => {
+  it('should not open when `MDCMenu:toggle` is fired with {id!=menuId}', () => {
     const component = new MockMenu({id: 'menu'});
     const elem = component.$element;
 
-    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+    expect(elem.hasClass('mdc-menu--animating-open')).to.be.false;
 
-    $rootScope.$broadcast(MDC_SIMPLE_MENU_TOGGLE_EVENT, {id: 'notmenu'});
-    expect(elem.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+    $rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, {id: 'notmenu'});
+    expect(elem.hasClass('mdc-menu--animating-open')).to.be.false;
   });
 });
 
@@ -70,7 +70,7 @@ describe('mdc-menu-anchor', () => {
 });
 
 
-describe('mdc-simple-menu-toggle', () => {
+describe('mdc-menu-toggle', () => {
   let $compile;
   let $scope;
 
@@ -82,9 +82,9 @@ describe('mdc-simple-menu-toggle', () => {
 
   it('should open mdc-simple-menu with the given id when an id is specified', () => {
     const parent = angular.element('<div></div>');
-    const toggle = angular.element('<div mdc-simple-menu-toggle="testMenu"></div>');
-    const menu1 = angular.element('<mdc-simple-menu id="testMenu"></mdc-simple-menu>');
-    const menu2 = angular.element('<mdc-simple-menu></mdc-simple-menu>');
+    const toggle = angular.element('<div mdc-menu-toggle="testMenu"></div>');
+    const menu1 = angular.element('<mdc-menu id="testMenu"></mdc-menu>');
+    const menu2 = angular.element('<mdc-menu></mdc-menu>');
     parent.append(toggle);
     parent.append(menu1);
     parent.append(menu2);
@@ -92,11 +92,11 @@ describe('mdc-simple-menu-toggle', () => {
 
     $scope.$digest();
 
-    expect(menu1.hasClass('mdc-simple-menu--animating-open')).to.be.false;
-    expect(menu2.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+    expect(menu1.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(menu2.hasClass('mdc-menu--animating-open')).to.be.false;
 
     toggle.triggerHandler('click');
-    expect(menu1.hasClass('mdc-simple-menu--animating-open')).to.be.true;
-    expect(menu2.hasClass('mdc-simple-menu--animating-open')).to.be.false;
+    expect(menu1.hasClass('mdc-menu--animating-open')).to.be.true;
+    expect(menu2.hasClass('mdc-menu--animating-open')).to.be.false;
   });
 });

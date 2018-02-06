@@ -17,7 +17,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Simple Menu - Material Components Catalog</title>
+    <title>Menu - Material Components Catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <link rel="icon" type="image/png" href="images/logo_components_color_2x_web_48dp.png" />
     <script src="assets/demo-styles.css.js" charset="utf-8"></script>
@@ -30,15 +30,10 @@
       main {
         display: flex;
         flex-direction: column;
-        height: 100%;
       }
 
       .hero div {
         text-align: center;
-      }
-
-      .demo-header-toolbar {
-        z-index: 10;
       }
 
       .demo-content {
@@ -59,15 +54,12 @@
       }
 
       .mdc-menu-anchor {
+        position: absolute;
         margin: 16px;
       }
 
-      .mdc-theme--dark {
-        background-color: #333;
-      }
-
-      .mdc-menu-anchor {
-        position: absolute;
+      .margin-inputs input {
+        width: 2em;
       }
 
       .top {
@@ -90,9 +82,9 @@
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">Simple Menu</span>
+          <span class="mdc-toolbar__title catalog-title">Menu</span>
         </section>
       </div>
     </header>
@@ -100,44 +92,46 @@
     <main ng-controller="MainCtrl">
       <div class="mdc-toolbar-fixed-adjust"></div>
       <section class="hero">
-        <mdc-simple-menu id="heroDemo" tabindex="0">
-          <mdc-simple-menu-item>Back</mdc-simple-menu-item>
-          <mdc-simple-menu-item>Forward</mdc-simple-menu-item>
-          <mdc-simple-menu-item>Reload</mdc-simple-menu-item>
+        <mdc-menu id="heroDemo" tabindex="0">
+          <mdc-menu-item>Back</mdc-menu-item>
+          <mdc-menu-item>Forward</mdc-menu-item>
+          <mdc-menu-item>Reload</mdc-menu-item>
           <mdc-divider></mdc-divider>
-          <mdc-simple-menu-item>Help &amp; Feedback</mdc-simple-menu-item>
-          <mdc-simple-menu-item>Settings</mdc-simple-menu-item>
-        </mdc-simple-menu>
+          <mdc-menu-item>Help &amp; Feedback</mdc-menu-item>
+          <mdc-menu-item>Settings</mdc-menu-item>
+        </mdc-menu>
 
         <div>
-          <button mdc-button raised="true" mdc-simple-menu-toggle="heroDemo">Toggle Hero Menu</button><br><br>
+          <button mdc-button raised="true" mdc-menu-toggle="heroDemo">Toggle Hero Menu</button><br><br>
         </div>
       </section>
 
-      <div class="demo-content" ng-class="{'mdc-theme--dark': darkTheme}">
+      <div class="demo-content">
         <div mdc-menu-anchor ng-class="{top: isTop, bottom: !isTop, left: isLeft, right: !isLeft}">
-          <button mdc-button raised="true" mdc-simple-menu-toggle="bodyDemo">Reveal Menu</button>
-          <mdc-simple-menu id="bodyDemo" open="isOpen"
-                           anchor-margin="{top: margin.top, bottom: margin.bottom, left: margin.left, right: margin.right}"
-                           anchor-corner="{{ anchorCorner }}">
-            <mdc-simple-menu-item on-select="select('Back', index)">Back</mdc-simple-menu-item>
-            <mdc-simple-menu-item on-select="select('Forward', index)">Forward</mdc-simple-menu-item>
-            <mdc-simple-menu-item on-select="select('Reload', index)">Reload</mdc-simple-menu-item>
+          <button mdc-button raised="true" mdc-menu-toggle="bodyDemo">Reveal Menu</button>
+          <mdc-menu id="bodyDemo" open="isOpen"
+                    quick-open="doQuickOpen"
+                    remember-selection="doRememberSelection"
+                    anchor-margin="{top: margin.top, bottom: margin.bottom, left: margin.left, right: margin.right}"
+                    anchor-corner="{{ anchorCorner }}">
+            <mdc-menu-item on-select="select('Back', index)">Back</mdc-menu-item>
+            <mdc-menu-item on-select="select('Forward', index)">Forward</mdc-menu-item>
+            <mdc-menu-item on-select="select('Reload', index)">Reload</mdc-menu-item>
             <mdc-divider></mdc-divider>
-            <mdc-simple-menu-item on-select="select('Save As...', index)">Save As...</mdc-simple-menu-item>
-            <mdc-simple-menu-item on-select="select('Help', index)">Help</mdc-simple-menu-item>
+            <mdc-menu-item on-select="select('Save As...', index)">Save As...</mdc-menu-item>
+            <mdc-menu-item on-select="select('Help', index)">Help</mdc-menu-item>
 
 
-            <mdc-simple-menu-item ng-if="listLength >= 1"
-                                  ng-repeat="item in ['Settings', 'Feedback', 'Options...', 'Item 1', 'Item 2']"
-                                  on-select="select(item, index)"
-                                  ng-bind="item"></mdc-simple-menu-item>
+            <mdc-menu-item ng-if="listLength >= 1"
+                           ng-repeat="text in ['Settings', 'Feedback', 'Options...', 'Item 1', 'Item 2']"
+                           on-select="select(text, index)"
+                           ng-bind="text"></mdc-menu-item>
 
-            <mdc-simple-menu-item ng-if="listLength >= 2"
-                                  ng-repeat="item in [3, 4, 5, 6, 7, 8, 9]"
-                                  on-select="select('Item ' + item, index)"
-                                  ng-bind="'Item ' + item"></mdc-simple-menu-item>
-          </mdc-simple-menu>
+            <mdc-menu-item ng-if="listLength >= 2"
+                           ng-repeat="text in [3, 4, 5, 6, 7, 8, 9]"
+                           on-select="select('Item ' + text, index)"
+                           ng-bind="'Item ' + text"></mdc-menu-item>
+          </mdc-menu>
         </div>
 
         <div class="demo-controls-container">
@@ -153,8 +147,8 @@
 
             Menu Sizes:<br>
             <label><input type="radio" ng-model="listLength" ng-value="0"> Regular menu</label>
-            <label><input type="radio" ng-model="listLength" ng-value="2"> Large menu</label><br>
-            <label><input type="radio" ng-model="listLength" ng-value="3"> Extra tall menu</label>
+            <label><input type="radio" ng-model="listLength" ng-value="1"> Large menu</label><br>
+            <label><input type="radio" ng-model="listLength" ng-value="2"> Extra tall menu</label>
 
             <br><br>
 
@@ -175,13 +169,20 @@
             </div>
 
             <mdc-form-field>
-              <mdc-checkbox ng-model="darkTheme"></mdc-checkbox>
-              <label>Dark mode</label>
-            </mdc-form-field>
-
-            <mdc-form-field>
               <mdc-checkbox ng-model="isOpen"></mdc-checkbox>
               <label>Open</label>
+            </mdc-form-field>
+            <br>
+
+            <mdc-form-field>
+              <mdc-checkbox ng-model="doRememberSelection"></mdc-checkbox>
+              <label>Remember selection</label>
+            </mdc-form-field>
+            <br>
+
+            <mdc-form-field>
+              <mdc-checkbox ng-model="doQuickOpen"></mdc-checkbox>
+              <label>Disable Open Animation</label>
             </mdc-form-field>
 
             <br><br>
@@ -198,7 +199,6 @@
       angular.module('demo', ['mdc'])
         .controller('MainCtrl', ['$scope', function($scope) {
           $scope.name = '';
-          $scope.darkTheme = false;
           $scope.anchorCorner = 'top start';
           $scope.isLeft = true;
           $scope.isTop = true;

@@ -1,19 +1,19 @@
-import {BaseComponent} from '../../../util/base-component';
+import {BaseComponent} from '../../util/base-component';
 
-export const MDC_SIMPLE_MENU_TOGGLE_EVENT = 'MDCSimpleMenu:toggle';
+export const MDC_MENU_TOGGLE_EVENT = 'MDCMenu:toggle';
 
 
 /**
  * @ngdoc directive
- * @name mdcSimpleMenuToggle
+ * @name mdcMenuToggle
  * @module mdc.menu
  * @restrict AEC
  * @description Binds a click handler to open mdc-simple-menu.
  * Requires menuId to be given as `mdc-simple-menu-toggle="{{ menuId }}"
  */
-export class MDCSimpleMenuToggleController extends BaseComponent {
+export class MDCMenuToggleController extends BaseComponent {
   static get name() {
-    return 'mdcSimpleMenuToggle';
+    return 'mdcMenuToggle';
   }
 
   static get $inject() {
@@ -34,7 +34,7 @@ export class MDCSimpleMenuToggleController extends BaseComponent {
     super(...args);
 
     this.$element.on('click', () => {
-      this.$rootScope.$broadcast(MDC_SIMPLE_MENU_TOGGLE_EVENT, {id: this.menuId});
+      this.$rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, {id: this.menuId});
     });
   }
 }

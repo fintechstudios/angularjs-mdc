@@ -1,8 +1,8 @@
 import {MDCMenuAnchorController} from './anchor/directive';
 
-import {MDCSimpleMenuController} from './simple/menu/component';
-import {MDCSimpleMenuItemController} from './simple/item/component';
-import {MDCSimpleMenuToggleController} from './simple/toggle/directive';
+import {MDCMenuController} from './menu/component';
+import {MDCMenuItemController} from './item/component';
+import {MDCMenuToggleController} from './toggle/directive';
 
 
 angular
@@ -10,19 +10,19 @@ angular
   .directive(MDCMenuAnchorController.name, () => ({
     controller: MDCMenuAnchorController,
   }))
-  .component(MDCSimpleMenuController.name, {
-    controller: MDCSimpleMenuController,
-    template: MDCSimpleMenuController.template,
-    require: MDCSimpleMenuController.require,
-    bindings: MDCSimpleMenuController.bindings,
-    transclude: MDCSimpleMenuController.transclude,
+  .component(MDCMenuController.name, {
+    controller: MDCMenuController,
+    template: MDCMenuController.template,
+    require: MDCMenuController.require,
+    bindings: MDCMenuController.bindings,
+    transclude: MDCMenuController.transclude,
   })
-  .directive(MDCSimpleMenuToggleController.name, () => ({
-    controller: MDCSimpleMenuToggleController,
-    bindToController: MDCSimpleMenuToggleController.bindings,
+  .directive(MDCMenuToggleController.name, () => ({
+    controller: MDCMenuToggleController,
+    bindToController: MDCMenuToggleController.bindings,
   }))
-  .directive(MDCSimpleMenuItemController.name, () => ({
-    controller: MDCSimpleMenuItemController,
-    require: MDCSimpleMenuItemController.require,
-    bindToController: MDCSimpleMenuItemController.bindings,
+  .directive(MDCMenuItemController.name, () => ({
+    controller: MDCMenuItemController,
+    require: MDCMenuItemController.require,
+    bindToController: MDCMenuItemController.bindings,
   }));
