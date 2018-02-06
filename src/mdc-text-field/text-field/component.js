@@ -150,7 +150,7 @@ export class MDCTextFieldController extends BaseComponent {
   setupOutlinedAndBox_() {
     const outlineElement = this.root_.getElementsByClassName('mdc-text-field__outline')[0];
     const idleOutlineElement = this.root_.getElementsByClassName('mdc-text-field__idle-outline')[0];
-    const bottomLineElement = this.root_.getElementsByClassName('mdc-text-field__bottom-line')[0];
+    const bottomLineElement = this.root_.getElementsByClassName('mdc-line-ripple')[0];
 
     this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.OUTLINED, Boolean(this.outlined));
     this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.BOX, !Boolean(this.outlined) && Boolean(this.box));
@@ -172,7 +172,7 @@ export class MDCTextFieldController extends BaseComponent {
     }
 
     if (wantsBottomLine && !bottomLineElement) {
-      this.$element.append('<div class="mdc-text-field__bottom-line"></div>');
+      this.$element.append('<div class="mdc-line-ripple"></div>');
     } else if (!wantsBottomLine && bottomLineElement) {
       bottomLineElement.remove();
     }

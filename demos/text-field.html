@@ -62,6 +62,7 @@
         <h2>Full Functionality JS Component (Floating Label, Validation, Autocomplete)</h2>
         <section dir="{{ isRTL ? 'rtl' : ''}}">
           <mdc-text-field label="Email Address" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}"
                           helper-text="{{ useHelpText ? 'Help Text (possibly validation message)' : '' }}"
                           helper-text-persistent="helpTextPersistent"
                           helper-text-validation="helpTextValidation">
@@ -81,6 +82,10 @@
         <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
         </mdc-form-field>
         <mdc-form-field>
           <mdc-checkbox ng-model="useHelpText"></mdc-checkbox>
@@ -111,7 +116,8 @@
       <section class="example">
         <h2>Outlined Text Field</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-text-field label="Your name" outlined="true" dense="isDense">
+          <mdc-text-field label="Your name" outlined="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
             <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
         </div>
@@ -126,13 +132,18 @@
         <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
         </mdc-form-field>
       </section>
 
       <section class="example">
         <h2>Text Field box</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-text-field label="Your name" box="true" dense="isDense">
+          <mdc-text-field label="Your name" box="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
             <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
         </div>
@@ -148,30 +159,38 @@
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
         </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
       </section>
 
       <section class="example">
         <h2>Text Field with Icons</h2>
         <div dir="{{ isRTL ? 'rtl' : ''}}">
-          <mdc-text-field label="Your name" box="true" dense="isDense">
+          <mdc-text-field label="Your name" box="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
             <mdc-icon>event</mdc-icon>
             <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
 
           <br>
-          <mdc-text-field label="Your other name" box="true" dense="isDense">
+          <mdc-text-field label="Your other name" box="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
             <input ng-required="isRequired" ng-disabled="isDisabled" ng-model="value1">
             <mdc-icon ng-click="value1 = ''">delete</mdc-icon>
           </mdc-text-field>
 
           <br>
-          <mdc-text-field label="Your name" outlined="true" dense="isDense">
+          <mdc-text-field label="Your name" outlined="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
             <mdc-icon>event</mdc-icon>
             <input ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
 
           <br>
-          <mdc-text-field label="Your name" outlined="true" dense="isDense">
+          <mdc-text-field label="Your name" outlined="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
             <input ng-disabled="isDisabled" ng-model="value2" ng-required="isRequired">
             <mdc-icon ng-click="value2 = ''">delete</mdc-icon>
           </mdc-text-field>
@@ -188,13 +207,18 @@
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
         </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
       </section>
 
       <section class="example">
         <h2>Multi-line Text Fields</h2>
         <section id="demo-textfield-multiline-wrapper" style="overflow:hidden;" dir="{{ isRTL ? 'rtl' : '' }}">
-          <mdc-text-field label="Multi-line input">
-            <textarea id="multi-line" rows="8" cols="40" ng-disabled="isDisabled" ng-required="isRequired"></textarea>
+          <mdc-text-field label="Multi-line input"
+                          ng-class="{'demo-textarea': altColors}">
+            <textarea rows="8" cols="40" ng-disabled="isDisabled" ng-required="isRequired"></textarea>
           </mdc-text-field>
         </section>
         <mdc-form-field>
@@ -209,15 +233,21 @@
           <mdc-checkbox ng-model="isRequired"></mdc-checkbox>
           <label>Required</label>
         </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
       </section>
 
       <section class="example">
         <h2>Full-Width Text Fields</h2>
         <div id="demo-fullwidth-wrapper">
-          <mdc-text-field label="Subject" fullwidth="true" dense="isDense">
+          <mdc-text-field label="Subject" fullwidth="true" dense="isDense"
+                          ng-class="{'demo-fullwidth-input': altColors}">
             <input type="text" ng-required="isRequired" ng-disabled="isDisabled">
           </mdc-text-field>
-          <mdc-text-field label="Message" fullwidth="true" dense="isDense">
+          <mdc-text-field label="Message" fullwidth="true" dense="isDense"
+                          ng-class="{'demo-textarea': altColors}">
             <textarea rows="8" cols="40" aria-label="Message" ng-required="isRequired" ng-disabled="isDisabled"></textarea>
           </mdc-text-field>
         </div>
@@ -228,6 +258,10 @@
         <mdc-form-field>
           <mdc-checkbox ng-model="isDense"></mdc-checkbox>
           <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
         </mdc-form-field>
       </section>
     </main>
