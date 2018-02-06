@@ -152,7 +152,7 @@ export class MDCTextFieldController extends BaseComponent {
     const idleOutlineElement = this.root_.getElementsByClassName('mdc-text-field__idle-outline')[0];
     const bottomLineElement = this.root_.getElementsByClassName('mdc-line-ripple')[0];
 
-    this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.OUTLINED, Boolean(this.outlined));
+    this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.OUTLINED, Boolean(this.outlined) && !this.isTextArea);
     this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.BOX, !Boolean(this.outlined) && Boolean(this.box));
 
     const wantsOutline = this.outlined && !this.isTextArea;
