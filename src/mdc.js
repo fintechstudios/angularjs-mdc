@@ -1,5 +1,4 @@
 require('./mdc-button/mdc-button');
-require('./mdc-card/mdc-card');
 require('./mdc-checkbox/mdc-checkbox');
 require('./mdc-dialog/mdc-dialog');
 require('./mdc-drawer/mdc-drawer');
@@ -19,7 +18,6 @@ require('./mdc-text-field/mdc-text-field');
 
 angular.module('mdc', [
   'mdc.button',
-  'mdc.card',
   'mdc.checkbox',
   'mdc.dialog',
   'mdc.drawer',
