@@ -58,6 +58,7 @@ export class MdcIconToggleController extends BaseComponent {
     super(...args);
 
     this.$element.addClass('mdc-icon-toggle');
+    this.$element.attr('tabindex', 0);
     this.$element.ready(() => {
       this.ripple_ = this.initRipple_();
     });

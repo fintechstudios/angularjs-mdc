@@ -37,7 +37,8 @@ being an easy and suitable replacement for angular-material.
 | Component       | Status              | Module           |
 | --------------- | ------------------- | ---------------- |
 | button          | :white_check_mark:  | mdc.button       |
-| card            | :white_check_mark:  | mdc.card         |
+| card            | :white_check_mark:  | SCSS & CSS only  |
+| chip            | :x:                 | |
 | checkbox        | :white_check_mark:  | mdc.checkbox     |
 | dialog          | :white_check_mark:  | mdc.dialog       |
 | drawer          | :x:                 | |

@@ -39,12 +39,6 @@ export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
     };
   }
 
-  static get require() {
-    return {
-      mdcCardActionsCtrl: '^^?mdcCardActions',
-    };
-  }
-
   constructor(...args) {
     super(...args);
 
@@ -65,13 +59,4 @@ export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
       this.$element.toggleClass('mdc-dialog__footer__button--accept', this.dialog === 'accept');
     }
   };
-
-  set mdcCardActionsCtrl(ctrl) {
-    this._mdcCardActionsCtrl = ctrl;
-    this.$element.toggleClass('mdc-button--compact mdc-card__action', Boolean(ctrl));
-  }
-
-  get mdcCardActionsCtrl() {
-    return this._mdcCardActionsCtrl;
-  }
 }
