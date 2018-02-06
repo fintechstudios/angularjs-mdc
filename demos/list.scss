@@ -7,18 +7,10 @@
   @include mdc-list-item-graphic-ink-color(white);
   @include mdc-list-item-graphic-fill-color(text-icon-on-background);
 
-  @include mdc-theme-dark {
-    @include mdc-list-item-graphic-ink-color(#303030);
-    @include mdc-list-item-graphic-fill-color(text-icon-on-dark);
-  }
 }
 
 .demo-list--avatar-and-meta-icon {
   @include mdc-list-item-meta-ink-color($material-color-pink-a200);
-
-  @include mdc-theme-dark {
-    @include mdc-list-item-meta-ink-color($material-color-pink-a200);
-  }
 }
 
 .demo-list-group--custom,
