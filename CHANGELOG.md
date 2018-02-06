@@ -18,7 +18,8 @@
     * `__start-detail` has been renamed to `__graphic`, and `__end-detail` has been renamed to `__meta`.
       In addition, meta data tiles no longer have a default width/height (fixes #1644).
 * **menu**:
-    * `mdc-simple-menu-toggle` requires a menu `id` to be specified - it will no longer auto-find the menu.
+    * All references to `mdc-simple-menu` changed to `mdc-menu`
+    * `mdc-menu-toggle` requires a menu `id` to be specified - it will no longer auto-find the menu.
     * `open-from` changed to `anchor-corner` -- supports TOP_START, TOP_END, BOTTOM_START, BOTTOM_END
 * **select**:
     * `mdc-select-item` directive added - use this for children of mdc-select
@@ -26,6 +27,8 @@
     * `noAnimation` removed
     * `autoResize` removed
     * `multiple` removed
+* **card**:
+    * css only
 
 ### Features
 * **ripple**:

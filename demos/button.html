@@ -30,14 +30,6 @@
       fieldset button {
         margin: 16px;
       }
-      .mdc-theme--dark {
-        background-color: #333;
-      }
-
-      .mdc-theme--dark fieldset legend {
-        color: #f0f0f0;
-      }
-
       .hero div {
         text-align: center;
       }
@@ -59,7 +51,7 @@
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
           <span class="mdc-toolbar__title catalog-title">Buttons</span>
         </section>
@@ -109,12 +101,8 @@
         </div>
       </section>
 
-      <section ng-class="{'mdc-theme--dark': isDarkTheme}">
+      <section>
         <fieldset>
-          <mdc-form-field>
-            <mdc-checkbox ng-model="isDarkTheme"></mdc-checkbox>
-            <label>Dark Theme</label>
-          </mdc-form-field>
           <mdc-form-field>
             <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
             <label>Disable Buttons (excluding links)</label>
@@ -122,7 +110,7 @@
         </fieldset>
       </section>
 
-      <section ng-class="{'mdc-theme--dark': isDarkTheme}">
+      <section>
         <fieldset>
           <legend class="mdc-typography--title">Text Button</legend>
           
@@ -138,7 +126,7 @@
           </a>
         </fieldset>
 
-        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+        <fieldset>
           <legend class="mdc-typography--title">Raised Button</legend>
           
           <button mdc-button raised="true" ng-disabled="isDisabled">Baseline</button>
@@ -153,7 +141,7 @@
           </a>
         </fieldset>
 
-        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+        <fieldset>
           <legend class="mdc-typography--title">Unelevated Button (Experimental)</legend>
 
           <button mdc-button unelevated="true" ng-disabled="isDisabled">Baseline</button>
@@ -168,7 +156,7 @@
           </a>
         </fieldset>
 
-        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+        <fieldset>
           <legend class="mdc-typography--title">Stroked Button (Experimental)</legend>
 
           <button mdc-button stroked="true" ng-disabled="isDisabled">Baseline</button>
@@ -183,7 +171,7 @@
           </a>
         </fieldset>
 
-        <fieldset ng-class="{'mdc-theme--dark': isDarkTheme}">
+        <fieldset>
           <legend class="mdc-typography--title">Custom Button (Experimental)</legend>
 
           <button mdc-button unelevated="true" class="big-round-corner-button" ng-disabled="isDisabled">
