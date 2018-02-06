@@ -12,14 +12,6 @@
           $unmarked-stroke-color: $demo-color,
           $unmarked-fill-color: rgba($demo-color, .25),
           $marked-fill-color: $demo-color);
-
-  @include mdc-theme-dark(".mdc-checkbox", $compound: true) {
-    @include mdc-checkbox-ink-color(black);
-    @include mdc-checkbox-container-colors(
-            $unmarked-stroke-color: $demo-color,
-            $unmarked-fill-color: rgba($demo-color, .35),
-            $marked-fill-color: $demo-color);
-  }
 }
 
 .demo-checkbox--custom-stroke-and-fill {
