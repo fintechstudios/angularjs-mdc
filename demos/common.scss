@@ -84,35 +84,13 @@ section.example {
   }
 }
 
-.catalog-list {
-  padding-left: 28px;
-}
-.catalog-list-icon {
-  margin-right: 24px;
-}
-
-.catalog-list {
-  a {
-    text-decoration: none;
-    color: #212121;
-  }
-}
-.catalog-component-list-content {
-  padding-left: 24px;
-  order: 2;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
+.catalog-logo,
+.catalog-back {
+  padding-right: 24px;
+  color: #eee;
+  text-decoration: none;
 }
 
-.catalog-component-list-title {
-  order: 1;
-}
-
-.catalog-component-list-description {
-  color: #999;
-  order: 2;
-}
 
 a.material-icons {
   text-decoration: none;

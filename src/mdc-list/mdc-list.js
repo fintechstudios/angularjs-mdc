@@ -1,10 +1,5 @@
-import {MDCListController} from './list';
-
-/**
- * @ngdoc component
- * @name mdcListItem
- * @module mdc.list
- */
+import {MDCListController} from './list/component';
+import {MDCListItemController} from './item/directive';
 
 /**
  * @ngdoc component
@@ -30,8 +25,11 @@ import {MDCListController} from './list';
  */
 angular
   .module('mdc.list', [])
-//  .component('mdcListItem', {});
   .component(MDCListController.name, {
     controller: MDCListController,
     bindings: MDCListController.bindings,
-  });
+  })
+  .directive(MDCListItemController.name, () => ({
+    controller: MDCListItemController,
+    restrict: MDCListItemController.restrict,
+  }));

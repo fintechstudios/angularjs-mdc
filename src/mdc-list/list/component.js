@@ -1,4 +1,4 @@
-import {BaseComponent} from '../util/base-component';
+import {BaseComponent} from '../../util/base-component';
 
 /**
  * @ngdoc component
@@ -32,6 +32,7 @@ export class MDCListController extends BaseComponent {
     super(...args);
 
     this.$element.addClass('mdc-list');
+    this.$element.attr('role', 'list');
   }
 
   $onChanges(changes) {
