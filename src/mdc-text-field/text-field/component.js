@@ -55,11 +55,11 @@ export class MDCTextFieldController extends BaseComponent {
     this.setupOutlinedAndBox_();
     this.setupDense_();
     this.setupHelperText_();
-    this.setupNgDisabled_();
 
     this.$element.ready(() => {
       this.recreate_();
       this.setupNgModel_();
+      this.setupNgDisabled_();
     });
   }
 
@@ -132,7 +132,9 @@ export class MDCTextFieldController extends BaseComponent {
       }
 
       labelElement.classList.add('mdc-text-field__label');
-      labelElement.innerText = this.label || '';
+      if (this.label) {
+        labelElement.innerText = this.label;
+      }
       labelElement.setAttribute('for', this.inputElement_.id);
 
       this.inputElement_.removeAttribute('placeholder');
@@ -233,15 +235,19 @@ export class MDCTextFieldController extends BaseComponent {
     }
   }
 
+  applyDisabled_() {
+    // if we do mdc.disabled directly, it applies to the native element, thus re-firing the observer
+    this.mdc.foundation_.styleDisabled_(this.inputElement_.disabled);
+  }
+
   setupNgDisabled_() {
-    this.inputObserver = new MutationObserver(() => {
-      // if we do mdc.disabled directly, it applies to the native element, thus re-firing the observer
-      this.mdc.foundation_.styleDisabled_(this.inputElement_.disabled);
-    });
+    this.inputObserver = new MutationObserver(() => this.applyDisabled_());
 
     this.inputObserver.observe(this.inputElement_, {
       attributes: true, attributeFilter: ['disabled'],
     });
+
+    this.applyDisabled_(); // run once at init
   }
 
   toggleIconCtrl(iconCtrl, enabled) {

@@ -1,3 +1,5 @@
+import {wrapPromise} from '../util/decorators';
+
 
 describe('mdc-text-field', () => {
   const LABEL_TEXT = 'Test Label';
@@ -52,6 +54,12 @@ describe('mdc-text-field', () => {
           expect(label[0]).to.exist;
           expect(label.text()).to.equal(LABEL_TEXT);
           expect(label.hasClass('mdc-text-field__label')).to.be.true;
+        });
+    });
+
+    it('should init mdc.label_', () => {
+      return getMockTF()
+        .then((tf) => {
           expect(tf.$ctrl.mdc.label_).to.exist;
         });
     });
@@ -79,12 +87,18 @@ describe('mdc-text-field', () => {
         });
     });
 
-    it('should have a child mdc-line-ripple', () => {
+    it('should have a child .mdc-line-ripple', () => {
       return getMockTF()
         .then((tf) => {
           const lr = tf.$element[0].querySelector('.mdc-line-ripple');
 
           expect(lr).to.exist;
+        });
+    });
+
+    it('should init mdc.lineRipple_', () => {
+      return getMockTF()
+        .then((tf) => {
           expect(tf.$ctrl.mdc.lineRipple_).to.exist;
         });
     });
@@ -104,6 +118,12 @@ describe('mdc-text-field', () => {
           const lr = tf.$element[0].querySelector('.mdc-line-ripple');
 
           expect(lr).to.not.exist;
+        });
+    });
+
+    it('should not init mdc.lineRipple_ if contains a textarea', () => {
+      return getMockTF({}, {}, {textarea: true})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.lineRipple_).to.not.exist;
         });
     });
@@ -117,7 +137,7 @@ describe('mdc-text-field', () => {
         });
     });
 
-    it('should not have a label if fullwidth = true', () => {
+    it('should not have a child label', () => {
       return getMockTF({fullwidth: true})
         .then((tf) => {
           const label = tf.$element.find('label');
@@ -125,7 +145,14 @@ describe('mdc-text-field', () => {
         });
     });
 
-    it('should have a label if fullwidth = true and contains a textarea', () => {
+    it('should not init mdc.label_', () => {
+      return getMockTF({fullwidth: true})
+        .then((tf) => {
+          expect(tf.$ctrl.mdc.label_).to.not.exist;
+        });
+    });
+
+    it('should have a label if contains a textarea', () => {
       return getMockTF({fullwidth: true}, {}, {textarea: true})
         .then((tf) => {
           const label = tf.$element.find('label');
@@ -133,6 +160,12 @@ describe('mdc-text-field', () => {
           expect(label[0]).to.exist;
           expect(label.text()).to.equal(LABEL_TEXT);
           expect(label.hasClass('mdc-text-field__label')).to.be.true;
+        });
+    });
+
+    it('should init mdc.label_ if fullwidth = true and contains a textarea', () => {
+      return getMockTF({fullwidth: true}, {}, {textarea: true})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.label_).to.exist;
         });
     });
@@ -171,6 +204,12 @@ describe('mdc-text-field', () => {
           const lr = tf.$element[0].querySelector('.mdc-line-ripple');
 
           expect(lr).to.not.exist;
+        });
+    });
+
+    it('should not init mdc.lineRipple_', () => {
+      return getMockTF({outlined: true})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.lineRipple_).to.not.exist;
         });
     });
@@ -181,6 +220,12 @@ describe('mdc-text-field', () => {
           const outline = tf.$element[0].querySelector('.mdc-text-field__outline');
 
           expect(outline).to.exist;
+        });
+    });
+
+    it('should initialize mdc.outline_', () => {
+      return getMockTF({outlined: true})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.outline_).to.exist;
         });
     });
@@ -198,6 +243,12 @@ describe('mdc-text-field', () => {
           const outline = tf.$element[0].querySelector('.mdc-text-field__outline');
 
           expect(outline).to.not.exist;
+        });
+    });
+
+    it('should not init mdc.outline_ if contains a textarea', () => {
+      return getMockTF({outlined: true}, {}, {textarea: true})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.outline_).to.not.exist;
         });
     });
@@ -224,6 +275,12 @@ describe('mdc-text-field', () => {
       return getMockTF({outlined: true}, {}, {icon: 'leading'})
         .then((tf) => {
           expect(tf.$element.hasClass('mdc-text-field--with-leading-icon')).to.be.true;
+        });
+    });
+
+    it('should init mdc.icon_ if leading icon', () => {
+      return getMockTF({outlined: true}, {}, {icon: 'leading'})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.icon_).to.exist;
         });
     });
@@ -232,6 +289,13 @@ describe('mdc-text-field', () => {
       return getMockTF({outlined: true}, {}, {icon: 'trailing'})
         .then((tf) => {
           expect(tf.$element.hasClass('mdc-text-field--with-trailing-icon')).to.be.true;
+          expect(tf.$ctrl.mdc.icon_).to.exist;
+        });
+    });
+
+    it('should init mdc.icon_ if trailing icon', () => {
+      return getMockTF({outlined: true}, {}, {icon: 'trailing'})
+        .then((tf) => {
           expect(tf.$ctrl.mdc.icon_).to.exist;
         });
     });
@@ -278,6 +342,58 @@ describe('mdc-text-field', () => {
           const helperTextEl = tfParentEl[0].querySelector('.mdc-text-field-helper-text');
 
           expect(helperTextEl.classList.contains('mdc-text-field-helper-text--validation-msg')).to.be.true;
+        });
+    });
+  });
+
+  context('disabled', () => {
+    const DISABLED_CLASS = 'mdc-text-field--disabled';
+    it(`should have ${DISABLED_CLASS}`, () => {
+      return getMockTF({}, {tfDisabled: true})
+        .then((tf) => {
+          expect(tf.$element.hasClass(DISABLED_CLASS)).to.be.true;
+        });
+    });
+
+    it('should toggle class if input changes disabled', () => {
+      let tf;
+      return getMockTF({}, {})
+        .then((textfield) => {
+          tf = textfield;
+          expect(tf.$element.hasClass(DISABLED_CLASS)).to.be.false;
+
+          // need to wrap with a promise so we wait for MutationObserver
+          const p = wrapPromise(tf.$ctrl, 'applyDisabled_');
+          tf.$parent('tfDisabled', true);
+          return p;
+        })
+        .then(() => {
+          expect(tf.$element.hasClass(DISABLED_CLASS)).to.be.true;
+        });
+    });
+  });
+
+  context('model', () => {
+    const TEST_VALUE = 'test value';
+    const FLOAT_LABEL = 'mdc-text-field__label--float-above';
+
+    it('should update mdc.value when input ng-model changes', () => {
+      return getMockTF({}, {tfModel: ''})
+        .then((tf) => {
+          expect(tf.$ctrl.mdc.value).to.equal('');
+
+          tf.$parent('tfModel', TEST_VALUE);
+
+          expect(tf.$ctrl.mdc.value).to.equal(TEST_VALUE);
+        });
+    });
+
+    it(`should initialize with ${FLOAT_LABEL} if ng-model has initial value`, () => {
+      return getMockTF({}, {tfModel: TEST_VALUE})
+        .then((tf) => {
+          const label = tf.$element.find('label');
+
+          expect(label.hasClass(FLOAT_LABEL)).to.be.true;
         });
     });
   });
