@@ -10,6 +10,12 @@ describe('mdc-switch', function() {
     $mockComponent = $componentGenerator('mdcSwitch');
   }));
 
+  it('should have the mdc-switch class', () => {
+    const sw = new $mockComponent();
+
+    expect(sw.$element.hasClass('mdc-switch')).to.be.true;
+  });
+
   it('should toggle as ng-model changes', function() {
     const component = new $mockComponent({'ngModel': 'isToggled'}, {'isToggled': false});
     const checkbox = component.$element.find('input')[0];

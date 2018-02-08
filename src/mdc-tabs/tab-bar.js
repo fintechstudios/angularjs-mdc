@@ -1,33 +1,58 @@
+import {BaseComponent} from '../util/base-component';
+
+import {MDCTabBarScrollerController} from './tab-bar-scroller';
 
 import {MDCTabBarFoundation} from '@material/tabs';
+
 
 /**
  * @ngdoc component
  * @name mdcTabBar
  * @module mdc.tabs
  *
- * @param {string} [indicator] Color of indicator, "primary" or "accent"
  * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
  * @param {string} [ngModel] Assignable AngularJS expression to bind selected tab to
  */
-class MdcTabBarController {
-  constructor($element, $window) {
-    this.window = $window;
-    this.elem = $element;
-    this.root_ = this.elem[0];
+export class MDCTabBarController extends BaseComponent {
+  static get name() {
+    return 'mdcTabBar';
+  }
+
+  static get require() {
+    return {
+      scroller: `^^?${MDCTabBarScrollerController.name}`,
+      ngModelCtrl: '?ngModel',
+    };
+  }
+
+  static get bindings() {
+    return {
+      variant: '@',
+      ngModel: '=?',
+    };
+  }
+
+  static get $inject() {
+    return ['$element', '$window'];
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.root_ = this.$element[0];
     this.selected_ = undefined;
     this.initDone_ = false;
-    this.elemReady = false;
+    this.$elementReady = false;
     this.needsNotify = false;
 
     this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
-    this.elem.append(this.indicator_);
+    this.$element.append(this.indicator_);
 
     this.tabs_ = []; // tabs will automatically add themselves to the list using .addTab()
   }
 
   init() {
-    if (!this.initDone_ && this.elemReady && this.tabs.length > 0) {
+    if (!this.initDone_ && this.$elementReady && this.tabs.length > 0) {
       this.foundation_.init();
       this.initDone_ = true;
 
@@ -46,7 +71,7 @@ class MdcTabBarController {
   }
 
   addTab(tab) {
-    const htmlIndex = Array.prototype.indexOf.call(this.elem.children(), tab.root_);
+    const htmlIndex = Array.prototype.indexOf.call(this.$element.children(), tab.root_);
     let activeTabIndex = -1;
     if (this.initDone_) {
       activeTabIndex = this.activeTabIndex;
@@ -98,14 +123,14 @@ class MdcTabBarController {
 
   $postLink() {
     if (this.scroller) {
-      this.elem.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
+      this.$element.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
       this.scroller.setTabBar(this);
     }
 
     this.foundation_ = this.getDefaultFoundation();
     this.init();
-    this.elem.ready(() => {
-      this.elemReady = true;
+    this.$element.ready(() => {
+      this.$elementReady = true;
       this.init();
     });
   }
@@ -130,13 +155,9 @@ class MdcTabBarController {
   }
 
   $onChanges(changesObj) {
-    if (changesObj.indicator) {
-      this.elem.toggleClass('mdc-tab-bar--indicator-primary', this.indicator === 'primary');
-      this.elem.toggleClass('mdc-tab-bar--indicator-accent', this.indicator === 'accent');
-    }
     if (changesObj.variant) {
-      this.elem.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
-      this.elem.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
+      this.$element.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
+      this.$element.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
     }
   }
 
@@ -181,8 +202,8 @@ class MdcTabBarController {
       removeClass: (className) => this.root_.classList.remove(className),
       bindOnMDCTabSelectedEvent: () => {},
       unbindOnMDCTabSelectedEvent: () => {},
-      registerResizeHandler: (handler) => this.window.addEventListener('resize', handler),
-      deregisterResizeHandler: (handler) => this.window.removeEventListener('resize', handler),
+      registerResizeHandler: (handler) => this.$window.addEventListener('resize', handler),
+      deregisterResizeHandler: (handler) => this.$window.removeEventListener('resize', handler),
       getOffsetWidth: () => this.root_.offsetWidth,
       setStyleForIndicator: (propertyName, value) => this.indicator_.style.setProperty(propertyName, value),
       getOffsetWidthForIndicator: () => this.indicator_.offsetWidth,
@@ -236,19 +257,3 @@ class MdcTabBarController {
     }
   }
 }
-
-
-angular
-  .module('mdc.tabs')
-  .component('mdcTabBar', {
-    controller: MdcTabBarController,
-    require: {
-      scroller: '^^?mdcTabBarScroller',
-      ngModelCtrl: '?ngModel',
-    },
-    bindings: {
-      indicator: '@',
-      variant: '@',
-      ngModel: '=?',
-    },
-  });

@@ -26,6 +26,11 @@ jobs:
           paths:
             - ~/mdc/node_modules
 
+      - run:
+          name: Remove old distributables
+          command: |
+            rm ~/mdc/dist/angularjs-mdc*
+
       - persist_to_workspace:
           root: .
           paths:
@@ -52,6 +57,11 @@ jobs:
           name: Building Development Distribution
           command: "npm run build"
 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - mdc/dist/angularjs-mdc*
+
   build_prod:
     <<: *defaults
     steps:
@@ -61,6 +71,11 @@ jobs:
       - run:
           name: Building Production Distribution
           command: "npm run build:min"
+
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - mdc/dist/angularjs-mdc*
 
   test:
     <<: *defaults

@@ -1,36 +1,66 @@
+import {arrayUnion} from '../util/array-union';
+import {BaseComponent} from '../util/base-component';
+import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
 import {MDCCheckbox} from '@material/checkbox';
+
+import template from './mdc-checkbox.html';
+
 
 /**
  * @ngdoc component
  * @name mdcCheckbox
  * @module mdc.checkbox
  *
- * @param {string} [inputId] The id for the inner input element (use with <label for=>)
- * @param {string} [ngModel] Assignable AngularJS expression to data-bind to.
+ * @param {string} [inputId] - The id for the inner input element (use with <label for=>)
+ * @param {string} [ngModel] - Assignable AngularJS expression to data-bind to.
+ * @param {bool} [indeterminate] - whether the checkbox is in indeterminate state
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  */
-class MdcCheckboxController {
-  constructor($scope, $element) {
-    this.elem = $element;
-    this.root_ = this.elem[0];
-    this.mdc = new MDCCheckbox(this.root_);
-    this.defaultId = 'mdc-checkbox-' + $scope.$id;
+export class MDCCheckboxController extends IsFormFieldChild(BaseComponent) {
+  static get name() {
+    return 'mdcCheckbox';
+  }
+
+  static get $inject() {
+    return arrayUnion(['$scope', '$element'], super.$inject);
+  }
+
+  static get template() {
+    return template;
+  }
+
+  static get bindings() {
+    return Object.assign({
+      ngModel: '=?',
+      ngDisabled: '<?',
+      indeterminate: '<?',
+      inputId: '@?',
+    }, super.bindings);
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.$element.addClass('mdc-checkbox');
+    this.mdc = new MDCCheckbox(this.$element[0]);
   }
 
   $onChanges(changesObj) {
+    super.$onChanges(changesObj);
+
+    // inputId is handled by IsFormFieldChild
     if (changesObj.ngDisabled) {
-      this.elem.toggleClass('mdc-checkbox--disabled', this.ngDisabled);
+      this.$element.toggleClass('mdc-checkbox--disabled', Boolean(this.ngDisabled));
     }
     if (changesObj.indeterminate) {
       this.mdc.indeterminate = this.indeterminate;
     }
-    if (changesObj.inputId && changesObj.inputId.isFirstChange() && changesObj.inputId.currentValue === undefined) {
-      this.inputId = this.defaultId;
-    }
   }
 
   $onDestroy() {
+    super.$onDestroy();
+
     this.mdc.destroy();
   }
 }
@@ -45,13 +75,9 @@ class MdcCheckboxController {
  */
 angular
   .module('mdc.checkbox', [])
-  .component('mdcCheckbox', {
-    controller: MdcCheckboxController,
-    template: require('raw-loader!./mdc-checkbox.html'),
-    bindings: {
-      ngModel: '=?',
-      ngDisabled: '<?',
-      indeterminate: '<?',
-      inputId: '@',
-    },
+  .component(MDCCheckboxController.name, {
+    controller: MDCCheckboxController,
+    template: MDCCheckboxController.template,
+    bindings: MDCCheckboxController.bindings,
+    require: MDCCheckboxController.require,
   });

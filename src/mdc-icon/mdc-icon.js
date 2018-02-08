@@ -1,37 +1,78 @@
+import {BaseComponent} from '../util/base-component';
+
 /**
  * @ngdoc component
  * @name mdcIcon
  * @module mdc.icon
  *
- * @param {string=} mdc-font-icon The name of the MD icon to show
- * @param {string=} size Either 48, 32, 24, or 18 (suggested to use 24 per MD spec). Default: 24
- * @param {expression=} ng-bind Bind a variable as the MD icon to show
- *
+ * @param {string} [size] - Font-size, suggested 48, 32, 24, or 18. Default: 24
  */
-class MdcIconController {
-  constructor($element, MDC_ICON_SIZES) {
-    this.elem = $element;
-    this.MDC_ICON_SIZES = MDC_ICON_SIZES;
+export class MDCIconController extends BaseComponent {
+  static get name() {
+    return 'mdcIcon';
   }
 
-  $postLink() {
-    this.elem.addClass('material-icons');
+  static get $inject() {
+    return ['$element'];
+  }
+
+  static get require() {
+    return {
+      mdcButtonCtrl: '^^?mdcButton',
+      mdcTextFieldCtrl: '^^?mdcTextField',
+    };
+  }
+
+  static get bindings() {
+    return {
+      size: '@',
+      ngClick: '&?',
+    };
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.$element.addClass('material-icons');
   }
 
   $onChanges(changesObj) {
-    if (changesObj.mdcFontIcon) {
-      this.elem.text(this.mdcFontIcon);
-    }
     if (changesObj.size) {
-      for (let i = 0; i < this.MDC_ICON_SIZES.length; i++) {
-        if (this.size === this.MDC_ICON_SIZES[i]) {
-          this.elem.addClass('mdc-icon--' + this.MDC_ICON_SIZES[i]);
-        } else {
-          this.elem.removeClass('mdc-icon--' + this.MDC_ICON_SIZES[i]);
-        }
-      }
+      this.$element[0].style.fontSize = `${this.size}px`;
     }
-  };
+  }
+
+  $postLink() {
+    this.$element.attr('tabindex', this.ngClick ? '0' : '-1');
+  }
+
+  get mdcButtonCtrl() {
+    return this._mdcButtonCtrl;
+  }
+
+  set mdcButtonCtrl(ctrl) {
+    this._mdcButtonCtrl = ctrl;
+    this.$element.toggleClass('mdc-button__icon', Boolean(ctrl));
+  }
+
+  get mdcTextFieldCtrl() {
+    return this._mdcTextFieldCtrl;
+  }
+
+  set mdcTextFieldCtrl(ctrl) {
+    this._mdcTextFieldCtrl = ctrl;
+    if (ctrl) {
+      ctrl.toggleIconCtrl(this, true);
+    }
+
+    this.$element.toggleClass('mdc-text-field__icon', Boolean(ctrl));
+  }
+
+  $onDestroy() {
+    if (this.mdcTextFieldCtrl) {
+      this.mdcTextFieldCtrl.toggleIconCtrl(this, false);
+    }
+  }
 }
 
 
@@ -44,11 +85,8 @@ class MdcIconController {
  */
 angular
   .module('mdc.icon', [])
-  .constant('MDC_ICON_SIZES', ['18', '24', '36', '48'])
-  .component('mdcIcon', {
-    controller: MdcIconController,
-    bindings: {
-      mdcFontIcon: '@',
-      size: '@',
-    },
+  .component(MDCIconController.name, {
+    controller: MDCIconController,
+    bindings: MDCIconController.bindings,
+    require: MDCIconController.require,
   });

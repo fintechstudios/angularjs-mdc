@@ -37,7 +37,8 @@ being an easy and suitable replacement for angular-material.
 | Component       | Status              | Module           |
 | --------------- | ------------------- | ---------------- |
 | button          | :white_check_mark:  | mdc.button       |
-| card            | :white_check_mark:  | mdc.card         |
+| card            | :white_check_mark:  | SCSS & CSS only  |
+| chip            | :x:                 | |
 | checkbox        | :white_check_mark:  | mdc.checkbox     |
 | dialog          | :white_check_mark:  | mdc.dialog       |
 | drawer          | :x:                 | |
@@ -51,7 +52,7 @@ being an easy and suitable replacement for angular-material.
 | list            | :white_check_mark:  | mdc.list         |
 | menu            | :white_check_mark:  | mdc.menu         |
 | radio           | :white_check_mark:  | mdc.radio        |
-| ripple          | :x:                 | |
+| ripple          | :white_check_mark:  | mdc.ripple       |
 | select          | :white_check_mark:  | mdc.select       |
 | slider          | :x:                 | |
 | snackbar        | :white_check_mark:  | mdc.snackbar     |

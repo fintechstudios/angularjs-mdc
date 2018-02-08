@@ -29,32 +29,8 @@ limitations under the License
         padding-bottom: 16px;
       }
 
-      fieldset .mdc-button {
+      fieldset .button {
         margin: 16px;
-      }
-
-      .mdc-theme--dark {
-        background-color: #333;
-      }
-
-      .mdc-theme--dark fieldset {
-        background-color: #333;
-      }
-
-      .mdc-theme--dark fieldset legend {
-        color: #f0f0f0;
-      }
-
-      .mdc-theme--dark .demo-tabs__scroller {
-        background-color: #333;
-      }
-
-      .mdc-theme--dark .demo-tabs__scroller .demo-title {
-        color: #f0f0f0;
-      }
-
-      .mdc-theme--accent-bg {
-        background-color: var(--mdc-theme-accent, #64dd17) !important;
       }
 
       .demo-header-toolbar {
@@ -161,15 +137,14 @@ limitations under the License
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
           <span class="mdc-toolbar__title catalog-title">Tabs</span>
         </section>
       </div>
     </header>
 
-    <main ng-controller="MainCtrl" dir="{{ isRTL ? 'rtl' : '' }}" class="mdc-toolbar-fixed-adjust"
-          ng-class="{'mdc-theme--dark': isDarkTheme}">
+    <main ng-controller="MainCtrl" dir="{{ isRTL ? 'rtl' : '' }}" class="mdc-toolbar-fixed-adjust">
       <section class="hero">
         <mdc-tab-bar>
           <mdc-tab>Item One</mdc-tab>
@@ -179,8 +154,7 @@ limitations under the License
       </section>
 
       <section class="demo-buttons">
-        <mdc-button raised="true" color="primary" ng-click="toggleRTL()">Toggle RTL</mdc-button>
-        <mdc-button raised="true" color="primary" ng-click="isDarkTheme = !isDarkTheme">Toggle Dark Theme</mdc-button>
+        <button mdc-button raised="true" color="primary" ng-click="toggleRTL()">Toggle RTL</button>
       </section>
 
       <section>
@@ -193,8 +167,18 @@ limitations under the License
           </mdc-tab-bar>
         </fieldset>
         <p>
-          <mdc-button raised="true" color="primary" ng-click="cycleToggled()">Cycle Tabs</mdc-button>
+          <button mdc-button raised="true" color="primary" ng-click="cycleToggled()">Cycle Tabs</button>
         </p>
+      </section>
+      <section>
+        <fieldset>
+          <legend class="mdc-typography--title">Basic Tab Bar w/ Custom Label Color</legend>
+          <mdc-tab-bar class="custom-label-color-tab">
+            <mdc-tab>Item One</mdc-tab>
+            <mdc-tab>Item Two</mdc-tab>
+            <mdc-tab>Three</mdc-tab>
+          </mdc-tab-bar>
+        </fieldset>
       </section>
 
       <section>
@@ -239,6 +223,23 @@ limitations under the License
 
       <section>
         <fieldset>
+          <legend class="mdc-typography--title">Icon Tab Labels w/ Custom Icon Color</legend>
+          <mdc-tab-bar variant="icon" class="custom-icon-color-tab" ng-if="demoToggled">
+            <mdc-tab>
+              <mdc-icon aria-label="Recents">phone</mdc-icon>
+            </mdc-tab>
+            <mdc-tab>
+              <mdc-icon aria-label="Favorites">favorite</mdc-icon>
+            </mdc-tab>
+            <mdc-tab>
+              <mdc-icon aria-label="nearby">person_pin</mdc-icon>
+            </mdc-tab>
+          </mdc-tab-bar>
+        </fieldset>
+      </section>
+
+      <section>
+        <fieldset>
           <legend class="mdc-typography--title">Icon &amp; Text Labels</legend>
           <mdc-tab-bar variant="icons-text">
             <mdc-tab>
@@ -259,28 +260,37 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Primary Color Indicator</legend>
-          <mdc-tab-bar indicator="primary" ng-model="mutable.sel" ng-if="demoToggled">
-            <mdc-tab ng-repeat="item in mutable.list">Item {{ item }}</mdc-tab>
+          <legend class="mdc-typography--title">Icon &amp; Text Labels w/ Custom Colors</legend>
+          <mdc-tab-bar variant="icons-text" class="custom-ink-color-tab">
+            <mdc-tab>
+              <mdc-icon aria-hidden="true">phone</mdc-icon>
+              <mdc-tab-text>Recents</mdc-tab-text>
+            </mdc-tab>
+            <mdc-tab>
+              <mdc-icon aria-hidden="true">favorite</mdc-icon>
+              <mdc-tab-text>Favorites</mdc-tab-text>
+            </mdc-tab>
+            <mdc-tab>
+              <mdc-icon aria-hidden="true">person_pin</mdc-icon>
+              <mdc-tab-text>Nearby</mdc-tab-text>
+            </mdc-tab>
           </mdc-tab-bar>
         </fieldset>
-        <p>
-          <mdc-button raised="true" color="primary" ng-click="mutableAdd()">Add Tab</mdc-button>
-          <mdc-button raised="true" color="primary" ng-click="mutableCycle()">Cycle Tabs</mdc-button>
-          <mdc-button raised="true" color="primary" ng-click="mutableRemove()">Remove Tab</mdc-button>
-          <mdc-button raised="true" color="primary" ng-click="demoToggled = !demoToggled;">Toggle Tabbar</mdc-button>
-        </p>
       </section>
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Accent Color Indicator</legend>
-          <mdc-tab-bar indicator="accent">
-            <mdc-tab>Item One</mdc-tab>
-            <mdc-tab>Item Two</mdc-tab>
-            <mdc-tab>Three</mdc-tab>
+          <legend class="mdc-typography--title">Custom Indicator Color</legend>
+          <mdc-tab-bar class="custom-indicator-tab-bar" ng-model="mutable.sel" ng-if="demoToggled">
+            <mdc-tab ng-repeat="item in mutable.list">Item {{ item }}</mdc-tab>
           </mdc-tab-bar>
         </fieldset>
+        <p>
+          <button mdc-button raised="true" color="primary" ng-click="mutableAdd()">Add Tab</button>
+          <button mdc-button raised="true" color="primary" ng-click="mutableCycle()">Cycle Tabs</button>
+          <button mdc-button raised="true" color="primary" ng-click="mutableRemove()">Remove Tab</button>
+          <button mdc-button raised="true" color="primary" ng-click="demoToggled = !demoToggled;">Toggle Tabbar</button>
+        </p>
       </section>
 
       <section>
@@ -293,7 +303,7 @@ limitations under the License
               </div>
               <div class="mdc-toolbar__section mdc-toolbar__section--align-end">
                 <div>
-                  <mdc-tab-bar>
+                  <mdc-tab-bar class="custom-tab-bar-in-toolbar">
                     <mdc-tab>Item One</mdc-tab>
                     <mdc-tab>Item Two</mdc-tab>
                     <mdc-tab>Item Three</mdc-tab>
@@ -336,7 +346,7 @@ limitations under the License
                 <h1 class="mdc-toolbar__title">Title</h1>
               </div>
               <div class="mdc-toolbar__section my-modified-toolbar-section">
-                <mdc-tab-bar>
+                <mdc-tab-bar class="custom-tab-bar-in-toolbar">
                   <mdc-tab>Item One</mdc-tab>
                   <mdc-tab>Item Two</mdc-tab>
                   <mdc-tab>Item Three</mdc-tab>
@@ -349,7 +359,7 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Within mdc-toolbar + primary indicator</legend>
+          <legend class="mdc-typography--title">Within mdc-toolbar + custom color indicator</legend>
           <div class="demo-note">
             <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
           </div>
@@ -360,29 +370,7 @@ limitations under the License
               </div>
               <div class="mdc-toolbar__section mdc-toolbar__section--align-end">
                 <div>
-                  <mdc-tab-bar indicator="primary">
-                    <mdc-tab>Item One</mdc-tab>
-                    <mdc-tab>Item Two</mdc-tab>
-                    <mdc-tab>Item Three</mdc-tab>
-                  </mdc-tab-bar>
-                </div>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </section>
-
-      <section>
-        <fieldset>
-          <legend class="mdc-typography--title">Within mdc-toolbar + accent indicator</legend>
-          <div class="mdc-toolbar">
-            <div class="mdc-toolbar__row">
-              <div class="mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-start">
-                <h1 class="mdc-toolbar__title">Title</h1>
-              </div>
-              <div class="mdc-toolbar__section mdc-toolbar__section--align-end">
-                <div>
-                  <mdc-tab-bar indicator="accent">
+                  <mdc-tab-bar class="custom-indicator-tab-bar-in-toolbar">
                     <mdc-tab>Item One</mdc-tab>
                     <mdc-tab>Item Two</mdc-tab>
                     <mdc-tab>Item Three</mdc-tab>
@@ -400,7 +388,7 @@ limitations under the License
           <div class="mdc-toolbar" id="dynamic-demo-toolbar">
             <div class="mdc-toolbar__row">
               <div class="mdc-toolbar__section mdc-toolbar__section--align-start">
-                <mdc-tab-bar ng-model="selectedTab" indicator="accent">
+                <mdc-tab-bar ng-model="selectedTab" class="custom-indicator-tab-bar-in-toolbar">
                   <mdc-tab>Item One</mdc-tab>
                   <mdc-tab>Item Two</mdc-tab>
                   <mdc-tab>Item Three</mdc-tab>
@@ -434,7 +422,6 @@ limitations under the License
         .controller('MainCtrl', ['$scope', '$window', '$compile', function($scope, $window, $compile) {
           $scope.name = '';
           $scope.isRTL = false;
-          $scope.isDarkTheme = false;
           $scope.demoToggled = true;
           $scope.window = $window;
           $scope.selectedTab = 0;

@@ -31,9 +31,6 @@
     	  margin: 0;
     	  box-sizing: border-box;
     	}
-      .mdc-theme--dark {
-        background-color: #303030;
-      }
 
       section.demo-content {
         padding: 24px;
@@ -50,12 +47,12 @@
     </style>
   </head>
   <body class="mdc-typography" ng-app="demo" ng-controller="MainCtrl"
-        dir="{{ isRTL ? 'rtl': ''}}" ng-class="{'mdc-theme--dark': isDarkTheme}">
+        dir="{{ isRTL ? 'rtl': ''}}">
     <header class="mdc-toolbar mdc-toolbar--fixed">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
           <span class="mdc-toolbar__title catalog-title">Dialog</span>
         </section>
@@ -129,12 +126,8 @@
     	</div>
       <section class="example" dir="ltr">
         <mdc-form-field>
-          <mdc-checkbox input-id="isRTL" ng-model="isRTL"></mdc-checkbox>
-          <label for="isRTL">Toggle RTL</label>
-        </mdc-form-field>
-        <mdc-form-field>
-          <mdc-checkbox input-id="isDarkTheme" ng-model="isDarkTheme"></mdc-checkbox>
-          <label for="isDarkTheme">Toggle Dark</label>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>Toggle RTL</label>
         </mdc-form-field>
         <br><br>
         <mdc-button raised="true" color="primary" ng-click="openDialog()">Show Dialog</mdc-button>
@@ -160,7 +153,6 @@
           }
 
           $scope.name = '';
-          $scope.isDarkTheme = false;
           $scope.isRTL = false;
           $scope.status = '<no dialog opened>';
           $scope.openDialog = function() {

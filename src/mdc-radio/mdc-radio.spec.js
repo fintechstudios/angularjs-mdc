@@ -1,17 +1,23 @@
 'use strict';
 
-describe('mdc-radio', function() {
-  let $mockComponent;
+describe('mdc-radio', () => {
+  let MockRadio;
 
   beforeEach(angular.mock.module('ngMockComponent'));
   beforeEach(angular.mock.module('mdc'));
 
-  beforeEach(inject(function($componentGenerator) {
-    $mockComponent = $componentGenerator('mdcRadio');
+  beforeEach(inject(($componentGenerator) => {
+    MockRadio = $componentGenerator('mdcRadio');
   }));
 
+  it('should have the mdc-radio class', () => {
+    const radio = new MockRadio();
+
+    expect(radio.$element.hasClass('mdc-radio')).to.be.true;
+  });
+
   it('should toggle as ng-model changes', function() {
-    const component = new $mockComponent({'ngModel': 'val', 'ngValue': 0}, {'val': 1});
+    const component = new MockRadio({'ngModel': 'val', 'ngValue': 0}, {'val': 1});
     const radio = component.$element.find('input')[0];
     expect(radio.checked).to.be.false;
 
@@ -23,7 +29,7 @@ describe('mdc-radio', function() {
   });
 
   it('should propagate changes to ng-model when clicked', function() {
-    const component = new $mockComponent({'ngModel': 'val', 'ngValue': 0}, {'val': 1});
+    const component = new MockRadio({'ngModel': 'val', 'ngValue': 0}, {'val': 1});
     const checkbox = component.$element.find('input')[0];
 
     expect(component.$parent('val')).to.equal(1);
@@ -48,17 +54,17 @@ describe('mdc-radio', function() {
   }
 
   it('should be disabled when ng-disabled=true', function() {
-    const component = new $mockComponent({'ngDisabled': true});
+    const component = new MockRadio({'ngDisabled': true});
     expectComponentToBeDisabled(component);
   });
 
   it('should be enabled when ng-disabled=false', function() {
-    const component = new $mockComponent({'ngDisabled': false});
+    const component = new MockRadio({'ngDisabled': false});
     expectComponentToBeEnabled(component);
   });
 
   it('should toggle between disabled and enabled when ngDisabled changes', function() {
-    const component = new $mockComponent({'ngDisabled': 'isDisabled'}, {'isDisabled': true});
+    const component = new MockRadio({'ngDisabled': 'isDisabled'}, {'isDisabled': true});
 
     expectComponentToBeDisabled(component);
     component.$parent('isDisabled', false);
@@ -69,7 +75,7 @@ describe('mdc-radio', function() {
 
   it('should bind inputId to the internal input id', function() {
     const TEST_ID = 'testId';
-    const component = new $mockComponent({'inputId': TEST_ID});
+    const component = new MockRadio({'inputId': TEST_ID});
     expect(component.$element.find('input')[0].id).to.equal(TEST_ID);
   });
 });

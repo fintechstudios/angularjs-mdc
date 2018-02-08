@@ -1,12 +1,7 @@
 @import '~@material/list/mdc-list';
 
-mdc-list {
+mdc-list, mdc-list-item {
   display: block;
-  @extend .mdc-list;
-}
-
-mdc-list-item {
-  @extend .mdc-list-item;
 }
 
 mdc-divider {

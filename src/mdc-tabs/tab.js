@@ -1,5 +1,8 @@
+import {arrayUnion} from '../util/array-union';
+import {BaseComponent} from '../util/base-component';
 
-import {MDCRipple} from '@material/ripple';
+import {MDCRippleMixin} from '../mdc-ripple/mixin';
+import {MDCTabBarController} from './tab-bar';
 
 import {MDCTabFoundation} from '@material/tabs';
 
@@ -11,19 +14,39 @@ import {MDCTabFoundation} from '@material/tabs';
  *
  * @param {expression} [active] Whether this is the active class or not.
  */
-class MdcTabController {
-  constructor($element) {
-    this.elem = $element;
-    this.root_ = this.elem[0];
+export class MDCTabController extends MDCRippleMixin(BaseComponent) {
+  static get name() {
+    return 'mdcTab';
+  }
+
+  static get bindings() {
+    return {
+      active: '<?',
+    };
+  }
+
+  static get require() {
+    return {
+      tabBar: `^^?${MDCTabBarController.name}`,
+    };
+  }
+
+  static get $inject() {
+    return arrayUnion(['$element'], super.$inject);
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.root_ = this.$element[0];
     this.added = false;
 
     this.foundation_ = this.getDefaultFoundation();
 
-    this.elem.ready(() => {
+    this.$element.ready(() => {
       this.addToTabBar();
       this.foundation_.init();
       this.initDone_ = true;
-      this.ripple_ = new MDCRipple(this.root_);
       if (this.willBeActive) {
         this._active = true;
       }
@@ -38,14 +61,17 @@ class MdcTabController {
   }
 
   $onInit() {
+    super.$onInit();
     this.addToTabBar();
   }
 
-  $onChanges(changesObj) {
-    if (changesObj.active) {
+  $onChanges(changes) {
+    super.$onChanges(changes);
+
+    if (changes.active) {
       this.addToTabBar(); // if active, this may happen before $onInit
-      this._active = changesObj.active.currentValue;
-      if (changesObj.active.currentValue) {
+      this._active = changes.active.currentValue;
+      if (changes.active.currentValue) {
         // on initialize, sync active state with tabbar
         this.notifyTabBar(true);
       }
@@ -53,15 +79,16 @@ class MdcTabController {
   }
 
   $onDestroy() {
+    super.$onDestroy();
+
     if (this.tabBar) {
       this.tabBar.removeTab(this);
     }
-    this.ripple_.destroy();
     this.foundation_.destroy();
   }
 
   hasMdcText(toggle) {
-    this.elem.toggleClass('mdc-tab--with-icon-and-text', toggle);
+    this.$element.toggleClass('mdc-tab--with-icon-and-text', toggle);
   }
 
   get computedWidth() {
@@ -120,12 +147,23 @@ class MdcTabController {
   }
 }
 
+
 /**
  * @ngdoc component
  * @name mdcTabText
  * @module mdc.tabs
  */
-class MdcTabTextController {
+export class MDCTabTextController {
+  static get name() {
+    return 'mdcTabText';
+  }
+
+  static get require() {
+    return {
+      tab: `^^${MDCTabController.name}`,
+    };
+  }
+
   $postLink() {
     this.tab.hasMdcText(true);
   }
@@ -134,21 +172,3 @@ class MdcTabTextController {
     this.tab.hasMdcText(false);
   }
 }
-
-angular
-  .module('mdc.tabs')
-  .component('mdcTab', {
-    controller: MdcTabController,
-    require: {
-      tabBar: '^^?mdcTabBar',
-    },
-    bindings: {
-      active: '<?',
-    },
-  })
-  .component('mdcTabText', {
-    controller: MdcTabTextController,
-    require: {
-      tab: '^^mdcTab',
-    },
-  });

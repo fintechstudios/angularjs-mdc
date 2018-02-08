@@ -60,6 +60,14 @@ module.exports = [{
       options: {
         cacheDirectory: true,
       },
+    }, {
+      test: /\.html$/,
+      use: [{
+        loader: 'html-loader',
+        options: {
+          minimize: IS_PROD,
+        },
+      }],
     }],
   },
 }];
@@ -93,7 +101,7 @@ module.exports.push(CSS_EXPORT);
 const DEMO_CSS_EXPORT = {
   name: 'demo-css',
   entry: {
-    'demo-styles': path.resolve('./demos/demos.scss'),
+    'demo-styles': path.resolve('./demos/all.scss'),
   },
   output: {
     path: OUT_PATH,

@@ -1,5 +1,11 @@
+import {arrayUnion} from '../util/array-union';
+import {BaseComponent} from '../util/base-component';
+import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
 import {MDCRadio} from '@material/radio';
+
+import template from './mdc-radio.html';
+
 
 /**
  * @ngdoc component
@@ -13,26 +19,50 @@ import {MDCRadio} from '@material/radio';
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  *
  */
-class MdcRadioController {
-  constructor($scope, $element) {
-    this.elem = $element;
-    this.mdc = new MDCRadio(this.elem[0]);
-    this.defaultId = 'mdc-radio-' + $scope.$id;
+class MDCRadioController extends IsFormFieldChild(BaseComponent) {
+  static get name() {
+    return 'mdcRadio';
   }
 
-  $onChanges(changesObj) {
-    if (changesObj.ngDisabled) {
+  static get template() {
+    return template;
+  }
+
+  static get bindings() {
+    return Object.assign({
+      inputId: '@?',
+      ngDisabled: '<?',
+      ngModel: '=?',
+      ngValue: '<?',
+    }, super.bindings);
+  }
+
+  static get $inject() {
+    return arrayUnion(['$element'], super.$inject);
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.$element.addClass('mdc-radio');
+    this.mdc = new MDCRadio(this.$element[0]);
+  }
+
+  $onChanges(changes) {
+    super.$onChanges(changes);
+
+    if (changes.ngDisabled) {
       this.mdc.disabled = this.ngDisabled;
-    }
-    if (changesObj.inputId && changesObj.inputId.isFirstChange() && changesObj.inputId.currentValue === undefined) {
-      this.inputId = this.defaultId;
     }
   };
 
   $onDestroy() {
+    super.$onDestroy();
+
     this.mdc.destroy();
   }
 }
+
 
 /**
  * @ngdoc module
@@ -43,13 +73,9 @@ class MdcRadioController {
  */
 angular
   .module('mdc.radio', [])
-  .component('mdcRadio', {
-    controller: MdcRadioController,
-    bindings: {
-      inputId: '@',
-      ngDisabled: '<?',
-      ngModel: '=?',
-      ngValue: '<?',
-    },
-    template: require('raw-loader!./mdc-radio.html'),
+  .component(MDCRadioController.name, {
+    controller: MDCRadioController,
+    bindings: MDCRadioController.bindings,
+    require: MDCRadioController.require,
+    template: MDCRadioController.template,
   });

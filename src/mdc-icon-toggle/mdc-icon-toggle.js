@@ -1,20 +1,21 @@
-import {MDCIconToggleFoundation} from '@material/icon-toggle';
-
-import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
 import {directiveNormalize, convertStringsObjToBindingNames} from '../util/normalize';
+import {BaseComponent} from '../util/base-component';
 
-const BINDINGS = {};
+import {MDCIconToggleFoundation} from '@material/icon-toggle';
+import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
+
+
+const bindings = {};
 const STRING_BINDINGS = convertStringsObjToBindingNames(MDCIconToggleFoundation.strings, ['CHANGE_EVENT']);
 const CHANGE_EVENT = MDCIconToggleFoundation.strings.CHANGE_EVENT;
 STRING_BINDINGS.push('iconInnerSelector');
 
 STRING_BINDINGS.forEach(function(a) {
-  BINDINGS[a] = '@';
+  bindings[a] = '@';
 });
 
-BINDINGS['color'] = '@';
-BINDINGS['ngDisabled'] = '<?';
-BINDINGS['ngModel'] = '<?';
+bindings['ngDisabled'] = '<?';
+bindings['ngModel'] = '<?';
 
 
 /**
@@ -30,30 +31,52 @@ BINDINGS['ngModel'] = '<?';
  * @param {string} toggleOff Config for when the button is off.
  * @param {string} [ariaPressed=false] True/False whether the button is toggled or not
  * @param {string} [iconInnerSelector] Treat internal element as icon to bind to.
- * @param {string} [color] Color for toggle: "primary", "accent", or nothing
  * @param {string} [ngModel] Assignable AngularJS expression to data-bind to.
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  *
  */
-class MdcIconToggleController {
-  constructor($element) {
-    this.elem = $element;
-    this.root_ = this.elem[0];
-    this.elem.attr('role', 'button');
+export class MDCIconToggleController extends BaseComponent {
+  static get require() {
+    return {
+      ngModelCtrl: '?ngModel',
+    };
+  }
+
+  static get bindings() {
+    return bindings;
+  }
+
+  static get name() {
+    return 'mdcIconToggle';
+  }
+
+  static get $inject() {
+    return ['$element'];
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.$element.addClass('mdc-icon-toggle');
+    this.$element.attr('tabindex', 0);
+    this.$element.ready(() => {
+      this.ripple_ = this.initRipple_();
+    });
   }
 
   get iconEl_() {
     const sel = this.iconInnerSelector;
-    return sel ? angular.element(this.elem[0].querySelector(sel)) : this.elem;
+    return sel ? angular.element(this.$element[0].querySelector(sel)) : this.$element;
   }
 
   initRipple_() {
+    this.root_ = this.$element[0];
     const adapter = Object.assign(MDCRipple.createAdapter(this), {
       isUnbounded: () => true,
       isSurfaceActive: () => this.foundation_.isKeyboardActivated(),
       computeBoundingRect: () => {
         const dim = 48;
-        const {left, top} = this.elem[0].getBoundingClientRect();
+        const {left, top} = this.$element[0].getBoundingClientRect();
         return {
           left,
           top,
@@ -65,29 +88,29 @@ class MdcIconToggleController {
       },
     });
     const foundation = new MDCRippleFoundation(adapter);
-    return new MDCRipple(this.root_, foundation);
+    return new MDCRipple(this.$element[0], foundation);
   }
 
   getDefaultFoundation() {
     return new MDCIconToggleFoundation({
       addClass: (className) => this.iconEl_.addClass(className),
       removeClass: (className) => this.iconEl_.removeClass(className),
-      registerInteractionHandler: (type, handler) => this.elem.on(type, handler),
-      deregisterInteractionHandler: (type, handler) => this.elem.off(type, handler),
+      registerInteractionHandler: (type, handler) => this.$element.on(type, handler),
+      deregisterInteractionHandler: (type, handler) => this.$element.off(type, handler),
       setText: (text) => this.iconEl_.text(text),
-      getTabIndex: () => /* number */ this.elem.attr('tabindex'),
-      setTabIndex: (tabIndex) => this.elem.attr('tabindex', tabIndex),
+      getTabIndex: () => /* number */ this.$element.attr('tabindex'),
+      setTabIndex: (tabIndex) => this.$element.attr('tabindex', tabIndex),
       getAttr: (name, value) => this[directiveNormalize(name)],
       setAttr: (name, value) => {
         this[directiveNormalize(name)] = value;
-        this.elem.attr(name, value);
+        this.$element.attr(name, value);
       },
       rmAttr: (name) => {
         this[directiveNormalize(name)] = undefined;
-        this.elem.removeAttr(name);
+        this.$element.removeAttr(name);
       },
       notifyChange: (evtData) => {
-        this.elem.triggerHandler(CHANGE_EVENT, evtData);
+        this.$element.triggerHandler(CHANGE_EVENT, evtData);
         if (this.ngModelCtrl) {
           this.ngModelCtrl.$setViewValue(this.foundation_.isOn(), CHANGE_EVENT);
         }
@@ -100,7 +123,7 @@ class MdcIconToggleController {
     this.foundation_.init();
     if (!this.foundation_.toggleOnData_.cssClass && !this.foundation_.toggleOffData_.cssClass) {
       // if no cssClass specified, assume material-icons
-      this.elem.addClass('material-icons');
+      this.$element.addClass('material-icons');
     }
     // this.ripple_ = this.initRipple_(); // this should work, but it's disabled until mdc-ripple is wrapped
     this.foundation_.toggle(this.ngModel === undefined ? this.ariaPressed === 'true' : this.ngModel);
@@ -133,18 +156,6 @@ class MdcIconToggleController {
         }
       }
     }
-    if (changesObj.color) {
-      if (this.color === 'primary') {
-        this.elem.addClass('mdc-icon-toggle--primary');
-        this.elem.removeClass('mdc-icon-toggle--accent');
-      } else if (this.color === 'accent') {
-        this.elem.addClass('mdc-icon-toggle--accent');
-        this.elem.removeClass('mdc-icon-toggle--primary');
-      } else {
-        this.elem.removeClass('mdc-icon-toggle--primary');
-        this.elem.removeClass('mdc-icon-toggle--accent');
-      }
-    }
   }
 
   $onDestroy() {
@@ -159,8 +170,8 @@ class MdcIconToggleController {
 
 angular
   .module('mdc.icon-toggle', [])
-  .component('mdcIconToggle', {
-    bindings: BINDINGS,
-    require: {ngModelCtrl: '?ngModel'},
-    controller: MdcIconToggleController,
+  .component(MDCIconToggleController.name, {
+    bindings: MDCIconToggleController.bindings,
+    require: MDCIconToggleController.require,
+    controller: MDCIconToggleController,
   });

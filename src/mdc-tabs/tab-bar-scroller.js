@@ -1,6 +1,10 @@
+import {BaseComponent} from '../util/base-component';
 
 import {getCorrectPropertyName} from '@material/animation';
 import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
+
+import template from './tab-bar-scroller.html';
+
 
 /**
  * @ngdoc component
@@ -8,25 +12,39 @@ import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
  * @module mdc.tab
  *
  */
-class MdcTabBarScrollerController {
-  constructor($element, $window, $timeout) {
-    this.window = $window;
-    this.document = this.window.document;
-    this.elem = $element;
-    this.timeout = $timeout;
-    this.root_ = this.elem[0];
+export class MDCTabBarScrollerController extends BaseComponent {
+  static get name() {
+    return 'mdcTabBarScroller';
+  }
+
+  static get $inject() {
+    return ['$element', '$window', '$document', '$timeout'];
+  }
+
+  static get transclude() {
+    return true;
+  }
+
+  static get template() {
+    return template;
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.root_ = this.$element[0];
     this.initDone_ = false;
-    this.elemReady = false;
+    this.$elementReady = false;
     this.willScrollIndex_ = undefined;
 
-    this.elem.ready(() => {
-      this.elemReady = true;
+    this.$element.ready(() => {
+      this.$elementReady = true;
       this.init();
     });
   }
 
   init() {
-    if (!this.initDone_ && this.elemReady && this.tabBar) {
+    if (!this.initDone_ && this.$elementReady && this.tabBar) {
       this.foundation_ = this.getDefaultFoundation();
       this.foundation_.init();
       this.initDone_ = true;
@@ -80,7 +98,7 @@ class MdcTabBarScrollerController {
   scrollToTabIfNotVisible_(index) {
     // This will probably be implemented into the foundation at some point - remove then
     if (!this.isElementInViewport(this.tabBar.tabs[index].root_)) {
-      this.timeout(() => this.foundation_.scrollToTabAtIndex_(index), 100);
+      this.$timeout(() => this.foundation_.scrollToTabAtIndex(index), 100);
     }
   }
 
@@ -89,8 +107,8 @@ class MdcTabBarScrollerController {
     return (
       rect.top >= 0 &&
       rect.left >= 0 &&
-      rect.bottom <= (this.window.innerHeight || this.document.documentElement.clientHeight) &&
-      rect.right <= (this.window.innerWidth || this.document.documentElement.clientWidth)
+      rect.bottom <= (this.$window.innerHeight || this.$document[0].documentElement.clientHeight) &&
+      rect.right <= (this.$window.innerWidth || this.$document[0].documentElement.clientWidth)
     );
   }
 
@@ -118,9 +136,9 @@ class MdcTabBarScrollerController {
       deregisterCapturedInteractionHandler: (evt, handler) =>
         this.root_.removeEventListener(evt, handler, true),
       registerWindowResizeHandler: (handler) =>
-        this.window.addEventListener('resize', handler),
+        this.$window.addEventListener('resize', handler),
       deregisterWindowResizeHandler: (handler) =>
-        this.window.removeEventListener('resize', handler),
+        this.$window.removeEventListener('resize', handler),
       getNumberOfTabs: () => this.tabBar.tabs.length,
       getComputedWidthForTabAtIndex: (index) => this.tabBar.tabs[index].computedWidth,
       getComputedLeftForTabAtIndex: (index) => this.tabBar.tabs[index].computedLeft,
@@ -129,7 +147,7 @@ class MdcTabBarScrollerController {
       setScrollLeftForScrollFrame: (scrollLeftAmount) => this.scrollFrame_.scrollLeft = scrollLeftAmount,
       getOffsetWidthForTabBar: () => this.tabBarEl_.offsetWidth,
       setTransformStyleForTabBar: (value) => {
-        this.tabBarEl_.style.setProperty(getCorrectPropertyName(this.window, 'transform'), value);
+        this.tabBarEl_.style.setProperty(getCorrectPropertyName(this.$window, 'transform'), value);
       },
       getOffsetLeftForEventTarget: (target) => target.offsetLeft,
       getOffsetWidthForEventTarget: (target) => target.offsetWidth,
@@ -140,11 +158,3 @@ class MdcTabBarScrollerController {
     this.foundation_.layout();
   }
 }
-
-angular
-  .module('mdc.tabs')
-  .component('mdcTabBarScroller', {
-    controller: MdcTabBarScrollerController,
-    transclude: true,
-    template: require('raw-loader!./tab-bar-scroller.html'),
-  });

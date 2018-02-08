@@ -1,4 +1,10 @@
+import {BaseComponent} from '../util/base-component';
+
 import {MDCGridListFoundation} from '@material/grid-list';
+
+import template from './mdc-grid-list.html';
+const VALID_TILE_ASPECTS = ['1x1', '16x9', '2x3', '3x2', '4x3', '3x4'];
+
 
 /**
  * @ngdoc component
@@ -11,16 +17,36 @@ import {MDCGridListFoundation} from '@material/grid-list';
  * @param {string} [gutter] Gutter size. Supports "1" for 1px, anything else for 4px
  * @param {string} [aspect] Aspect ratio of tiles -- supports 1x1, 16x9, 2x3, 3x2, 4x3, 3x4
  */
-class MdcGridListController {
-  constructor($element, $window) {
-    this.elem = $element;
-    this.window = $window;
-    this.root_ = this.elem[0];
-    this.foundation_ = this.getDefaultFoundation();
+class MDCGridListController extends BaseComponent {
+  static get name() {
+    return 'mdcGridList';
   }
 
-  static get VALID_TILE_ASPECTS() {
-    return ['1x1', '16x9', '2x3', '3x2', '4x3', '3x4'];
+  static get bindings() {
+    return {
+      iconAlign: '@',
+      gutter: '@',
+      aspect: '@',
+    };
+  }
+
+  static get template() {
+    return template;
+  }
+
+  static get transclude() {
+    return true;
+  }
+
+  static get $inject() {
+    return ['$element', '$window'];
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.root_ = this.$element[0];
+    this.foundation_ = this.getDefaultFoundation();
   }
 
   getDefaultFoundation() {
@@ -35,8 +61,8 @@ class MdcGridListController {
       setStyleForTilesElement: (property, value) => {
         this.root_.querySelector(MDCGridListFoundation.strings.TILES_SELECTOR).style[property] = value;
       },
-      registerResizeHandler: (handler) => this.window.addEventListener('resize', handler),
-      deregisterResizeHandler: (handler) => this.window.removeEventListener('resize', handler),
+      registerResizeHandler: (handler) => this.$window.addEventListener('resize', handler),
+      deregisterResizeHandler: (handler) => this.$window.removeEventListener('resize', handler),
     });
   }
 
@@ -46,15 +72,15 @@ class MdcGridListController {
 
   $onChanges(changesObj) {
     if (changesObj.iconAlign) {
-      this.elem.toggleClass('mdc-grid-list--with-icon-align-start', this.iconAlign === 'start');
-      this.elem.toggleClass('mdc-grid-list--with-icon-align-end', this.iconAlign === 'end');
+      this.$element.toggleClass('mdc-grid-list--with-icon-align-start', this.iconAlign === 'start');
+      this.$element.toggleClass('mdc-grid-list--with-icon-align-end', this.iconAlign === 'end');
     }
     if (changesObj.gutter) {
-      this.elem.toggleClass('mdc-grid-list--tile-gutter-1', this.gutter == '1');
+      this.$element.toggleClass('mdc-grid-list--tile-gutter-1', this.gutter == '1');
     }
     if (changesObj.aspect) {
-      MdcGridListController.VALID_TILE_ASPECTS.forEach((r) => {
-        this.elem.toggleClass('mdc-grid-list--tile-aspect-' + r, this.aspect === r);
+      VALID_TILE_ASPECTS.forEach((r) => {
+        this.$element.toggleClass('mdc-grid-list--tile-aspect-' + r, this.aspect === r);
       });
     }
   };
@@ -80,13 +106,9 @@ class MdcGridListController {
  */
 angular
   .module('mdc.grid-list', [])
-  .component('mdcGridList', {
-    controller: MdcGridListController,
-    transclude: true,
-    template: require('raw-loader!./mdc-grid-list.html'),
-    bindings: {
-      iconAlign: '@',
-      gutter: '@',
-      aspect: '@',
-    },
+  .component(MDCGridListController.name, {
+    controller: MDCGridListController,
+    transclude: MDCGridListController.transclude,
+    template: MDCGridListController.template,
+    bindings: MDCGridListController.bindings,
   });
