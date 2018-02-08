@@ -8,6 +8,7 @@ import defaultTemplate from './default-template.html';
  * @name $mdcDialog
  * @module mdc.dialog
  */
+/* @ngInject */
 export function $mdcDialogProvider($$interimElementSlimProvider) {
   return $$interimElementSlimProvider('$mdcDialog')
     .setDefaults({
