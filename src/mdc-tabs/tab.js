@@ -1,8 +1,9 @@
+import {arrayUnion} from '../util/array-union';
 import {BaseComponent} from '../util/base-component';
 
+import {MDCRippleMixin} from '../mdc-ripple/mixin';
 import {MDCTabBarController} from './tab-bar';
 
-import {MDCRipple} from '@material/ripple';
 import {MDCTabFoundation} from '@material/tabs';
 
 
@@ -13,7 +14,7 @@ import {MDCTabFoundation} from '@material/tabs';
  *
  * @param {expression} [active] Whether this is the active class or not.
  */
-export class MDCTabController extends BaseComponent {
+export class MDCTabController extends MDCRippleMixin(BaseComponent) {
   static get name() {
     return 'mdcTab';
   }
@@ -31,7 +32,7 @@ export class MDCTabController extends BaseComponent {
   }
 
   static get $inject() {
-    return ['$element'];
+    return arrayUnion(['$element'], super.$inject);
   }
 
   constructor(...args) {
@@ -46,7 +47,6 @@ export class MDCTabController extends BaseComponent {
       this.addToTabBar();
       this.foundation_.init();
       this.initDone_ = true;
-      this.ripple_ = new MDCRipple(this.root_);
       if (this.willBeActive) {
         this._active = true;
       }
@@ -61,14 +61,17 @@ export class MDCTabController extends BaseComponent {
   }
 
   $onInit() {
+    super.$onInit();
     this.addToTabBar();
   }
 
-  $onChanges(changesObj) {
-    if (changesObj.active) {
+  $onChanges(changes) {
+    super.$onChanges(changes);
+
+    if (changes.active) {
       this.addToTabBar(); // if active, this may happen before $onInit
-      this._active = changesObj.active.currentValue;
-      if (changesObj.active.currentValue) {
+      this._active = changes.active.currentValue;
+      if (changes.active.currentValue) {
         // on initialize, sync active state with tabbar
         this.notifyTabBar(true);
       }
@@ -76,10 +79,11 @@ export class MDCTabController extends BaseComponent {
   }
 
   $onDestroy() {
+    super.$onDestroy();
+
     if (this.tabBar) {
       this.tabBar.removeTab(this);
     }
-    this.ripple_.destroy();
     this.foundation_.destroy();
   }
 
