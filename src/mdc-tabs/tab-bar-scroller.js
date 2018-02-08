@@ -2,6 +2,9 @@
 import {getCorrectPropertyName} from '@material/animation';
 import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
 
+import template from './tab-bar-scroller.html';
+
+
 /**
  * @ngdoc component
  * @name mdcTabBarScroller
@@ -146,5 +149,5 @@ angular
   .component('mdcTabBarScroller', {
     controller: MdcTabBarScrollerController,
     transclude: true,
-    template: require('raw-loader!./tab-bar-scroller.html'),
+    template: template,
   });

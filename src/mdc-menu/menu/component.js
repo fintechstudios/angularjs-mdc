@@ -5,14 +5,13 @@ import {MDC_MENU_TOGGLE_EVENT} from '../toggle/directive';
 import {MDCMenuFoundation} from '@material/menu';
 import {getTransformPropertyName} from '@material/menu/util';
 
+import template from './mdc-menu.html';
+
 
 const CORNER_PROPERTY_REGEX = /([ -])/;
 function convertToCornerProperty(anchorFrom) {
   return anchorFrom.replace(CORNER_PROPERTY_REGEX, '_').toUpperCase();
 }
-
-
-const template = require('raw-loader!./mdc-menu.html');
 
 
 /**

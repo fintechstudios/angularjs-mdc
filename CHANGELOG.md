@@ -16,7 +16,7 @@
     * List padding is now per-item rather than across the entire list. Separators now span the entire list width
       by default, with the addition of a mdc-list-divider--padded modifier class to achieve the old default behavior.
     * `__start-detail` has been renamed to `__graphic`, and `__end-detail` has been renamed to `__meta`.
-      In addition, meta data tiles no longer have a default width/height (fixes #1644).
+      In addition, meta data tiles no longer have a default width/height.
 * **menu**:
     * All references to `mdc-simple-menu` changed to `mdc-menu`
     * `mdc-menu-toggle` requires a menu `id` to be specified - it will no longer auto-find the menu.
@@ -37,4 +37,3 @@
 * **button**:
     * Nested `mdc-icon` is properly styled
     * Support `unelevated` and `stroked` style
-    * `card-action` setting is removed, as it is handled automatically

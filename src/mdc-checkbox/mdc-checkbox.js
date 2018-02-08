@@ -4,8 +4,7 @@ import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
 import {MDCCheckbox} from '@material/checkbox';
 
-
-const template = require('raw-loader!./mdc-checkbox.html');
+import template from './mdc-checkbox.html';
 
 
 /**

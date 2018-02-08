@@ -2,7 +2,7 @@ import {BaseComponent} from '../../util/base-component';
 
 import {MDCTextField, MDCTextFieldFoundation, MDCTextFieldHelperTextFoundation} from '@material/textfield';
 
-const outlineTemplate = require('raw-loader!./outline.html');
+import outlineTemplate from './outline.html';
 
 
 /**

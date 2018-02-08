@@ -1,5 +1,8 @@
 import {MDCGridListFoundation} from '@material/grid-list';
 
+import template from './mdc-grid-list.html';
+
+
 /**
  * @ngdoc component
  * @name mdcGridList
@@ -83,7 +86,7 @@ angular
   .component('mdcGridList', {
     controller: MdcGridListController,
     transclude: true,
-    template: require('raw-loader!./mdc-grid-list.html'),
+    template: template,
     bindings: {
       iconAlign: '@',
       gutter: '@',

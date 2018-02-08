@@ -6,8 +6,7 @@ import {MDCMenu} from '@material/menu';
 
 import {MDCSelectFoundation} from '@material/select';
 
-
-const template = require('raw-loader!./mdc-select.html');
+import template from './mdc-select.html';
 
 
 /**

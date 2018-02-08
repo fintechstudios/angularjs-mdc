@@ -3,11 +3,9 @@ import {BindInjections} from '../util/bind-injections';
 import {MDCSnackbar} from '@material/snackbar';
 import {numbers} from '@material/snackbar/constants';
 
+import defaultTemplate from './snackbar.html';
+import startAlignedTemplate from './snackbar--align-start.html';
 
-const TEMPLATES = {
-  default: require('raw-loader!./snackbar.html'),
-  startAligned: require('raw-loader!./snackbar--align-start.html'),
-};
 
 const TEMPLATE_TO_SNACKBAR_MAP = new Map();
 
@@ -108,7 +106,7 @@ export class MDCSnackbarService extends BindInjections {
     multiline = false, actionOnBottom = false, dismissesOnAction = true,
     parent = this.$rootElement,
   }) {
-    const snackbar = this.getMDCSnackbar_(parent, TEMPLATES.default);
+    const snackbar = this.getMDCSnackbar_(parent, defaultTemplate);
 
     this.show_(snackbar, {message, timeout, actionText, actionHandler, multiline, actionOnBottom, dismissesOnAction});
 
@@ -138,7 +136,7 @@ export class MDCSnackbarService extends BindInjections {
     multiline = false, actionOnBottom = false, dismissesOnAction = true,
     parent = this.$rootElement,
   }) {
-    const snackbar = this.getMDCSnackbar_(parent, TEMPLATES.startAligned);
+    const snackbar = this.getMDCSnackbar_(parent, startAlignedTemplate);
 
     this.show_(snackbar, {message, timeout, actionText, actionHandler, multiline, actionOnBottom, dismissesOnAction});
 

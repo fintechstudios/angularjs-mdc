@@ -60,6 +60,14 @@ module.exports = [{
       options: {
         cacheDirectory: true,
       },
+    }, {
+      test: /\.html$/,
+      use: [{
+        loader: 'html-loader',
+        options: {
+          minimize: IS_PROD,
+        },
+      }],
     }],
   },
 }];

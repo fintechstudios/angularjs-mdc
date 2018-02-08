@@ -4,8 +4,7 @@ import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
 import {MDCRadio} from '@material/radio';
 
-
-const template = require('raw-loader!./mdc-radio.html');
+import template from './mdc-radio.html';
 
 
 /**
@@ -63,6 +62,7 @@ class MdcRadioController extends IsFormFieldChild(BaseComponent) {
     this.mdc.destroy();
   }
 }
+
 
 /**
  * @ngdoc module

@@ -3,8 +3,8 @@ import {arrayUnion} from '../util/array-union';
 import {BaseComponent} from '../util/base-component';
 import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
+import template from './mdc-switch.html';
 
-const template = require('raw-loader!./mdc-switch.html');
 
 /**
  * @ngdoc component

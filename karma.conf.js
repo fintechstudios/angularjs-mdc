@@ -10,7 +10,7 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     autoWatchBatchDelay: 300,
 
-    webpack: configureWebpack(),
+    webpack: require('./webpack.config')[0], // just JS output
 
     files: [
       './node_modules/angular/angular.js',
@@ -42,10 +42,4 @@ module.exports = function(config) {
       terminal: false,
     },
   });
-
-  function configureWebpack() {
-    const webpackConfig = require('./webpack.config');
-    webpackConfig.entry = undefined;
-    return webpackConfig;
-  }
 };
