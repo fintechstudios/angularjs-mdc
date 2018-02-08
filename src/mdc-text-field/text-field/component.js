@@ -11,13 +11,13 @@ import outlineTemplate from './outline.html';
  * @module mdc.text-field
  *
  * @param {string} label - the label for this text field
- * @param {bool} [dense] - whether to apply dense styling
- * @param {bool} [fullwidth] - whether to apply the fullwidth styling
- * @param {bool} [box] - whether to apply the box styling
- * @param {bool} [outlined] - whether to apply the outline styling (supercedes box)
+ * @param {boolean} [dense] - whether to apply dense styling
+ * @param {boolean} [fullwidth] - whether to apply the fullwidth styling
+ * @param {boolean} [box] - whether to apply the box styling
+ * @param {boolean} [outlined] - whether to apply the outline styling (supercedes box)
  * @param {string} [helperText] - for providing supplemental information to users, as well for validation messages
- * @param {bool} [helperTextPersistent] - whether the help text is persistent
- * @param {bool} [helperTextValidation] - whether the help text is used for validation
+ * @param {boolean} [helperTextPersistent] - whether the help text is persistent
+ * @param {boolean} [helperTextValidation] - whether the help text is used for validation
  */
 export class MDCTextFieldController extends BaseComponent {
   static get name() {

@@ -46,7 +46,7 @@ export class MDCListController extends BaseComponent {
       this.$element.toggleClass('mdc-list--two-line', Boolean(this.twoLine));
     }
     if (changes.nonInteractive) {
-      this.$element.toggleClass('mdc-list--non-interactive', this.nonInteractive);
+      this.$element.toggleClass('mdc-list--non-interactive', Boolean(this.nonInteractive));
     }
   };
 }

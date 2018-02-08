@@ -2,14 +2,23 @@ import {BaseComponent} from '../../util/base-component';
 import {MDCMenuController} from '../menu/component';
 
 /**
+ * @callback onSelectCallback
+ * @param {Number} index
+ * @param {HTMLElement} item
+ */
+
+/**
  * @ngdoc directive
  * @name mdcMenuItem
  * @restrict AEC
  * @module mdc.menu
  * @description Used as a child of mdcMenu to create menu items
- * Use mdc-simple-menu-item="expression()" or <mdc-simple-menu-item on-select="expression()">
+ * @example
+ * mdc-menu-item="expression()"
+ * // or
+ * <mdc-menu-item on-select="expression()">
  *
- * @param {function(index: Number, item: HTMLElement)} [onSelect] - expression to evaluate if item is selected
+ * @param {onSelectCallback} [onSelect] - expression to evaluate if item is selected
  */
 export class MDCMenuItemController extends BaseComponent {
   static get name() {
