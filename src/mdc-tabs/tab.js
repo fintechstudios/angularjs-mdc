@@ -1,6 +1,8 @@
+import {BaseComponent} from '../util/base-component';
+
+import {MDCTabBarController} from './tab-bar';
 
 import {MDCRipple} from '@material/ripple';
-
 import {MDCTabFoundation} from '@material/tabs';
 
 
@@ -11,15 +13,36 @@ import {MDCTabFoundation} from '@material/tabs';
  *
  * @param {expression} [active] Whether this is the active class or not.
  */
-class MdcTabController {
-  constructor($element) {
-    this.elem = $element;
-    this.root_ = this.elem[0];
+export class MDCTabController extends BaseComponent {
+  static get name() {
+    return 'mdcTab';
+  }
+
+  static get bindings() {
+    return {
+      active: '<?',
+    };
+  }
+
+  static get require() {
+    return {
+      tabBar: `^^?${MDCTabBarController.name}`,
+    };
+  }
+
+  static get $inject() {
+    return ['$element'];
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.root_ = this.$element[0];
     this.added = false;
 
     this.foundation_ = this.getDefaultFoundation();
 
-    this.elem.ready(() => {
+    this.$element.ready(() => {
       this.addToTabBar();
       this.foundation_.init();
       this.initDone_ = true;
@@ -61,7 +84,7 @@ class MdcTabController {
   }
 
   hasMdcText(toggle) {
-    this.elem.toggleClass('mdc-tab--with-icon-and-text', toggle);
+    this.$element.toggleClass('mdc-tab--with-icon-and-text', toggle);
   }
 
   get computedWidth() {
@@ -120,12 +143,23 @@ class MdcTabController {
   }
 }
 
+
 /**
  * @ngdoc component
  * @name mdcTabText
  * @module mdc.tabs
  */
-class MdcTabTextController {
+export class MDCTabTextController {
+  static get name() {
+    return 'mdcTabText';
+  }
+
+  static get require() {
+    return {
+      tab: `^^${MDCTabController.name}`,
+    };
+  }
+
   $postLink() {
     this.tab.hasMdcText(true);
   }
@@ -134,21 +168,3 @@ class MdcTabTextController {
     this.tab.hasMdcText(false);
   }
 }
-
-angular
-  .module('mdc.tabs')
-  .component('mdcTab', {
-    controller: MdcTabController,
-    require: {
-      tabBar: '^^?mdcTabBar',
-    },
-    bindings: {
-      active: '<?',
-    },
-  })
-  .component('mdcTabText', {
-    controller: MdcTabTextController,
-    require: {
-      tab: '^^mdcTab',
-    },
-  });

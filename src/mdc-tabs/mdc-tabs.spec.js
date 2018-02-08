@@ -9,8 +9,4 @@ describe('mdc-tabs', function() {
   beforeEach(inject(function($componentGenerator) {
     $mockComponent = $componentGenerator('mdcTabs');
   }));
-
-  it('should ', function() {
-
-  });
 });
