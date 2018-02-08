@@ -14,19 +14,19 @@
     ]
   ],
   "_from": "angular@>=1.6.5 <2.0.0",
-  "_id": "angular@1.6.5",
+  "_id": "angular@1.6.9",
   "_inCache": true,
   "_location": "/angular",
-  "_nodeVersion": "6.11.0",
+  "_nodeVersion": "8.9.4",
   "_npmOperationalInternal": {
     "host": "s3://npm-registry-packages",
-    "tmp": "tmp/angular-1.6.5.tgz_1499111532398_0.05125633766874671"
+    "tmp": "tmp/angular-1.6.9.tgz_1517577234018_0.03970839362591505"
   },
   "_npmUser": {
     "name": "angularcore",
     "email": "angular-core+npm@google.com"
   },
-  "_npmVersion": "3.10.10",
+  "_npmVersion": "5.6.0",
   "_phantomChildren": {},
   "_requested": {
     "raw": "angular@^1.6.5",
@@ -40,8 +40,8 @@
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npmjs.org/angular/-/angular-1.6.5.tgz",
-  "_shasum": "37f788eebec5ce2e3fa02b17bbcb2a231576a0d6",
+  "_resolved": "https://registry.npmjs.org/angular/-/angular-1.6.9.tgz",
+  "_shasum": "bc812932e18909038412d594a5990f4bb66c0619",
   "_shrinkwrap": null,
   "_spec": "angular@^1.6.5",
   "_where": "/home/circleci/mdc",
@@ -57,10 +57,11 @@
   "devDependencies": {},
   "directories": {},
   "dist": {
-    "shasum": "37f788eebec5ce2e3fa02b17bbcb2a231576a0d6",
-    "tarball": "https://registry.npmjs.org/angular/-/angular-1.6.5.tgz"
+    "integrity": "sha512-6igWH2GIsxV+J38wNWCh8oyjaZsrIPIDO35twloIUyjlF2Yit6UyLAWujHP05ma/LFxTsx4NtYibRoMNBXPR1A==",
+    "shasum": "bc812932e18909038412d594a5990f4bb66c0619",
+    "tarball": "https://registry.npmjs.org/angular/-/angular-1.6.9.tgz"
   },
-  "gitHead": "c5accffceeee635c740434046d3b06079ea47a58",
+  "gitHead": "2d507370407cecd2aa5c339ba3140966bce6006b",
   "homepage": "http://angularjs.org",
   "keywords": [
     "angular",
@@ -90,5 +91,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.6.5"
+  "version": "1.6.9"
 }

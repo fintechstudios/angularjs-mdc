@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Menu - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="icon" type="image/png" href="images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      html,
+      body,
+      main {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero div {
+        text-align: center;
+      }
+
+      .demo-content {
+        position: relative;
+        flex: 1;
+        margin-top: 16px;
+      }
+
+      .demo-controls-container {
+        height: 90%;
+        width: 100%;
+      }
+
+      .demo-controls {
+        margin-left: auto;
+        margin-right: auto;
+        width: 320px;
+      }
+
+      .mdc-menu-anchor {
+        position: absolute;
+        margin: 16px;
+      }
+
+      .margin-inputs input {
+        width: 2em;
+      }
+
+      .top {
+        top: 0;
+      }
+      .left {
+        left: 0;
+      }
+      .bottom {
+        bottom: 0;
+      }
+      .right {
+        right: 0;
+      }
+
+    </style>
+  </head>
+  <body ng-app="demo">
+    <header class="mdc-toolbar mdc-toolbar--fixed demo-header-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Menu</span>
+        </section>
+      </div>
+    </header>
+
+    <main ng-controller="MainCtrl">
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <mdc-menu id="heroDemo" tabindex="0">
+          <mdc-menu-item>Back</mdc-menu-item>
+          <mdc-menu-item>Forward</mdc-menu-item>
+          <mdc-menu-item>Reload</mdc-menu-item>
+          <mdc-divider></mdc-divider>
+          <mdc-menu-item>Help &amp; Feedback</mdc-menu-item>
+          <mdc-menu-item>Settings</mdc-menu-item>
+        </mdc-menu>
+
+        <div>
+          <button mdc-button raised="true" mdc-menu-toggle="heroDemo">Toggle Hero Menu</button><br><br>
+        </div>
+      </section>
+
+      <div class="demo-content">
+        <div mdc-menu-anchor ng-class="{top: isTop, bottom: !isTop, left: isLeft, right: !isLeft}">
+          <button mdc-button raised="true" mdc-menu-toggle="bodyDemo">Reveal Menu</button>
+          <mdc-menu id="bodyDemo" open="isOpen"
+                    quick-open="doQuickOpen"
+                    remember-selection="doRememberSelection"
+                    anchor-margin="{top: margin.top, bottom: margin.bottom, left: margin.left, right: margin.right}"
+                    anchor-corner="{{ anchorCorner }}">
+            <mdc-menu-item on-select="select('Back', index)">Back</mdc-menu-item>
+            <mdc-menu-item on-select="select('Forward', index)">Forward</mdc-menu-item>
+            <mdc-menu-item on-select="select('Reload', index)">Reload</mdc-menu-item>
+            <mdc-divider></mdc-divider>
+            <mdc-menu-item on-select="select('Save As...', index)">Save As...</mdc-menu-item>
+            <mdc-menu-item on-select="select('Help', index)">Help</mdc-menu-item>
+
+
+            <mdc-menu-item ng-if="listLength >= 1"
+                           ng-repeat="text in ['Settings', 'Feedback', 'Options...', 'Item 1', 'Item 2']"
+                           on-select="select(text, index)"
+                           ng-bind="text"></mdc-menu-item>
+
+            <mdc-menu-item ng-if="listLength >= 2"
+                           ng-repeat="text in [3, 4, 5, 6, 7, 8, 9]"
+                           on-select="select('Item ' + text, index)"
+                           ng-bind="'Item ' + text"></mdc-menu-item>
+          </mdc-menu>
+        </div>
+
+        <div class="demo-controls-container">
+          <div class="demo-controls">
+            <br><br>
+            Button position:<br>
+            <label><input type="radio" name="pos" ng-click="isTop = true; isLeft = true;"> Top left</label>
+            <label><input type="radio" name="pos" ng-click="isTop = true; isLeft = false;"> Top right</label><br>
+            <label><input type="radio" name="pos" ng-click="isTop = false; isLeft = true;"> Bottom left</label>
+            <label><input type="radio" name="pos" ng-click="isTop = false; isLeft = false;"> Bottom right</label>
+
+            <br><br>
+
+            Menu Sizes:<br>
+            <label><input type="radio" ng-model="listLength" ng-value="0"> Regular menu</label>
+            <label><input type="radio" ng-model="listLength" ng-value="1"> Large menu</label><br>
+            <label><input type="radio" ng-model="listLength" ng-value="2"> Extra tall menu</label>
+
+            <br><br>
+
+            Default Menu Position:<br>
+            <label><input type="radio" ng-model="anchorCorner" value="top start"> Top start</label>
+            <label><input type="radio" ng-model="anchorCorner" value="top end"> Top end</label><br>
+            <label><input type="radio" ng-model="anchorCorner" value="bottom start"> Bottom start</label>
+            <label><input type="radio" ng-model="anchorCorner" value="bottom end"> Bottom end</label>
+
+            <br><br>
+
+            Anchor Margins:
+            <div id="margin-inputs" class="margin-inputs">
+              <label>T: <input type="text" ng-model="margin.top" size="3"></label>
+              <label>B: <input type="text" ng-model="margin.bottom" size="3"></label>
+              <label>L: <input type="text" ng-model="margin.left" size="3"></label>
+              <label>R: <input type="text" ng-model="margin.right" size="3"></label>
+            </div>
+
+            <mdc-form-field>
+              <mdc-checkbox ng-model="isOpen"></mdc-checkbox>
+              <label>Open</label>
+            </mdc-form-field>
+            <br>
+
+            <mdc-form-field>
+              <mdc-checkbox ng-model="doRememberSelection"></mdc-checkbox>
+              <label>Remember selection</label>
+            </mdc-form-field>
+            <br>
+
+            <mdc-form-field>
+              <mdc-checkbox ng-model="doQuickOpen"></mdc-checkbox>
+              <label>Disable Open Animation</label>
+            </mdc-form-field>
+
+            <br><br>
+
+            <span>Last Selected item: <em ng-bind="out"></em></span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="angular/angular.min.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.name = '';
+          $scope.anchorCorner = 'top start';
+          $scope.isLeft = true;
+          $scope.isTop = true;
+          $scope.out = '<none selected>';
+          $scope.listLength = 0;
+          $scope.margin = {
+            top: 0, left: 0, right: 0, bottom: 0,
+          };
+          $scope.isOpen = false;
+
+          $scope.select = function onSelect(text, index) {
+            $scope.out = text + ', index=' + index;
+          }
+        }]);
+    </script>
+  </body>
+</html>

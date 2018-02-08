@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2016 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html class="mdc-typography">
+  <head>
+    <meta charset="utf-8">
+    <title>Text Field - Material Components Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/logo_components_color_2x_web_48dp.png" />
+    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+      .example label {
+        display: block;
+      }
+
+      .example, .example-no-js {
+        margin: 24px;
+        padding: 24px;
+      }
+
+      .hero mdc-text-field {
+        min-width: 240px;
+      }
+    </style>
+  </head>
+  <body ng-app="demo" ng-controller="MainCtrl">
+    <header class="mdc-toolbar mdc-toolbar--fixed">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="catalog-back">
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+          </span>
+          <span class="mdc-toolbar__title catalog-title">Text Field</span>
+        </section>
+      </div>
+    </header>
+    <main>
+      <div class="mdc-toolbar-fixed-adjust"></div>
+      <section class="hero">
+        <mdc-text-field label="Text field">
+          <input type="text">
+        </mdc-text-field>
+      </section>
+
+      <section class="example">
+        <h2>Full Functionality JS Component (Floating Label, Validation, Autocomplete)</h2>
+        <section dir="{{ isRTL ? 'rtl' : ''}}">
+          <mdc-text-field label="Email Address" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}"
+                          helper-text="{{ useHelpText ? 'Help Text (possibly validation message)' : '' }}"
+                          helper-text-persistent="helpTextPersistent"
+                          helper-text-validation="helpTextValidation">
+            <input name="email" autocomplete="email" ng-model="fullDemoValue"
+                   ng-disabled="isDisabled" ng-required="isRequired">
+          </mdc-text-field>
+          <p>Value: <input ng-model="fullDemoValue"></p>
+        </section>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="useHelpText"></mdc-checkbox>
+          <label>Use Helper Text</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="helpTextPersistent" ng-disabled="!useHelpText"></mdc-checkbox>
+          <label>Make helper text persistent</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="helpTextValidation" ng-disabled="!useHelpText"></mdc-checkbox>
+          <label>Use helper text as validation message</label>
+        </mdc-form-field>
+      </section>
+      <section class="example">
+        <h2>Password field with validation</h2>
+        <mdc-text-field label="Choose password">
+          <input ng-required="isRequired" pattern=".{8,}" type="password"
+                 aria-controls="pw-validation-msg"
+                 autocomplete="current-password">
+        </mdc-text-field>
+        <p class="mdc-text-field-helptext mdc-text-field-helptext--persistent mdc-text-field-helptext--validation-msg"
+           id="pw-validation-msg">
+          Must be at least 8 characters long
+        </p>
+      </section>
+
+      <section class="example">
+        <h2>Outlined Text Field</h2>
+        <div dir="{{ isRTL ? 'rtl' : ''}}">
+          <mdc-text-field label="Your name" outlined="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+            <input ng-required="isRequired" ng-disabled="isDisabled">
+          </mdc-text-field>
+        </div>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Text Field box</h2>
+        <div dir="{{ isRTL ? 'rtl' : ''}}">
+          <mdc-text-field label="Your name" box="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+            <input ng-required="isRequired" ng-disabled="isDisabled">
+          </mdc-text-field>
+        </div>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Text Field with Icons</h2>
+        <div dir="{{ isRTL ? 'rtl' : ''}}">
+          <mdc-text-field label="Your name" box="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+            <mdc-icon>event</mdc-icon>
+            <input ng-required="isRequired" ng-disabled="isDisabled">
+          </mdc-text-field>
+
+          <br>
+          <mdc-text-field label="Your other name" box="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+            <input ng-required="isRequired" ng-disabled="isDisabled" ng-model="value1">
+            <mdc-icon ng-click="value1 = ''">delete</mdc-icon>
+          </mdc-text-field>
+
+          <br>
+          <mdc-text-field label="Your name" outlined="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+            <mdc-icon>event</mdc-icon>
+            <input ng-required="isRequired" ng-disabled="isDisabled">
+          </mdc-text-field>
+
+          <br>
+          <mdc-text-field label="Your name" outlined="true" dense="isDense"
+                          ng-class="{'demo-text-field-custom-colors demo-text-field-custom-error-colors': altColors}">
+            <input ng-disabled="isDisabled" ng-model="value2" ng-required="isRequired">
+            <mdc-icon ng-click="value2 = ''">delete</mdc-icon>
+          </mdc-text-field>
+        </div>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Multi-line Text Fields</h2>
+        <section id="demo-textfield-multiline-wrapper" style="overflow:hidden;" dir="{{ isRTL ? 'rtl' : '' }}">
+          <mdc-text-field label="Multi-line input"
+                          ng-class="{'demo-textarea': altColors}">
+            <textarea rows="8" cols="40" ng-disabled="isDisabled" ng-required="isRequired"></textarea>
+          </mdc-text-field>
+        </section>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRTL"></mdc-checkbox>
+          <label>RTL</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isRequired"></mdc-checkbox>
+          <label>Required</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+      </section>
+
+      <section class="example">
+        <h2>Full-Width Text Fields</h2>
+        <div id="demo-fullwidth-wrapper">
+          <mdc-text-field label="Subject" fullwidth="true" dense="isDense"
+                          ng-class="{'demo-fullwidth-input': altColors}">
+            <input type="text" ng-required="isRequired" ng-disabled="isDisabled">
+          </mdc-text-field>
+          <mdc-text-field label="Message" fullwidth="true" dense="isDense"
+                          ng-class="{'demo-textarea': altColors}">
+            <textarea rows="8" cols="40" aria-label="Message" ng-required="isRequired" ng-disabled="isDisabled"></textarea>
+          </mdc-text-field>
+        </div>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDisabled"></mdc-checkbox>
+          <label>Disabled</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="isDense"></mdc-checkbox>
+          <label>Dense</label>
+        </mdc-form-field>
+        <mdc-form-field>
+          <mdc-checkbox ng-model="altColors"></mdc-checkbox>
+          <label>Alternate Colors</label>
+        </mdc-form-field>
+      </section>
+    </main>
+    <script src="angular/angular.js"></script>
+    <script src="assets/angularjs-mdc.js"></script>
+    <script>
+      angular.module('demo', ['mdc'])
+        .controller('MainCtrl', ['$scope', function($scope) {
+          $scope.fullDemoValue = '';
+          $scope.isDisabled = false;
+          $scope.isRTL = false;
+          $scope.isDense = false;
+          $scope.isRequired = true;
+          $scope.useHelpText = false;
+          $scope.helpTextPersistent = false;
+          $scope.helpTextValidation = false;
+        }]);
+    </script>
+  </body>
+</html>

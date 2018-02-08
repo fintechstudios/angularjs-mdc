@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Icon - Material Compoonents Catalog</title>
+    <title>Icon - Material Components Catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/logo_components_color_2x_web_48dp.png" />
     <script src="assets/demo-styles.css.js" charset="utf-8"></script>
@@ -17,13 +17,6 @@
       }
       fieldset mdc-button {
         margin: 16px;
-      }
-      .mdc-theme--dark fieldset {
-        background-color: #333;
-      }
-
-      .mdc-theme--dark fieldset legend {
-        color: #f0f0f0;
       }
 
       .hero div, .hero input {
@@ -43,23 +36,18 @@
         margin-bottom: 20px;
         display: flex;
       }
-      .mdc-theme--dark .glyph-row {
-        border-bottom: 1px dotted #777;
-      }
 
       .preview-glyphs {
         display: flex;
         flex-direction: row;
         flex: 1;
         align-items: center;
+        justify-items: center;
+        text-align: center;
       }
 
       .step {
-        display: flex;
         flex-grow: 1;
-        line-height: 0.5;
-        justify-content: center;
-        align-items: center;
       }
     </style>
   </head>
@@ -68,7 +56,7 @@
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__icon--menu"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
           <span class="mdc-toolbar__title catalog-title">Icons</span>
         </section>
@@ -82,34 +70,6 @@
           <br><br>
           <input title="selected icon" type="text" ng-model="iconName">
         </div>
-      </section>
-
-      <section>
-        <fieldset>
-          <legend class="mdc-typography--title">Using mdc-font-icon</legend>
-          <div class="glyph-row" ng-repeat="icon in iconSets[0]">
-            <div class="preview-glyphs" ng-repeat="size in sizes">
-              <mdc-icon mdc-font-icon="{{ icon.name }}"
-                        ng-style="{color: icon.color}"
-                        size="{{ size }}"
-                        class="step"></mdc-icon>
-            </div>
-          </div>
-        </fieldset>
-      </section>
-
-      <section class="mdc-theme--dark">
-        <fieldset>
-          <legend class="mdc-typography--title">Using ng-bind</legend>
-          <div class="glyph-row" ng-repeat="icon in iconSets[1]">
-            <div class="preview-glyphs" ng-repeat="size in sizes">
-              <mdc-icon ng-bind="icon.name"
-                        ng-style="{color: icon.color}"
-                        size="{{ size }}"
-                        class="step"></mdc-icon>
-            </div>
-          </div>
-        </fieldset>
       </section>
 
       <section>
@@ -129,7 +89,7 @@
     <script src="assets/angularjs-mdc.js"></script>
     <script>
       angular.module('demo', ['mdc.icon'])
-        .controller('MainCtrl', ['$scope', 'MDC_ICON_SIZES', function($scope, MDC_ICON_SIZES) {
+        .controller('MainCtrl', ['$scope', function($scope) {
           $scope.name = '';
           $scope.iconSets = [
             [
@@ -143,7 +103,7 @@
               {name: 'share'}, {name: 'check_box', color: 'green'}
             ]
           ];
-          $scope.sizes = MDC_ICON_SIZES.reverse();
+          $scope.sizes = [48, 32, 24, 18];
           $scope.iconName = 'insert_emoticon';
         }]);
     </script>
