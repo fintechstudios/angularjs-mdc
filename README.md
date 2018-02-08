@@ -1,20 +1,12 @@
 # angularjs-mdc  [![CircleCI](https://circleci.com/gh/fintechstudios/angularjs-mdc/tree/master.svg?style=svg)](https://circleci.com/gh/fintechstudios/angularjs-mdc/tree/master)
 AngularJS wrapper for [Material Design Components Web](https://material.io/components/web/)
 
+[Demos](https://fintechstudios.github.io/angularjs-mdc/) - automatically updated with every release
+
 ## Rationale
-
-[angular-material](https://material.angularjs.org/latest/), one of the most popular AngularJS extension packages,
-is a large package with bad performance on many browsers (notably, IE11). Besides this, there are no UX designers
-from the Material Design team assuring that it is consistent with the Material Design spec.
-
-[Material Design Components Web](https://material.io/components/web/) (the successor to Material Design Lite) is 
-maintained in tandem by Google engineers & designers, provides a much smaller deliverable, and performs better
-and more consistently across all modern browsers.
 
 This package aims to wrap core MDC functionality in AngularJS components with the primary goal of
 being an easy and suitable replacement for angular-material.
-
-[Demos](https://fintechstudios.github.io/angularjs-mdc/) - automatically updated with every release
 
 ## Building
 
