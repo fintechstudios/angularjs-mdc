@@ -7,7 +7,7 @@ import {BaseComponent} from '../util/base-component';
  *
  * @param {string} [size] - Font-size, suggested 48, 32, 24, or 18. Default: 24
  */
-export class MdcIconController extends BaseComponent {
+export class MDCIconController extends BaseComponent {
   static get name() {
     return 'mdcIcon';
   }
@@ -85,8 +85,8 @@ export class MdcIconController extends BaseComponent {
  */
 angular
   .module('mdc.icon', [])
-  .component(MdcIconController.name, {
-    controller: MdcIconController,
-    bindings: MdcIconController.bindings,
-    require: MdcIconController.require,
+  .component(MDCIconController.name, {
+    controller: MDCIconController,
+    bindings: MDCIconController.bindings,
+    require: MDCIconController.require,
   });

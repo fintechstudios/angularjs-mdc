@@ -1,4 +1,4 @@
-import {MdcFormFieldController} from './component';
+import {MDCFormFieldController} from './component';
 
 require('angular-debounce');
 
@@ -12,7 +12,7 @@ require('angular-debounce');
  */
 angular
   .module('mdc.form-field', ['rt.debounce'])
-  .component(MdcFormFieldController.name, {
-    controller: MdcFormFieldController,
-    bindings: MdcFormFieldController.bindings,
+  .component(MDCFormFieldController.name, {
+    controller: MDCFormFieldController,
+    bindings: MDCFormFieldController.bindings,
   });

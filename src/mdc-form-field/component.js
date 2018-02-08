@@ -11,7 +11,7 @@ export const name = 'mdcFormField';
  *
  * @param {expression} [alignEnd] T/F align the form element after the label
  */
-export class MdcFormFieldController extends BaseComponent {
+export class MDCFormFieldController extends BaseComponent {
   static get name() {
     return name;
   }

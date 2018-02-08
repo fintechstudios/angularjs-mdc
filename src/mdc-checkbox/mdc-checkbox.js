@@ -17,7 +17,7 @@ import template from './mdc-checkbox.html';
  * @param {bool} [indeterminate] - whether the checkbox is in indeterminate state
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  */
-export class MdcCheckboxController extends IsFormFieldChild(BaseComponent) {
+export class MDCCheckboxController extends IsFormFieldChild(BaseComponent) {
   static get name() {
     return 'mdcCheckbox';
   }
@@ -75,9 +75,9 @@ export class MdcCheckboxController extends IsFormFieldChild(BaseComponent) {
  */
 angular
   .module('mdc.checkbox', [])
-  .component(MdcCheckboxController.name, {
-    controller: MdcCheckboxController,
-    template: MdcCheckboxController.template,
-    bindings: MdcCheckboxController.bindings,
-    require: MdcCheckboxController.require,
+  .component(MDCCheckboxController.name, {
+    controller: MDCCheckboxController,
+    template: MDCCheckboxController.template,
+    bindings: MDCCheckboxController.bindings,
+    require: MDCCheckboxController.require,
   });

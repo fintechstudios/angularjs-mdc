@@ -35,7 +35,7 @@ bindings['ngModel'] = '<?';
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  *
  */
-export class MdcIconToggleController extends BaseComponent {
+export class MDCIconToggleController extends BaseComponent {
   static get require() {
     return {
       ngModelCtrl: '?ngModel',
@@ -170,8 +170,8 @@ export class MdcIconToggleController extends BaseComponent {
 
 angular
   .module('mdc.icon-toggle', [])
-  .component(MdcIconToggleController.name, {
-    bindings: MdcIconToggleController.bindings,
-    require: MdcIconToggleController.require,
-    controller: MdcIconToggleController,
+  .component(MDCIconToggleController.name, {
+    bindings: MDCIconToggleController.bindings,
+    require: MDCIconToggleController.require,
+    controller: MDCIconToggleController,
   });

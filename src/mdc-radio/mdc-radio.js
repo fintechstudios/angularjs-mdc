@@ -19,7 +19,7 @@ import template from './mdc-radio.html';
  * @param {expression} [ngDisabled] Enable/Disable based on the expression
  *
  */
-class MdcRadioController extends IsFormFieldChild(BaseComponent) {
+class MDCRadioController extends IsFormFieldChild(BaseComponent) {
   static get name() {
     return 'mdcRadio';
   }
@@ -73,9 +73,9 @@ class MdcRadioController extends IsFormFieldChild(BaseComponent) {
  */
 angular
   .module('mdc.radio', [])
-  .component(MdcRadioController.name, {
-    controller: MdcRadioController,
-    bindings: MdcRadioController.bindings,
-    require: MdcRadioController.require,
-    template: MdcRadioController.template,
+  .component(MDCRadioController.name, {
+    controller: MDCRadioController,
+    bindings: MDCRadioController.bindings,
+    require: MDCRadioController.require,
+    template: MDCRadioController.template,
   });
