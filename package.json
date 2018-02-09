@@ -31,7 +31,7 @@
     "angular": ">=1.5 <1.7"
   },
   "devDependencies": {
-    "angular": "^1.6.5",
+    "angular": "^1.6.9",
     "angular-debounce": "^1.1.0",
     "angular-mocks": "^1.6.5",
     "autoprefixer": "^7.2.5",
