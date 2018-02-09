@@ -80,7 +80,7 @@ describe('mdc-menu-toggle', () => {
     $scope = _$rootScope_.$new();
   }));
 
-  it('should open mdc-simple-menu with the given id when an id is specified', () => {
+  it('should open mdc-menu with the given id when an id is specified', () => {
     const parent = angular.element('<div></div>');
     const toggle = angular.element('<div mdc-menu-toggle="testMenu"></div>');
     const menu1 = angular.element('<mdc-menu id="testMenu"></mdc-menu>');
@@ -98,5 +98,22 @@ describe('mdc-menu-toggle', () => {
     toggle.triggerHandler('click');
     expect(menu1.hasClass('mdc-menu--animating-open')).to.be.true;
     expect(menu2.hasClass('mdc-menu--animating-open')).to.be.false;
+  });
+
+  it('should open mdc-menu when inside mdc-menu-anchor', () => {
+    const parent = angular.element('<div mdc-menu-anchor></div>');
+    const toggle = angular.element('<div mdc-menu-toggle></div>');
+    const menu = angular.element('<mdc-menu></mdc-menu>');
+
+    parent.append(toggle);
+    parent.append(menu);
+    $compile(parent)($scope);
+
+    $scope.$digest();
+
+    expect(menu.hasClass('mdc-menu--animating-open')).to.be.false;
+
+    toggle.triggerHandler('click');
+    expect(menu.hasClass('mdc-menu--animating-open')).to.be.true;
   });
 });
