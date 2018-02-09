@@ -1,3 +1,9 @@
+<a name="0.3.3"></a>
+# [0.3.3](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.0....v0.3.3) (2018-02-09)
+
+### Features
+* **menu**: mdc-menu-toggle no longer needs an id when nested in mdc-menu-anchor ([#22](https://github.com/fintechstudios/angularjs-mdc/pull/22))
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.2.9....v0.3.0) (2018-02-09)
 

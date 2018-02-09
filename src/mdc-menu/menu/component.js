@@ -19,7 +19,7 @@ function convertToCornerProperty(anchorFrom) {
  * @name mdcMenu
  * @module mdc.menu
  *
- * @param {string} id - Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
+ * @param {string} [id] - Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
  * @param {boolean} [open] - Whether the menu is currently opened or closed
  * @param {boolean} [rememberSelection] - whether to remember that an item is selected
  * @param {boolean} [quickOpen] - whether to disable open animation
@@ -69,6 +69,17 @@ export class MDCMenuController extends BaseComponent {
     this.itemControllers = [];
   }
 
+  set mdcMenuAnchorCtrl(anchor) {
+    this.mdcMenuAnchorCtrl_ = anchor;
+    if (anchor) {
+      anchor.bindMenu(this);
+    }
+  }
+
+  get mdcMenuAnchorCtrl() {
+    return this.mdcMenuAnchorCtrl_;
+  }
+
   $postLink() {
     if (!this.$element.attr('tabindex') && Number(this.$element.attr('tabindex')) !== 0) {
       this.$element.attr('tabindex', -1);
@@ -108,6 +119,10 @@ export class MDCMenuController extends BaseComponent {
   }
 
   $onDestroy() {
+    if (this.mdcMenuAnchorCtrl) {
+      this.mdcMenuAnchorCtrl.bindMenu(null);
+    }
+
     if (this.stopListening) {
       this.stopListening();
     }
