@@ -26,4 +26,14 @@ export class MDCMenuAnchorController extends BaseComponent {
   getDimensions() {
     return this.$element[0].getBoundingClientRect();
   }
+
+  bindMenu(menu) {
+    this.menu = menu;
+  }
+
+  toggleMenu() {
+    if (this.menu) {
+      this.menu.toggle();
+    }
+  }
 }
