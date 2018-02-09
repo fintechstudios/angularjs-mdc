@@ -87,7 +87,7 @@ exports.BaseComponent = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _bindInjections = __webpack_require__(18);
+var _bindInjections = __webpack_require__(17);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -432,7 +432,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(19);
+var _adapter = __webpack_require__(18);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -1597,7 +1597,7 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _arrayUnion = __webpack_require__(4);
 
-var _component = __webpack_require__(20);
+var _component = __webpack_require__(19);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1683,87 +1683,6 @@ var IsFormFieldChild = exports.IsFormFieldChild = function IsFormFieldChild(Base
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MDCMenuAnchorController = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _baseComponent = __webpack_require__(0);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * @ngdoc directive
- * @name mdcMenuAnchor
- * @restrict AEC
- * @module mdc.menu
- * @description If this is the parent of mdcMenu, the menu will bind to it.
- */
-var MDCMenuAnchorController = exports.MDCMenuAnchorController = function (_BaseComponent) {
-  _inherits(MDCMenuAnchorController, _BaseComponent);
-
-  _createClass(MDCMenuAnchorController, null, [{
-    key: 'name',
-    get: function get() {
-      return 'mdcMenuAnchor';
-    }
-  }, {
-    key: '$inject',
-    get: function get() {
-      return ['$element'];
-    }
-  }]);
-
-  function MDCMenuAnchorController() {
-    var _ref;
-
-    _classCallCheck(this, MDCMenuAnchorController);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    var _this = _possibleConstructorReturn(this, (_ref = MDCMenuAnchorController.__proto__ || Object.getPrototypeOf(MDCMenuAnchorController)).call.apply(_ref, [this].concat(args)));
-
-    _this.$element.addClass('mdc-menu-anchor');
-    return _this;
-  }
-
-  _createClass(MDCMenuAnchorController, [{
-    key: 'getDimensions',
-    value: function getDimensions() {
-      return this.$element[0].getBoundingClientRect();
-    }
-  }, {
-    key: 'bindMenu',
-    value: function bindMenu(menu) {
-      this.menu = menu;
-    }
-  }, {
-    key: 'toggleMenu',
-    value: function toggleMenu() {
-      if (this.menu) {
-        this.menu.toggle();
-      }
-    }
-  }]);
-
-  return MDCMenuAnchorController;
-}(_baseComponent.BaseComponent);
-
-/***/ }),
-/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1937,7 +1856,7 @@ var MDCLineRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCLineRippleFoundation;
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2127,7 +2046,7 @@ var MDCTextFieldHelperTextFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldHelperTextFoundation;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2279,7 +2198,7 @@ var MDCTextFieldIconFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldIconFoundation;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2430,7 +2349,7 @@ var MDCTextFieldLabelFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldLabelFoundation;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2564,7 +2483,7 @@ var MDCTextFieldOutlineFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldOutlineFoundation;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2628,7 +2547,7 @@ var BindInjections = exports.BindInjections = function () {
 }();
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2809,7 +2728,7 @@ var MDCRippleAdapter = function () {
 exports.default = MDCRippleAdapter;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2937,6 +2856,75 @@ var MDCFormFieldController = exports.MDCFormFieldController = function (_BaseCom
 }(_baseComponent.BaseComponent);
 
 /***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCMenuAnchorController = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _baseComponent = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @ngdoc directive
+ * @name mdcMenuAnchor
+ * @restrict AEC
+ * @module mdc.menu
+ * @description If this is the parent of mdcMenu, the menu will bind to it.
+ */
+var MDCMenuAnchorController = exports.MDCMenuAnchorController = function (_BaseComponent) {
+  _inherits(MDCMenuAnchorController, _BaseComponent);
+
+  _createClass(MDCMenuAnchorController, null, [{
+    key: 'name',
+    get: function get() {
+      return 'mdcMenuAnchor';
+    }
+  }, {
+    key: '$inject',
+    get: function get() {
+      return ['$element'];
+    }
+  }]);
+
+  function MDCMenuAnchorController() {
+    var _ref;
+
+    _classCallCheck(this, MDCMenuAnchorController);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var _this = _possibleConstructorReturn(this, (_ref = MDCMenuAnchorController.__proto__ || Object.getPrototypeOf(MDCMenuAnchorController)).call.apply(_ref, [this].concat(args)));
+
+    _this.$element.addClass('mdc-menu-anchor');
+    return _this;
+  }
+
+  _createClass(MDCMenuAnchorController, [{
+    key: 'getDimensions',
+    value: function getDimensions() {
+      return this.$element[0].getBoundingClientRect();
+    }
+  }]);
+
+  return MDCMenuAnchorController;
+}(_baseComponent.BaseComponent);
+
+/***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2952,7 +2940,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _directive = __webpack_require__(12);
+var _directive = __webpack_require__(20);
 
 var _directive2 = __webpack_require__(22);
 
@@ -2982,7 +2970,7 @@ function convertToCornerProperty(anchorFrom) {
  * @name mdcMenu
  * @module mdc.menu
  *
- * @param {string} [id] - Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
+ * @param {string} id - Specify so that mdcSimpleMenuToggle can be directed to bind to this menu.
  * @param {boolean} [open] - Whether the menu is currently opened or closed
  * @param {boolean} [rememberSelection] - whether to remember that an item is selected
  * @param {boolean} [quickOpen] - whether to disable open animation
@@ -3099,10 +3087,6 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
   }, {
     key: '$onDestroy',
     value: function $onDestroy() {
-      if (this.mdcMenuAnchorCtrl) {
-        this.mdcMenuAnchorCtrl.bindMenu(null);
-      }
-
       if (this.stopListening) {
         this.stopListening();
       }
@@ -3280,17 +3264,6 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
       this.foundation_.isOpen() ? this.hide() : this.show();
     }
   }, {
-    key: 'mdcMenuAnchorCtrl',
-    set: function set(anchor) {
-      this.mdcMenuAnchorCtrl_ = anchor;
-      if (anchor) {
-        anchor.bindMenu(this);
-      }
-    },
-    get: function get() {
-      return this.mdcMenuAnchorCtrl_;
-    }
-  }, {
     key: 'itemsContainer_',
     get: function get() {
       return this.root_.querySelector(_menu.MDCMenuFoundation.strings.ITEMS_SELECTOR);
@@ -3331,8 +3304,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _directive = __webpack_require__(12);
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3348,8 +3319,8 @@ var MDC_MENU_TOGGLE_EVENT = exports.MDC_MENU_TOGGLE_EVENT = 'MDCMenu:toggle';
  * @name mdcMenuToggle
  * @module mdc.menu
  * @restrict AEC
- * @description Binds a click handler to open mdc-menu.
- * Requires menuId to be given as `mdc-menu-toggle="{{ menuId }}" or that it be used within mdc-menu-anchor
+ * @description Binds a click handler to open mdc-simple-menu.
+ * Requires menuId to be given as `mdc-simple-menu-toggle="{{ menuId }}"
  */
 
 var MDCMenuToggleController = exports.MDCMenuToggleController = function (_BaseComponent) {
@@ -3375,13 +3346,6 @@ var MDCMenuToggleController = exports.MDCMenuToggleController = function (_BaseC
     get: function get() {
       return _defineProperty({}, this.name, '@');
     }
-  }, {
-    key: 'require',
-    get: function get() {
-      return {
-        mdcMenuAnchorCtrl: '^^?' + _directive.MDCMenuAnchorController.name
-      };
-    }
   }]);
 
   function MDCMenuToggleController() {
@@ -3396,11 +3360,7 @@ var MDCMenuToggleController = exports.MDCMenuToggleController = function (_BaseC
     var _this = _possibleConstructorReturn(this, (_ref2 = MDCMenuToggleController.__proto__ || Object.getPrototypeOf(MDCMenuToggleController)).call.apply(_ref2, [this].concat(args)));
 
     _this.$element.on('click', function () {
-      if (_this.menuId) {
-        _this.$rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, { id: _this.menuId });
-      } else if (_this.mdcMenuAnchorCtrl) {
-        _this.mdcMenuAnchorCtrl.toggleMenu();
-      }
+      _this.$rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, { id: _this.menuId });
     });
     return _this;
   }
@@ -5463,23 +5423,23 @@ var _createClass = function () { function defineProperties(target, props) { for 
 /* eslint-disable no-unused-vars */
 
 
-var _foundation = __webpack_require__(13);
+var _foundation = __webpack_require__(12);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _foundation3 = __webpack_require__(14);
+var _foundation3 = __webpack_require__(13);
 
 var _foundation4 = _interopRequireDefault(_foundation3);
 
-var _foundation5 = __webpack_require__(15);
+var _foundation5 = __webpack_require__(14);
 
 var _foundation6 = _interopRequireDefault(_foundation5);
 
-var _foundation7 = __webpack_require__(16);
+var _foundation7 = __webpack_require__(15);
 
 var _foundation8 = _interopRequireDefault(_foundation7);
 
-var _foundation9 = __webpack_require__(17);
+var _foundation9 = __webpack_require__(16);
 
 var _foundation10 = _interopRequireDefault(_foundation9);
 
@@ -6380,7 +6340,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(19);
+var _adapter = __webpack_require__(18);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -11032,7 +10992,7 @@ angular.module('mdc.drawer', []);
 "use strict";
 
 
-var _component = __webpack_require__(20);
+var _component = __webpack_require__(19);
 
 __webpack_require__(77);
 
@@ -12949,7 +12909,7 @@ var MDCListItemController = exports.MDCListItemController = function (_BaseCompo
 "use strict";
 
 
-var _directive = __webpack_require__(12);
+var _directive = __webpack_require__(20);
 
 var _component = __webpack_require__(21);
 
@@ -12970,7 +12930,6 @@ angular.module('mdc.menu', []).directive(_directive.MDCMenuAnchorController.name
 }).directive(_directive2.MDCMenuToggleController.name, function () {
   return {
     controller: _directive2.MDCMenuToggleController,
-    require: _directive2.MDCMenuToggleController.require,
     bindToController: _directive2.MDCMenuToggleController.bindings
   };
 }).directive(_component2.MDCMenuItemController.name, function () {
@@ -15968,7 +15927,7 @@ exports.MDCSnackbarService = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _bindInjections = __webpack_require__(18);
+var _bindInjections = __webpack_require__(17);
 
 var _snackbar = __webpack_require__(114);
 
@@ -18933,23 +18892,23 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _adapter = __webpack_require__(36);
 
-var _foundation3 = __webpack_require__(13);
+var _foundation3 = __webpack_require__(12);
 
 var _foundation4 = _interopRequireDefault(_foundation3);
 
-var _foundation5 = __webpack_require__(14);
+var _foundation5 = __webpack_require__(13);
 
 var _foundation6 = _interopRequireDefault(_foundation5);
 
-var _foundation7 = __webpack_require__(15);
+var _foundation7 = __webpack_require__(14);
 
 var _foundation8 = _interopRequireDefault(_foundation7);
 
-var _foundation9 = __webpack_require__(16);
+var _foundation9 = __webpack_require__(15);
 
 var _foundation10 = _interopRequireDefault(_foundation9);
 
-var _foundation11 = __webpack_require__(17);
+var _foundation11 = __webpack_require__(16);
 
 var _foundation12 = _interopRequireDefault(_foundation11);
 
@@ -19487,7 +19446,7 @@ var _adapter = __webpack_require__(37);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(13);
+var _foundation = __webpack_require__(12);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -19632,7 +19591,7 @@ var _adapter = __webpack_require__(38);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(14);
+var _foundation = __webpack_require__(13);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -19755,7 +19714,7 @@ var _adapter = __webpack_require__(39);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(15);
+var _foundation = __webpack_require__(14);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -19872,7 +19831,7 @@ var _adapter = __webpack_require__(40);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(16);
+var _foundation = __webpack_require__(15);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -19988,7 +19947,7 @@ var _adapter = __webpack_require__(41);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(17);
+var _foundation = __webpack_require__(16);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 

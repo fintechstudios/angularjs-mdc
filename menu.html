@@ -108,8 +108,8 @@
 
       <div class="demo-content">
         <div mdc-menu-anchor ng-class="{top: isTop, bottom: !isTop, left: isLeft, right: !isLeft}">
-          <button mdc-button raised="true" mdc-menu-toggle>Reveal Menu</button>
-          <mdc-menu open="isOpen"
+          <button mdc-button raised="true" mdc-menu-toggle="bodyDemo">Reveal Menu</button>
+          <mdc-menu id="bodyDemo" open="isOpen"
                     quick-open="doQuickOpen"
                     remember-selection="doRememberSelection"
                     anchor-margin="{top: margin.top, bottom: margin.bottom, left: margin.left, right: margin.right}"
