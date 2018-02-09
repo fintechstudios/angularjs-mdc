@@ -19,6 +19,7 @@ angular
   })
   .directive(MDCMenuToggleController.name, () => ({
     controller: MDCMenuToggleController,
+    require: MDCMenuToggleController.require,
     bindToController: MDCMenuToggleController.bindings,
   }))
   .directive(MDCMenuItemController.name, () => ({
