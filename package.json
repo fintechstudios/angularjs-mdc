@@ -59,7 +59,7 @@
     "karma-junit-reporter": "^1.2.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "^2.0.3",
+    "karma-webpack": "^2.0.9",
     "material-components-web": "0.30.0",
     "mocha": "^5.0.0",
     "node-sass": "^4.5.3",
