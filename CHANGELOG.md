@@ -1,8 +1,7 @@
-<a name="0.30.0"></a>
-# [0.30.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.29.0...v0.30.0) (2018-02-08)
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.2.9....v0.3.0) (2018-02-09)
 
-Update to support [material-components-web v0.30.0](https://github.com/material-components/material-components-web/tree/v0.30.0)
- (coincidentally the same version).
+Update to support [material-components-web v0.30.0](https://github.com/material-components/material-components-web/tree/v0.30.0).
 
 ### BREAKING CHANGES
 * **button**:
