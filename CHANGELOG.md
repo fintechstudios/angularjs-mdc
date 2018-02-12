@@ -1,3 +1,9 @@
+<a name="0.3.4"></a>
+# [0.3.4](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.3....v0.3.4) (2018-02-12)
+
+### Bug fixes
+* **form-field**: do not depend on $scope to initialize input-id ([#29](https://github.com/fintechstudios/angularjs-mdc/pull/29))
+
 <a name="0.3.3"></a>
 # [0.3.3](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.0....v0.3.3) (2018-02-09)
 
