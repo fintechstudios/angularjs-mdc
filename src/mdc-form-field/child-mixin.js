@@ -1,6 +1,6 @@
 import {arrayUnion} from '../util/array-union';
 
-import {name} from './component';
+import {MDCFormFieldController} from './component';
 
 
 /**
@@ -24,7 +24,7 @@ export const IsFormFieldChild = (Base) => class extends Base {
 
   static get require() {
     return Object.assign({
-      mdcFormFieldCtrl: `^^?${name}`,
+      mdcFormFieldCtrl: `^^?${MDCFormFieldController.name}`,
     }, super.require);
   }
 
@@ -49,7 +49,7 @@ export const IsFormFieldChild = (Base) => class extends Base {
   }
 
   get inputId() {
-    return this._inputId || `--mdc-component-${this.$scope.$id}`;
+    return this._inputId || (this.$scope ? `--mdc-component-${this.$scope.$id}` : '');
   }
 
   $onDestroy() {

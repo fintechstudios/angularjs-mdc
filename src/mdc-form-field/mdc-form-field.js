@@ -1,7 +1,5 @@
 import {MDCFormFieldController} from './component';
 
-require('angular-debounce');
-
 
 /**
  * @ngdoc module
@@ -11,7 +9,7 @@ require('angular-debounce');
  * FormField
  */
 angular
-  .module('mdc.form-field', ['rt.debounce'])
+  .module('mdc.form-field', [])
   .component(MDCFormFieldController.name, {
     controller: MDCFormFieldController,
     bindings: MDCFormFieldController.bindings,
