@@ -2,18 +2,17 @@ import {BaseComponent} from '../util/base-component';
 
 import {MDCFormField} from '@material/form-field';
 
-export const name = 'mdcFormField';
 
 /**
  * @ngdoc component
  * @name mdcFormField
  * @module mdc.form-field
  *
- * @param {expression} [alignEnd] T/F align the form element after the label
+ * @param {boolean} [alignEnd] - whether to align the form element after the label
  */
 export class MDCFormFieldController extends BaseComponent {
   static get name() {
-    return name;
+    return 'mdcFormField';
   }
 
   static get bindings() {
@@ -23,29 +22,26 @@ export class MDCFormFieldController extends BaseComponent {
   }
 
   static get $inject() {
-    return ['$scope', '$element', 'debounce'];
+    return ['$scope', '$element'];
   }
 
   constructor(...args) {
     super(...args);
 
     this.$element.addClass('mdc-form-field');
-    this.observer = new MutationObserver(this.debounce(10, () => this.syncIdToLabel()));
   }
 
   $onChanges(changesObj) {
     if (changesObj.alignEnd) {
-      this.$element.toggleClass('mdc-form-field--align-end', this.alignEnd);
+      this.$element.toggleClass('mdc-form-field--align-end', Boolean(this.alignEnd));
     }
   }
 
   $postLink() {
-    this.observer.observe(this.$element[0], {childList: true});
+    this.syncIdToLabel();
   }
 
   $onDestroy() {
-    this.observer.disconnect();
-
     if (this.mdc) {
       this.mdc.destroy();
     }
