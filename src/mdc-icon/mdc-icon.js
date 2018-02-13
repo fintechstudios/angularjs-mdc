@@ -18,7 +18,6 @@ export class MDCIconController extends BaseComponent {
 
   static get require() {
     return {
-      mdcButtonCtrl: '^^?mdcButton',
       mdcTextFieldCtrl: '^^?mdcTextField',
     };
   }
@@ -44,15 +43,6 @@ export class MDCIconController extends BaseComponent {
 
   $postLink() {
     this.$element.attr('tabindex', this.ngClick ? '0' : '-1');
-  }
-
-  get mdcButtonCtrl() {
-    return this._mdcButtonCtrl;
-  }
-
-  set mdcButtonCtrl(ctrl) {
-    this._mdcButtonCtrl = ctrl;
-    this.$element.toggleClass('mdc-button__icon', Boolean(ctrl));
   }
 
   get mdcTextFieldCtrl() {
