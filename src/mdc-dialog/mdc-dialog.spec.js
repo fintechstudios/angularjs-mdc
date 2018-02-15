@@ -1,6 +1,6 @@
 'use strict';
 
-describe('mdc-dialog', function() {
+describe('mdc-dialog', () => {
   const BASIC_TEMPLATE = '<mdc-dialog>' +
     '<mdc-dialog-body>' +
     '<p>Muppets are the best</p>' +
@@ -8,15 +8,11 @@ describe('mdc-dialog', function() {
     '</mdc-dialog>';
   let $mdcDialog;
   let $rootScope;
-  let $q;
-  let $interval;
 
   beforeEach(angular.mock.module('mdc'));
-  beforeEach(inject(function($injector) {
+  beforeEach(inject(($injector) => {
     $mdcDialog = $injector.get('$mdcDialog');
     $rootScope = $injector.get('$rootScope');
-    $interval = $injector.get('$interval');
-    $q = $injector.get('$q');
   }));
 
   const PRESET_METHODS = {
@@ -60,7 +56,7 @@ describe('mdc-dialog', function() {
         expect(css).to.include('someClass');
         expect(css).to.include('anotherClass');
 
-        const buttons = parent.find('mdc-button');
+        const buttons = parent.find('button');
         expect(buttons.length).to.equal(preset === 'alert' ? 1 : 2);
         const okButton = buttons.eq(preset === 'alert' ? 0 : 1);
         expect(okButton.text().trim()).to.equal('Next');
