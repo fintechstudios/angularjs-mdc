@@ -38,6 +38,7 @@ export class MDCTabController extends MDCRippleMixin(BaseComponent) {
   constructor(...args) {
     super(...args);
 
+    this.$element.addClass('mdc-tab');
     this.root_ = this.$element[0];
     this.added = false;
 
@@ -88,7 +89,7 @@ export class MDCTabController extends MDCRippleMixin(BaseComponent) {
   }
 
   hasMdcText(toggle) {
-    this.$element.toggleClass('mdc-tab--with-icon-and-text', toggle);
+    this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(toggle));
   }
 
   get computedWidth() {
@@ -153,7 +154,7 @@ export class MDCTabController extends MDCRippleMixin(BaseComponent) {
  * @name mdcTabText
  * @module mdc.tabs
  */
-export class MDCTabTextController {
+export class MDCTabTextController extends BaseComponent {
   static get name() {
     return 'mdcTabText';
   }
@@ -162,6 +163,16 @@ export class MDCTabTextController {
     return {
       tab: `^^${MDCTabController.name}`,
     };
+  }
+
+  static get $inject() {
+    return ['$element'];
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.$element.addClass('mdc-tab__icon-text');
   }
 
   $postLink() {

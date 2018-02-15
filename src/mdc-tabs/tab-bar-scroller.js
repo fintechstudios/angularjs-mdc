@@ -32,6 +32,7 @@ export class MDCTabBarScrollerController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
+    this.$element.addClass('mdc-tab-bar-scroller');
     this.root_ = this.$element[0];
     this.initDone_ = false;
     this.$elementReady = false;

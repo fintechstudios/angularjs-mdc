@@ -39,6 +39,7 @@ export class MDCTabBarController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
+    this.$element.addClass('mdc-tab-bar');
     this.root_ = this.$element[0];
     this.selected_ = undefined;
     this.initDone_ = false;
