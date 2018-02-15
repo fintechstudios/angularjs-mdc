@@ -16,11 +16,11 @@
     </label>
   </mdc-dialog-body>
   <mdc-dialog-footer>
-    <mdc-button dialog="cancel" ng-if="dialog.$type === 'confirm' || dialog.$type === 'prompt'">
+    <button mdc-button dialog="cancel" ng-if="dialog.$type === 'confirm' || dialog.$type === 'prompt'">
       {{ dialog.cancel }}
-    </mdc-button>
-    <mdc-button dialog="accept">
+    </button>
+    <button mdc-button dialog="accept">
       {{ dialog.ok }}
-    </mdc-button>
+    </button>
   </mdc-dialog-footer>
 </mdc-dialog>
