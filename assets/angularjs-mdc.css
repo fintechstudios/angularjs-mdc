@@ -5457,7 +5457,7 @@ mdc-divider-inset {
 
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-.mdc-tab, mdc-tab {
+.mdc-tab {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -5490,93 +5490,93 @@ mdc-divider-inset {
   cursor: pointer;
   overflow: hidden;
   vertical-align: middle; }
-  .mdc-tab .mdc-tab__icon, mdc-tab .mdc-tab__icon, .mdc-tab mdc-tab mdc-icon, mdc-tab .mdc-tab mdc-icon, mdc-tab mdc-icon {
+  .mdc-tab .mdc-tab__icon {
     /* @alternate */
     color: rgba(0, 0, 0, 0.54);
     color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.54)); }
-  .mdc-tab::before, mdc-tab::before, .mdc-tab::after, mdc-tab::after {
+  .mdc-tab::before, .mdc-tab::after {
     position: absolute;
     border-radius: 50%;
     opacity: 0;
     pointer-events: none;
     content: ""; }
-  .mdc-tab::before, mdc-tab::before {
+  .mdc-tab::before {
     transition: opacity 15ms linear; }
-  .mdc-tab.mdc-ripple-upgraded::before, mdc-tab.mdc-ripple-upgraded::before {
+  .mdc-tab.mdc-ripple-upgraded::before {
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 1));
             transform: scale(var(--mdc-ripple-fg-scale, 1)); }
-  .mdc-tab.mdc-ripple-upgraded::after, mdc-tab.mdc-ripple-upgraded::after {
+  .mdc-tab.mdc-ripple-upgraded::after {
     top: 0;
     left: 0;
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform-origin: center center;
             transform-origin: center center; }
-  .mdc-tab.mdc-ripple-upgraded--unbounded::after, mdc-tab.mdc-ripple-upgraded--unbounded::after {
+  .mdc-tab.mdc-ripple-upgraded--unbounded::after {
     top: var(--mdc-ripple-top, 0);
     left: var(--mdc-ripple-left, 0); }
-  .mdc-tab.mdc-ripple-upgraded--foreground-activation::after, mdc-tab.mdc-ripple-upgraded--foreground-activation::after {
+  .mdc-tab.mdc-ripple-upgraded--foreground-activation::after {
     -webkit-animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards;
             animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards; }
-  .mdc-tab.mdc-ripple-upgraded--foreground-deactivation::after, mdc-tab.mdc-ripple-upgraded--foreground-deactivation::after {
+  .mdc-tab.mdc-ripple-upgraded--foreground-deactivation::after {
     -webkit-animation: 150ms mdc-ripple-fg-opacity-out;
             animation: 150ms mdc-ripple-fg-opacity-out;
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
             transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); }
-  .mdc-tab::before, mdc-tab::before, .mdc-tab::after, mdc-tab::after {
+  .mdc-tab::before, .mdc-tab::after {
     background-color: black; }
-  .mdc-tab:hover::before, mdc-tab:hover::before {
+  .mdc-tab:hover::before {
     opacity: 0.04; }
-  .mdc-tab:not(.mdc-ripple-upgraded):focus::before, mdc-tab:not(.mdc-ripple-upgraded):focus::before, .mdc-tab.mdc-ripple-upgraded--background-focused::before, mdc-tab.mdc-ripple-upgraded--background-focused::before {
+  .mdc-tab:not(.mdc-ripple-upgraded):focus::before, .mdc-tab.mdc-ripple-upgraded--background-focused::before {
     transition-duration: 75ms;
     opacity: 0.12; }
-  .mdc-tab:not(.mdc-ripple-upgraded)::after, mdc-tab:not(.mdc-ripple-upgraded)::after {
+  .mdc-tab:not(.mdc-ripple-upgraded)::after {
     transition: opacity 150ms linear; }
-  .mdc-tab:not(.mdc-ripple-upgraded):active::after, mdc-tab:not(.mdc-ripple-upgraded):active::after {
+  .mdc-tab:not(.mdc-ripple-upgraded):active::after {
     transition-duration: 75ms;
     opacity: 0.16; }
-  .mdc-tab.mdc-ripple-upgraded, mdc-tab.mdc-ripple-upgraded {
+  .mdc-tab.mdc-ripple-upgraded {
     --mdc-ripple-fg-opacity: 0.16; }
-  .mdc-tab::before, mdc-tab::before, .mdc-tab::after, mdc-tab::after {
+  .mdc-tab::before, .mdc-tab::after {
     top: calc(50% - 100%);
     left: calc(50% - 100%);
     width: 200%;
     height: 200%; }
-  .mdc-tab.mdc-ripple-upgraded::after, mdc-tab.mdc-ripple-upgraded::after {
+  .mdc-tab.mdc-ripple-upgraded::after {
     width: var(--mdc-ripple-fg-size, 100%);
     height: var(--mdc-ripple-fg-size, 100%); }
-  .mdc-tab:hover, mdc-tab:hover {
+  .mdc-tab:hover {
     /* @alternate */
     color: rgba(0, 0, 0, 0.87);
     color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)); }
-    .mdc-tab:hover .mdc-tab__icon, mdc-tab:hover .mdc-tab__icon, .mdc-tab:hover mdc-tab mdc-icon, mdc-tab .mdc-tab:hover mdc-icon, mdc-tab:hover mdc-icon {
+    .mdc-tab:hover .mdc-tab__icon {
       /* @alternate */
       color: rgba(0, 0, 0, 0.87);
       color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)); }
-  .mdc-tab:focus, mdc-tab:focus {
+  .mdc-tab:focus {
     outline: none; }
   @media screen and (max-width: 600px) {
-    .mdc-tab, mdc-tab {
+    .mdc-tab {
       min-width: 72px;
       padding: 0 12px; } }
-  .mdc-tab__icon, mdc-tab mdc-icon {
+  .mdc-tab__icon {
     display: block;
     margin: 0 auto;
     width: 24px;
     height: 24px; }
-    .mdc-tab-bar--icons-with-text .mdc-tab__icon, .mdc-tab-bar--icons-with-text mdc-tab mdc-icon, mdc-tab .mdc-tab-bar--icons-with-text mdc-icon {
+    .mdc-tab-bar--icons-with-text .mdc-tab__icon {
       margin-top: 4px; }
-  .mdc-tab__icon-text, mdc-tab-text {
+  .mdc-tab__icon-text {
     display: block;
     margin: 0 auto; }
-  .mdc-tab__icon + .mdc-tab__icon-text, mdc-tab mdc-icon + .mdc-tab__icon-text, .mdc-tab__icon + mdc-tab-text, mdc-tab mdc-icon + mdc-tab-text {
+  .mdc-tab__icon + .mdc-tab__icon-text {
     padding-top: 6px; }
 
 .mdc-tab--active {
   /* @alternate */
   color: rgba(0, 0, 0, 0.87);
   color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)); }
-  .mdc-tab--active .mdc-tab__icon, .mdc-tab--active mdc-tab mdc-icon, mdc-tab .mdc-tab--active mdc-icon {
+  .mdc-tab--active .mdc-tab__icon {
     /* @alternate */
     color: rgba(0, 0, 0, 0.87);
     color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)); }
@@ -5594,19 +5594,16 @@ mdc-divider-inset {
   left: 2px;
   width: calc(100% - 4px); }
 
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active .mdc-tab__indicator,
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:hover .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:hover .mdc-tab__indicator,
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:hover .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:hover .mdc-tab__indicator,
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:active .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:active .mdc-tab__indicator,
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:active .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:active .mdc-tab__indicator {
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active .mdc-tab__indicator,
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:hover .mdc-tab__indicator,
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:active .mdc-tab__indicator {
   visibility: visible; }
 
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):hover .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):hover .mdc-tab__indicator, .mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):hover .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):hover .mdc-tab__indicator {
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):hover .mdc-tab__indicator {
   opacity: .38; }
 
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active,
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):active .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):active .mdc-tab__indicator,
-.mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):active .mdc-tab__indicator, mdc-tab-bar:not(.mdc-tab-bar-upgraded) mdc-tab:not(.mdc-tab--active):active .mdc-tab__indicator {
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab--active,
+.mdc-tab-bar:not(.mdc-tab-bar-upgraded) .mdc-tab:not(.mdc-tab--active):active .mdc-tab__indicator {
   opacity: .87; }
 
 /**
@@ -5765,7 +5762,7 @@ mdc-divider-inset {
   background-color: rgba(0, 0, 0, 0.87);
   background-color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)); }
 
-.mdc-tab-bar, mdc-tab-bar {
+.mdc-tab-bar {
   display: table;
   position: relative;
   height: 48px;
@@ -5943,7 +5940,7 @@ mdc-divider-inset {
  * ```
  * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
  */
-.mdc-tab-bar-scroller, mdc-tab-bar-scroller {
+.mdc-tab-bar-scroller {
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -5981,9 +5978,8 @@ mdc-divider-inset {
       cursor: inherit; }
       .mdc-tab-bar-scroller__indicator__inner:focus {
         outline-color: inherit; }
-      .mdc-tab-bar-scroller[dir="rtl"] .mdc-tab-bar-scroller__indicator__inner, mdc-tab-bar-scroller[dir="rtl"] .mdc-tab-bar-scroller__indicator__inner,
-      [dir="rtl"] .mdc-tab-bar-scroller .mdc-tab-bar-scroller__indicator__inner,
-      [dir="rtl"] mdc-tab-bar-scroller .mdc-tab-bar-scroller__indicator__inner {
+      .mdc-tab-bar-scroller[dir="rtl"] .mdc-tab-bar-scroller__indicator__inner,
+      [dir="rtl"] .mdc-tab-bar-scroller .mdc-tab-bar-scroller__indicator__inner {
         -webkit-transform: rotate(180deg);
                 transform: rotate(180deg); }
     .mdc-tab-bar-scroller__indicator__inner:hover {
