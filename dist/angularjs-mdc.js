@@ -7,7 +7,7 @@
 		exports["angularjs-mdc"] = factory();
 	else
 		root["angularjs-mdc"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -4207,6 +4207,7 @@ var MDCTabBarController = exports.MDCTabBarController = function (_BaseComponent
 
     var _this = _possibleConstructorReturn(this, (_ref = MDCTabBarController.__proto__ || Object.getPrototypeOf(MDCTabBarController)).call.apply(_ref, [this].concat(args)));
 
+    _this.$element.addClass('mdc-tab-bar');
     _this.root_ = _this.$element[0];
     _this.selected_ = undefined;
     _this.initDone_ = false;
@@ -4562,6 +4563,7 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
 
     var _this = _possibleConstructorReturn(this, (_ref = MDCTabBarScrollerController.__proto__ || Object.getPrototypeOf(MDCTabBarScrollerController)).call.apply(_ref, [this].concat(args)));
 
+    _this.$element.addClass('mdc-tab-bar-scroller');
     _this.root_ = _this.$element[0];
     _this.initDone_ = false;
     _this.$elementReady = false;
@@ -9871,7 +9873,7 @@ function createIsUnavailable(elementDocument) {
 /* 70 */
 /***/ (function(module, exports) {
 
-module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=\"mdc-dialog-title\"\n            aria-describedby=\"mdc-dialog-body\"\n            ng-class=\"dialog.css\">\n  <mdc-dialog-header>\n    <mdc-dialog-title id=\"mdc-dialog-title\">{{ dialog.title }}</mdc-dialog-title>\n  </mdc-dialog-header>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::dialog.mdcHtmlContent\" ng-bind-html=\"::dialog.mdcHtmlContent\">\n  </mdc-dialog-body>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::!dialog.mdcHtmlContent\">\n    <span ng-if=\"::dialog.mdcTextContent\">{{::dialog.mdcTextContent}}</span>\n    <label ng-if=\"::dialog.$type == 'prompt'\">\n      <input ng-keypress=\"dialog.keypress($event)\" ng-model=\"dialog.result\" placeholder=\"{{::dialog.placeholder}}\">\n    </label>\n  </mdc-dialog-body>\n  <mdc-dialog-footer>\n    <mdc-button dialog=\"cancel\" ng-if=\"dialog.$type === 'confirm' || dialog.$type === 'prompt'\">\n      {{ dialog.cancel }}\n    </mdc-button>\n    <mdc-button dialog=\"accept\">\n      {{ dialog.ok }}\n    </mdc-button>\n  </mdc-dialog-footer>\n</mdc-dialog>\n";
+module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=\"mdc-dialog-title\"\n            aria-describedby=\"mdc-dialog-body\"\n            ng-class=\"dialog.css\">\n  <mdc-dialog-header>\n    <mdc-dialog-title id=\"mdc-dialog-title\">{{ dialog.title }}</mdc-dialog-title>\n  </mdc-dialog-header>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::dialog.mdcHtmlContent\" ng-bind-html=\"::dialog.mdcHtmlContent\">\n  </mdc-dialog-body>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::!dialog.mdcHtmlContent\">\n    <span ng-if=\"::dialog.mdcTextContent\">{{::dialog.mdcTextContent}}</span>\n    <label ng-if=\"::dialog.$type == 'prompt'\">\n      <input ng-keypress=\"dialog.keypress($event)\" ng-model=\"dialog.result\" placeholder=\"{{::dialog.placeholder}}\">\n    </label>\n  </mdc-dialog-body>\n  <mdc-dialog-footer>\n    <button mdc-button dialog=\"cancel\" ng-if=\"dialog.$type === 'confirm' || dialog.$type === 'prompt'\">\n      {{ dialog.cancel }}\n    </button>\n    <button mdc-button dialog=\"accept\">\n      {{ dialog.ok }}\n    </button>\n  </mdc-dialog-footer>\n</mdc-dialog>\n";
 
 /***/ }),
 /* 71 */
@@ -11503,7 +11505,6 @@ var MDCIconController = exports.MDCIconController = function (_BaseComponent) {
     key: 'require',
     get: function get() {
       return {
-        mdcButtonCtrl: '^^?mdcButton',
         mdcTextFieldCtrl: '^^?mdcTextField'
       };
     }
@@ -11550,15 +11551,6 @@ var MDCIconController = exports.MDCIconController = function (_BaseComponent) {
       if (this.mdcTextFieldCtrl) {
         this.mdcTextFieldCtrl.toggleIconCtrl(this, false);
       }
-    }
-  }, {
-    key: 'mdcButtonCtrl',
-    get: function get() {
-      return this._mdcButtonCtrl;
-    },
-    set: function set(ctrl) {
-      this._mdcButtonCtrl = ctrl;
-      this.$element.toggleClass('mdc-button__icon', Boolean(ctrl));
     }
   }, {
     key: 'mdcTextFieldCtrl',
@@ -17685,6 +17677,7 @@ var MDCTabController = exports.MDCTabController = function (_MDCRippleMixin) {
 
     var _this = _possibleConstructorReturn(this, (_ref = MDCTabController.__proto__ || Object.getPrototypeOf(MDCTabController)).call.apply(_ref, [this].concat(args)));
 
+    _this.$element.addClass('mdc-tab');
     _this.root_ = _this.$element[0];
     _this.added = false;
 
@@ -17742,7 +17735,7 @@ var MDCTabController = exports.MDCTabController = function (_MDCRippleMixin) {
   }, {
     key: 'hasMdcText',
     value: function hasMdcText(toggle) {
-      this.$element.toggleClass('mdc-tab--with-icon-and-text', toggle);
+      this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(toggle));
     }
   }, {
     key: 'handleClick',
@@ -17835,9 +17828,41 @@ var MDCTabController = exports.MDCTabController = function (_MDCRippleMixin) {
  */
 
 
-var MDCTabTextController = exports.MDCTabTextController = function () {
+var MDCTabTextController = exports.MDCTabTextController = function (_BaseComponent) {
+  _inherits(MDCTabTextController, _BaseComponent);
+
+  _createClass(MDCTabTextController, null, [{
+    key: 'name',
+    get: function get() {
+      return 'mdcTabText';
+    }
+  }, {
+    key: 'require',
+    get: function get() {
+      return {
+        tab: '^^' + MDCTabController.name
+      };
+    }
+  }, {
+    key: '$inject',
+    get: function get() {
+      return ['$element'];
+    }
+  }]);
+
   function MDCTabTextController() {
+    var _ref2;
+
     _classCallCheck(this, MDCTabTextController);
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    var _this3 = _possibleConstructorReturn(this, (_ref2 = MDCTabTextController.__proto__ || Object.getPrototypeOf(MDCTabTextController)).call.apply(_ref2, [this].concat(args)));
+
+    _this3.$element.addClass('mdc-tab__icon-text');
+    return _this3;
   }
 
   _createClass(MDCTabTextController, [{
@@ -17850,22 +17875,10 @@ var MDCTabTextController = exports.MDCTabTextController = function () {
     value: function $onDestroy() {
       this.tab.hasMdcText(false);
     }
-  }], [{
-    key: 'name',
-    get: function get() {
-      return 'mdcTabText';
-    }
-  }, {
-    key: 'require',
-    get: function get() {
-      return {
-        tab: '^^' + MDCTabController.name
-      };
-    }
   }]);
 
   return MDCTabTextController;
-}();
+}(_baseComponent.BaseComponent);
 
 /***/ }),
 /* 127 */

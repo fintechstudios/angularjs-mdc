@@ -1,6 +1,6 @@
 {
   "name": "@fintechstudios/angularjs-mdc",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Material Design Components Web for AngularJS",
   "main": "./dist/index",
   "scripts": {
