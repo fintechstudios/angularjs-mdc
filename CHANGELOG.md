@@ -1,3 +1,11 @@
+<a name="0.3.5"></a>
+# [0.3.5](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.4....v0.3.5) (2018-02-15)
+
+### Bug fixes
+* **dialog**: use mdc-button directive in default templates
+* **icon**: no longer auto-applies styles when nested inside button
+* **tabs**: bind classes to components instead of relying on scss
+
 <a name="0.3.4"></a>
 # [0.3.4](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.3....v0.3.4) (2018-02-12)
 
