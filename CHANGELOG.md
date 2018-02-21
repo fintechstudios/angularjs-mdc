@@ -1,3 +1,16 @@
+<a name="0.3.6"></a>
+# [0.3.5](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.5....v0.3.6) (2018-02-15)
+
+### Bug fixes
+* **select**: properly floats label on init
+* **ripple**: properly layout ripples with default computeBoundingRect
+
+### Code Refactoring
+* **select**: match [material-components-web#2244](https://github.com/material-components/material-components-web/pull/2244)
+
+### Features
+* **mdc**: Update to [material-components-web@0.31.0](https://github.com/material-components/material-components-web/compare/v0.30.0...v0.31.0)
+
 <a name="0.3.5"></a>
 # [0.3.5](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.4....v0.3.5) (2018-02-15)
 
