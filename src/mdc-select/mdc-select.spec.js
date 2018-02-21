@@ -68,6 +68,28 @@ describe('mdc-select', () => {
         expect(option.getAttribute('aria-selected')).to.not.exist;
       });
   });
+
+  it('if initialized without value, should not have floated label', () => {
+    const select = getMockSelect({ngModel: 'selected'});
+
+    return new Promise((resolve) => select.$element.ready(() => resolve()))
+      .then(() => {
+        const label = select.$element[0].querySelector('.mdc-select__label');
+
+        expect(label.classList.contains('mdc-select__label--float-above')).to.be.false;
+      });
+  });
+
+  it('if initialized with value, should have floated label', () => {
+    const select = getMockSelect({ngModel: 'selected'}, {selected: 'one'});
+
+    return new Promise((resolve) => select.$element.ready(() => resolve()))
+      .then(() => {
+        const label = select.$element[0].querySelector('.mdc-select__label');
+
+        expect(label.classList.contains('mdc-select__label--float-above')).to.be.true;
+      });
+  });
 });
 
 describe('mdc-select-item', () => {

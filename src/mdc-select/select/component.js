@@ -3,8 +3,8 @@ import {MDCComponentNg} from '../../mdc-base/component-ng';
 import {MDCRippleMixin} from '../../mdc-ripple/mixin';
 
 import {MDCMenu} from '@material/menu';
-
 import {MDCSelectFoundation} from '@material/select';
+import {MDCSelectLabel} from '@material/select/label';
 
 import template from './mdc-select.html';
 
@@ -135,9 +135,12 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
     return null;
   }
 
-  initialize(menuFactory = (el) => new MDCMenu(el)) {
+  initialize(menuFactory = (el) => new MDCMenu(el), labelFactory = (el) => new MDCSelectLabel(el)) {
     this.surface_ = this.root_.querySelector(MDCSelectFoundation.strings.SURFACE_SELECTOR);
-    this.label_ = this.root_.querySelector(MDCSelectFoundation.strings.LABEL_SELECTOR);
+    const labelElement = this.root_.querySelector(MDCSelectFoundation.strings.LABEL_SELECTOR);
+    if (labelElement) {
+      this.label_ = labelFactory(labelElement);
+    }
     this.bottomLine_ = this.root_.querySelector(MDCSelectFoundation.strings.BOTTOM_LINE_SELECTOR);
     this.selectedText_ = this.root_.querySelector(MDCSelectFoundation.strings.SELECTED_TEXT_SELECTOR);
     this.menuEl_ = this.root_.querySelector(MDCSelectFoundation.strings.MENU_SELECTOR);
@@ -148,8 +151,11 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
     return new MDCSelectFoundation({
       addClass: (className) => this.root_.classList.add(className),
       removeClass: (className) => this.root_.classList.remove(className),
-      addClassToLabel: (className) => this.label_.classList.add(className),
-      removeClassFromLabel: (className) => this.label_.classList.remove(className),
+      floatLabel: (value) => {
+        if (this.label_) {
+          this.label_.float(value);
+        }
+      },
       addClassToBottomLine: (className) => this.bottomLine_.classList.add(className),
       removeClassFromBottomLine: (className) => this.bottomLine_.classList.remove(className),
       setBottomLineAttr: (attr, value) => this.bottomLine_.setAttribute(attr, value),
@@ -221,6 +227,11 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
         });
 
         this.selectedIndex = selectedCtrl ? this.options.indexOf(selectedCtrl.$element[0]) : -1;
+
+        // todo: remove when https://github.com/material-components/material-components-web/pull/2283 is merged
+        if (this.selectedIndex > -1 && this.label_) {
+          this.label_.float(true);
+        }
       };
 
       this.ngModelCtrl_.$render();
