@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 43);
+/******/ 	return __webpack_require__(__webpack_require__.s = 45);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -436,7 +436,7 @@ var _adapter = __webpack_require__(19);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(47);
+var _foundation = __webpack_require__(49);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -1261,7 +1261,7 @@ var _component2 = _interopRequireDefault(_component);
 
 var _util = __webpack_require__(23);
 
-var _foundation = __webpack_require__(93);
+var _foundation = __webpack_require__(95);
 
 var _constants = __webpack_require__(24);
 
@@ -1781,11 +1781,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(37);
+var _adapter = __webpack_require__(39);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(130);
+var _constants = __webpack_require__(134);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1955,11 +1955,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(38);
+var _adapter = __webpack_require__(40);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(131);
+var _constants = __webpack_require__(135);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2145,11 +2145,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(39);
+var _adapter = __webpack_require__(41);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(132);
+var _constants = __webpack_require__(136);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2297,11 +2297,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(40);
+var _adapter = __webpack_require__(42);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(133);
+var _constants = __webpack_require__(137);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2448,11 +2448,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(41);
+var _adapter = __webpack_require__(43);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(42);
+var _constants = __webpack_require__(44);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2577,7 +2577,7 @@ exports.BindInjections = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _has = __webpack_require__(46);
+var _has = __webpack_require__(48);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2824,7 +2824,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _formField = __webpack_require__(50);
+var _formField = __webpack_require__(52);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2952,7 +2952,7 @@ var _menu = __webpack_require__(10);
 
 var _util = __webpack_require__(23);
 
-var _mdcMenu = __webpack_require__(95);
+var _mdcMenu = __webpack_require__(97);
 
 var _mdcMenu2 = _interopRequireDefault(_mdcMenu);
 
@@ -3689,15 +3689,17 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _arrayUnion = __webpack_require__(4);
 
-var _componentNg = __webpack_require__(106);
+var _componentNg = __webpack_require__(108);
 
 var _mixin = __webpack_require__(8);
 
 var _menu = __webpack_require__(10);
 
-var _select = __webpack_require__(107);
+var _select = __webpack_require__(109);
 
-var _mdcSelect = __webpack_require__(109);
+var _label = __webpack_require__(26);
+
+var _mdcSelect = __webpack_require__(113);
 
 var _mdcSelect2 = _interopRequireDefault(_mdcSelect);
 
@@ -3839,9 +3841,15 @@ var MDCSelectController = exports.MDCSelectController = function (_MDCRippleMixi
       var menuFactory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (el) {
         return new _menu.MDCMenu(el);
       };
+      var labelFactory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (el) {
+        return new _label.MDCSelectLabel(el);
+      };
 
       this.surface_ = this.root_.querySelector(_select.MDCSelectFoundation.strings.SURFACE_SELECTOR);
-      this.label_ = this.root_.querySelector(_select.MDCSelectFoundation.strings.LABEL_SELECTOR);
+      var labelElement = this.root_.querySelector(_select.MDCSelectFoundation.strings.LABEL_SELECTOR);
+      if (labelElement) {
+        this.label_ = labelFactory(labelElement);
+      }
       this.bottomLine_ = this.root_.querySelector(_select.MDCSelectFoundation.strings.BOTTOM_LINE_SELECTOR);
       this.selectedText_ = this.root_.querySelector(_select.MDCSelectFoundation.strings.SELECTED_TEXT_SELECTOR);
       this.menuEl_ = this.root_.querySelector(_select.MDCSelectFoundation.strings.MENU_SELECTOR);
@@ -3859,11 +3867,10 @@ var MDCSelectController = exports.MDCSelectController = function (_MDCRippleMixi
         removeClass: function removeClass(className) {
           return _this2.root_.classList.remove(className);
         },
-        addClassToLabel: function addClassToLabel(className) {
-          return _this2.label_.classList.add(className);
-        },
-        removeClassFromLabel: function removeClassFromLabel(className) {
-          return _this2.label_.classList.remove(className);
+        floatLabel: function floatLabel(value) {
+          if (_this2.label_) {
+            _this2.label_.float(value);
+          }
         },
         addClassToBottomLine: function addClassToBottomLine(className) {
           return _this2.bottomLine_.classList.add(className);
@@ -3994,6 +4001,11 @@ var MDCSelectController = exports.MDCSelectController = function (_MDCRippleMixi
           });
 
           _this3.selectedIndex = selectedCtrl ? _this3.options.indexOf(selectedCtrl.$element[0]) : -1;
+
+          // todo: remove when https://github.com/material-components/material-components-web/pull/2283 is merged
+          if (_this3.selectedIndex > -1 && _this3.label_) {
+            _this3.label_.float(true);
+          }
         };
 
         this.ngModelCtrl_.$render();
@@ -4049,6 +4061,191 @@ var MDCSelectController = exports.MDCSelectController = function (_MDCRippleMixi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.MDCSelectLabelFoundation = exports.MDCSelectLabel = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _component = __webpack_require__(2);
+
+var _component2 = _interopRequireDefault(_component);
+
+var _adapter = __webpack_require__(27);
+
+var _adapter2 = _interopRequireDefault(_adapter);
+
+var _foundation = __webpack_require__(110);
+
+var _foundation2 = _interopRequireDefault(_foundation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright 2016 Google Inc. All Rights Reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * you may not use this file except in compliance with the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may obtain a copy of the License at
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Unless required by applicable law or agreed to in writing, software
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * See the License for the specific language governing permissions and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * limitations under the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+ * @extends {MDCComponent<!MDCSelectLabelFoundation>}
+ * @final
+ */
+var MDCSelectLabel = function (_MDCComponent) {
+  _inherits(MDCSelectLabel, _MDCComponent);
+
+  function MDCSelectLabel() {
+    _classCallCheck(this, MDCSelectLabel);
+
+    return _possibleConstructorReturn(this, (MDCSelectLabel.__proto__ || Object.getPrototypeOf(MDCSelectLabel)).apply(this, arguments));
+  }
+
+  _createClass(MDCSelectLabel, [{
+    key: 'float',
+
+
+    /**
+     * Styles the label to float or defloat as necessary.
+     * @param {string} value The value of the input.
+     */
+    value: function float(value) {
+      this.foundation_.styleFloat(value);
+    }
+
+    /**
+     * @return {!MDCSelectLabelFoundation}
+     */
+
+  }, {
+    key: 'getDefaultFoundation',
+    value: function getDefaultFoundation() {
+      var _this2 = this;
+
+      return new _foundation2.default( /** @type {!MDCSelectLabelAdapter} */_extends({
+        addClass: function addClass(className) {
+          return _this2.root_.classList.add(className);
+        },
+        removeClass: function removeClass(className) {
+          return _this2.root_.classList.remove(className);
+        }
+      }));
+    }
+  }], [{
+    key: 'attachTo',
+
+    /**
+     * @param {!Element} root
+     * @return {!MDCSelectLabel}
+     */
+    value: function attachTo(root) {
+      return new MDCSelectLabel(root);
+    }
+  }]);
+
+  return MDCSelectLabel;
+}(_component2.default);
+
+exports.MDCSelectLabel = MDCSelectLabel;
+exports.MDCSelectLabelFoundation = _foundation2.default;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @license
+ * Copyright 2017 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* eslint no-unused-vars: [2, {"args": "none"}] */
+
+/**
+ * Adapter for MDC Select Label.
+ *
+ * Defines the shape of the adapter expected by the foundation. Implement this
+ * adapter to integrate the Select label into your framework. See
+ * https://github.com/material-components/material-components-web/blob/master/docs/authoring-components.md
+ * for more information.
+ *
+ * @record
+ */
+var MDCSelectLabelAdapter = function () {
+  function MDCSelectLabelAdapter() {
+    _classCallCheck(this, MDCSelectLabelAdapter);
+  }
+
+  _createClass(MDCSelectLabelAdapter, [{
+    key: "addClass",
+
+    /**
+     * Adds a class to the label element.
+     * @param {string} className
+     */
+    value: function addClass(className) {}
+
+    /**
+     * Removes a class from the label element.
+     * @param {string} className
+     */
+
+  }, {
+    key: "removeClass",
+    value: function removeClass(className) {}
+  }]);
+
+  return MDCSelectLabelAdapter;
+}();
+
+exports.default = MDCSelectLabelAdapter;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
  *
@@ -4069,7 +4266,6 @@ var cssClasses = exports.cssClasses = {
   BOTTOM_LINE_ACTIVE: 'mdc-select__bottom-line--active',
   BOX: 'mdc-select--box',
   DISABLED: 'mdc-select--disabled',
-  LABEL_FLOAT_ABOVE: 'mdc-select__label--float-above',
   OPEN: 'mdc-select--open',
   ROOT: 'mdc-select',
   SCROLL_LOCK: 'mdc-select-scroll-lock'
@@ -4085,7 +4281,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4132,7 +4328,7 @@ var numbers = exports.numbers = {
 };
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4147,9 +4343,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _tabBarScroller = __webpack_require__(29);
+var _tabBarScroller = __webpack_require__(31);
 
-var _tabs = __webpack_require__(34);
+var _tabs = __webpack_require__(36);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4490,7 +4686,7 @@ var MDCTabBarController = exports.MDCTabBarController = function (_BaseComponent
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4507,9 +4703,9 @@ var _baseComponent = __webpack_require__(0);
 
 var _animation = __webpack_require__(7);
 
-var _tabBarScroller = __webpack_require__(30);
+var _tabBarScroller = __webpack_require__(32);
 
-var _tabBarScroller2 = __webpack_require__(125);
+var _tabBarScroller2 = __webpack_require__(129);
 
 var _tabBarScroller3 = _interopRequireDefault(_tabBarScroller2);
 
@@ -4750,7 +4946,7 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4769,9 +4965,9 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _index2 = __webpack_require__(31);
+var _index2 = __webpack_require__(33);
 
-var _foundation = __webpack_require__(123);
+var _foundation = __webpack_require__(127);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -4928,7 +5124,7 @@ var MDCTabBarScroller = exports.MDCTabBarScroller = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4945,9 +5141,9 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _index = __webpack_require__(32);
+var _index = __webpack_require__(34);
 
-var _foundation = __webpack_require__(121);
+var _foundation = __webpack_require__(125);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -5124,7 +5320,7 @@ var MDCTabBar = exports.MDCTabBar = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5145,9 +5341,9 @@ var _component2 = _interopRequireDefault(_component);
 
 var _index = __webpack_require__(3);
 
-var _constants = __webpack_require__(33);
+var _constants = __webpack_require__(35);
 
-var _foundation = __webpack_require__(120);
+var _foundation = __webpack_require__(124);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -5277,7 +5473,7 @@ var MDCTab = exports.MDCTab = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5311,7 +5507,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5321,7 +5517,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _tab = __webpack_require__(32);
+var _tab = __webpack_require__(34);
 
 Object.defineProperty(exports, 'MDCTabFoundation', {
   enumerable: true,
@@ -5336,7 +5532,7 @@ Object.defineProperty(exports, 'MDCTab', {
   }
 });
 
-var _tabBar = __webpack_require__(31);
+var _tabBar = __webpack_require__(33);
 
 Object.defineProperty(exports, 'MDCTabBarFoundation', {
   enumerable: true,
@@ -5351,7 +5547,7 @@ Object.defineProperty(exports, 'MDCTabBar', {
   }
 });
 
-var _tabBarScroller = __webpack_require__(30);
+var _tabBarScroller = __webpack_require__(32);
 
 Object.defineProperty(exports, 'MDCTabBarScrollerFoundation', {
   enumerable: true,
@@ -5367,7 +5563,7 @@ Object.defineProperty(exports, 'MDCTabBarScroller', {
 });
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5426,7 +5622,7 @@ exports.strings = strings;
 exports.numbers = numbers;
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5659,7 +5855,7 @@ exports.NativeInputType = NativeInputType;
 exports.FoundationMapType = FoundationMapType;
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5771,7 +5967,7 @@ var MDCLineRippleAdapter = function () {
 exports.default = MDCLineRippleAdapter;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5882,7 +6078,7 @@ var MDCTextFieldHelperTextAdapter = function () {
 exports.default = MDCTextFieldHelperTextAdapter;
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5975,7 +6171,7 @@ var MDCTextFieldIconAdapter = function () {
 exports.default = MDCTextFieldIconAdapter;
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6057,7 +6253,7 @@ var MDCTextFieldLabelAdapter = function () {
 exports.default = MDCTextFieldLabelAdapter;
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6150,7 +6346,7 @@ var MDCTextFieldOutlineAdapter = function () {
 exports.default = MDCTextFieldOutlineAdapter;
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6185,40 +6381,40 @@ var strings = {
 exports.strings = strings;
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(44);
-__webpack_require__(49);
-__webpack_require__(59);
-__webpack_require__(75);
-__webpack_require__(76);
+__webpack_require__(46);
+__webpack_require__(51);
+__webpack_require__(61);
 __webpack_require__(77);
-__webpack_require__(82);
-__webpack_require__(83);
-__webpack_require__(89);
-__webpack_require__(92);
-__webpack_require__(97);
-__webpack_require__(103);
+__webpack_require__(78);
+__webpack_require__(79);
+__webpack_require__(84);
+__webpack_require__(85);
+__webpack_require__(91);
+__webpack_require__(94);
+__webpack_require__(99);
 __webpack_require__(105);
-__webpack_require__(111);
-__webpack_require__(117);
-__webpack_require__(119);
-__webpack_require__(127);
+__webpack_require__(107);
+__webpack_require__(115);
+__webpack_require__(121);
+__webpack_require__(123);
+__webpack_require__(131);
 
 angular.module('mdc', ['mdc.button', 'mdc.checkbox', 'mdc.dialog', 'mdc.drawer', 'mdc.form-field', 'mdc.grid-list', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu', 'mdc.radio', 'mdc.ripple', 'mdc.select', 'mdc.snackbar', 'mdc.switch', 'mdc.tabs', 'mdc.text-field']);
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _directive = __webpack_require__(45);
+var _directive = __webpack_require__(47);
 
 /**
  * @ngdoc module
@@ -6236,7 +6432,7 @@ angular.module('mdc.button', []).directive(_directive.MDCButtonController.name, 
 });
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6344,7 +6540,7 @@ var MDCButtonController = exports.MDCButtonController = function (_MDCRippleMixi
 }((0, _mixin.MDCRippleMixin)(_baseComponent.BaseComponent));
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6356,7 +6552,7 @@ Object.defineProperty(exports, "__esModule", {
 var has = exports.has = Object.prototype.hasOwnProperty;
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6378,7 +6574,7 @@ var _adapter = __webpack_require__(19);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(48);
+var _constants = __webpack_require__(50);
 
 var _util = __webpack_require__(9);
 
@@ -7093,7 +7289,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCRippleFoundation;
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7152,7 +7348,7 @@ exports.strings = strings;
 exports.numbers = numbers;
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7175,9 +7371,9 @@ var _baseComponent = __webpack_require__(0);
 
 var _childMixin = __webpack_require__(11);
 
-var _checkbox = __webpack_require__(54);
+var _checkbox = __webpack_require__(56);
 
-var _mdcCheckbox = __webpack_require__(58);
+var _mdcCheckbox = __webpack_require__(60);
 
 var _mdcCheckbox2 = _interopRequireDefault(_mdcCheckbox);
 
@@ -7242,6 +7438,10 @@ var MDCCheckboxController = exports.MDCCheckboxController = function (_IsFormFie
 
     _this.$element.addClass('mdc-checkbox');
     _this.mdc = new _checkbox.MDCCheckbox(_this.$element[0]);
+
+    _this.$element.ready(function () {
+      _this.mdc.ripple.layout();
+    });
     return _this;
   }
 
@@ -7287,7 +7487,7 @@ angular.module('mdc.checkbox', []).component(MDCCheckboxController.name, {
 });
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7304,7 +7504,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _foundation = __webpack_require__(51);
+var _foundation = __webpack_require__(53);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -7431,7 +7631,7 @@ exports.MDCFormField = MDCFormField;
 exports.MDCFormFieldFoundation = _foundation2.default;
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7449,11 +7649,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(52);
+var _adapter = __webpack_require__(54);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(53);
+var _constants = __webpack_require__(55);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7557,7 +7757,7 @@ var MDCFormFieldFoundation = function (_MDCFoundation) {
 exports.default = MDCFormFieldFoundation;
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7641,7 +7841,7 @@ var MDCFormFieldAdapter = function () {
 exports.default = MDCFormFieldAdapter;
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7681,7 +7881,7 @@ exports.cssClasses = cssClasses;
 exports.strings = strings;
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7706,7 +7906,7 @@ var _component2 = _interopRequireDefault(_component);
 
 var _index2 = __webpack_require__(6);
 
-var _foundation = __webpack_require__(55);
+var _foundation = __webpack_require__(57);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -7811,21 +8011,6 @@ var MDCCheckbox = function (_MDCComponent) {
         },
         deregisterInteractionHandler: function deregisterInteractionHandler(type, handler) {
           return _this2.nativeCb_.removeEventListener(type, handler);
-        },
-        computeBoundingRect: function computeBoundingRect() {
-          var _root_$getBoundingCli = _this2.root_.getBoundingClientRect(),
-              left = _root_$getBoundingCli.left,
-              top = _root_$getBoundingCli.top;
-
-          var DIM = 40;
-          return {
-            top: top,
-            left: left,
-            right: left + DIM,
-            bottom: top + DIM,
-            width: DIM,
-            height: DIM
-          };
         }
       });
       var foundation = new _index3.MDCRippleFoundation(adapter);
@@ -7948,7 +8133,7 @@ exports.MDCCheckboxFoundation = _foundation2.default;
 exports.MDCCheckbox = MDCCheckbox;
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7968,11 +8153,11 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _index = __webpack_require__(6);
 
-var _adapter = __webpack_require__(56);
+var _adapter = __webpack_require__(58);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(57);
+var _constants = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8359,7 +8544,7 @@ function validDescriptor(inputPropDesc) {
 exports.default = MDCCheckboxFoundation;
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8474,7 +8659,7 @@ var MDCCheckboxAdapter = function () {
 exports.default = MDCCheckboxAdapter;
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8536,25 +8721,25 @@ exports.strings = strings;
 exports.numbers = numbers;
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" ng-model=\"$ctrl.ngModel\" name=\"$ctrl.name\" ng-disabled=\"$ctrl.ngDisabled\"\n       ng-attr-id=\"{{ $ctrl.inputId }}\" class=\"mdc-checkbox__native-control\"/>\n<div class=\"mdc-checkbox__background\">\n  <svg class=\"mdc-checkbox__checkmark\"\n       viewBox=\"0 0 24 24\">\n    <path class=\"mdc-checkbox__checkmark-path\"\n          fill=\"none\"\n          stroke=\"white\"\n          d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"/>\n  </svg>\n  <div class=\"mdc-checkbox__mixedmark\"></div>\n</div>";
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _body = __webpack_require__(60);
+var _body = __webpack_require__(62);
 
-var _dialog = __webpack_require__(61);
+var _dialog = __webpack_require__(63);
 
-var _$mdcDialog = __webpack_require__(63);
+var _$mdcDialog = __webpack_require__(65);
 
-__webpack_require__(71);
+__webpack_require__(73);
 
 angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', _$mdcDialog.$mdcDialogProvider).component(_dialog.MDCDialogController.name, {
   controller: _dialog.MDCDialogController,
@@ -8566,7 +8751,7 @@ angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', _$md
 });
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8633,7 +8818,7 @@ var MDCDialogBodyController = exports.MDCDialogBodyController = function (_BaseC
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8646,7 +8831,7 @@ exports.MDCDialogController = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dialog = __webpack_require__(62);
+var _dialog = __webpack_require__(64);
 
 var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -8703,13 +8888,13 @@ var MDCDialogController = exports.MDCDialogController = function () {
  */
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-dialog__surface\" ng-transclude></div>\n<div class=\"mdc-dialog__backdrop\"></div>";
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8720,9 +8905,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.$mdcDialogProvider = $mdcDialogProvider;
 
-var _dialog = __webpack_require__(64);
+var _dialog = __webpack_require__(66);
 
-var _defaultTemplate = __webpack_require__(70);
+var _defaultTemplate = __webpack_require__(72);
 
 var _defaultTemplate2 = _interopRequireDefault(_defaultTemplate);
 
@@ -9027,7 +9212,7 @@ function $mdcDialogProvider($$interimElementSlimProvider) {
  */
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9046,11 +9231,11 @@ var _index = __webpack_require__(5);
 
 var _index2 = __webpack_require__(3);
 
-var _foundation = __webpack_require__(65);
+var _foundation = __webpack_require__(67);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _util = __webpack_require__(67);
+var _util = __webpack_require__(69);
 
 var util = _interopRequireWildcard(_util);
 
@@ -9212,7 +9397,7 @@ var MDCDialog = exports.MDCDialog = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9228,7 +9413,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(66);
+var _constants = __webpack_require__(68);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9426,7 +9611,7 @@ var MDCDialogFoundation = function (_MDCFoundation) {
 exports.default = MDCDialogFoundation;
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9470,7 +9655,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9481,7 +9666,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createFocusTrapInstance = createFocusTrapInstance;
 
-var _focusTrap = __webpack_require__(68);
+var _focusTrap = __webpack_require__(70);
 
 var _focusTrap2 = _interopRequireDefault(_focusTrap);
 
@@ -9511,13 +9696,13 @@ function createFocusTrapInstance(surfaceEl, acceptButtonEl) {
    */
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tabbable = __webpack_require__(69);
+var tabbable = __webpack_require__(71);
 
 var listeningFocusTrap = null;
 
@@ -9762,7 +9947,7 @@ function tryFocus(node) {
 module.exports = focusTrap;
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9870,13 +10055,13 @@ function createIsUnavailable(elementDocument) {
 }
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=\"mdc-dialog-title\"\n            aria-describedby=\"mdc-dialog-body\"\n            ng-class=\"dialog.css\">\n  <mdc-dialog-header>\n    <mdc-dialog-title id=\"mdc-dialog-title\">{{ dialog.title }}</mdc-dialog-title>\n  </mdc-dialog-header>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::dialog.mdcHtmlContent\" ng-bind-html=\"::dialog.mdcHtmlContent\">\n  </mdc-dialog-body>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::!dialog.mdcHtmlContent\">\n    <span ng-if=\"::dialog.mdcTextContent\">{{::dialog.mdcTextContent}}</span>\n    <label ng-if=\"::dialog.$type == 'prompt'\">\n      <input ng-keypress=\"dialog.keypress($event)\" ng-model=\"dialog.result\" placeholder=\"{{::dialog.placeholder}}\">\n    </label>\n  </mdc-dialog-body>\n  <mdc-dialog-footer>\n    <button mdc-button dialog=\"cancel\" ng-if=\"dialog.$type === 'confirm' || dialog.$type === 'prompt'\">\n      {{ dialog.cancel }}\n    </button>\n    <button mdc-button dialog=\"accept\">\n      {{ dialog.ok }}\n    </button>\n  </mdc-dialog-footer>\n</mdc-dialog>\n";
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9891,12 +10076,12 @@ module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=
  */
 angular.module('material.core.slim', []);
 
-__webpack_require__(72);
-__webpack_require__(73);
 __webpack_require__(74);
+__webpack_require__(75);
+__webpack_require__(76);
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9944,7 +10129,7 @@ function UtilFactory($interpolate) {
 }
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10276,7 +10461,7 @@ MdCompilerService.prototype._fetchContentElement = function (options) {
 };
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11005,7 +11190,7 @@ function InterimElementProvider() {
 }
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11020,7 +11205,7 @@ function InterimElementProvider() {
 angular.module('mdc.drawer', []);
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11041,7 +11226,7 @@ angular.module('mdc.form-field', []).component(_component.MDCFormFieldController
 });
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11051,9 +11236,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _gridList = __webpack_require__(78);
+var _gridList = __webpack_require__(80);
 
-var _mdcGridList = __webpack_require__(81);
+var _mdcGridList = __webpack_require__(83);
 
 var _mdcGridList2 = _interopRequireDefault(_mdcGridList);
 
@@ -11211,7 +11396,7 @@ angular.module('mdc.grid-list', []).component(MDCGridListController.name, {
 });
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11226,7 +11411,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _foundation = __webpack_require__(79);
+var _foundation = __webpack_require__(81);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -11300,7 +11485,7 @@ var MDCGridList = exports.MDCGridList = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11316,7 +11501,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(80);
+var _constants = __webpack_require__(82);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11424,7 +11609,7 @@ var MDCGridListFoundation = function (_MDCFoundation) {
 exports.default = MDCGridListFoundation;
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11454,13 +11639,13 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-grid-list__tiles\" ng-transclude></div>";
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11586,7 +11771,7 @@ angular.module('mdc.icon', []).component(MDCIconController.name, {
 });
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11601,11 +11786,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _normalize = __webpack_require__(84);
+var _normalize = __webpack_require__(86);
 
 var _baseComponent = __webpack_require__(0);
 
-var _iconToggle = __webpack_require__(85);
+var _iconToggle = __webpack_require__(87);
 
 var _ripple = __webpack_require__(3);
 
@@ -11703,22 +11888,6 @@ var MDCIconToggleController = exports.MDCIconToggleController = function (_BaseC
         },
         isSurfaceActive: function isSurfaceActive() {
           return _this2.foundation_.isKeyboardActivated();
-        },
-        computeBoundingRect: function computeBoundingRect() {
-          var dim = 48;
-
-          var _$element$0$getBoundi = _this2.$element[0].getBoundingClientRect(),
-              left = _$element$0$getBoundi.left,
-              top = _$element$0$getBoundi.top;
-
-          return {
-            left: left,
-            top: top,
-            width: dim,
-            height: dim,
-            right: left + dim,
-            bottom: left + dim
-          };
         }
       });
       var foundation = new _ripple.MDCRippleFoundation(adapter);
@@ -11843,7 +12012,7 @@ angular.module('mdc.icon-toggle', []).component(MDCIconToggleController.name, {
 });
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11891,7 +12060,7 @@ function convertStringsObjToBindingNames(obj, skip) {
 }
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11912,7 +12081,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _foundation = __webpack_require__(86);
+var _foundation = __webpack_require__(88);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -11990,22 +12159,6 @@ var MDCIconToggle = function (_MDCComponent) {
         },
         isSurfaceActive: function isSurfaceActive() {
           return _this2.foundation_.isKeyboardActivated();
-        },
-        computeBoundingRect: function computeBoundingRect() {
-          var dim = 48;
-
-          var _root_$getBoundingCli = _this2.root_.getBoundingClientRect(),
-              left = _root_$getBoundingCli.left,
-              top = _root_$getBoundingCli.top;
-
-          return {
-            left: left,
-            top: top,
-            width: dim,
-            height: dim,
-            right: left + dim,
-            bottom: left + dim
-          };
         }
       });
       var foundation = new _index.MDCRippleFoundation(adapter);
@@ -12126,7 +12279,7 @@ exports.MDCIconToggle = MDCIconToggle;
 exports.MDCIconToggleFoundation = _foundation2.default;
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12144,9 +12297,9 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(87);
+var _adapter = __webpack_require__(89);
 
-var _constants = __webpack_require__(88);
+var _constants = __webpack_require__(90);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12453,7 +12606,7 @@ IconToggleState.prototype.cssClass;
 exports.default = MDCIconToggleFoundation;
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12605,7 +12758,7 @@ exports.MDCIconToggleAdapter = MDCIconToggleAdapter;
 exports.IconToggleEvent = IconToggleEvent;
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12651,15 +12804,15 @@ exports.cssClasses = cssClasses;
 exports.strings = strings;
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _component = __webpack_require__(90);
+var _component = __webpack_require__(92);
 
-var _directive = __webpack_require__(91);
+var _directive = __webpack_require__(93);
 
 /**
  * @ngdoc component
@@ -12693,7 +12846,7 @@ angular.module('mdc.list', []).component(_component.MDCListController.name, {
 });
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12787,7 +12940,7 @@ var MDCListController = exports.MDCListController = function (_BaseComponent) {
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12854,7 +13007,7 @@ var MDCListItemController = exports.MDCListItemController = function (_BaseCompo
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12864,7 +13017,7 @@ var _directive = __webpack_require__(12);
 
 var _component = __webpack_require__(21);
 
-var _component2 = __webpack_require__(96);
+var _component2 = __webpack_require__(98);
 
 var _directive2 = __webpack_require__(22);
 
@@ -12893,7 +13046,7 @@ angular.module('mdc.menu', []).directive(_directive.MDCMenuAnchorController.name
 });
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12912,7 +13065,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(94);
+var _adapter = __webpack_require__(96);
 
 var _constants = __webpack_require__(24);
 
@@ -13721,7 +13874,7 @@ exports.MDCMenuFoundation = MDCMenuFoundation;
 exports.AnchorMargin = AnchorMargin;
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13993,13 +14146,13 @@ var MDCMenuAdapter = function () {
 exports.MDCMenuAdapter = MDCMenuAdapter;
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-menu__items mdc-list\" role=\"menu\" aria-hidden=\"true\" ng-transclude></div>\n";
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14131,7 +14284,7 @@ var MDCMenuItemController = exports.MDCMenuItemController = function (_BaseCompo
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14149,9 +14302,9 @@ var _baseComponent = __webpack_require__(0);
 
 var _childMixin = __webpack_require__(11);
 
-var _radio = __webpack_require__(98);
+var _radio = __webpack_require__(100);
 
-var _mdcRadio = __webpack_require__(102);
+var _mdcRadio = __webpack_require__(104);
 
 var _mdcRadio2 = _interopRequireDefault(_mdcRadio);
 
@@ -14218,6 +14371,10 @@ var MDCRadioController = function (_IsFormFieldChild) {
 
     _this.$element.addClass('mdc-radio');
     _this.mdc = new _radio.MDCRadio(_this.$element[0]);
+
+    _this.$element.ready(function () {
+      _this.mdc.ripple.layout();
+    });
     return _this;
   }
 
@@ -14259,7 +14416,7 @@ angular.module('mdc.radio', []).component(MDCRadioController.name, {
 });
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14282,7 +14439,7 @@ var _component2 = _interopRequireDefault(_component);
 
 var _index = __webpack_require__(6);
 
-var _foundation = __webpack_require__(99);
+var _foundation = __webpack_require__(101);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -14421,21 +14578,6 @@ var MDCRadio = function (_MDCComponent) {
         },
         deregisterInteractionHandler: function deregisterInteractionHandler(type, handler) {
           return _this2.nativeControl_.removeEventListener(type, handler);
-        },
-        computeBoundingRect: function computeBoundingRect() {
-          var _root_$getBoundingCli = _this2.root_.getBoundingClientRect(),
-              left = _root_$getBoundingCli.left,
-              top = _root_$getBoundingCli.top;
-
-          var DIM = 40;
-          return {
-            top: top,
-            left: left,
-            right: left + DIM,
-            bottom: top + DIM,
-            width: DIM,
-            height: DIM
-          };
         }
       });
       var foundation = new _index2.MDCRippleFoundation(adapter);
@@ -14491,7 +14633,7 @@ exports.MDCRadio = MDCRadio;
 exports.MDCRadioFoundation = _foundation2.default;
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14509,11 +14651,11 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _index = __webpack_require__(6);
 
-var _adapter = __webpack_require__(100);
+var _adapter = __webpack_require__(102);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(101);
+var _constants = __webpack_require__(103);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14661,7 +14803,7 @@ var MDCRadioFoundation = function (_MDCFoundation) {
 exports.default = MDCRadioFoundation;
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14742,7 +14884,7 @@ var MDCRadioAdapter = function () {
 exports.default = MDCRadioAdapter;
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14783,19 +14925,19 @@ exports.strings = strings;
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = "<input class=\"mdc-radio__native-control\" type=\"radio\" ng-attr-id=\"{{ $ctrl.inputId }}\"\n       ng-value=\"$ctrl.ngValue\" ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-radio__background\">\n  <div class=\"mdc-radio__outer-circle\"></div>\n  <div class=\"mdc-radio__inner-circle\"></div>\n</div>";
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _directive = __webpack_require__(104);
+var _directive = __webpack_require__(106);
 
 /**
  * Ripple
@@ -14811,7 +14953,7 @@ angular.module('mdc.ripple', []).directive(_directive.MDCRippleController.name, 
 });
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14880,7 +15022,7 @@ var MDCRippleController = exports.MDCRippleController = function (_MDCRippleMixi
 }((0, _mixin.MDCRippleMixin)(_baseComponent.BaseComponent));
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14888,7 +15030,7 @@ var MDCRippleController = exports.MDCRippleController = function (_MDCRippleMixi
 
 var _component = __webpack_require__(25);
 
-var _directive = __webpack_require__(110);
+var _directive = __webpack_require__(114);
 
 /**
  * @ngdoc module
@@ -14912,7 +15054,7 @@ angular.module('mdc.select', []).component(_component.MDCSelectController.name, 
 });
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15075,7 +15217,7 @@ var MDCComponentNg = exports.MDCComponentNg = function (_BaseComponent) {
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15094,11 +15236,13 @@ var _index2 = __webpack_require__(3);
 
 var _index3 = __webpack_require__(10);
 
-var _foundation = __webpack_require__(108);
+var _index4 = __webpack_require__(26);
+
+var _foundation = __webpack_require__(112);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(26);
+var _constants = __webpack_require__(28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15155,9 +15299,15 @@ var MDCSelect = exports.MDCSelect = function (_MDCComponent) {
       var menuFactory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (el) {
         return new _index3.MDCMenu(el);
       };
+      var labelFactory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (el) {
+        return new _index4.MDCSelectLabel(el);
+      };
 
       this.surface_ = this.root_.querySelector(_constants.strings.SURFACE_SELECTOR);
-      this.label_ = this.root_.querySelector(_constants.strings.LABEL_SELECTOR);
+      var labelElement = this.root_.querySelector(_constants.strings.LABEL_SELECTOR);
+      if (labelElement) {
+        this.label_ = labelFactory(labelElement);
+      }
       this.bottomLine_ = this.root_.querySelector(_constants.strings.BOTTOM_LINE_SELECTOR);
       this.selectedText_ = this.root_.querySelector(_constants.strings.SELECTED_TEXT_SELECTOR);
       this.menuEl_ = this.root_.querySelector(_constants.strings.MENU_SELECTOR);
@@ -15177,11 +15327,10 @@ var MDCSelect = exports.MDCSelect = function (_MDCComponent) {
         removeClass: function removeClass(className) {
           return _this2.root_.classList.remove(className);
         },
-        addClassToLabel: function addClassToLabel(className) {
-          return _this2.label_.classList.add(className);
-        },
-        removeClassFromLabel: function removeClassFromLabel(className) {
-          return _this2.label_.classList.remove(className);
+        floatLabel: function floatLabel(value) {
+          if (_this2.label_) {
+            _this2.label_.float(value);
+          }
         },
         addClassToBottomLine: function addClassToBottomLine(className) {
           return _this2.bottomLine_.classList.add(className);
@@ -15339,7 +15488,139 @@ var MDCSelect = exports.MDCSelect = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 108 */
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _foundation = __webpack_require__(1);
+
+var _foundation2 = _interopRequireDefault(_foundation);
+
+var _adapter = __webpack_require__(27);
+
+var _adapter2 = _interopRequireDefault(_adapter);
+
+var _constants = __webpack_require__(111);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Copyright 2016 Google Inc. All Rights Reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Licensed under the Apache License, Version 2.0 (the "License");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * you may not use this file except in compliance with the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * You may obtain a copy of the License at
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Unless required by applicable law or agreed to in writing, software
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * distributed under the License is distributed on an "AS IS" BASIS,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * See the License for the specific language governing permissions and
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * limitations under the License.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+/**
+ * @extends {MDCFoundation<!MDCSelectLabelAdapter>}
+ * @final
+ */
+var MDCSelectLabelFoundation = function (_MDCFoundation) {
+  _inherits(MDCSelectLabelFoundation, _MDCFoundation);
+
+  _createClass(MDCSelectLabelFoundation, null, [{
+    key: 'cssClasses',
+
+    /** @return enum {string} */
+    get: function get() {
+      return _constants.cssClasses;
+    }
+
+    /**
+     * {@see MDCSelectLabelAdapter} for typing information on parameters and return
+     * types.
+     * @return {!MDCSelectLabelAdapter}
+     */
+
+  }, {
+    key: 'defaultAdapter',
+    get: function get() {
+      return (/** @type {!MDCSelectLabelAdapter} */{
+          addClass: function addClass() {},
+          removeClass: function removeClass() {},
+          getWidth: function getWidth() {}
+        }
+      );
+    }
+
+    /**
+     * @param {!MDCSelectLabelAdapter} adapter
+     */
+
+  }]);
+
+  function MDCSelectLabelFoundation(adapter) {
+    _classCallCheck(this, MDCSelectLabelFoundation);
+
+    return _possibleConstructorReturn(this, (MDCSelectLabelFoundation.__proto__ || Object.getPrototypeOf(MDCSelectLabelFoundation)).call(this, _extends(MDCSelectLabelFoundation.defaultAdapter, adapter)));
+  }
+
+  /**
+   * Styles the label to float or defloat as necessary.
+   * @param {string} value The value of the input.
+   * @param {boolean} isFocused Whether the input is focused.
+   * @param {boolean} isBadInput The input's `validity.badInput` value.
+   */
+
+
+  _createClass(MDCSelectLabelFoundation, [{
+    key: 'styleFloat',
+    value: function styleFloat(value) {
+      var LABEL_FLOAT_ABOVE = MDCSelectLabelFoundation.cssClasses.LABEL_FLOAT_ABOVE;
+
+      if (!!value) {
+        this.adapter_.addClass(LABEL_FLOAT_ABOVE);
+      } else {
+        this.adapter_.removeClass(LABEL_FLOAT_ABOVE);
+      }
+    }
+  }]);
+
+  return MDCSelectLabelFoundation;
+}(_foundation2.default);
+
+exports.default = MDCSelectLabelFoundation;
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var cssClasses = exports.cssClasses = {
+  LABEL_FLOAT_ABOVE: 'mdc-select__label--float-above'
+};
+
+/***/ }),
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15355,7 +15636,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(26);
+var _constants = __webpack_require__(28);
 
 var _index2 = __webpack_require__(10);
 
@@ -15400,8 +15681,7 @@ var MDCSelectFoundation = function (_MDCFoundation) {
       return {
         addClass: function addClass() /* className: string */{},
         removeClass: function removeClass() /* className: string */{},
-        addClassToLabel: function addClassToLabel() /* className: string */{},
-        removeClassFromLabel: function removeClassFromLabel() /* className: string */{},
+        floatLabel: function floatLabel() /* value: boolean */{},
         addClassToBottomLine: function addClassToBottomLine() /* className: string */{},
         removeClassFromBottomLine: function removeClassFromBottomLine() /* className: string */{},
         setBottomLineAttr: function setBottomLineAttr() /* attr: string, value: string */{},
@@ -15509,9 +15789,8 @@ var MDCSelectFoundation = function (_MDCFoundation) {
     };
     _this.cancelHandler_ = function () {
       _this.close_();
-
       if (_this.selectedIndex_ === -1) {
-        _this.adapter_.removeClassFromLabel(_constants.cssClasses.LABEL_FLOAT_ABOVE);
+        _this.adapter_.floatLabel(false);
       }
     };
     return _this;
@@ -15630,7 +15909,7 @@ var MDCSelectFoundation = function (_MDCFoundation) {
       var focusIndex = this.selectedIndex_ < 0 ? 0 : this.selectedIndex_;
 
       this.setMenuStylesForOpenAtIndex_(focusIndex);
-      this.adapter_.addClassToLabel(_constants.cssClasses.LABEL_FLOAT_ABOVE);
+      this.adapter_.floatLabel(true);
       this.adapter_.addClassToBottomLine(_constants.cssClasses.BOTTOM_LINE_ACTIVE);
       this.adapter_.addClass(OPEN);
       this.animationRequestId_ = requestAnimationFrame(function () {
@@ -15723,13 +16002,13 @@ var MDCSelectFoundation = function (_MDCFoundation) {
 exports.default = MDCSelectFoundation;
 
 /***/ }),
-/* 109 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-select__surface\" tabindex=\"0\">\n  <div class=\"mdc-select__label\" ng-bind=\"$ctrl.label\"></div>\n  <div class=\"mdc-select__selected-text\"></div>\n  <div class=\"mdc-select__bottom-line\"></div>\n</div>\n<div class=\"mdc-menu mdc-select__menu\">\n  <ul class=\"mdc-list mdc-menu__items\" ng-transclude></ul>\n</div>";
 
 /***/ }),
-/* 110 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15855,18 +16134,18 @@ var MDCSelectItemController = exports.MDCSelectItemController = function (_BaseC
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 111 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _service = __webpack_require__(112);
+var _service = __webpack_require__(116);
 
 angular.module('mdc.snackbar', []).service(_service.MDCSnackbarService.name, _service.MDCSnackbarService);
 
 /***/ }),
-/* 112 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15881,15 +16160,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _bindInjections = __webpack_require__(18);
 
-var _snackbar = __webpack_require__(113);
+var _snackbar = __webpack_require__(117);
 
-var _constants = __webpack_require__(27);
+var _constants = __webpack_require__(29);
 
-var _snackbar2 = __webpack_require__(115);
+var _snackbar2 = __webpack_require__(119);
 
 var _snackbar3 = _interopRequireDefault(_snackbar2);
 
-var _snackbarAlignStart = __webpack_require__(116);
+var _snackbarAlignStart = __webpack_require__(120);
 
 var _snackbarAlignStart2 = _interopRequireDefault(_snackbarAlignStart);
 
@@ -16095,7 +16374,7 @@ var MDCSnackbarService = exports.MDCSnackbarService = function (_BindInjections)
 }(_bindInjections.BindInjections);
 
 /***/ }),
-/* 113 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16110,7 +16389,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _foundation = __webpack_require__(114);
+var _foundation = __webpack_require__(118);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -16259,7 +16538,7 @@ var MDCSnackbar = exports.MDCSnackbar = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 114 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16275,7 +16554,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(27);
+var _constants = __webpack_require__(29);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -16567,19 +16846,19 @@ var MDCSnackbarFoundation = function (_MDCFoundation) {
 exports.default = MDCSnackbarFoundation;
 
 /***/ }),
-/* 115 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-snackbar\" aria-live=\"assertive\" aria-atomic=\"true\" aria-hidden=\"true\">\n  <div class=\"mdc-snackbar__text\"></div>\n  <div class=\"mdc-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdc-snackbar__action-button\"></button>\n  </div>\n</div>\n";
 
 /***/ }),
-/* 116 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-snackbar mdc-snackbar--align-start\" aria-live=\"assertive\" aria-atomic=\"true\" aria-hidden=\"true\">\n  <div class=\"mdc-snackbar__text\"></div>\n  <div class=\"mdc-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdc-snackbar__action-button\"></button>\n  </div>\n</div>\n";
 
 /***/ }),
-/* 117 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16602,7 +16881,7 @@ var _baseComponent = __webpack_require__(0);
 
 var _childMixin = __webpack_require__(11);
 
-var _mdcSwitch = __webpack_require__(118);
+var _mdcSwitch = __webpack_require__(122);
 
 var _mdcSwitch2 = _interopRequireDefault(_mdcSwitch);
 
@@ -16698,23 +16977,23 @@ angular.module('mdc.switch', []).component(MDCSwitchController.name, {
 });
 
 /***/ }),
-/* 118 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>";
 
 /***/ }),
-/* 119 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _tabBar = __webpack_require__(28);
+var _tabBar = __webpack_require__(30);
 
-var _tab = __webpack_require__(126);
+var _tab = __webpack_require__(130);
 
-var _tabBarScroller = __webpack_require__(29);
+var _tabBarScroller = __webpack_require__(31);
 
 /**
  * @ngdoc module
@@ -16741,7 +17020,7 @@ angular.module('mdc.tabs', []).component(_tab.MDCTabController.name, {
 });
 
 /***/ }),
-/* 120 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16759,7 +17038,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(33);
+var _constants = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16905,7 +17184,7 @@ var MDCTabFoundation = function (_MDCFoundation) {
 exports.default = MDCTabFoundation;
 
 /***/ }),
-/* 121 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16925,7 +17204,7 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _index = __webpack_require__(7);
 
-var _constants = __webpack_require__(122);
+var _constants = __webpack_require__(126);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17157,7 +17436,7 @@ var MDCTabBarFoundation = function (_MDCFoundation) {
 exports.default = MDCTabBarFoundation;
 
 /***/ }),
-/* 122 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17193,7 +17472,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 123 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17211,7 +17490,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(124);
+var _constants = __webpack_require__(128);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17552,7 +17831,7 @@ var MDCTabBarScrollerFoundation = function (_MDCFoundation) {
 exports.default = MDCTabBarScrollerFoundation;
 
 /***/ }),
-/* 124 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17593,13 +17872,13 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 125 */
+/* 129 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--back\">\n  <a class=\"mdc-tab-bar-scroller__indicator__inner material-icons\" href=\"javascript:void(0)\" aria-label=\"scroll back button\">\n    navigate_before\n  </a>\n</div>\n<div class=\"mdc-tab-bar-scroller__scroll-frame\" ng-transclude></div>\n<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--forward\">\n  <a class=\"mdc-tab-bar-scroller__indicator__inner material-icons\" href=\"javascript:void(0)\" aria-label=\"scroll forward button\">\n    navigate_next\n  </a>\n</div>";
 
 /***/ }),
-/* 126 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17620,9 +17899,9 @@ var _baseComponent = __webpack_require__(0);
 
 var _mixin = __webpack_require__(8);
 
-var _tabBar = __webpack_require__(28);
+var _tabBar = __webpack_require__(30);
 
-var _tabs = __webpack_require__(34);
+var _tabs = __webpack_require__(36);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17881,13 +18160,13 @@ var MDCTabTextController = exports.MDCTabTextController = function (_BaseCompone
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 127 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _component = __webpack_require__(128);
+var _component = __webpack_require__(132);
 
 /**
  * @ngdoc module
@@ -17903,7 +18182,7 @@ angular.module('mdc.text-field', []).component(_component.MDCTextFieldController
 });
 
 /***/ }),
-/* 128 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17918,9 +18197,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _textfield = __webpack_require__(129);
+var _textfield = __webpack_require__(133);
 
-var _outline = __webpack_require__(140);
+var _outline = __webpack_require__(144);
 
 var _outline2 = _interopRequireDefault(_outline);
 
@@ -18246,7 +18525,7 @@ var MDCTextFieldController = exports.MDCTextFieldController = function (_BaseCom
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 129 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18271,23 +18550,23 @@ var _index = __webpack_require__(3);
 
 var _util = __webpack_require__(9);
 
-var _constants = __webpack_require__(35);
+var _constants = __webpack_require__(37);
 
-var _adapter = __webpack_require__(36);
+var _adapter = __webpack_require__(38);
 
-var _foundation = __webpack_require__(134);
+var _foundation = __webpack_require__(138);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _index2 = __webpack_require__(135);
+var _index2 = __webpack_require__(139);
 
-var _index3 = __webpack_require__(136);
+var _index3 = __webpack_require__(140);
 
-var _index4 = __webpack_require__(137);
+var _index4 = __webpack_require__(141);
 
-var _index5 = __webpack_require__(138);
+var _index5 = __webpack_require__(142);
 
-var _index6 = __webpack_require__(139);
+var _index6 = __webpack_require__(143);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18699,7 +18978,7 @@ exports.MDCTextFieldOutline = _index6.MDCTextFieldOutline;
 exports.MDCTextFieldOutlineFoundation = _index6.MDCTextFieldOutlineFoundation;
 
 /***/ }),
-/* 130 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18734,7 +19013,7 @@ var cssClasses = {
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 131 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18776,7 +19055,7 @@ exports.strings = strings;
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 132 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18810,7 +19089,7 @@ var strings = {
 exports.strings = strings;
 
 /***/ }),
-/* 133 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18845,7 +19124,7 @@ var cssClasses = {
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 134 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18863,7 +19142,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(36);
+var _adapter = __webpack_require__(38);
 
 var _foundation3 = __webpack_require__(13);
 
@@ -18885,7 +19164,7 @@ var _foundation11 = __webpack_require__(17);
 
 var _foundation12 = _interopRequireDefault(_foundation11);
 
-var _constants = __webpack_require__(35);
+var _constants = __webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19396,7 +19675,7 @@ var MDCTextFieldFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldFoundation;
 
 /***/ }),
-/* 135 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19415,7 +19694,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(37);
+var _adapter = __webpack_require__(39);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -19541,7 +19820,7 @@ exports.MDCLineRipple = MDCLineRipple;
 exports.MDCLineRippleFoundation = _foundation2.default;
 
 /***/ }),
-/* 136 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19560,7 +19839,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(38);
+var _adapter = __webpack_require__(40);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -19664,7 +19943,7 @@ exports.MDCTextFieldHelperText = MDCTextFieldHelperText;
 exports.MDCTextFieldHelperTextFoundation = _foundation2.default;
 
 /***/ }),
-/* 137 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19683,7 +19962,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(39);
+var _adapter = __webpack_require__(41);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -19781,7 +20060,7 @@ exports.MDCTextFieldIcon = MDCTextFieldIcon;
 exports.MDCTextFieldIconFoundation = _foundation2.default;
 
 /***/ }),
-/* 138 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19800,7 +20079,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(40);
+var _adapter = __webpack_require__(42);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -19895,7 +20174,7 @@ exports.MDCTextFieldLabel = MDCTextFieldLabel;
 exports.MDCTextFieldLabelFoundation = _foundation2.default;
 
 /***/ }),
-/* 139 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19914,9 +20193,9 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _constants = __webpack_require__(42);
+var _constants = __webpack_require__(44);
 
-var _adapter = __webpack_require__(41);
+var _adapter = __webpack_require__(43);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
@@ -20018,7 +20297,7 @@ exports.MDCTextFieldOutline = MDCTextFieldOutline;
 exports.MDCTextFieldOutlineFoundation = _foundation2.default;
 
 /***/ }),
-/* 140 */
+/* 144 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-text-field__outline\">\n  <svg>\n    <path class=\"mdc-text-field__outline-path\"></path>\n  </svg>\n</div>\n<div class=\"mdc-text-field__idle-outline\"></div>";
