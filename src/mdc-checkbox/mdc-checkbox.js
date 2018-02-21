@@ -44,6 +44,10 @@ export class MDCCheckboxController extends IsFormFieldChild(BaseComponent) {
 
     this.$element.addClass('mdc-checkbox');
     this.mdc = new MDCCheckbox(this.$element[0]);
+
+    this.$element.ready(() => {
+      this.mdc.ripple.layout();
+    });
   }
 
   $onChanges(changesObj) {

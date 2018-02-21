@@ -46,6 +46,10 @@ class MDCRadioController extends IsFormFieldChild(BaseComponent) {
 
     this.$element.addClass('mdc-radio');
     this.mdc = new MDCRadio(this.$element[0]);
+
+    this.$element.ready(() => {
+      this.mdc.ripple.layout();
+    });
   }
 
   $onChanges(changes) {
