@@ -98,19 +98,16 @@ export class MDCTabBarScrollerController extends BaseComponent {
 
   scrollToTabIfNotVisible_(index) {
     // This will probably be implemented into the foundation at some point - remove then
-    if (!this.isElementInViewport(this.tabBar.tabs[index].root_)) {
+    if (!this.isTabVisible(index)) {
       this.$timeout(() => this.foundation_.scrollToTabAtIndex(index), 100);
     }
   }
 
-  isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (this.$window.innerHeight || this.$document[0].documentElement.clientHeight) &&
-      rect.right <= (this.$window.innerWidth || this.$document[0].documentElement.clientWidth)
-    );
+  isTabVisible(index) {
+    const tabRect = this.tabBar.tabs[index].root_.getBoundingClientRect();
+    const frameRect = this.scrollFrame_.getBoundingClientRect();
+
+    return (tabRect.left >= frameRect.left) && (tabRect.right <= frameRect.right);
   }
 
   getDefaultFoundation() {
