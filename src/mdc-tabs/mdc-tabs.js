@@ -1,5 +1,6 @@
 import {MDCTabBarController} from './tab-bar';
-import {MDCTabController, MDCTabTextController} from './tab';
+import {MDCTabController} from './tab';
+import {MDCTabTextController} from './tab-text';
 import {MDCTabBarScrollerController} from './tab-bar-scroller';
 
 
@@ -11,22 +12,22 @@ import {MDCTabBarScrollerController} from './tab-bar-scroller';
  * Tabs
  */
 angular.module('mdc.tabs', [])
-  .component(MDCTabController.name, {
+  .directive(MDCTabController.name, () => ({
     controller: MDCTabController,
     require: MDCTabController.require,
-    bindings: MDCTabController.bindings,
-  })
-  .component(MDCTabTextController.name, {
-    controller: MDCTabTextController,
-    require: MDCTabTextController.require,
-  })
+    bindToController: MDCTabController.bindings,
+  }))
+  // .directive(MDCTabTextController.name, () => ({
+  //   controller: MDCTabTextController,
+  //   require: MDCTabTextController.require,
+  // }))
   .component(MDCTabBarController.name, {
     controller: MDCTabBarController,
     require: MDCTabBarController.require,
     bindings: MDCTabBarController.bindings,
   })
-  .component(MDCTabBarScrollerController.name, {
-    controller: MDCTabBarScrollerController,
-    transclude: MDCTabBarScrollerController.transclude,
-    template: MDCTabBarScrollerController.template,
-  });
+  // .component(MDCTabBarScrollerController.name, {
+  //   controller: MDCTabBarScrollerController,
+  //   transclude: MDCTabBarScrollerController.transclude,
+  //   template: MDCTabBarScrollerController.template,
+  // });
