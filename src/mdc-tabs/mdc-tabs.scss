@@ -1,1 +1,5 @@
 @import '~@material/tabs/mdc-tabs';
+
+.mdc-tab .mdc-tab__icon {
+  @extend .mdc-tab__icon;
+}
