@@ -80,23 +80,23 @@ export class MDCTabBarController extends MDCComponentNg {
     if (this.ngModelCtrl_) {
       this.ngModelCtrl_.$formatters.push((viewValue) => Number(viewValue));
       this.ngModelCtrl_.$render = () => {
-        const value = this.ngModelCtrl_.$viewValue;
+        const index = this.ngModelCtrl_.$viewValue;
 
-        if (isNaN(value) || value < 0 || value >= this.tabs.length) {
+        if (isNaN(index) || index < 0 || index >= this.tabs.length) {
           return;
         }
 
-        this.activeTabIndex = value;
+        this.activeTabIndex = index;
+        if (this.scroller) { // outside changes trigger scroller if it exists
+          this.scroller.scrollToTabAtIndexIfNotVisible(index);
+        }
       };
 
       this.foundation_.activeTabIndex_ = -1; // init correctly
       this.ngModelCtrl_.$render();
     } else if (this.activeTabIndex < 0) {
+      // only trigger if ngModel isn't attached to the tabBar
       this.tabs[0].isActive = true;
-
-      if (this.ngModelCtrl_) {
-        this.ngModelCtrl_.$setViewValue(0);
-      }
     }
   }
 

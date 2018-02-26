@@ -26,8 +26,8 @@ angular.module('mdc.tabs', [])
     require: MDCTabBarController.require,
     bindings: MDCTabBarController.bindings,
   })
-  // .component(MDCTabBarScrollerController.name, {
-  //   controller: MDCTabBarScrollerController,
-  //   transclude: MDCTabBarScrollerController.transclude,
-  //   template: MDCTabBarScrollerController.template,
-  // });
+  .component(MDCTabBarScrollerController.name, {
+    controller: MDCTabBarScrollerController,
+    transclude: MDCTabBarScrollerController.transclude,
+    template: MDCTabBarScrollerController.template,
+  });
