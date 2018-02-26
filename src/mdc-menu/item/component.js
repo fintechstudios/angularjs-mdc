@@ -1,6 +1,9 @@
 import {BaseComponent} from '../../util/base-component';
 import {MDCMenuController} from '../menu/component';
 
+import {MDCMenuFoundation} from '@material/menu';
+
+
 /**
  * @callback onSelectCallback
  * @param {Number} index
@@ -47,6 +50,12 @@ export class MDCMenuItemController extends BaseComponent {
 
     this.$element.addClass('mdc-list-item');
     this.$element.attr('role', 'menuitem');
+
+    this.selectHandler = ({detail: {index, item}}) => {
+      if (item === this.$element[0]) {
+        this.select(index);
+      }
+    };
   }
 
   $postLink() {
@@ -54,15 +63,13 @@ export class MDCMenuItemController extends BaseComponent {
       this.$element.attr('tabindex', 0);
     }
 
-    this.mdcMenuController._addItem(this);
+    this.mdcMenuController.addItem_(this);
+    this.mdcMenuController.listen(MDCMenuFoundation.strings.SELECTED_EVENT, this.selectHandler);
   }
 
   $onDestroy() {
-    this.mdcMenuController._removeItem(this);
-  }
-
-  hasElement(htmlElement) {
-    return this.$element[0] === htmlElement;
+    this.mdcMenuController.unlisten(MDCMenuFoundation.strings.SELECTED_EVENT, this.selectHandler);
+    this.mdcMenuController.removeItem_(this);
   }
 
   select(index) {

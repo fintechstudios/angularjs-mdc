@@ -1,4 +1,7 @@
-import {BaseComponent} from '../../util/base-component';
+import {arrayUnion} from '../../util/array-union';
+
+import {MDCComponentNg} from '../../mdc-base/component-ng';
+
 import {MDCMenuAnchorController} from '../anchor/directive';
 import {MDC_MENU_TOGGLE_EVENT} from '../toggle/directive';
 
@@ -26,7 +29,7 @@ function convertToCornerProperty(anchorFrom) {
  * @param {string} [anchorCorner=TOP_START] - TOP_START, TOP_END, BOTTOM_START, BOTTOM_END
  * @param {AnchorMargin} [anchorMargin] - default {top: 0, right: 0, bottom: 0, left: 0}
  */
-export class MDCMenuController extends BaseComponent {
+export class MDCMenuController extends MDCComponentNg {
   static get name() {
     return 'mdcMenu';
   }
@@ -53,7 +56,7 @@ export class MDCMenuController extends BaseComponent {
   }
 
   static get $inject() {
-    return ['$element', '$document', '$scope', '$window', '$rootScope', '$timeout'];
+    return arrayUnion(['$element', '$document', '$window', '$rootScope'], super.$inject);
   }
 
   static get template() {
@@ -64,8 +67,6 @@ export class MDCMenuController extends BaseComponent {
     super(...args);
 
     this.$element.addClass('mdc-menu');
-    this.foundation_ = this.getDefaultFoundation();
-    this.root_ = this.$element[0];
     this.itemControllers = [];
   }
 
@@ -81,11 +82,11 @@ export class MDCMenuController extends BaseComponent {
   }
 
   $postLink() {
+    super.$postLink();
+
     if (!this.$element.attr('tabindex') && Number(this.$element.attr('tabindex')) !== 0) {
       this.$element.attr('tabindex', -1);
     }
-
-    this.foundation_.init();
 
     this.stopListening = this.$rootScope.$on(MDC_MENU_TOGGLE_EVENT, (event, {id}) => {
       if (id === this.id) {
@@ -95,6 +96,8 @@ export class MDCMenuController extends BaseComponent {
   }
 
   $onChanges(changes) {
+    super.$onChanges(changes);
+
     if (changes.open) {
       this.open ? this.show() : this.hide();
     }
@@ -126,17 +129,13 @@ export class MDCMenuController extends BaseComponent {
     if (this.stopListening) {
       this.stopListening();
     }
-
-    if (this.foundation_) {
-      this.foundation_.destroy();
-    }
   }
 
-  _addItem(itemCtrl) {
+  addItem_(itemCtrl) {
     this.itemControllers.push(itemCtrl);
   }
 
-  _removeItem(itemCtrl) {
+  removeItem_(itemCtrl) {
     const index = this.itemControllers.indexOf(itemCtrl);
     if (index >= 0) {
       this.itemControllers.splice(itemCtrl, 1);
@@ -186,12 +185,10 @@ export class MDCMenuController extends BaseComponent {
       registerBodyClickHandler: (handler) => this.$document[0].body.addEventListener('click', handler),
       deregisterBodyClickHandler: (handler) => this.$document[0].body.removeEventListener('click', handler),
       getIndexForEventTarget: (target) => this.items.indexOf(target),
-      notifySelected: (evtData) => {
-        this.select({
-          index: evtData.index,
-          item: this.items[evtData.index],
-        });
-      },
+      notifySelected: (evtData) => this.emit(MDCMenuFoundation.strings.SELECTED_EVENT, {
+        index: evtData.index,
+        item: this.items[evtData.index],
+      }),
       notifyCancel: () => this.emit(MDCMenuFoundation.strings.CANCEL_EVENT, {}),
       saveFocus: () => {
         this.previousFocus_ = this.$document[0].activeElement;
@@ -227,20 +224,9 @@ export class MDCMenuController extends BaseComponent {
     });
   }
 
-  emit(name, args) {
-    this.$scope.$emit(name, args);
-  }
-
-  select({item, index}) {
-    this.itemControllers.forEach((ctrl) => {
-      if (ctrl.hasElement(item)) {
-        ctrl.select(index);
-      }
-    });
-  }
-
-  show() {
-    this.foundation_.open();
+  /** @param {{focusIndex: ?number}=} options */
+  show({focusIndex = null} = {}) {
+    this.foundation_.open({focusIndex: focusIndex});
   }
 
   hide() {
