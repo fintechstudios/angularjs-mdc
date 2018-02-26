@@ -10,7 +10,7 @@ import {BaseComponent} from '../util/base-component';
  */
 export class MDCComponentNg extends BaseComponent {
   static get $inject() {
-    return ['$element', '$scope'];
+    return ['$element', '$scope', '$document'];
   }
 
   constructor(...args) {
@@ -35,12 +35,6 @@ export class MDCComponentNg extends BaseComponent {
 
   $onDestroy() {
     this.destroy();
-  }
-
-  initialize(/* ...args */) {
-    // Subclasses can override this to do any additional setup work that would be considered part of a
-    // "constructor". Essentially, it is a hook into the parent constructor before the foundation is
-    // initialized. Any additional arguments besides root and foundation will be passed in here.
   }
 
   /**
@@ -79,7 +73,7 @@ export class MDCComponentNg extends BaseComponent {
       this.unlisteners__[evtType] = new WeakMap();
     }
 
-    this.unlisteners__[evtType].set(handler, this.$scope.$on(evtType, (event, data) => handler(data)));
+    this.unlisteners__[evtType].set(handler, this.$scope.$on(evtType, handler));
   }
 
   /**
@@ -103,12 +97,9 @@ export class MDCComponentNg extends BaseComponent {
    * with the given data.
    * @param {string} evtType
    * @param {!Object} evtData
-   * @param {boolean=} shouldBubble
+   * @param {boolean=} shouldBubble - ignored
    */
   emit(evtType, evtData, shouldBubble = false) {
-    this.$scope.$emit(evtType, {
-      detail: evtData,
-      bubbles: shouldBubble,
-    });
+    this.$scope.$emit(evtType, evtData);
   }
 }

@@ -1,6 +1,5 @@
 import {MDCTabBarController} from './tab-bar';
-import {MDCTabController} from './tab';
-import {MDCTabTextController} from './tab-text';
+import {MDCTabController, MDCTabTextController} from './tab';
 import {MDCTabBarScrollerController} from './tab-bar-scroller';
 
 
@@ -12,15 +11,15 @@ import {MDCTabBarScrollerController} from './tab-bar-scroller';
  * Tabs
  */
 angular.module('mdc.tabs', [])
-  .directive(MDCTabController.name, () => ({
+  .component(MDCTabController.name, {
     controller: MDCTabController,
     require: MDCTabController.require,
-    bindToController: MDCTabController.bindings,
-  }))
-  // .directive(MDCTabTextController.name, () => ({
-  //   controller: MDCTabTextController,
-  //   require: MDCTabTextController.require,
-  // }))
+    bindings: MDCTabController.bindings,
+  })
+  .component(MDCTabTextController.name, {
+    controller: MDCTabTextController,
+    require: MDCTabTextController.require,
+  })
   .component(MDCTabBarController.name, {
     controller: MDCTabBarController,
     require: MDCTabBarController.require,

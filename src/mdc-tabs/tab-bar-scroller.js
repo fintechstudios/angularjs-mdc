@@ -1,7 +1,6 @@
-import {MDCComponentNg} from '../mdc-base/component-ng';
+import {BaseComponent} from '../util/base-component';
 
 import {getCorrectPropertyName} from '@material/animation';
-
 import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
 
 import template from './tab-bar-scroller.html';
@@ -13,13 +12,13 @@ import template from './tab-bar-scroller.html';
  * @module mdc.tab
  *
  */
-export class MDCTabBarScrollerController extends MDCComponentNg {
+export class MDCTabBarScrollerController extends BaseComponent {
   static get name() {
     return 'mdcTabBarScroller';
   }
 
   static get $inject() {
-    return ['$element', '$window', '$timeout'];
+    return ['$element', '$window', '$document', '$timeout'];
   }
 
   static get transclude() {
@@ -34,6 +33,42 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
     super(...args);
 
     this.$element.addClass('mdc-tab-bar-scroller');
+    this.root_ = this.$element[0];
+    this.initDone_ = false;
+    this.$elementReady = false;
+    this.willScrollIndex_ = undefined;
+
+    this.$element.ready(() => {
+      this.$elementReady = true;
+      this.init();
+    });
+  }
+
+  init() {
+    if (!this.initDone_ && this.$elementReady && this.tabBar) {
+      this.foundation_ = this.getDefaultFoundation();
+      this.foundation_.init();
+      this.initDone_ = true;
+      if (this.tabBar.initDone_) {
+        this.scrollTo(this.tabBar.activeTabIndex);
+      } else if (this.willScrollIndex_) {
+        this.scrollTo(this.willScrollIndex_);
+      }
+    }
+  }
+
+  $postLink() {
+    this.scrollFrame_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.FRAME_SELECTOR);
+    this.forwardIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
+    this.backIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
+
+    this.init();
+  }
+
+  $onDestroy() {
+    if (this.foundation_) {
+      this.foundation_.destroy();
+    }
   }
 
   get tabBar() {
@@ -43,15 +78,25 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
   setTabBar(tabBar) {
     this.tabBar_ = tabBar;
     this.tabBarEl_ = this.tabBar_.root_;
+    this.init();
   }
 
-  initialize() {
-    this.scrollFrame_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.FRAME_SELECTOR);
-    this.forwardIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
-    this.backIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
+  removeTabBar() {
+    this.foundation_.destroy();
+    this.initDone_ = false;
+    this.tabBar_ = undefined;
+    this.tabBarEl_ = undefined;
   }
 
-  scrollToTabAtIndexIfNotVisible(index) {
+  scrollTo(index) {
+    if (this.initDone_) {
+      this.scrollToTabIfNotVisible_(index);
+    } else {
+      this.willScrollIndex_ = index;
+    }
+  }
+
+  scrollToTabIfNotVisible_(index) {
     // This will probably be implemented into the foundation at some point - remove then
     if (!this.isTabVisible(index)) {
       this.$timeout(() => this.foundation_.scrollToTabAtIndex(index), 100);
@@ -98,11 +143,8 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
       getOffsetWidthForScrollFrame: () => this.scrollFrame_.offsetWidth,
       getScrollLeftForScrollFrame: () => this.scrollFrame_.scrollLeft,
       setScrollLeftForScrollFrame: (scrollLeftAmount) => this.scrollFrame_.scrollLeft = scrollLeftAmount,
-      getOffsetWidthForTabBar: () => this.tabBarEl_ && this.tabBarEl_.offsetWidth,
+      getOffsetWidthForTabBar: () => this.tabBarEl_.offsetWidth,
       setTransformStyleForTabBar: (value) => {
-        if (!this.tabBarEl_) {
-          return;
-        }
         this.tabBarEl_.style.setProperty(getCorrectPropertyName(this.$window, 'transform'), value);
       },
       getOffsetLeftForEventTarget: (target) => target.offsetLeft,

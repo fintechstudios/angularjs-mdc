@@ -1,6 +1,6 @@
 import {arrayUnion} from '../util/array-union';
+import {BaseComponent} from '../util/base-component';
 
-import {MDCComponentNg} from '../mdc-base/component-ng';
 import {MDCRippleMixin} from '../mdc-ripple/mixin';
 import {MDCTabBarController} from './tab-bar';
 
@@ -12,9 +12,9 @@ import {MDCTabFoundation} from '@material/tabs';
  * @name mdcTab
  * @module mdc.tabs
  *
- * @param {boolean} [active] - Sets whether this is the active tab or not (one-way, to tab-bar)
+ * @param {expression} [active] Whether this is the active class or not.
  */
-export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
+export class MDCTabController extends MDCRippleMixin(BaseComponent) {
   static get name() {
     return 'mdcTab';
   }
@@ -22,7 +22,6 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
   static get bindings() {
     return {
       active: '<?',
-      onSelect: '&?',
     };
   }
 
@@ -40,16 +39,43 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     super(...args);
 
     this.$element.addClass('mdc-tab');
-    if (!this.$element.attr('href') && !this.$element.attr('tabindex')) {
-      this.$element.attr('tabindex', 0);
+    this.root_ = this.$element[0];
+    this.added = false;
+
+    this.foundation_ = this.getDefaultFoundation();
+
+    this.$element.ready(() => {
+      this.addToTabBar();
+      this.foundation_.init();
+      this.initDone_ = true;
+      if (this.willBeActive) {
+        this._active = true;
+      }
+    });
+  }
+
+  addToTabBar() {
+    if (!this.added && this.tabBar) {
+      this.tabBar.addTab(this);
+      this.added = true;
     }
   }
 
-  $postLink() {
-    super.$postLink();
+  $onInit() {
+    super.$onInit();
+    this.addToTabBar();
+  }
 
-    if (this.tabBar) {
-      this.tabBar.addTab(this);
+  $onChanges(changes) {
+    super.$onChanges(changes);
+
+    if (changes.active) {
+      this.addToTabBar(); // if active, this may happen before $onInit
+      this._active = changes.active.currentValue;
+      if (changes.active.currentValue) {
+        // on initialize, sync active state with tabbar
+        this.notifyTabBar(true);
+      }
     }
   }
 
@@ -59,15 +85,11 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     if (this.tabBar) {
       this.tabBar.removeTab(this);
     }
+    this.foundation_.destroy();
   }
 
-  $onChanges(changes) {
-    super.$onChanges(changes);
-
-    if (changes.active && this.foundationReady && this.active) {
-      // act as a click
-      this.foundation_.adapter_.notifySelected();
-    }
+  hasMdcText(toggle) {
+    this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(toggle));
   }
 
   get computedWidth() {
@@ -78,12 +100,16 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     return this.foundation_.getComputedLeft();
   }
 
-  get isActive() {
-    return this.foundation_.isActive();
+  get _active() {
+    return this.foundation_ ? this.foundation_.isActive() : this.willBeActive;
   }
 
-  set isActive(isActive) {
-    this.foundation_.setActive(isActive);
+  set _active(isActive) {
+    if (this.foundation_) {
+      this.foundation_.setActive(isActive);
+    } else {
+      this.willBeActive = isActive;
+    }
   }
 
   get preventDefaultOnClick() {
@@ -94,6 +120,17 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     this.foundation_.setPreventDefaultOnClick(preventDefaultOnClick);
   }
 
+  handleClick() {
+    this._active = true;
+    this.notifyTabBar();
+  }
+
+  notifyTabBar(notifyScroller = false) {
+    if (this.tabBar) {
+      this.tabBar.activate(this, notifyScroller);
+    }
+  }
+
   getDefaultFoundation() {
     return new MDCTabFoundation({
       addClass: (className) => this.root_.classList.add(className),
@@ -102,12 +139,8 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
       deregisterInteractionHandler: (type, handler) => this.root_.removeEventListener(type, handler),
       getOffsetWidth: () => this.root_.offsetWidth,
       getOffsetLeft: () => this.root_.offsetLeft,
-      notifySelected: () => this.tabBar.emit(MDCTabFoundation.strings.SELECTED_EVENT, {tab: this}, true),
+      notifySelected: () => this.handleClick(),
     });
-  }
-
-  initialSyncWithDOM() {
-    this.isActive = this.active;
   }
 
   measureSelf() {
@@ -115,3 +148,38 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
   }
 }
 
+
+/**
+ * @ngdoc component
+ * @name mdcTabText
+ * @module mdc.tabs
+ */
+export class MDCTabTextController extends BaseComponent {
+  static get name() {
+    return 'mdcTabText';
+  }
+
+  static get require() {
+    return {
+      tab: `^^${MDCTabController.name}`,
+    };
+  }
+
+  static get $inject() {
+    return ['$element'];
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.$element.addClass('mdc-tab__icon-text');
+  }
+
+  $postLink() {
+    this.tab.hasMdcText(true);
+  }
+
+  $onDestroy() {
+    this.tab.hasMdcText(false);
+  }
+}
