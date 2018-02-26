@@ -1,3 +1,5 @@
+import {arrayUnion} from '../util/array-union';
+
 import {MDCComponentNg} from '../mdc-base/component-ng';
 
 import {getCorrectPropertyName} from '@material/animation';
@@ -19,7 +21,7 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
   }
 
   static get $inject() {
-    return ['$element', '$window', '$timeout'];
+    return arrayUnion(['$element', '$window', '$timeout'], super.$inject);
   }
 
   static get transclude() {
