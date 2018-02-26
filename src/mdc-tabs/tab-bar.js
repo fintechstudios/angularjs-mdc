@@ -89,11 +89,9 @@ export class MDCTabBarController extends MDCComponentNg {
         this.activeTabIndex = value;
       };
 
+      this.foundation_.activeTabIndex_ = -1; // init correctly
       this.ngModelCtrl_.$render();
-    }
-
-    if (this.activeTabIndex < 0 || (this.ngModelCtrl_ && this.ngModelCtrl_.$viewValue)) {
-      // todo verify this initialization logic is correct
+    } else if (this.activeTabIndex < 0) {
       this.tabs[0].isActive = true;
 
       if (this.ngModelCtrl_) {
@@ -112,8 +110,11 @@ export class MDCTabBarController extends MDCComponentNg {
       return;
     }
 
-    if (htmlIndex <= activeIndex) {
-      this.activeTabIndex = activeIndex + 1;
+    if (activeIndex === -1) {
+      this.foundation_.activeTabIndex_ = -1;
+      this.setActiveTabIndex_(0, true);
+    } else if (htmlIndex <= activeIndex) {
+      this.setActiveTabIndex_(activeIndex + 1, true);
     }
 
     this.layout();
@@ -127,18 +128,23 @@ export class MDCTabBarController extends MDCComponentNg {
     }
 
     if (this.tabs.length === 1) {
+      // if it's the last one, we can short-circuit any extra processing
       this.tabs.length = 0;
       return;
-    } else {
-      this.tabs.splice(indexOfTab, 1);
     }
 
+    this.tabs.splice(indexOfTab, 1);
 
     if (!this.foundationReady) {
       return;
     }
 
-    // todo handle activeIndex correctly on tab removal
+    if (activeIndex === indexOfTab) {
+      this.foundation_.activeTabIndex_ = -1; // old tab is gone, reset foundation_ value
+      this.setActiveTabIndex_(0, true);
+    } else if (activeIndex > indexOfTab) {
+      this.setActiveTabIndex_(activeIndex - 1, true);
+    }
 
     this.layout();
   }
@@ -163,6 +169,11 @@ export class MDCTabBarController extends MDCComponentNg {
     }
   }
 
+  $onDestroy() {
+    this.tabs.length = 0; // if $onDestroy is called, all the tabs should already be gone - remove references
+    super.$onDestroy();
+  }
+
   getDefaultFoundation() {
     return new MDCTabBarFoundation({
       addClass: (className) => this.root_.classList.add(className),
@@ -180,15 +191,17 @@ export class MDCTabBarController extends MDCComponentNg {
       getNumberOfTabs: () => this.tabs.length,
       isTabActiveAtIndex: (index) => this.tabs[index].isActive,
       setTabActiveAtIndex: (index, isActive) => {
-        this.tabs[index].isActive = isActive;
+        if (this.tabs[index]) {
+          this.tabs[index].isActive = isActive;
+        }
       },
       isDefaultPreventedOnClickForTabAtIndex: (index) => this.tabs[index].preventDefaultOnClick,
       setPreventDefaultOnClickForTabAtIndex: (index, preventDefaultOnClick) => {
         this.tabs[index].preventDefaultOnClick = preventDefaultOnClick;
       },
-      measureTabAtIndex: (index) => this.tabs[index].measureSelf(),
-      getComputedWidthForTabAtIndex: (index) => this.tabs[index].computedWidth,
-      getComputedLeftForTabAtIndex: (index) => this.tabs[index].computedLeft,
+      measureTabAtIndex: (index) => this.tabs[index] && this.tabs[index].measureSelf(),
+      getComputedWidthForTabAtIndex: (index) => this.tabs[index] && this.tabs[index].computedWidth,
+      getComputedLeftForTabAtIndex: (index) => this.tabs[index] && this.tabs[index].computedLeft,
     });
   }
 
