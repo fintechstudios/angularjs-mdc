@@ -31,10 +31,10 @@ export class MDCTabTextController extends BaseComponent {
   }
 
   $postLink() {
-    this.tab.hasMdcText(true);
+    this.tab.setMDCText(true);
   }
 
   $onDestroy() {
-    this.tab.hasMdcText(false);
+    this.tab.setMDCText(false);
   }
 }

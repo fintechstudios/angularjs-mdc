@@ -12,8 +12,8 @@ import {MDCTabFoundation, MDCTabBarFoundation} from '@material/tabs';
  * @name mdcTabBar
  * @module mdc.tabs
  *
- * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
- * @param {string} [ngModel] Assignable AngularJS expression to bind selected tab to
+ * @param {string} [variant] - Style variant - "icon", ""icons-text", or none for default
+ * @param {string} [ngModel] - Assignable AngularJS expression to bind selected tab to
  */
 export class MDCTabBarController extends MDCComponentNg {
   static get name() {
@@ -149,7 +149,6 @@ export class MDCTabBarController extends MDCComponentNg {
     this.layout();
   }
 
-
   $postLink() {
     super.$postLink();
 
@@ -158,7 +157,6 @@ export class MDCTabBarController extends MDCComponentNg {
       this.scroller.setTabBar(this);
     }
   }
-
 
   $onChanges(changes) {
     super.$onChanges(changes);

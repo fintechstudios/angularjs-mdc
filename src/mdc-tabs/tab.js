@@ -45,6 +45,10 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     }
   }
 
+  setMDCText(value) {
+    this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(value));
+  }
+
   $postLink() {
     super.$postLink();
 
