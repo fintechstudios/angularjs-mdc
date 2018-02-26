@@ -12,7 +12,7 @@ import {MDCTabFoundation} from '@material/tabs';
  * @name mdcTab
  * @module mdc.tabs
  *
- * @param {expression} [active] Whether this is the active class or not.
+ * @param {boolean} [active] - Sets whether this is the active tab or not (one-way, to tab-bar)
  */
 export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
   static get name() {
@@ -64,8 +64,9 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
   $onChanges(changes) {
     super.$onChanges(changes);
 
-    if (changes.active && this.foundationReady) {
-      this.isActive = this.active;
+    if (changes.active && this.foundationReady && this.active) {
+      // act as a click
+      this.foundation_.adapter_.notifySelected();
     }
   }
 
