@@ -187,7 +187,7 @@ export class MDCTabBarController extends MDCComponentNg {
       getOffsetWidthForIndicator: () => this.indicator_.offsetWidth,
       notifyChange: (evtData) => this.emit(MDCTabBarFoundation.strings.CHANGE_EVENT, evtData),
       getNumberOfTabs: () => this.tabs.length,
-      isTabActiveAtIndex: (index) => this.tabs[index].isActive,
+      isTabActiveAtIndex: (index) => this.tabs[index] && this.tabs[index].isActive,
       setTabActiveAtIndex: (index, isActive) => {
         if (this.tabs[index]) {
           this.tabs[index].isActive = isActive;
