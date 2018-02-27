@@ -23,13 +23,10 @@ export class MDCExperimentalTabController extends MDCTabController {
     };
   }
 
-  $postLink() {
-    super.$postLink();
-
-    const menuEl = this.$element.find('mdc-menu');
-    if (menuEl[0]) {
-      this.menu = menuEl.controller('mdcMenu');
-      this.setupMenu_(this.menu);
+  setMDCMenu(menu) {
+    this.menu = menu;
+    if (menu) {
+      this.setupMenu_(menu);
     }
   }
 
