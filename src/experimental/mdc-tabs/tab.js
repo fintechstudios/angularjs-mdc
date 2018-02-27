@@ -1,0 +1,74 @@
+import {MDCTabController} from '../../mdc-tabs/tab';
+
+import {MDCTabFoundation} from '@material/tabs';
+import {MDCMenuFoundation} from '@material/menu';
+
+
+export class MDCExperimentalTabController extends MDCTabController {
+  static get name() {
+    return 'mdcTab';
+  }
+
+  $postLink() {
+    super.$postLink();
+
+    const menuEl = this.$element.find('mdc-menu');
+    if (menuEl[0]) {
+      this.menu = menuEl.controller('mdcMenu');
+      this.setupMenu_(this.menu);
+    }
+  }
+
+  setupMenu_(menu) {
+    menu.foundation_.setRememberSelection(true);
+    menu.listen(MDCMenuFoundation.strings.SELECTED_EVENT, () => this.notifyTabbar_());
+
+    this.menuParent_ = this.tabBar.scroller ? this.tabBar.scroller.$element : this.tabBar.$element;
+    menu.$element.detach();
+    this.menuParent_.after(menu.$element);
+  }
+
+  setMenuElStyle_(propertyName, value) {
+    this.menu.root_.style.setProperty(propertyName, value);
+  }
+
+  showMenu_() {
+    const top = this.menuParent_[0].offsetTop;
+    const left = this.root_.getBoundingClientRect().left - this.menuParent_.parent()[0].getBoundingClientRect().left;
+    this.setMenuElStyle_('left', `${left}px`);
+    this.setMenuElStyle_('top', `${top}px`);
+    this.setMenuElStyle_('transform-origin', 'center top 0px');
+
+    this.menu.show();
+  }
+
+  $onDestroy() {
+    super.$onDestroy();
+
+    if (this.menu) {
+      this.menu.$element.remove();
+    }
+  }
+
+  getDefaultFoundation() {
+    return new MDCTabFoundation({
+      addClass: (className) => this.root_.classList.add(className),
+      removeClass: (className) => this.root_.classList.remove(className),
+      registerInteractionHandler: (type, handler) => this.root_.addEventListener(type, handler),
+      deregisterInteractionHandler: (type, handler) => this.root_.removeEventListener(type, handler),
+      getOffsetWidth: () => this.root_.offsetWidth,
+      getOffsetLeft: () => this.root_.offsetLeft,
+      notifySelected: () => {
+        if (this.menu) {
+          this.showMenu_();
+        } else {
+          this.notifyTabbar_();
+        }
+      },
+    });
+  }
+
+  notifyTabbar_() {
+    this.tabBar.emit(MDCTabFoundation.strings.SELECTED_EVENT, {tab: this}, true);
+  }
+}

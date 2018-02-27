@@ -72,6 +72,19 @@ module.exports = [{
   },
 }];
 
+const EXPERIMENTAL_NAME = `${PACKAGE_NAME}-experimental`;
+module.exports.push(Object.assign({}, module.exports[0], {
+  name: 'experimental',
+  entry: path.resolve('./src/experimental/index.js'),
+  output: {
+    path: OUT_PATH,
+    publicPath: PUBLIC_PATH,
+    filename: EXPERIMENTAL_NAME + '.' + (IS_PROD ? 'min.' : '') + 'js',
+    libraryTarget: 'umd',
+    library: EXPERIMENTAL_NAME,
+  },
+}));
+
 const CSS_EXPORT = {
   name: 'scss',
   entry: {},
@@ -96,6 +109,7 @@ const CSS_EXPORT = {
   ],
 };
 CSS_EXPORT['entry'][PACKAGE_NAME] = path.resolve('./src/mdc.scss');
+CSS_EXPORT['entry'][EXPERIMENTAL_NAME] = path.resolve('./src/experimental/mdc.scss');
 module.exports.push(CSS_EXPORT);
 
 const DEMO_CSS_EXPORT = {
