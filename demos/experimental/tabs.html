@@ -207,11 +207,14 @@ limitations under the License
         <fieldset>
           <legend class="mdc-typography--title">Basic Tab Bar w/ Custom Label Color</legend>
           <mdc-tab-bar class="custom-label-color-tab">
-            <mdc-tab>Item One</mdc-tab>
-            <mdc-tab>Item Two</mdc-tab>
-            <mdc-tab>Three</mdc-tab>
+            <mdc-tab on-select="clicked = 'one, index ' + index">Item One</mdc-tab>
+            <mdc-tab on-select="clicked = 'two, index ' + index">Item Two</mdc-tab>
+            <mdc-tab on-select="clicked = 'three, index ' + index">Three</mdc-tab>
           </mdc-tab-bar>
         </fieldset>
+        <p>
+          Clicked: <i ng-bind="clicked || 'None'"></i>
+        </p>
       </section>
 
       <section>

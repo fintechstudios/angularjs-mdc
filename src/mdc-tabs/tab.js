@@ -4,15 +4,22 @@ import {MDCComponentNg} from '../mdc-base/component-ng';
 import {MDCRippleMixin} from '../mdc-ripple/mixin';
 import {MDCTabBarController} from './tab-bar';
 
-import {MDCTabFoundation} from '@material/tabs';
+import {MDCTabFoundation, MDCTabBarFoundation} from '@material/tabs';
 
+
+/**
+ * @callback onTabSelectCallback
+ * @param {Number} index
+ */
 
 /**
  * @ngdoc component
  * @name mdcTab
  * @module mdc.tabs
+ * @description Used as a child of mdcTabBar to make tabs. Use onSelect (not ngClick) for better compatibility.
  *
  * @param {boolean} [active] - Sets whether this is the active tab or not (one-way, to tab-bar)
+ * @param {onTabSelectCallback} [onSelect] - expression to evaluate if tab is selected
  */
 export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
   static get name() {
@@ -33,7 +40,7 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
   }
 
   static get $inject() {
-    return arrayUnion(['$element'], super.$inject);
+    return arrayUnion(['$element', '$scope'], super.$inject);
   }
 
   constructor(...args) {
@@ -43,6 +50,12 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     if (!this.$element.attr('href') && !this.$element.attr('tabindex')) {
       this.$element.attr('tabindex', 0);
     }
+
+    this.changeHandler_ = ({detail: {activeTabIndex}}) => {
+      if (this.onSelect && this.tabBar.tabs[activeTabIndex] === this) {
+        this.$scope.$apply(() => this.onSelect({index: activeTabIndex}));
+      }
+    };
   }
 
   setMDCText(value) {
@@ -54,6 +67,7 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
 
     if (this.tabBar) {
       this.tabBar.addTab(this);
+      this.tabBar.listen(MDCTabBarFoundation.strings.CHANGE_EVENT, this.changeHandler_);
     }
   }
 
@@ -61,6 +75,7 @@ export class MDCTabController extends MDCRippleMixin(MDCComponentNg) {
     super.$onDestroy();
 
     if (this.tabBar) {
+      this.tabBar.unlisten(MDCTabBarFoundation.strings.CHANGE_EVENT, this.changeHandler_);
       this.tabBar.removeTab(this);
     }
   }
