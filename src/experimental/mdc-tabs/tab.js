@@ -9,6 +9,20 @@ export class MDCExperimentalTabController extends MDCTabController {
     return 'mdcTab';
   }
 
+  constructor(...args) {
+    super(...args);
+
+    this.changeHandler_ = ({detail: {activeTabIndex}}) => {
+      if (this.tabBar.tabs[activeTabIndex] === this) {
+        if (this.onSelect) {
+          this.$scope.$apply(() => this.onSelect({index: activeTabIndex}));
+        }
+      } else if (this.menu && this.menu.rememberSelection) {
+        this.menu.foundation_.setSelectedIndex(-1);
+      }
+    };
+  }
+
   $postLink() {
     super.$postLink();
 
@@ -20,7 +34,6 @@ export class MDCExperimentalTabController extends MDCTabController {
   }
 
   setupMenu_(menu) {
-    menu.foundation_.setRememberSelection(true);
     menu.listen(MDCMenuFoundation.strings.SELECTED_EVENT, () => this.notifyTabbar_());
 
     this.menuParent_ = this.tabBar.scroller ? this.tabBar.scroller.$element : this.tabBar.$element;
