@@ -14,6 +14,10 @@ export class MDCTabTextController extends BaseComponent {
     return 'mdcTabText';
   }
 
+  static get bindings() {
+    return true;
+  }
+
   static get require() {
     return {
       tab: `^^${MDCTabController.name}`,

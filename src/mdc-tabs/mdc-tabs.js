@@ -30,5 +30,5 @@ angular.module('mdc.tabs', [])
   .directive(MDCTabTextController.name, () => ({
     controller: MDCTabTextController,
     require: MDCTabTextController.require,
-    bindToController: MDCTabController.bindings,
+    bindToController: MDCTabTextController.bindings,
   }));
