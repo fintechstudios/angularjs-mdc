@@ -34,7 +34,7 @@ export class MDCTabBarController extends MDCComponentNg {
   }
 
   static get $inject() {
-    return arrayUnion(['$element', '$window'], super.$inject);
+    return arrayUnion(['$element', '$window', '$timeout'], super.$inject);
   }
 
   constructor(...args) {
@@ -56,6 +56,12 @@ export class MDCTabBarController extends MDCComponentNg {
     return this.ngModel && this.ngModel.$viewValue;
   }
 
+  set value(value) {
+    if (this.ngModel) {
+      this.ngModel.$setViewValue(value);
+    }
+  }
+
   get tabs() {
     return this.tabs_;
   }
@@ -65,16 +71,12 @@ export class MDCTabBarController extends MDCComponentNg {
   }
 
   onElementReady() {
-    if (this.ngModel) {
-      this.ngModel.$render = () => this.ngModel.$viewChangeListeners.forEach((listener) => listener());
-      this.ngModel.$render();
-    }
   }
 
   activateTab(tab) {
     const index = this.tabs.indexOf(tab);
 
-    this.foundation_.switchToTabAtIndex(index, true);
+    this.$timeout(() => this.foundation_.switchToTabAtIndex(index, true), 20, false);
 
     if (this.scroller) {
       this.scroller.scrollToTabIfNotVisible(tab);
@@ -156,13 +158,10 @@ export class MDCTabBarController extends MDCComponentNg {
   }
 
   initialSyncWithDOM() {
-    if (!this.ngModel) { // not using ngModel, so first tab must be active
+    if (this.ngModel) {
+      this.ngModel.$render = () => this.ngModel.$viewChangeListeners.forEach((listener) => listener());
+    } else if (this.tabs.length > 0) { // not using ngModel, so first tab must be active
       this.tabs[0].isActive = true;
-    } else if (this.scroller) {
-      const activeIndex = this.activeIndex;
-      if (activeIndex > -1) {
-        this.scroller.scrollToTabIfNotVisible(this.tabs[activeIndex]);
-      }
     }
   }
 

@@ -48,9 +48,13 @@ export class MDCTabController extends HasNgValue(MDCRippleMixin(MDCComponentNg))
     };
   }
 
+  initialSyncWithDOM() {
+    this.$viewChangeHandler();
+  }
+
   onSelect_() {
     if (this.tabBar.ngModel) {
-      this.tabBar.ngModel.$setViewValue(this.getValue());
+      this.tabBar.value = this.getValue();
     } else {
       this.tabBar.activateTab(this);
     }

@@ -1,7 +1,7 @@
 import {MDCMenuAnchorController} from '../../mdc-menu/anchor/directive';
 import {MDCMenuToggleController} from '../../mdc-menu/toggle/directive';
 import {MDCExperimentalMenuController} from './menu';
-import {MDCMenuItemController} from '../../mdc-menu/item/component';
+import {MDCExperimentalMenuItemController} from './item';
 
 angular
   .module('mdc.menu-experimental', [])
@@ -20,8 +20,8 @@ angular
     require: MDCMenuToggleController.require,
     bindToController: MDCMenuToggleController.bindings,
   }))
-  .directive(MDCMenuItemController.name, () => ({
-    controller: MDCMenuItemController,
-    require: MDCMenuItemController.require,
-    bindToController: MDCMenuItemController.bindings,
+  .directive(MDCExperimentalMenuItemController.name, () => ({
+    controller: MDCExperimentalMenuItemController,
+    require: MDCExperimentalMenuItemController.require,
+    bindToController: MDCExperimentalMenuItemController.bindings,
   }));

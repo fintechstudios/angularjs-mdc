@@ -58,15 +58,18 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
   }
 
   onElementReady() {
+    // todo: store measurements instead of accessing live DOM (offsetWidth & offsetWidth cause reflow)
     this.gatherTabElements_();
   }
 
   scrollToTabIfNotVisible(tab) {
-    const index = this.tabElements.indexOf(tab.root_);
-    // This will probably be implemented into the foundation at some point - remove then
-    if (index > -1 && !this.isTabAtIndexVisible(index)) {
-      this.$timeout(() => this.foundation_.scrollToTabAtIndex(index), 100);
-    }
+    this.$timeout(() => {
+      const index = this.tabElements.indexOf(tab.root_);
+      // This will probably be implemented into the foundation at some point - remove then
+      if (index > -1 && !this.isTabAtIndexVisible(index)) {
+        this.foundation_.scrollToTabAtIndex(index);
+      }
+    }, 100, false);
   }
 
   isTabAtIndexVisible(index) {
