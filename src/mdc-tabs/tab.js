@@ -38,6 +38,22 @@ export class MDCTabController extends HasNgValue(MDCRippleMixin(MDCComponentNg))
     if (!this.$element.attr('href') && !this.$element.attr('tabindex')) {
       this.$element.attr('tabindex', 0);
     }
+
+    this.$viewChangeHandler = () => {
+      this.isActive = this.tabBar.value === this.getValue();
+
+      if (this.isActive) {
+        this.tabBar.activateTab(this);
+      }
+    };
+  }
+
+  onSelect_() {
+    if (this.tabBar.ngModel) {
+      this.tabBar.ngModel.$setViewValue(this.getValue());
+    } else {
+      this.tabBar.activateTab(this);
+    }
   }
 
   setMDCText(value) {
@@ -67,7 +83,7 @@ export class MDCTabController extends HasNgValue(MDCRippleMixin(MDCComponentNg))
     super.$onChanges(changes);
 
     if ((changes.value || changes.ngValue) && this.foundationReady) {
-      // todo: alert tab-bar of value update
+      this.$viewChangeHandler();
     }
   }
 
@@ -103,7 +119,7 @@ export class MDCTabController extends HasNgValue(MDCRippleMixin(MDCComponentNg))
       deregisterInteractionHandler: (type, handler) => this.root_.removeEventListener(type, handler),
       getOffsetWidth: () => this.root_.offsetWidth,
       getOffsetLeft: () => this.root_.offsetLeft,
-      notifySelected: () => this.tabBar.emit(MDCTabFoundation.strings.SELECTED_EVENT, {tab: this}, true),
+      notifySelected: () => this.onSelect_(),
     });
   }
 

@@ -23,7 +23,7 @@ export class MDCTabBarController extends MDCComponentNg {
   static get require() {
     return {
       scroller: `^^?${MDCTabBarScrollerController.name}`,
-      ngModelCtrl_: '?ngModel',
+      ngModel: '?',
     };
   }
 
@@ -52,6 +52,10 @@ export class MDCTabBarController extends MDCComponentNg {
     return [].slice.call(this.root_.getElementsByClassName('mdc-tab'));
   }
 
+  get value() {
+    return this.ngModel && this.ngModel.$viewValue;
+  }
+
   get tabs() {
     return this.tabs_;
   }
@@ -61,37 +65,19 @@ export class MDCTabBarController extends MDCComponentNg {
   }
 
   onElementReady() {
-    if (this.ngModelCtrl_) {
-      this.ngModelCtrl_.$render = () => {
-        let selectedTab;
-        this.tabs.forEach((ctrl) => {
-          if (ctrl.getValue() === this.ngModelCtrl_.$viewValue) {
-            selectedTab = ctrl;
-          }
-        });
-
-        if (selectedTab) {
-          if (this.foundationReady) {
-            this.activateTab(selectedTab, false);
-          } else {
-            selectedTab.isActive = true;
-          }
-        }
-      };
-      this.ngModelCtrl_.$render();
+    if (this.ngModel) {
+      this.ngModel.$render = () => this.ngModel.$viewChangeListeners.forEach((listener) => listener());
+      this.ngModel.$render();
     }
   }
 
-  activateTab(tab, notifyNgModel = false) {
+  activateTab(tab) {
     const index = this.tabs.indexOf(tab);
 
     this.foundation_.switchToTabAtIndex(index, true);
 
     if (this.scroller) {
       this.scroller.scrollToTabIfNotVisible(tab);
-    }
-    if (this.ngModelCtrl_ && notifyNgModel) {
-      this.ngModelCtrl_.$setViewValue(tab.getValue());
     }
   }
 
@@ -130,6 +116,9 @@ export class MDCTabBarController extends MDCComponentNg {
     if (this.foundationReady) {
       this.foundation_.layout();
 
+      if (this.ngModel) {
+        this.ngModel.$render();
+      }
       if (this.scroller) {
         this.scroller.layout();
       }
@@ -138,16 +127,23 @@ export class MDCTabBarController extends MDCComponentNg {
 
   addTab(tab) {
     this.tabs.push(tab);
+    if (this.ngModel) {
+      this.ngModel.$viewChangeListeners.push(tab.$viewChangeHandler);
+    }
     this.layout();
   }
 
   removeTab(tab) {
-    const indexOfTab = this.tabs.indexOf(tab);
-    if (indexOfTab < 0) { // tab already removed
-      return;
+    const viewHandlerIndex = this.ngModel ? this.ngModel.$viewChangeListeners.indexOf(tab.$viewChangeHandler) : -1;
+    if (viewHandlerIndex >= 0) {
+      this.ngModel.$viewChangeListeners.splice(viewHandlerIndex, 1);
     }
-    this.tabs.splice(indexOfTab, 1);
-    this.layout();
+
+    const indexOfTab = this.tabs.indexOf(tab);
+    if (indexOfTab >= 0) {
+      this.tabs.splice(indexOfTab, 1);
+      this.layout();
+    }
   }
 
   $postLink() {
@@ -160,7 +156,7 @@ export class MDCTabBarController extends MDCComponentNg {
   }
 
   initialSyncWithDOM() {
-    if (!this.ngModelCtrl_) { // not using ngModel, so first tab must be active
+    if (!this.ngModel) { // not using ngModel, so first tab must be active
       this.tabs[0].isActive = true;
     } else if (this.scroller) {
       const activeIndex = this.activeIndex;
