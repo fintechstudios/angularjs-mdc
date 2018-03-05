@@ -1,3 +1,17 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.6....v0.4.0) (2018-03-05)
+
+### BREAKING CHANGES
+* **tabs**: active and onSelect removed, use ng-model & ng-value
+
+### Features
+* **tabs**: use ng-model & ng-vale for tab selection
+* **menu**: menu select outputs MDCMenuItemController instead of HTMLElement
+
+### Bug Fixes
+* **tabs**: reliably scroll to active tab if not visible on init
+* **demos**: remove arrow functions from demos to support IE11
+
 <a name="0.3.6"></a>
 # [0.3.5](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.5....v0.3.6) (2018-02-15)
 
