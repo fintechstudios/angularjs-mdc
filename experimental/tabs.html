@@ -18,7 +18,8 @@ limitations under the License
     <title>MDC-Web Tab Bar Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/logo_components_color_2x_web_48dp.png" />
-    <script src="assets/demo-styles.css.js" charset="utf-8"></script>
+    <script src="/assets/demo-styles.css.js" charset="utf-8"></script>
+    <script src="/assets/angularjs-mdc-experimental.css" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
@@ -64,10 +65,6 @@ limitations under the License
 
       .demo-title {
         padding: 0 40px 40px;
-      }
-
-      .mdc-tab-bar-scroller {
-        margin-bottom: 16px;
       }
 
       .demo-note {
@@ -129,7 +126,7 @@ limitations under the License
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="../" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
           <span class="mdc-toolbar__title catalog-title">Tabs</span>
         </section>
@@ -146,7 +143,43 @@ limitations under the License
       </section>
 
       <section class="demo-buttons">
-        <button mdc-button raised="true" ng-click="toggleRTL()">Toggle RTL</button>
+        <button mdc-button raised="true" color="primary" ng-click="toggleRTL()">Toggle RTL</button>
+      </section>
+
+      <section>
+        <fieldset>
+          <legend class="mdc-typography--title">Basic Tab Bar w/ Dropdown</legend>
+          <mdc-tab-bar ng-model="withmenu" class="custom-label-color-tab">
+            <mdc-tab ng-value="1">Item One</mdc-tab>
+            <mdc-tab ng-value="2">Item Two</mdc-tab>
+            <mdc-tab>
+              More <mdc-icon class="mdc-tab__drop-down-icon">arrow_drop_down</mdc-icon>
+              <mdc-menu>
+                <mdc-menu-item ng-value="3">Item Three</mdc-menu-item>
+                <mdc-menu-item ng-value="4">Item Four</mdc-menu-item>
+                <mdc-menu-item ng-value="5">Item Five</mdc-menu-item>
+              </mdc-menu>
+            </mdc-tab>
+          </mdc-tab-bar>
+        </fieldset>
+      </section>
+
+      <section>
+        <div class="demo-tabs__scroller">
+          <h2 class="mdc-typography--title demo-title">Tab Bar w/ Scroller & Dropdown</h2>
+          <mdc-tab-bar-scroller>
+            <mdc-tab-bar>
+              <mdc-tab ng-repeat="tab in [1,2,3,4,5,6]">Item {{ tab }}</mdc-tab>
+              <mdc-tab>
+                Items 7,8,9 <mdc-icon class="mdc-tab__drop-down-icon">arrow_drop_down</mdc-icon>
+                <mdc-menu>
+                  <mdc-menu-item ng-repeat="item in [7,8,9]">Item {{ item }}</mdc-menu-item>
+                </mdc-menu>
+              </mdc-tab>
+              <mdc-tab ng-repeat="tab in [10,11,12]">Item {{ tab }}</mdc-tab>
+            </mdc-tab-bar>
+          </mdc-tab-bar-scroller>
+        </div>
       </section>
 
       <section>
@@ -159,7 +192,7 @@ limitations under the License
           </mdc-tab-bar>
         </fieldset>
         <p>
-          <button mdc-button raised="true" ng-click="cycleToggled()">Cycle Tabs</button>
+          <button mdc-button raised="true" color="primary" ng-click="cycleToggled()">Cycle Tabs</button>
         </p>
       </section>
       <section>
@@ -404,11 +437,12 @@ limitations under the License
       </section>
 
     </main>
-    <script src="angular/angular.js"></script>
-    <script src="assets/angularjs-mdc.js"></script>
+    <script src="/angular/angular.js"></script>
+    <script src="/assets/angularjs-mdc.js"></script>
+    <script src="/assets/angularjs-mdc-experimental.js"></script>
     <script>
-      angular.module('demo', ['mdc'])
-        .controller('MainCtrl', ['$scope', '$window', '$compile', function($scope, $window, $compile) {
+      angular.module('demo', ['mdc.tabs-experimental', 'mdc.menu-experimental', 'mdc.button', 'mdc.icon'])
+        .controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
           $scope.numbers = [
             'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
           ];
@@ -417,6 +451,7 @@ limitations under the License
           $scope.window = $window;
           $scope.selectedTab = 0;
           $scope.cycleSelect = 0;
+          $scope.withmenu = 1;
           $scope.scroll = {
             selected: '7',
           };
