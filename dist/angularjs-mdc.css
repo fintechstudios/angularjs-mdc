@@ -5791,7 +5791,7 @@ mdc-divider-inset {
     .mdc-tab {
       min-width: 72px;
       padding: 0 12px; } }
-  .mdc-tab__icon {
+  .mdc-tab__icon, .mdc-tab .mdc-tab__icon {
     display: block;
     margin: 0 auto;
     width: 24px;
@@ -5801,7 +5801,7 @@ mdc-divider-inset {
   .mdc-tab__icon-text {
     display: block;
     margin: 0 auto; }
-  .mdc-tab__icon + .mdc-tab__icon-text {
+  .mdc-tab__icon + .mdc-tab__icon-text, .mdc-tab .mdc-tab__icon + .mdc-tab__icon-text {
     padding-top: 6px; }
 
 .mdc-tab--active {
