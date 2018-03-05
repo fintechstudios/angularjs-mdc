@@ -47,21 +47,33 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
     this.tabBarEl_ = this.tabBar_.root_;
   }
 
+  gatherTabElements_() {
+    this.tabElements = this.tabBar.tabElements;
+  }
+
   initialize() {
     this.scrollFrame_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.FRAME_SELECTOR);
     this.forwardIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
     this.backIndicator_ = this.root_.querySelector(MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
   }
 
-  scrollToTabAtIndexIfNotVisible(index) {
-    // This will probably be implemented into the foundation at some point - remove then
-    if (!this.isTabVisible(index)) {
-      this.$timeout(() => this.foundation_.scrollToTabAtIndex(index), 100);
-    }
+  onElementReady() {
+    // todo: store measurements instead of accessing live DOM (offsetWidth & offsetWidth cause reflow)
+    this.gatherTabElements_();
   }
 
-  isTabVisible(index) {
-    const tabRect = this.tabBar.tabs[index].root_.getBoundingClientRect();
+  scrollToTabIfNotVisible(tab) {
+    this.$timeout(() => {
+      const index = this.tabElements.indexOf(tab.root_);
+      // This will probably be implemented into the foundation at some point - remove then
+      if (index > -1 && !this.isTabAtIndexVisible(index)) {
+        this.foundation_.scrollToTabAtIndex(index);
+      }
+    }, 100, false);
+  }
+
+  isTabAtIndexVisible(index) {
+    const tabRect = this.tabElements[index].getBoundingClientRect();
     const frameRect = this.scrollFrame_.getBoundingClientRect();
 
     return (tabRect.left >= frameRect.left) && (tabRect.right <= frameRect.right);
@@ -94,9 +106,9 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
         this.$window.addEventListener('resize', handler),
       deregisterWindowResizeHandler: (handler) =>
         this.$window.removeEventListener('resize', handler),
-      getNumberOfTabs: () => this.tabBar.tabs.length,
-      getComputedWidthForTabAtIndex: (index) => this.tabBar.tabs[index].computedWidth,
-      getComputedLeftForTabAtIndex: (index) => this.tabBar.tabs[index].computedLeft,
+      getNumberOfTabs: () => this.tabElements.length,
+      getComputedWidthForTabAtIndex: (index) => this.tabElements[index].offsetWidth,
+      getComputedLeftForTabAtIndex: (index) => this.tabElements[index].offsetLeft,
       getOffsetWidthForScrollFrame: () => this.scrollFrame_.offsetWidth,
       getScrollLeftForScrollFrame: () => this.scrollFrame_.scrollLeft,
       setScrollLeftForScrollFrame: (scrollLeftAmount) => this.scrollFrame_.scrollLeft = scrollLeftAmount,
@@ -113,6 +125,9 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
   }
 
   layout() {
-    this.foundation_.layout();
+    if (this.foundationReady) {
+      this.gatherTabElements_();
+      this.foundation_.layout();
+    }
   }
 }
