@@ -420,7 +420,7 @@ limitations under the License
           $scope.scroll = {
             selected: '7',
           };
-          $scope.cycleToggled = () => {
+          $scope.cycleToggled = function() {
             if ($scope.cycleSelect === 2) {
               $scope.cycleSelect = 0;
             } else {
@@ -432,18 +432,18 @@ limitations under the License
             sel: 1,
             counter: 2
           };
-          $scope.mutableCycle = () => {
+          $scope.mutableCycle = function() {
             $scope.mutable.sel = ($scope.mutable.sel + 1) % $scope.mutable.list.length;
           };
-          $scope.mutableAdd = () => {
+          $scope.mutableAdd = function() {
             const index = Math.floor(Math.random() * $scope.mutable.list.length);
             $scope.mutable.list.splice(index, 0, ++$scope.mutable.counter);
           };
-          $scope.mutableRemove = () => {
+          $scope.mutableRemove = function() {
             const index = Math.floor(Math.random() * $scope.mutable.list.length);
             $scope.mutable.list.splice(index, 1);
           };
-          $scope.toggleRTL = () => {
+          $scope.toggleRTL = function() {
             $scope.isRTL = !$scope.isRTL;
             $scope.window.dispatchEvent(new Event('resize'));
           }
