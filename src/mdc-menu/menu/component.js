@@ -3,6 +3,7 @@ import {arrayUnion} from '../../util/array-union';
 import {MDCComponentNg} from '../../mdc-base/component-ng';
 
 import {MDCMenuAnchorController} from '../anchor/directive';
+import {MDCMenuItemController} from '../item/component';
 import {MDC_MENU_TOGGLE_EVENT} from '../toggle/directive';
 
 import {MDCMenuFoundation} from '@material/menu';
@@ -187,7 +188,7 @@ export class MDCMenuController extends MDCComponentNg {
       getIndexForEventTarget: (target) => this.items.indexOf(target),
       notifySelected: (evtData) => this.emit(MDCMenuFoundation.strings.SELECTED_EVENT, {
         index: evtData.index,
-        item: this.items[evtData.index],
+        item: angular.element(this.items[evtData.index]).controller(MDCMenuItemController.name),
       }),
       notifyCancel: () => this.emit(MDCMenuFoundation.strings.CANCEL_EVENT, {}),
       saveFocus: () => {
