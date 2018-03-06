@@ -227,11 +227,6 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
         });
 
         this.selectedIndex = selectedCtrl ? this.options.indexOf(selectedCtrl.$element[0]) : -1;
-
-        // todo: remove when https://github.com/material-components/material-components-web/pull/2283 is merged
-        if (this.selectedIndex > -1 && this.label_) {
-          this.label_.float(true);
-        }
       };
 
       this.ngModelCtrl_.$render();
