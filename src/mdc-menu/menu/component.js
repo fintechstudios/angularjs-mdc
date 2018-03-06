@@ -123,6 +123,8 @@ export class MDCMenuController extends MDCComponentNg {
   }
 
   $onDestroy() {
+    super.$onDestroy();
+
     if (this.mdcMenuAnchorCtrl) {
       this.mdcMenuAnchorCtrl.bindMenu(null);
     }
@@ -203,7 +205,7 @@ export class MDCMenuController extends MDCComponentNg {
       focus: () => this.root_.focus(),
       getFocusedItemIndex: () => this.items.indexOf(this.$document[0].activeElement),
       focusItemAtIndex: (index) => {
-        this.items[index].focus();
+        this.items[index] && this.items[index].focus();
       },
       isRtl: () => getComputedStyle(this.root_).getPropertyValue('direction') === 'rtl',
       setTransformOrigin: (origin) => {
