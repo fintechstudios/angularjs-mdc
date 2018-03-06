@@ -12,15 +12,38 @@ export class MDCExperimentalTabController extends MDCTabController {
   constructor(...args) {
     super(...args);
 
-    this.changeHandler_ = ({detail: {activeTabIndex}}) => {
-      if (this.tabBar.tabs[activeTabIndex] === this) {
-        if (this.onSelect) {
-          this.$scope.$apply(() => this.onSelect({index: activeTabIndex}));
+    this.$viewChangeHandler = () => {
+      const currentValue = this.tabBar.value;
+      let active = false;
+      if (this.menu) {
+        let i;
+        for (i = 0; i < this.menu.itemControllers.length; i++) {
+          if (this.menu.itemControllers[i].getValue() === currentValue) {
+            active = true;
+            break;
+          }
         }
-      } else if (this.menu && this.menu.rememberSelection) {
-        this.menu.foundation_.setSelectedIndex(-1);
+
+        if (!active && this.menu.rememberSelection) {
+          this.menu.foundation_.setSelectedIndex(-1);
+        }
+      } else {
+        active = this.tabBar.value === this.getValue();
+      }
+
+      this.isActive = active;
+      if (active) {
+        this.tabBar.activateTab(this);
       }
     };
+  }
+
+  onSelect_() {
+    if (this.menu) {
+      this.showMenu_();
+    } else {
+      super.onSelect_();
+    }
   }
 
   setMDCMenu(menu) {
@@ -31,11 +54,17 @@ export class MDCExperimentalTabController extends MDCTabController {
   }
 
   setupMenu_(menu) {
-    menu.listen(MDCMenuFoundation.strings.SELECTED_EVENT, () => this.notifyTabbar_());
-
     this.menuParent_ = this.tabBar.scroller ? this.tabBar.scroller.$element : this.tabBar.$element;
     menu.$element.detach();
     this.menuParent_.after(menu.$element);
+
+    menu.listen(MDCMenuFoundation.strings.SELECTED_EVENT, ({detail: {item}}) => {
+      if (this.tabBar.ngModel) {
+        this.tabBar.value = item.getValue();
+      } else {
+        this.tabBar.activateTab(this);
+      }
+    });
   }
 
   setMenuElStyle_(propertyName, value) {
@@ -58,24 +87,6 @@ export class MDCExperimentalTabController extends MDCTabController {
     if (this.menu) {
       this.menu.$element.remove();
     }
-  }
-
-  getDefaultFoundation() {
-    return new MDCTabFoundation({
-      addClass: (className) => this.root_.classList.add(className),
-      removeClass: (className) => this.root_.classList.remove(className),
-      registerInteractionHandler: (type, handler) => this.root_.addEventListener(type, handler),
-      deregisterInteractionHandler: (type, handler) => this.root_.removeEventListener(type, handler),
-      getOffsetWidth: () => this.root_.offsetWidth,
-      getOffsetLeft: () => this.root_.offsetLeft,
-      notifySelected: () => {
-        if (this.menu) {
-          this.showMenu_();
-        } else {
-          this.notifyTabbar_();
-        }
-      },
-    });
   }
 
   notifyTabbar_() {

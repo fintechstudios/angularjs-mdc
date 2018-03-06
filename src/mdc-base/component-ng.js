@@ -27,6 +27,7 @@ export class MDCComponentNg extends BaseComponent {
 
   $postLink() {
     this.$element.ready(() => {
+      this.onElementReady();
       this.foundation_.init();
       this.initialSyncWithDOM();
       this.foundationReady = true;
@@ -37,10 +38,14 @@ export class MDCComponentNg extends BaseComponent {
     this.destroy();
   }
 
-  initialize(/* ...args */) {
+  initialize() {
     // Subclasses can override this to do any additional setup work that would be considered part of a
     // "constructor". Essentially, it is a hook into the parent constructor before the foundation is
     // initialized. Any additional arguments besides root and foundation will be passed in here.
+  }
+
+  onElementReady() {
+    // Executed immediately after element.ready() within $postLink, but before foundation initialization.
   }
 
   /**

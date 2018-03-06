@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/assets/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 45);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -87,7 +87,7 @@ exports.BaseComponent = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _bindInjections = __webpack_require__(18);
+var _bindInjections = __webpack_require__(19);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -424,6 +424,50 @@ exports.default = MDCComponent;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.arrayUnion = arrayUnion;
+/**
+ * Returns the union of two arrays.
+ *
+ * @param {Array} x
+ * @param {Array} y
+ * @return {Array}
+ */
+function arrayUnion() {
+  var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+  if (y.length === 0) {
+    return x;
+  }
+
+  if (x.length === 0) {
+    return y;
+  }
+
+  var obj = {};
+  var i = void 0;
+  for (i = x.length - 1; i >= 0; --i) {
+    obj[x[i]] = x[i];
+  }
+  for (i = y.length - 1; i >= 0; --i) {
+    obj[y[i]] = y[i];
+  }
+
+  return Object.keys(obj).map(function (key) {
+    return obj[key];
+  });
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.util = exports.RippleCapableSurface = exports.MDCRippleFoundation = exports.MDCRipple = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -432,15 +476,15 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(19);
+var _adapter = __webpack_require__(21);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(49);
+var _foundation = __webpack_require__(52);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _util = __webpack_require__(9);
+var _util = __webpack_require__(11);
 
 var util = _interopRequireWildcard(_util);
 
@@ -674,50 +718,6 @@ exports.RippleCapableSurface = RippleCapableSurface;
 exports.util = util;
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.arrayUnion = arrayUnion;
-/**
- * Returns the union of two arrays.
- *
- * @param {Array} x
- * @param {Array} y
- * @return {Array}
- */
-function arrayUnion() {
-  var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
-  if (y.length === 0) {
-    return x;
-  }
-
-  if (x.length === 0) {
-    return y;
-  }
-
-  var obj = {};
-  var i = void 0;
-  for (i = x.length - 1; i >= 0; --i) {
-    obj[x[i]] = x[i];
-  }
-  for (i = y.length - 1; i >= 0; --i) {
-    obj[y[i]] = y[i];
-  }
-
-  return Object.keys(obj).map(function (key) {
-    return obj[key];
-  });
-}
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -791,7 +791,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 /* eslint-disable no-unused-vars */
 
 
-var _index = __webpack_require__(3);
+var _index = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -993,15 +993,11 @@ exports.getCorrectPropertyName = getCorrectPropertyName;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MDCRippleMixin = undefined;
+exports.MDCComponentNg = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _arrayUnion = __webpack_require__(4);
-
-var _ripple = __webpack_require__(3);
+var _baseComponent = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1010,239 +1006,166 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Applies a ripple to this.rippleElement and exposes as this.ripple.
+ * Sync MDCComponent functions with AngularJS lifecycle events.
  *
- * The element must have or extend the `mdc-ripple-surface` class
+ * Exposes foundationReady for when initialSyncWithDOM is completed.
  *
- * @mixin MDCRippleMixin
- * @param Base - should extend BaseComponent
+ * @class MDCComponentNg
  */
-var MDCRippleMixin = exports.MDCRippleMixin = function MDCRippleMixin(Base) {
-  return function (_Base) {
-    _inherits(_class, _Base);
+var MDCComponentNg = exports.MDCComponentNg = function (_BaseComponent) {
+  _inherits(MDCComponentNg, _BaseComponent);
 
-    _createClass(_class, [{
-      key: 'rippleElement',
+  _createClass(MDCComponentNg, null, [{
+    key: '$inject',
+    get: function get() {
+      return ['$element', '$scope'];
+    }
+  }]);
 
+  function MDCComponentNg() {
+    var _ref;
 
-      /**
-       * The element to bind the ripple to. Should have or extend the `mdc-ripple-surface` class
-       * @return {JQLite}
-       */
-      get: function get() {
-        return this.$element;
-      }
-    }], [{
-      key: '$inject',
-      get: function get() {
-        return (0, _arrayUnion.arrayUnion)(['$element'], _get(_class.__proto__ || Object.getPrototypeOf(_class), '$inject', this));
-      }
-    }]);
+    _classCallCheck(this, MDCComponentNg);
 
-    function _class() {
-      var _ref;
-
-      _classCallCheck(this, _class);
-
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      var _this = _possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args)));
-
-      _this.ripple = {};
-      _this.rippleElement.ready(function () {
-        if (_this.ripple.doDestroy) {
-          return;
-        }
-        // if unbounded is assigned before ready, we pass it in
-        _this.ripple = _ripple.MDCRipple.attachTo(_this.rippleElement[0], { isUnbounded: _this.ripple.unbounded });
-      });
-      return _this;
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(_class, [{
-      key: '$onDestroy',
-      value: function $onDestroy() {
-        _get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), '$onDestroy', this).call(this);
+    var _this = _possibleConstructorReturn(this, (_ref = MDCComponentNg.__proto__ || Object.getPrototypeOf(MDCComponentNg)).call.apply(_ref, [this].concat(args)));
 
-        if (!this.ripple.destroy) {
-          this.ripple.doDestroy = true; // destroyed before element ready
-          return;
-        }
-        // ensure MDCRipple has DOM to attach to so destroy doesn't fail
-        if (!this.ripple.root_) {
-          this.ripple.root_ = angular.element('<div></div>')[0];
-        }
-        this.ripple.destroy();
+    _this.unlisteners__ = {};
+    _this.root_ = _this.$element[0];
+    _this.foundation_ = _this.getDefaultFoundation();
+    return _this;
+  }
+
+  _createClass(MDCComponentNg, [{
+    key: '$onInit',
+    value: function $onInit() {
+      this.initialize();
+    }
+  }, {
+    key: '$postLink',
+    value: function $postLink() {
+      var _this2 = this;
+
+      this.$element.ready(function () {
+        _this2.onElementReady();
+        _this2.foundation_.init();
+        _this2.initialSyncWithDOM();
+        _this2.foundationReady = true;
+      });
+    }
+  }, {
+    key: '$onDestroy',
+    value: function $onDestroy() {
+      this.destroy();
+    }
+  }, {
+    key: 'initialize',
+    value: function initialize() {
+      // Subclasses can override this to do any additional setup work that would be considered part of a
+      // "constructor". Essentially, it is a hook into the parent constructor before the foundation is
+      // initialized. Any additional arguments besides root and foundation will be passed in here.
+    }
+  }, {
+    key: 'onElementReady',
+    value: function onElementReady() {}
+    // Executed immediately after element.ready() within $postLink, but before foundation initialization.
+
+
+    /**
+     * @return {!F} foundation
+     */
+
+  }, {
+    key: 'getDefaultFoundation',
+    value: function getDefaultFoundation() {
+      // Subclasses must override this method to return a properly configured foundation class for the
+      // component.
+      throw new Error('Subclasses must override getDefaultFoundation to return a properly configured ' + 'foundation class');
+    }
+  }, {
+    key: 'initialSyncWithDOM',
+    value: function initialSyncWithDOM() {
+      // Subclasses should override this method if they need to perform work to synchronize with a host DOM
+      // object. An example of this would be a form control wrapper that needs to synchronize its internal state
+      // to some property or attribute of the host DOM. Please note: this is *not* the place to perform DOM
+      // reads/writes that would cause layout / paint, as this is called synchronously from within the constructor.
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      // Subclasses may implement this method to release any resources / deregister any listeners they have
+      // attached. An example of this might be deregistering a resize event from the window object.
+      if (this.foundationReady) {
+        this.foundation_.destroy();
       }
-    }]);
+    }
 
-    return _class;
-  }(Base);
-};
+    /**
+     * Wrapper method to add an event listener to the component's root element. This is most useful when
+     * listening for custom events.
+     * @param {string} evtType
+     * @param {!Function} handler
+     */
+
+  }, {
+    key: 'listen',
+    value: function listen(evtType, handler) {
+      if (!this.unlisteners__[evtType]) {
+        this.unlisteners__[evtType] = new WeakMap();
+      }
+
+      this.unlisteners__[evtType].set(handler, this.$scope.$on(evtType, function (event, data) {
+        return handler(data);
+      }));
+    }
+
+    /**
+     * Wrapper method to remove an event listener to the component's root element. This is most useful when
+     * unlistening for custom events.
+     * @param {string} evtType
+     * @param {!Function} handler
+     */
+
+  }, {
+    key: 'unlisten',
+    value: function unlisten(evtType, handler) {
+      if (!this.unlisteners__[evtType]) {
+        return;
+      }
+
+      if (this.unlisteners__[evtType].has(handler)) {
+        this.unlisteners__[evtType].get(handler)();
+      }
+    }
+
+    /**
+     * Fires a cross-browser-compatible custom event from the component root of the given type,
+     * with the given data.
+     * @param {string} evtType
+     * @param {!Object} evtData
+     * @param {boolean=} shouldBubble
+     */
+
+  }, {
+    key: 'emit',
+    value: function emit(evtType, evtData) {
+      var shouldBubble = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+      this.$scope.$emit(evtType, {
+        detail: evtData,
+        bubbles: shouldBubble
+      });
+    }
+  }]);
+
+  return MDCComponentNg;
+}(_baseComponent.BaseComponent);
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * @license
- * Copyright 2016 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/**
- * Stores result from supportsCssVariables to avoid redundant processing to detect CSS custom variable support.
- * @private {boolean|undefined}
- */
-var supportsCssVariables_ = void 0;
-
-/**
- * Stores result from applyPassive to avoid redundant processing to detect passive event listener support.
- * @private {boolean|undefined}
- */
-var supportsPassive_ = void 0;
-
-/**
- * @param {!Window} windowObj
- * @return {boolean}
- */
-function detectEdgePseudoVarBug(windowObj) {
-  // Detect versions of Edge with buggy var() support
-  // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11495448/
-  var document = windowObj.document;
-  var node = document.createElement('div');
-  node.className = 'mdc-ripple-surface--test-edge-var-bug';
-  document.body.appendChild(node);
-
-  // The bug exists if ::before style ends up propagating to the parent element.
-  // Additionally, getComputedStyle returns null in iframes with display: "none" in Firefox,
-  // but Firefox is known to support CSS custom properties correctly.
-  // See: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
-  var computedStyle = windowObj.getComputedStyle(node);
-  var hasPseudoVarBug = computedStyle !== null && computedStyle.borderTopStyle === 'solid';
-  node.remove();
-  return hasPseudoVarBug;
-}
-
-/**
- * @param {!Window} windowObj
- * @param {boolean=} forceRefresh
- * @return {boolean|undefined}
- */
-
-function supportsCssVariables(windowObj) {
-  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  if (typeof supportsCssVariables_ === 'boolean' && !forceRefresh) {
-    return supportsCssVariables_;
-  }
-
-  var supportsFunctionPresent = windowObj.CSS && typeof windowObj.CSS.supports === 'function';
-  if (!supportsFunctionPresent) {
-    return;
-  }
-
-  var explicitlySupportsCssVars = windowObj.CSS.supports('--css-vars', 'yes');
-  // See: https://bugs.webkit.org/show_bug.cgi?id=154669
-  // See: README section on Safari
-  var weAreFeatureDetectingSafari10plus = windowObj.CSS.supports('(--css-vars: yes)') && windowObj.CSS.supports('color', '#00000000');
-
-  if (explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus) {
-    supportsCssVariables_ = !detectEdgePseudoVarBug(windowObj);
-  } else {
-    supportsCssVariables_ = false;
-  }
-  return supportsCssVariables_;
-}
-
-//
-/**
- * Determine whether the current browser supports passive event listeners, and if so, use them.
- * @param {!Window=} globalObj
- * @param {boolean=} forceRefresh
- * @return {boolean|{passive: boolean}}
- */
-function applyPassive() {
-  var globalObj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
-  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  if (supportsPassive_ === undefined || forceRefresh) {
-    var isSupported = false;
-    try {
-      globalObj.document.addEventListener('test', null, { get passive() {
-          isSupported = true;
-        } });
-    } catch (e) {}
-
-    supportsPassive_ = isSupported;
-  }
-
-  return supportsPassive_ ? { passive: true } : false;
-}
-
-/**
- * @param {!Object} HTMLElementPrototype
- * @return {!Array<string>}
- */
-function getMatchesProperty(HTMLElementPrototype) {
-  return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
-    return p in HTMLElementPrototype;
-  }).pop();
-}
-
-/**
- * @param {!Event} ev
- * @param {!{x: number, y: number}} pageOffset
- * @param {!ClientRect} clientRect
- * @return {!{x: number, y: number}}
- */
-function getNormalizedEventCoords(ev, pageOffset, clientRect) {
-  var x = pageOffset.x,
-      y = pageOffset.y;
-
-  var documentX = x + clientRect.left;
-  var documentY = y + clientRect.top;
-
-  var normalizedX = void 0;
-  var normalizedY = void 0;
-  // Determine touch point relative to the ripple container.
-  if (ev.type === 'touchstart') {
-    normalizedX = ev.changedTouches[0].pageX - documentX;
-    normalizedY = ev.changedTouches[0].pageY - documentY;
-  } else {
-    normalizedX = ev.pageX - documentX;
-    normalizedY = ev.pageY - documentY;
-  }
-
-  return { x: normalizedX, y: normalizedY };
-}
-
-exports.supportsCssVariables = supportsCssVariables;
-exports.applyPassive = applyPassive;
-exports.getMatchesProperty = getMatchesProperty;
-exports.getNormalizedEventCoords = getNormalizedEventCoords;
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1259,11 +1182,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _util = __webpack_require__(23);
+var _util = __webpack_require__(25);
 
-var _foundation = __webpack_require__(95);
+var _foundation = __webpack_require__(98);
 
-var _constants = __webpack_require__(24);
+var _constants = __webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1578,7 +1501,265 @@ exports.Corner = _constants.Corner;
 exports.CornerBit = _constants.CornerBit;
 
 /***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCRippleMixin = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _arrayUnion = __webpack_require__(3);
+
+var _ripple = __webpack_require__(4);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Applies a ripple to this.rippleElement and exposes as this.ripple.
+ *
+ * The element must have or extend the `mdc-ripple-surface` class
+ *
+ * @mixin MDCRippleMixin
+ * @param Base - should extend BaseComponent
+ */
+var MDCRippleMixin = exports.MDCRippleMixin = function MDCRippleMixin(Base) {
+  return function (_Base) {
+    _inherits(_class, _Base);
+
+    _createClass(_class, [{
+      key: 'rippleElement',
+
+
+      /**
+       * The element to bind the ripple to. Should have or extend the `mdc-ripple-surface` class
+       * @return {JQLite}
+       */
+      get: function get() {
+        return this.$element;
+      }
+    }], [{
+      key: '$inject',
+      get: function get() {
+        return (0, _arrayUnion.arrayUnion)(['$element'], _get(_class.__proto__ || Object.getPrototypeOf(_class), '$inject', this));
+      }
+    }]);
+
+    function _class() {
+      var _ref;
+
+      _classCallCheck(this, _class);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      var _this = _possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args)));
+
+      _this.ripple = {};
+      _this.rippleElement.ready(function () {
+        if (_this.ripple.doDestroy) {
+          return;
+        }
+        // if unbounded is assigned before ready, we pass it in
+        _this.ripple = _ripple.MDCRipple.attachTo(_this.rippleElement[0], { isUnbounded: _this.ripple.unbounded });
+      });
+      return _this;
+    }
+
+    _createClass(_class, [{
+      key: '$onDestroy',
+      value: function $onDestroy() {
+        _get(_class.prototype.__proto__ || Object.getPrototypeOf(_class.prototype), '$onDestroy', this).call(this);
+
+        if (!this.ripple.destroy) {
+          this.ripple.doDestroy = true; // destroyed before element ready
+          return;
+        }
+        // ensure MDCRipple has DOM to attach to so destroy doesn't fail
+        if (!this.ripple.root_) {
+          this.ripple.root_ = angular.element('<div></div>')[0];
+        }
+        this.ripple.destroy();
+      }
+    }]);
+
+    return _class;
+  }(Base);
+};
+
+/***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * @license
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Stores result from supportsCssVariables to avoid redundant processing to detect CSS custom variable support.
+ * @private {boolean|undefined}
+ */
+var supportsCssVariables_ = void 0;
+
+/**
+ * Stores result from applyPassive to avoid redundant processing to detect passive event listener support.
+ * @private {boolean|undefined}
+ */
+var supportsPassive_ = void 0;
+
+/**
+ * @param {!Window} windowObj
+ * @return {boolean}
+ */
+function detectEdgePseudoVarBug(windowObj) {
+  // Detect versions of Edge with buggy var() support
+  // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11495448/
+  var document = windowObj.document;
+  var node = document.createElement('div');
+  node.className = 'mdc-ripple-surface--test-edge-var-bug';
+  document.body.appendChild(node);
+
+  // The bug exists if ::before style ends up propagating to the parent element.
+  // Additionally, getComputedStyle returns null in iframes with display: "none" in Firefox,
+  // but Firefox is known to support CSS custom properties correctly.
+  // See: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+  var computedStyle = windowObj.getComputedStyle(node);
+  var hasPseudoVarBug = computedStyle !== null && computedStyle.borderTopStyle === 'solid';
+  node.remove();
+  return hasPseudoVarBug;
+}
+
+/**
+ * @param {!Window} windowObj
+ * @param {boolean=} forceRefresh
+ * @return {boolean|undefined}
+ */
+
+function supportsCssVariables(windowObj) {
+  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if (typeof supportsCssVariables_ === 'boolean' && !forceRefresh) {
+    return supportsCssVariables_;
+  }
+
+  var supportsFunctionPresent = windowObj.CSS && typeof windowObj.CSS.supports === 'function';
+  if (!supportsFunctionPresent) {
+    return;
+  }
+
+  var explicitlySupportsCssVars = windowObj.CSS.supports('--css-vars', 'yes');
+  // See: https://bugs.webkit.org/show_bug.cgi?id=154669
+  // See: README section on Safari
+  var weAreFeatureDetectingSafari10plus = windowObj.CSS.supports('(--css-vars: yes)') && windowObj.CSS.supports('color', '#00000000');
+
+  if (explicitlySupportsCssVars || weAreFeatureDetectingSafari10plus) {
+    supportsCssVariables_ = !detectEdgePseudoVarBug(windowObj);
+  } else {
+    supportsCssVariables_ = false;
+  }
+  return supportsCssVariables_;
+}
+
+//
+/**
+ * Determine whether the current browser supports passive event listeners, and if so, use them.
+ * @param {!Window=} globalObj
+ * @param {boolean=} forceRefresh
+ * @return {boolean|{passive: boolean}}
+ */
+function applyPassive() {
+  var globalObj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window;
+  var forceRefresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  if (supportsPassive_ === undefined || forceRefresh) {
+    var isSupported = false;
+    try {
+      globalObj.document.addEventListener('test', null, { get passive() {
+          isSupported = true;
+        } });
+    } catch (e) {}
+
+    supportsPassive_ = isSupported;
+  }
+
+  return supportsPassive_ ? { passive: true } : false;
+}
+
+/**
+ * @param {!Object} HTMLElementPrototype
+ * @return {!Array<string>}
+ */
+function getMatchesProperty(HTMLElementPrototype) {
+  return ['webkitMatchesSelector', 'msMatchesSelector', 'matches'].filter(function (p) {
+    return p in HTMLElementPrototype;
+  }).pop();
+}
+
+/**
+ * @param {!Event} ev
+ * @param {!{x: number, y: number}} pageOffset
+ * @param {!ClientRect} clientRect
+ * @return {!{x: number, y: number}}
+ */
+function getNormalizedEventCoords(ev, pageOffset, clientRect) {
+  var x = pageOffset.x,
+      y = pageOffset.y;
+
+  var documentX = x + clientRect.left;
+  var documentY = y + clientRect.top;
+
+  var normalizedX = void 0;
+  var normalizedY = void 0;
+  // Determine touch point relative to the ripple container.
+  if (ev.type === 'touchstart') {
+    normalizedX = ev.changedTouches[0].pageX - documentX;
+    normalizedY = ev.changedTouches[0].pageY - documentY;
+  } else {
+    normalizedX = ev.pageX - documentX;
+    normalizedY = ev.pageY - documentY;
+  }
+
+  return { x: normalizedX, y: normalizedY };
+}
+
+exports.supportsCssVariables = supportsCssVariables;
+exports.applyPassive = applyPassive;
+exports.getMatchesProperty = getMatchesProperty;
+exports.getNormalizedEventCoords = getNormalizedEventCoords;
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1595,9 +1776,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
-var _component = __webpack_require__(20);
+var _component = __webpack_require__(22);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1682,7 +1863,7 @@ var IsFormFieldChild = exports.IsFormFieldChild = function IsFormFieldChild(Base
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1763,7 +1944,7 @@ var MDCMenuAnchorController = exports.MDCMenuAnchorController = function (_BaseC
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1781,11 +1962,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(39);
+var _adapter = __webpack_require__(43);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(134);
+var _constants = __webpack_require__(136);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1937,7 +2118,7 @@ var MDCLineRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCLineRippleFoundation;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1955,11 +2136,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(40);
+var _adapter = __webpack_require__(44);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(135);
+var _constants = __webpack_require__(137);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2127,7 +2308,7 @@ var MDCTextFieldHelperTextFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldHelperTextFoundation;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2145,11 +2326,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(41);
+var _adapter = __webpack_require__(45);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(136);
+var _constants = __webpack_require__(138);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2279,7 +2460,7 @@ var MDCTextFieldIconFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldIconFoundation;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2297,11 +2478,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(42);
+var _adapter = __webpack_require__(46);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(137);
+var _constants = __webpack_require__(139);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2430,7 +2611,7 @@ var MDCTextFieldLabelFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldLabelFoundation;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2448,11 +2629,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(43);
+var _adapter = __webpack_require__(47);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(44);
+var _constants = __webpack_require__(48);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2564,7 +2745,7 @@ var MDCTextFieldOutlineFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldOutlineFoundation;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2577,7 +2758,7 @@ exports.BindInjections = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _has = __webpack_require__(48);
+var _has = __webpack_require__(20);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2628,7 +2809,19 @@ var BindInjections = exports.BindInjections = function () {
 }();
 
 /***/ }),
-/* 19 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var has = exports.has = Object.prototype.hasOwnProperty;
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2809,7 +3002,7 @@ var MDCRippleAdapter = function () {
 exports.default = MDCRippleAdapter;
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2824,7 +3017,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _formField = __webpack_require__(52);
+var _formField = __webpack_require__(55);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2929,7 +3122,7 @@ var MDCFormFieldController = exports.MDCFormFieldController = function (_BaseCom
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2942,17 +3135,23 @@ exports.MDCMenuController = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _baseComponent = __webpack_require__(0);
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _directive = __webpack_require__(12);
+var _arrayUnion = __webpack_require__(3);
 
-var _directive2 = __webpack_require__(22);
+var _componentNg = __webpack_require__(8);
 
-var _menu = __webpack_require__(10);
+var _directive = __webpack_require__(13);
 
-var _util = __webpack_require__(23);
+var _component = __webpack_require__(24);
 
-var _mdcMenu = __webpack_require__(97);
+var _directive2 = __webpack_require__(27);
+
+var _menu = __webpack_require__(9);
+
+var _util = __webpack_require__(25);
+
+var _mdcMenu = __webpack_require__(100);
 
 var _mdcMenu2 = _interopRequireDefault(_mdcMenu);
 
@@ -2982,8 +3181,8 @@ function convertToCornerProperty(anchorFrom) {
  * @param {AnchorMargin} [anchorMargin] - default {top: 0, right: 0, bottom: 0, left: 0}
  */
 
-var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
-  _inherits(MDCMenuController, _BaseComponent);
+var MDCMenuController = exports.MDCMenuController = function (_MDCComponentNg) {
+  _inherits(MDCMenuController, _MDCComponentNg);
 
   _createClass(MDCMenuController, null, [{
     key: 'name',
@@ -3017,7 +3216,7 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
   }, {
     key: '$inject',
     get: function get() {
-      return ['$element', '$document', '$scope', '$window', '$rootScope', '$timeout'];
+      return (0, _arrayUnion.arrayUnion)(['$element', '$document', '$window', '$rootScope'], _get(MDCMenuController.__proto__ || Object.getPrototypeOf(MDCMenuController), '$inject', this));
     }
   }, {
     key: 'template',
@@ -3038,8 +3237,6 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_ref = MDCMenuController.__proto__ || Object.getPrototypeOf(MDCMenuController)).call.apply(_ref, [this].concat(args)));
 
     _this.$element.addClass('mdc-menu');
-    _this.foundation_ = _this.getDefaultFoundation();
-    _this.root_ = _this.$element[0];
     _this.itemControllers = [];
     return _this;
   }
@@ -3049,11 +3246,11 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
     value: function $postLink() {
       var _this2 = this;
 
+      _get(MDCMenuController.prototype.__proto__ || Object.getPrototypeOf(MDCMenuController.prototype), '$postLink', this).call(this);
+
       if (!this.$element.attr('tabindex') && Number(this.$element.attr('tabindex')) !== 0) {
         this.$element.attr('tabindex', -1);
       }
-
-      this.foundation_.init();
 
       this.stopListening = this.$rootScope.$on(_directive2.MDC_MENU_TOGGLE_EVENT, function (event, _ref2) {
         var id = _ref2.id;
@@ -3066,6 +3263,8 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
   }, {
     key: '$onChanges',
     value: function $onChanges(changes) {
+      _get(MDCMenuController.prototype.__proto__ || Object.getPrototypeOf(MDCMenuController.prototype), '$onChanges', this).call(this, changes);
+
       if (changes.open) {
         this.open ? this.show() : this.hide();
       }
@@ -3098,19 +3297,15 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
       if (this.stopListening) {
         this.stopListening();
       }
-
-      if (this.foundation_) {
-        this.foundation_.destroy();
-      }
     }
   }, {
-    key: '_addItem',
-    value: function _addItem(itemCtrl) {
+    key: 'addItem_',
+    value: function addItem_(itemCtrl) {
       this.itemControllers.push(itemCtrl);
     }
   }, {
-    key: '_removeItem',
-    value: function _removeItem(itemCtrl) {
+    key: 'removeItem_',
+    value: function removeItem_(itemCtrl) {
       var index = this.itemControllers.indexOf(itemCtrl);
       if (index >= 0) {
         this.itemControllers.splice(itemCtrl, 1);
@@ -3182,9 +3377,9 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
           return _this3.items.indexOf(target);
         },
         notifySelected: function notifySelected(evtData) {
-          _this3.select({
+          return _this3.emit(_menu.MDCMenuFoundation.strings.SELECTED_EVENT, {
             index: evtData.index,
-            item: _this3.items[evtData.index]
+            item: angular.element(_this3.items[evtData.index]).controller(_component.MDCMenuItemController.name)
           });
         },
         notifyCancel: function notifyCancel() {
@@ -3239,27 +3434,17 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
         }
       });
     }
-  }, {
-    key: 'emit',
-    value: function emit(name, args) {
-      this.$scope.$emit(name, args);
-    }
-  }, {
-    key: 'select',
-    value: function select(_ref3) {
-      var item = _ref3.item,
-          index = _ref3.index;
 
-      this.itemControllers.forEach(function (ctrl) {
-        if (ctrl.hasElement(item)) {
-          ctrl.select(index);
-        }
-      });
-    }
+    /** @param {{focusIndex: ?number}=} options */
+
   }, {
     key: 'show',
     value: function show() {
-      this.foundation_.open();
+      var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+          _ref3$focusIndex = _ref3.focusIndex,
+          focusIndex = _ref3$focusIndex === undefined ? null : _ref3$focusIndex;
+
+      this.foundation_.open({ focusIndex: focusIndex });
     }
   }, {
     key: 'hide',
@@ -3305,10 +3490,10 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
   }]);
 
   return MDCMenuController;
-}(_baseComponent.BaseComponent);
+}(_componentNg.MDCComponentNg);
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3317,13 +3502,15 @@ var MDCMenuController = exports.MDCMenuController = function (_BaseComponent) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MDCMenuToggleController = exports.MDC_MENU_TOGGLE_EVENT = undefined;
+exports.MDCMenuItemController = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _baseComponent = __webpack_require__(0);
 
-var _directive = __webpack_require__(12);
+var _component = __webpack_require__(23);
+
+var _menu = __webpack_require__(9);
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -3333,75 +3520,121 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MDC_MENU_TOGGLE_EVENT = exports.MDC_MENU_TOGGLE_EVENT = 'MDCMenu:toggle';
+/**
+ * @callback onSelectCallback
+ * @param {Number} index
+ * @param {MDCMenuItemController} item
+ */
 
 /**
  * @ngdoc directive
- * @name mdcMenuToggle
- * @module mdc.menu
+ * @name mdcMenuItem
  * @restrict AEC
- * @description Binds a click handler to open mdc-menu.
- * Requires menuId to be given as `mdc-menu-toggle="{{ menuId }}" or that it be used within mdc-menu-anchor
+ * @module mdc.menu
+ * @description Used as a child of mdcMenu to create menu items
+ * @example
+ * mdc-menu-item="expression()"
+ * // or
+ * <mdc-menu-item on-select="expression()">
+ *
+ * @param {onSelectCallback} [onSelect] - expression to evaluate if item is selected
  */
+var MDCMenuItemController = exports.MDCMenuItemController = function (_BaseComponent) {
+  _inherits(MDCMenuItemController, _BaseComponent);
 
-var MDCMenuToggleController = exports.MDCMenuToggleController = function (_BaseComponent) {
-  _inherits(MDCMenuToggleController, _BaseComponent);
-
-  _createClass(MDCMenuToggleController, [{
-    key: 'menuId',
-    get: function get() {
-      return this[this.constructor.name];
-    }
-  }], [{
+  _createClass(MDCMenuItemController, null, [{
     key: 'name',
     get: function get() {
-      return 'mdcMenuToggle';
+      return 'mdcMenuItem';
     }
   }, {
     key: '$inject',
     get: function get() {
-      return ['$element', '$rootScope'];
+      return ['$element', '$scope'];
     }
   }, {
     key: 'bindings',
     get: function get() {
-      return _defineProperty({}, this.name, '@');
+      return _defineProperty({
+        onSelect: '&?'
+      }, this.name, '&?');
     }
   }, {
     key: 'require',
     get: function get() {
       return {
-        mdcMenuAnchorCtrl: '^^?' + _directive.MDCMenuAnchorController.name
+        mdcMenuController: '^^' + _component.MDCMenuController.name
       };
     }
   }]);
 
-  function MDCMenuToggleController() {
+  function MDCMenuItemController() {
     var _ref2;
 
-    _classCallCheck(this, MDCMenuToggleController);
+    _classCallCheck(this, MDCMenuItemController);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    var _this = _possibleConstructorReturn(this, (_ref2 = MDCMenuToggleController.__proto__ || Object.getPrototypeOf(MDCMenuToggleController)).call.apply(_ref2, [this].concat(args)));
+    var _this = _possibleConstructorReturn(this, (_ref2 = MDCMenuItemController.__proto__ || Object.getPrototypeOf(MDCMenuItemController)).call.apply(_ref2, [this].concat(args)));
 
-    _this.$element.on('click', function () {
-      if (_this.menuId) {
-        _this.$rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, { id: _this.menuId });
-      } else if (_this.mdcMenuAnchorCtrl) {
-        _this.mdcMenuAnchorCtrl.toggleMenu();
+    _this.$element.addClass('mdc-list-item');
+    _this.$element.attr('role', 'menuitem');
+
+    _this.selectHandler = function (_ref3) {
+      var _ref3$detail = _ref3.detail,
+          index = _ref3$detail.index,
+          item = _ref3$detail.item;
+
+      if (item === _this) {
+        _this.select(index);
       }
-    });
+    };
     return _this;
   }
 
-  return MDCMenuToggleController;
+  _createClass(MDCMenuItemController, [{
+    key: '$postLink',
+    value: function $postLink() {
+      if (!this.$element.attr('tabindex') && Number(this.$element.attr('tabindex')) !== 0) {
+        this.$element.attr('tabindex', 0);
+      }
+
+      this.mdcMenuController.addItem_(this);
+      this.mdcMenuController.listen(_menu.MDCMenuFoundation.strings.SELECTED_EVENT, this.selectHandler);
+    }
+  }, {
+    key: '$onDestroy',
+    value: function $onDestroy() {
+      this.mdcMenuController.unlisten(_menu.MDCMenuFoundation.strings.SELECTED_EVENT, this.selectHandler);
+      this.mdcMenuController.removeItem_(this);
+    }
+  }, {
+    key: 'select',
+    value: function select(index) {
+      var _this2 = this;
+
+      var fn = void 0;
+      if (this[this.constructor.name]) {
+        fn = this[this.constructor.name];
+      } else if (this.onSelect) {
+        fn = this.onSelect;
+      }
+
+      if (fn) {
+        this.$scope.$apply(function () {
+          return fn({ index: index, item: _this2 });
+        });
+      }
+    }
+  }]);
+
+  return MDCMenuItemController;
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3573,7 +3806,7 @@ exports.clamp = clamp;
 exports.bezierProgress = bezierProgress;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3672,7 +3905,100 @@ exports.CornerBit = CornerBit;
 exports.Corner = Corner;
 
 /***/ }),
-/* 25 */
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCMenuToggleController = exports.MDC_MENU_TOGGLE_EVENT = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _baseComponent = __webpack_require__(0);
+
+var _directive = __webpack_require__(13);
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MDC_MENU_TOGGLE_EVENT = exports.MDC_MENU_TOGGLE_EVENT = 'MDCMenu:toggle';
+
+/**
+ * @ngdoc directive
+ * @name mdcMenuToggle
+ * @module mdc.menu
+ * @restrict AEC
+ * @description Binds a click handler to open mdc-menu.
+ * Requires menuId to be given as `mdc-menu-toggle="{{ menuId }}" or that it be used within mdc-menu-anchor
+ */
+
+var MDCMenuToggleController = exports.MDCMenuToggleController = function (_BaseComponent) {
+  _inherits(MDCMenuToggleController, _BaseComponent);
+
+  _createClass(MDCMenuToggleController, [{
+    key: 'menuId',
+    get: function get() {
+      return this[this.constructor.name];
+    }
+  }], [{
+    key: 'name',
+    get: function get() {
+      return 'mdcMenuToggle';
+    }
+  }, {
+    key: '$inject',
+    get: function get() {
+      return ['$element', '$rootScope'];
+    }
+  }, {
+    key: 'bindings',
+    get: function get() {
+      return _defineProperty({}, this.name, '@');
+    }
+  }, {
+    key: 'require',
+    get: function get() {
+      return {
+        mdcMenuAnchorCtrl: '^^?' + _directive.MDCMenuAnchorController.name
+      };
+    }
+  }]);
+
+  function MDCMenuToggleController() {
+    var _ref2;
+
+    _classCallCheck(this, MDCMenuToggleController);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var _this = _possibleConstructorReturn(this, (_ref2 = MDCMenuToggleController.__proto__ || Object.getPrototypeOf(MDCMenuToggleController)).call.apply(_ref2, [this].concat(args)));
+
+    _this.$element.on('click', function () {
+      if (_this.menuId) {
+        _this.$rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, { id: _this.menuId });
+      } else if (_this.mdcMenuAnchorCtrl) {
+        _this.mdcMenuAnchorCtrl.toggleMenu();
+      }
+    });
+    return _this;
+  }
+
+  return MDCMenuToggleController;
+}(_baseComponent.BaseComponent);
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3687,19 +4013,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
-var _componentNg = __webpack_require__(108);
+var _componentNg = __webpack_require__(8);
 
-var _mixin = __webpack_require__(8);
+var _mixin = __webpack_require__(10);
 
-var _menu = __webpack_require__(10);
+var _menu = __webpack_require__(9);
 
-var _select = __webpack_require__(109);
+var _select = __webpack_require__(110);
 
-var _label = __webpack_require__(26);
+var _label = __webpack_require__(29);
 
-var _mdcSelect = __webpack_require__(113);
+var _mdcSelect = __webpack_require__(114);
 
 var _mdcSelect2 = _interopRequireDefault(_mdcSelect);
 
@@ -4052,7 +4378,7 @@ var MDCSelectController = exports.MDCSelectController = function (_MDCRippleMixi
 }((0, _mixin.MDCRippleMixin)(_componentNg.MDCComponentNg));
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4071,11 +4397,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(27);
+var _adapter = __webpack_require__(30);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(110);
+var _foundation = __webpack_require__(111);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -4164,7 +4490,7 @@ exports.MDCSelectLabel = MDCSelectLabel;
 exports.MDCSelectLabelFoundation = _foundation2.default;
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4237,7 +4563,7 @@ var MDCSelectLabelAdapter = function () {
 exports.default = MDCSelectLabelAdapter;
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4281,7 +4607,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4328,365 +4654,7 @@ var numbers = exports.numbers = {
 };
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MDCTabBarController = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _baseComponent = __webpack_require__(0);
-
-var _tabBarScroller = __webpack_require__(31);
-
-var _tabs = __webpack_require__(36);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * @ngdoc component
- * @name mdcTabBar
- * @module mdc.tabs
- *
- * @param {string} [variant] Style variant - "icon", ""icons-text", or none for default
- * @param {string} [ngModel] Assignable AngularJS expression to bind selected tab to
- */
-var MDCTabBarController = exports.MDCTabBarController = function (_BaseComponent) {
-  _inherits(MDCTabBarController, _BaseComponent);
-
-  _createClass(MDCTabBarController, null, [{
-    key: 'name',
-    get: function get() {
-      return 'mdcTabBar';
-    }
-  }, {
-    key: 'require',
-    get: function get() {
-      return {
-        scroller: '^^?' + _tabBarScroller.MDCTabBarScrollerController.name,
-        ngModelCtrl: '?ngModel'
-      };
-    }
-  }, {
-    key: 'bindings',
-    get: function get() {
-      return {
-        variant: '@',
-        ngModel: '=?'
-      };
-    }
-  }, {
-    key: '$inject',
-    get: function get() {
-      return ['$element', '$window'];
-    }
-  }]);
-
-  function MDCTabBarController() {
-    var _ref;
-
-    _classCallCheck(this, MDCTabBarController);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    var _this = _possibleConstructorReturn(this, (_ref = MDCTabBarController.__proto__ || Object.getPrototypeOf(MDCTabBarController)).call.apply(_ref, [this].concat(args)));
-
-    _this.$element.addClass('mdc-tab-bar');
-    _this.root_ = _this.$element[0];
-    _this.selected_ = undefined;
-    _this.initDone_ = false;
-    _this.$elementReady = false;
-    _this.needsNotify = false;
-
-    _this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
-    _this.$element.append(_this.indicator_);
-
-    _this.tabs_ = []; // tabs will automatically add themselves to the list using .addTab()
-    return _this;
-  }
-
-  _createClass(MDCTabBarController, [{
-    key: 'init',
-    value: function init() {
-      if (!this.initDone_ && this.$elementReady && this.tabs.length > 0) {
-        this.foundation_.init();
-        this.initDone_ = true;
-
-        if (this.selected_) {
-          // if select is specified
-          this.ngModel = this.selected_;
-        } else if (this.toActivate) {
-          // if an active tab is specified
-          this.setActiveTab_(this.toActivate, true);
-        } else {
-          // otherwise select the first one
-          this.ngModel = 0;
-          this.tabs[0]._active = true;
-        }
-      }
-      if (this.needsNotify) {
-        this.notifyScroller();
-      }
-    }
-  }, {
-    key: 'addTab',
-    value: function addTab(tab) {
-      var htmlIndex = Array.prototype.indexOf.call(this.$element.children(), tab.root_);
-      var activeTabIndex = -1;
-      if (this.initDone_) {
-        activeTabIndex = this.activeTabIndex;
-      }
-
-      this.tabs.splice(htmlIndex, 0, tab);
-
-      if (this.initDone_) {
-        if (htmlIndex <= activeTabIndex) {
-          activeTabIndex += 1;
-          this.activeTabIndex = activeTabIndex;
-        }
-        this.layout();
-      } else {
-        this.init();
-      }
-    }
-  }, {
-    key: 'removeTab',
-    value: function removeTab(tab) {
-      var indexOfTab = this.tabs.indexOf(tab);
-      if (indexOfTab < 0) {
-        // tab already removed
-        return;
-      }
-      var activeTabIndex = -1;
-      if (this.initDone_) {
-        activeTabIndex = this.activeTabIndex;
-        if (activeTabIndex === indexOfTab) {
-          this.tabs[indexOfTab].active_ = false;
-        }
-      }
-
-      if (this.tabs.length === 1) {
-        // removing the last tab
-        this.tabs_ = [];
-        return;
-      } else {
-        this.tabs.splice(indexOfTab, 1);
-      }
-
-      if (this.initDone_) {
-        this.layout();
-        if (activeTabIndex === 0) {
-          this.foundation_.activeTabIndex_ = -1;
-          this.activeTabIndex = 0;
-        } else if (indexOfTab <= activeTabIndex) {
-          this.activeTabIndex = activeTabIndex - 1;
-        }
-      }
-    }
-  }, {
-    key: '$postLink',
-    value: function $postLink() {
-      var _this2 = this;
-
-      if (this.scroller) {
-        this.$element.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
-        this.scroller.setTabBar(this);
-      }
-
-      this.foundation_ = this.getDefaultFoundation();
-      this.init();
-      this.$element.ready(function () {
-        _this2.$elementReady = true;
-        _this2.init();
-      });
-    }
-  }, {
-    key: '$onChanges',
-    value: function $onChanges(changesObj) {
-      if (changesObj.variant) {
-        this.$element.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
-        this.$element.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
-      }
-    }
-  }, {
-    key: '$onDestroy',
-    value: function $onDestroy() {
-      this.tabs_ = [];
-      if (this.scroller) {
-        this.scroller.removeTabBar();
-      }
-      if (this.foundation_) {
-        this.foundation_.destroy();
-      }
-    }
-  }, {
-    key: 'activate',
-    value: function activate(tab) {
-      var notifyScroller = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-      if (this.initDone_) {
-        this.setActiveTab_(tab, notifyScroller);
-      } else {
-        // shelve tab activation while foundation initializes
-        this.toActivate = tab;
-      }
-    }
-  }, {
-    key: 'getDefaultFoundation',
-    value: function getDefaultFoundation() {
-      var _this3 = this;
-
-      return new _tabs.MDCTabBarFoundation({
-        addClass: function addClass(className) {
-          return _this3.root_.classList.add(className);
-        },
-        removeClass: function removeClass(className) {
-          return _this3.root_.classList.remove(className);
-        },
-        bindOnMDCTabSelectedEvent: function bindOnMDCTabSelectedEvent() {},
-        unbindOnMDCTabSelectedEvent: function unbindOnMDCTabSelectedEvent() {},
-        registerResizeHandler: function registerResizeHandler(handler) {
-          return _this3.$window.addEventListener('resize', handler);
-        },
-        deregisterResizeHandler: function deregisterResizeHandler(handler) {
-          return _this3.$window.removeEventListener('resize', handler);
-        },
-        getOffsetWidth: function getOffsetWidth() {
-          return _this3.root_.offsetWidth;
-        },
-        setStyleForIndicator: function setStyleForIndicator(propertyName, value) {
-          return _this3.indicator_.style.setProperty(propertyName, value);
-        },
-        getOffsetWidthForIndicator: function getOffsetWidthForIndicator() {
-          return _this3.indicator_.offsetWidth;
-        },
-        notifyChange: function notifyChange(_ref2) {
-          var activeTabIndex = _ref2.activeTabIndex;
-          return _this3.notifyScroller(activeTabIndex);
-        },
-        getNumberOfTabs: function getNumberOfTabs() {
-          return _this3.tabs.length;
-        },
-        isTabActiveAtIndex: function isTabActiveAtIndex(index) {
-          return _this3.selected_ === index;
-        },
-        setTabActiveAtIndex: function setTabActiveAtIndex(index, isActive) {
-          if (_this3.tabs[index]) {
-            _this3.tabs[index]._active = isActive;
-          }
-        },
-        isDefaultPreventedOnClickForTabAtIndex: function isDefaultPreventedOnClickForTabAtIndex(index) {
-          return _this3.tabs[index].preventDefaultOnClick;
-        },
-        setPreventDefaultOnClickForTabAtIndex: function setPreventDefaultOnClickForTabAtIndex(index, preventDefaultOnClick) {
-          _this3.tabs[index].preventDefaultOnClick = preventDefaultOnClick;
-        },
-        measureTabAtIndex: function measureTabAtIndex(index) {
-          return _this3.tabs[index].measureSelf();
-        },
-        getComputedWidthForTabAtIndex: function getComputedWidthForTabAtIndex(index) {
-          return _this3.tabs[index].computedWidth;
-        },
-        getComputedLeftForTabAtIndex: function getComputedLeftForTabAtIndex(index) {
-          return _this3.tabs[index].computedLeft;
-        }
-      });
-    }
-  }, {
-    key: 'notifyScroller',
-    value: function notifyScroller() {
-      var activeTabIndex = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.foundation_.getActiveTabIndex();
-
-      if (this.scroller) {
-        if (activeTabIndex >= 0) {
-          this.scroller.scrollTo(activeTabIndex);
-          this.needsNotify = false;
-        }
-      }
-    }
-  }, {
-    key: 'layout',
-    value: function layout() {
-      this.foundation_.layout();
-      if (this.scroller) {
-        this.scroller.layout();
-      }
-    }
-  }, {
-    key: 'setActiveTab_',
-    value: function setActiveTab_(activeTab, notifyChange) {
-      var indexOfTab = this.tabs.indexOf(activeTab);
-      if (indexOfTab < 0) {
-        throw new Error('Invalid tab component given as activeTab: Tab not found within this component\'s tab list');
-      }
-      this.setActiveTabIndex_(indexOfTab, notifyChange);
-    }
-  }, {
-    key: 'setActiveTabIndex_',
-    value: function setActiveTabIndex_(activeTabIndex, notifyChange) {
-      this.needsNotify = notifyChange;
-      this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
-      if (this.ngModelCtrl) {
-        this.ngModelCtrl.$setViewValue(activeTabIndex);
-      }
-    }
-  }, {
-    key: 'ngModel',
-    get: function get() {
-      return this.selected_;
-    },
-    set: function set(index) {
-      this.selected_ = parseInt(index);
-      if (isNaN(this.selected_)) {
-        this.selected_ = undefined;
-      } else if (this.initDone_) {
-        if (this.selected_ < 0 || this.selected_ >= this.tabs.length) {
-          this.selected_ = undefined;
-        }
-        if (this.selected_ !== undefined) {
-          this.activeTabIndex = this.selected_;
-          this.tabs[this.selected_]._active = true;
-        }
-      }
-    }
-  }, {
-    key: 'tabs',
-    get: function get() {
-      return this.tabs_;
-    }
-  }, {
-    key: 'activeTab',
-    get: function get() {
-      var activeIndex = this.foundation_.getActiveTabIndex();
-      return this.tabs[activeIndex];
-    }
-  }, {
-    key: 'activeTabIndex',
-    get: function get() {
-      return this.foundation_.getActiveTabIndex();
-    },
-    set: function set(index) {
-      this.setActiveTabIndex_(index, true);
-    }
-  }]);
-
-  return MDCTabBarController;
-}(_baseComponent.BaseComponent);
-
-/***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4699,13 +4667,17 @@ exports.MDCTabBarScrollerController = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _baseComponent = __webpack_require__(0);
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _arrayUnion = __webpack_require__(3);
+
+var _componentNg = __webpack_require__(8);
 
 var _animation = __webpack_require__(7);
 
-var _tabBarScroller = __webpack_require__(32);
+var _tabBarScroller = __webpack_require__(34);
 
-var _tabBarScroller2 = __webpack_require__(129);
+var _tabBarScroller2 = __webpack_require__(130);
 
 var _tabBarScroller3 = _interopRequireDefault(_tabBarScroller2);
 
@@ -4723,8 +4695,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @module mdc.tab
  *
  */
-var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function (_BaseComponent) {
-  _inherits(MDCTabBarScrollerController, _BaseComponent);
+var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function (_MDCComponentNg) {
+  _inherits(MDCTabBarScrollerController, _MDCComponentNg);
 
   _createClass(MDCTabBarScrollerController, null, [{
     key: 'name',
@@ -4734,7 +4706,7 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
   }, {
     key: '$inject',
     get: function get() {
-      return ['$element', '$window', '$document', '$timeout'];
+      return (0, _arrayUnion.arrayUnion)(['$element', '$window', '$timeout'], _get(MDCTabBarScrollerController.__proto__ || Object.getPrototypeOf(MDCTabBarScrollerController), '$inject', this));
     }
   }, {
     key: 'transclude',
@@ -4760,89 +4732,53 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
     var _this = _possibleConstructorReturn(this, (_ref = MDCTabBarScrollerController.__proto__ || Object.getPrototypeOf(MDCTabBarScrollerController)).call.apply(_ref, [this].concat(args)));
 
     _this.$element.addClass('mdc-tab-bar-scroller');
-    _this.root_ = _this.$element[0];
-    _this.initDone_ = false;
-    _this.$elementReady = false;
-    _this.willScrollIndex_ = undefined;
-
-    _this.$element.ready(function () {
-      _this.$elementReady = true;
-      _this.init();
-    });
     return _this;
   }
 
   _createClass(MDCTabBarScrollerController, [{
-    key: 'init',
-    value: function init() {
-      if (!this.initDone_ && this.$elementReady && this.tabBar) {
-        this.foundation_ = this.getDefaultFoundation();
-        this.foundation_.init();
-        this.initDone_ = true;
-        if (this.tabBar.initDone_) {
-          this.scrollTo(this.tabBar.activeTabIndex);
-        } else if (this.willScrollIndex_) {
-          this.scrollTo(this.willScrollIndex_);
-        }
-      }
-    }
-  }, {
-    key: '$postLink',
-    value: function $postLink() {
-      this.scrollFrame_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.FRAME_SELECTOR);
-      this.forwardIndicator_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
-      this.backIndicator_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
-
-      this.init();
-    }
-  }, {
-    key: '$onDestroy',
-    value: function $onDestroy() {
-      if (this.foundation_) {
-        this.foundation_.destroy();
-      }
-    }
-  }, {
     key: 'setTabBar',
     value: function setTabBar(tabBar) {
       this.tabBar_ = tabBar;
       this.tabBarEl_ = this.tabBar_.root_;
-      this.init();
     }
   }, {
-    key: 'removeTabBar',
-    value: function removeTabBar() {
-      this.foundation_.destroy();
-      this.initDone_ = false;
-      this.tabBar_ = undefined;
-      this.tabBarEl_ = undefined;
+    key: 'gatherTabElements_',
+    value: function gatherTabElements_() {
+      this.tabElements = this.tabBar.tabElements;
     }
   }, {
-    key: 'scrollTo',
-    value: function scrollTo(index) {
-      if (this.initDone_) {
-        this.scrollToTabIfNotVisible_(index);
-      } else {
-        this.willScrollIndex_ = index;
-      }
+    key: 'initialize',
+    value: function initialize() {
+      this.scrollFrame_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.FRAME_SELECTOR);
+      this.forwardIndicator_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.INDICATOR_FORWARD_SELECTOR);
+      this.backIndicator_ = this.root_.querySelector(_tabBarScroller.MDCTabBarScrollerFoundation.strings.INDICATOR_BACK_SELECTOR);
     }
   }, {
-    key: 'scrollToTabIfNotVisible_',
-    value: function scrollToTabIfNotVisible_(index) {
+    key: 'onElementReady',
+    value: function onElementReady() {
+      // todo: store measurements instead of accessing live DOM (offsetWidth & offsetWidth cause reflow)
+      this.gatherTabElements_();
+    }
+  }, {
+    key: 'scrollToTabIfNotVisible',
+    value: function scrollToTabIfNotVisible(tab) {
       var _this2 = this;
 
-      // This will probably be implemented into the foundation at some point - remove then
-      if (!this.isElementInViewport(this.tabBar.tabs[index].root_)) {
-        this.$timeout(function () {
-          return _this2.foundation_.scrollToTabAtIndex(index);
-        }, 100);
-      }
+      this.$timeout(function () {
+        var index = _this2.tabElements.indexOf(tab.root_);
+        // This will probably be implemented into the foundation at some point - remove then
+        if (index > -1 && !_this2.isTabAtIndexVisible(index)) {
+          _this2.foundation_.scrollToTabAtIndex(index);
+        }
+      }, 100, false);
     }
   }, {
-    key: 'isElementInViewport',
-    value: function isElementInViewport(el) {
-      var rect = el.getBoundingClientRect();
-      return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (this.$window.innerHeight || this.$document[0].documentElement.clientHeight) && rect.right <= (this.$window.innerWidth || this.$document[0].documentElement.clientWidth);
+    key: 'isTabAtIndexVisible',
+    value: function isTabAtIndexVisible(index) {
+      var tabRect = this.tabElements[index].getBoundingClientRect();
+      var frameRect = this.scrollFrame_.getBoundingClientRect();
+
+      return tabRect.left >= frameRect.left && tabRect.right <= frameRect.right;
     }
   }, {
     key: 'getDefaultFoundation',
@@ -4899,13 +4835,13 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
           return _this3.$window.removeEventListener('resize', handler);
         },
         getNumberOfTabs: function getNumberOfTabs() {
-          return _this3.tabBar.tabs.length;
+          return _this3.tabElements.length;
         },
         getComputedWidthForTabAtIndex: function getComputedWidthForTabAtIndex(index) {
-          return _this3.tabBar.tabs[index].computedWidth;
+          return _this3.tabElements[index].offsetWidth;
         },
         getComputedLeftForTabAtIndex: function getComputedLeftForTabAtIndex(index) {
-          return _this3.tabBar.tabs[index].computedLeft;
+          return _this3.tabElements[index].offsetLeft;
         },
         getOffsetWidthForScrollFrame: function getOffsetWidthForScrollFrame() {
           return _this3.scrollFrame_.offsetWidth;
@@ -4917,9 +4853,12 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
           return _this3.scrollFrame_.scrollLeft = scrollLeftAmount;
         },
         getOffsetWidthForTabBar: function getOffsetWidthForTabBar() {
-          return _this3.tabBarEl_.offsetWidth;
+          return _this3.tabBarEl_ && _this3.tabBarEl_.offsetWidth;
         },
         setTransformStyleForTabBar: function setTransformStyleForTabBar(value) {
+          if (!_this3.tabBarEl_) {
+            return;
+          }
           _this3.tabBarEl_.style.setProperty((0, _animation.getCorrectPropertyName)(_this3.$window, 'transform'), value);
         },
         getOffsetLeftForEventTarget: function getOffsetLeftForEventTarget(target) {
@@ -4933,7 +4872,10 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
   }, {
     key: 'layout',
     value: function layout() {
-      this.foundation_.layout();
+      if (this.foundationReady) {
+        this.gatherTabElements_();
+        this.foundation_.layout();
+      }
     }
   }, {
     key: 'tabBar',
@@ -4943,10 +4885,10 @@ var MDCTabBarScrollerController = exports.MDCTabBarScrollerController = function
   }]);
 
   return MDCTabBarScrollerController;
-}(_baseComponent.BaseComponent);
+}(_componentNg.MDCComponentNg);
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4965,9 +4907,9 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _index2 = __webpack_require__(33);
+var _index2 = __webpack_require__(35);
 
-var _foundation = __webpack_require__(127);
+var _foundation = __webpack_require__(128);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -5124,7 +5066,7 @@ var MDCTabBarScroller = exports.MDCTabBarScroller = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5141,9 +5083,9 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _index = __webpack_require__(34);
+var _index = __webpack_require__(36);
 
-var _foundation = __webpack_require__(125);
+var _foundation = __webpack_require__(126);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -5320,7 +5262,7 @@ var MDCTabBar = exports.MDCTabBar = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5339,11 +5281,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _index = __webpack_require__(3);
+var _index = __webpack_require__(4);
 
-var _constants = __webpack_require__(35);
+var _constants = __webpack_require__(37);
 
-var _foundation = __webpack_require__(124);
+var _foundation = __webpack_require__(125);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -5473,7 +5415,7 @@ var MDCTab = exports.MDCTab = function (_MDCComponent) {
 }(_component2.default);
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5507,7 +5449,296 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 36 */
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCTabBarController = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _arrayUnion = __webpack_require__(3);
+
+var _componentNg = __webpack_require__(8);
+
+var _tabBarScroller = __webpack_require__(33);
+
+var _tabs = __webpack_require__(39);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @ngdoc component
+ * @name mdcTabBar
+ * @module mdc.tabs
+ *
+ * @param {string} [variant] - Style variant - "icon", ""icons-text", or none for default
+ * @param {string} [ngModel] - Assignable AngularJS expression to bind selected tab to
+ */
+var MDCTabBarController = exports.MDCTabBarController = function (_MDCComponentNg) {
+  _inherits(MDCTabBarController, _MDCComponentNg);
+
+  _createClass(MDCTabBarController, null, [{
+    key: 'name',
+    get: function get() {
+      return 'mdcTabBar';
+    }
+  }, {
+    key: 'require',
+    get: function get() {
+      return {
+        scroller: '^^?' + _tabBarScroller.MDCTabBarScrollerController.name,
+        ngModel: '?'
+      };
+    }
+  }, {
+    key: 'bindings',
+    get: function get() {
+      return {
+        variant: '@'
+      };
+    }
+  }, {
+    key: '$inject',
+    get: function get() {
+      return (0, _arrayUnion.arrayUnion)(['$element', '$window', '$timeout'], _get(MDCTabBarController.__proto__ || Object.getPrototypeOf(MDCTabBarController), '$inject', this));
+    }
+  }]);
+
+  function MDCTabBarController() {
+    var _ref;
+
+    _classCallCheck(this, MDCTabBarController);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var _this = _possibleConstructorReturn(this, (_ref = MDCTabBarController.__proto__ || Object.getPrototypeOf(MDCTabBarController)).call.apply(_ref, [this].concat(args)));
+
+    _this.$element.addClass('mdc-tab-bar');
+
+    _this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
+    _this.$element.append(_this.indicator_);
+
+    _this.tabs_ = []; // tabs will automatically add themselves to the list using .addTab()
+    return _this;
+  }
+
+  _createClass(MDCTabBarController, [{
+    key: 'initialize',
+    value: function initialize() {
+      var _this2 = this;
+
+      this.tabSelectedHandler_ = function (_ref2) {
+        var tab = _ref2.detail.tab;
+        return _this2.activateTab(tab, true);
+      };
+    }
+  }, {
+    key: 'onElementReady',
+    value: function onElementReady() {}
+  }, {
+    key: 'activateTab',
+    value: function activateTab(tab) {
+      var _this3 = this;
+
+      var index = this.tabs.indexOf(tab);
+
+      this.$timeout(function () {
+        return _this3.foundation_.switchToTabAtIndex(index, true);
+      }, 20, false);
+
+      if (this.scroller) {
+        this.scroller.scrollToTabIfNotVisible(tab);
+      }
+    }
+  }, {
+    key: 'getDefaultFoundation',
+    value: function getDefaultFoundation() {
+      var _this4 = this;
+
+      return new _tabs.MDCTabBarFoundation({
+        addClass: function addClass(className) {
+          return _this4.root_.classList.add(className);
+        },
+        removeClass: function removeClass(className) {
+          return _this4.root_.classList.remove(className);
+        },
+        bindOnMDCTabSelectedEvent: function bindOnMDCTabSelectedEvent() {
+          return _this4.listen(_tabs.MDCTabFoundation.strings.SELECTED_EVENT, _this4.tabSelectedHandler_);
+        },
+        unbindOnMDCTabSelectedEvent: function unbindOnMDCTabSelectedEvent() {
+          return _this4.unlisten(_tabs.MDCTabFoundation.strings.SELECTED_EVENT, _this4.tabSelectedHandler_);
+        },
+        registerResizeHandler: function registerResizeHandler(handler) {
+          return _this4.$window.addEventListener('resize', handler);
+        },
+        deregisterResizeHandler: function deregisterResizeHandler(handler) {
+          return _this4.$window.removeEventListener('resize', handler);
+        },
+        getOffsetWidth: function getOffsetWidth() {
+          return _this4.root_.offsetWidth;
+        },
+        setStyleForIndicator: function setStyleForIndicator(propertyName, value) {
+          return _this4.indicator_.style.setProperty(propertyName, value);
+        },
+        getOffsetWidthForIndicator: function getOffsetWidthForIndicator() {
+          return _this4.indicator_.offsetWidth;
+        },
+        notifyChange: function notifyChange(evtData) {
+          return _this4.emit(_tabs.MDCTabBarFoundation.strings.CHANGE_EVENT, evtData);
+        },
+        getNumberOfTabs: function getNumberOfTabs() {
+          return _this4.tabs.length;
+        },
+        isTabActiveAtIndex: function isTabActiveAtIndex(index) {
+          return _this4.tabs[index] && _this4.tabs[index].isActive;
+        },
+        setTabActiveAtIndex: function setTabActiveAtIndex(index, isActive) {
+          if (_this4.tabs[index]) {
+            _this4.tabs[index].isActive = isActive;
+          }
+        },
+        isDefaultPreventedOnClickForTabAtIndex: function isDefaultPreventedOnClickForTabAtIndex(index) {
+          return _this4.tabs[index].preventDefaultOnClick;
+        },
+        setPreventDefaultOnClickForTabAtIndex: function setPreventDefaultOnClickForTabAtIndex(index, preventDefaultOnClick) {
+          _this4.tabs[index].preventDefaultOnClick = preventDefaultOnClick;
+        },
+        measureTabAtIndex: function measureTabAtIndex(index) {
+          return _this4.tabs[index] && _this4.tabs[index].measureSelf();
+        },
+        getComputedWidthForTabAtIndex: function getComputedWidthForTabAtIndex(index) {
+          return _this4.tabs[index] && _this4.tabs[index].computedWidth;
+        },
+        getComputedLeftForTabAtIndex: function getComputedLeftForTabAtIndex(index) {
+          return _this4.tabs[index] && _this4.tabs[index].computedLeft;
+        }
+      });
+    }
+  }, {
+    key: 'layout',
+    value: function layout() {
+      if (this.foundationReady) {
+        this.foundation_.layout();
+
+        if (this.ngModel) {
+          this.ngModel.$render();
+        }
+        if (this.scroller) {
+          this.scroller.layout();
+        }
+      }
+    }
+  }, {
+    key: 'addTab',
+    value: function addTab(tab) {
+      this.tabs.push(tab);
+      if (this.ngModel) {
+        this.ngModel.$viewChangeListeners.push(tab.$viewChangeHandler);
+      }
+      this.layout();
+    }
+  }, {
+    key: 'removeTab',
+    value: function removeTab(tab) {
+      var viewHandlerIndex = this.ngModel ? this.ngModel.$viewChangeListeners.indexOf(tab.$viewChangeHandler) : -1;
+      if (viewHandlerIndex >= 0) {
+        this.ngModel.$viewChangeListeners.splice(viewHandlerIndex, 1);
+      }
+
+      var indexOfTab = this.tabs.indexOf(tab);
+      if (indexOfTab >= 0) {
+        this.tabs.splice(indexOfTab, 1);
+        this.layout();
+      }
+    }
+  }, {
+    key: '$postLink',
+    value: function $postLink() {
+      _get(MDCTabBarController.prototype.__proto__ || Object.getPrototypeOf(MDCTabBarController.prototype), '$postLink', this).call(this);
+
+      if (this.scroller) {
+        this.$element.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
+        this.scroller.setTabBar(this);
+      }
+    }
+  }, {
+    key: 'initialSyncWithDOM',
+    value: function initialSyncWithDOM() {
+      var _this5 = this;
+
+      if (this.ngModel) {
+        this.ngModel.$render = function () {
+          return _this5.ngModel.$viewChangeListeners.forEach(function (listener) {
+            return listener();
+          });
+        };
+      } else if (this.tabs.length > 0) {
+        // not using ngModel, so first tab must be active
+        this.tabs[0].isActive = true;
+      }
+    }
+  }, {
+    key: '$onChanges',
+    value: function $onChanges(changes) {
+      _get(MDCTabBarController.prototype.__proto__ || Object.getPrototypeOf(MDCTabBarController.prototype), '$onChanges', this).call(this, changes);
+
+      if (changes.variant) {
+        this.$element.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
+        this.$element.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
+      }
+    }
+  }, {
+    key: '$onDestroy',
+    value: function $onDestroy() {
+      this.tabs.length = 0; // if $onDestroy is called, all the tabs should already be gone - remove references
+      _get(MDCTabBarController.prototype.__proto__ || Object.getPrototypeOf(MDCTabBarController.prototype), '$onDestroy', this).call(this);
+    }
+  }, {
+    key: 'tabElements',
+    get: function get() {
+      return [].slice.call(this.root_.getElementsByClassName('mdc-tab'));
+    }
+  }, {
+    key: 'value',
+    get: function get() {
+      return this.ngModel && this.ngModel.$viewValue;
+    },
+    set: function set(value) {
+      if (this.ngModel) {
+        this.ngModel.$setViewValue(value);
+      }
+    }
+  }, {
+    key: 'tabs',
+    get: function get() {
+      return this.tabs_;
+    }
+  }, {
+    key: 'activeIndex',
+    get: function get() {
+      return this.foundation_.getActiveTabIndex();
+    }
+  }]);
+
+  return MDCTabBarController;
+}(_componentNg.MDCComponentNg);
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5517,7 +5748,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _tab = __webpack_require__(34);
+var _tab = __webpack_require__(36);
 
 Object.defineProperty(exports, 'MDCTabFoundation', {
   enumerable: true,
@@ -5532,7 +5763,7 @@ Object.defineProperty(exports, 'MDCTab', {
   }
 });
 
-var _tabBar = __webpack_require__(33);
+var _tabBar = __webpack_require__(35);
 
 Object.defineProperty(exports, 'MDCTabBarFoundation', {
   enumerable: true,
@@ -5547,7 +5778,7 @@ Object.defineProperty(exports, 'MDCTabBar', {
   }
 });
 
-var _tabBarScroller = __webpack_require__(32);
+var _tabBarScroller = __webpack_require__(34);
 
 Object.defineProperty(exports, 'MDCTabBarScrollerFoundation', {
   enumerable: true,
@@ -5563,7 +5794,210 @@ Object.defineProperty(exports, 'MDCTabBarScroller', {
 });
 
 /***/ }),
-/* 37 */
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCTabController = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _arrayUnion = __webpack_require__(3);
+
+var _componentNg = __webpack_require__(8);
+
+var _mixin = __webpack_require__(10);
+
+var _tabBar = __webpack_require__(38);
+
+var _tabs = __webpack_require__(39);
+
+var _hasNgValueMixin = __webpack_require__(131);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @ngdoc component
+ * @name mdcTab
+ * @module mdc.tabs
+ *
+ * @param {*} [ngValue] - expression to evaluate as
+ * @param {string} [value] - string value to use if ngValue isn't specified
+ */
+var MDCTabController = exports.MDCTabController = function (_HasNgValue) {
+  _inherits(MDCTabController, _HasNgValue);
+
+  _createClass(MDCTabController, null, [{
+    key: 'name',
+    get: function get() {
+      return 'mdcTab';
+    }
+  }, {
+    key: 'require',
+    get: function get() {
+      return {
+        tabBar: '^^' + _tabBar.MDCTabBarController.name
+      };
+    }
+  }, {
+    key: '$inject',
+    get: function get() {
+      return (0, _arrayUnion.arrayUnion)(['$element', '$scope'], _get(MDCTabController.__proto__ || Object.getPrototypeOf(MDCTabController), '$inject', this));
+    }
+  }]);
+
+  function MDCTabController() {
+    var _ref;
+
+    _classCallCheck(this, MDCTabController);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var _this = _possibleConstructorReturn(this, (_ref = MDCTabController.__proto__ || Object.getPrototypeOf(MDCTabController)).call.apply(_ref, [this].concat(args)));
+
+    _this.$element.addClass('mdc-tab');
+    if (!_this.$element.attr('href') && !_this.$element.attr('tabindex')) {
+      _this.$element.attr('tabindex', 0);
+    }
+
+    _this.$viewChangeHandler = function () {
+      _this.isActive = _this.tabBar.value === _this.getValue();
+
+      if (_this.isActive) {
+        _this.tabBar.activateTab(_this);
+      }
+    };
+    return _this;
+  }
+
+  _createClass(MDCTabController, [{
+    key: 'initialSyncWithDOM',
+    value: function initialSyncWithDOM() {
+      this.$viewChangeHandler();
+    }
+  }, {
+    key: 'onSelect_',
+    value: function onSelect_() {
+      if (this.tabBar.ngModel) {
+        this.tabBar.value = this.getValue();
+      } else {
+        this.tabBar.activateTab(this);
+      }
+    }
+  }, {
+    key: 'setMDCText',
+    value: function setMDCText(value) {
+      this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(value));
+    }
+  }, {
+    key: '$onDestroy',
+    value: function $onDestroy() {
+      _get(MDCTabController.prototype.__proto__ || Object.getPrototypeOf(MDCTabController.prototype), '$onDestroy', this).call(this);
+
+      if (this.tabBar) {
+        this.tabBar.removeTab(this);
+      }
+    }
+  }, {
+    key: '$onChanges',
+    value: function $onChanges(changes) {
+      _get(MDCTabController.prototype.__proto__ || Object.getPrototypeOf(MDCTabController.prototype), '$onChanges', this).call(this, changes);
+
+      if ((changes.value || changes.ngValue) && this.foundationReady) {
+        this.$viewChangeHandler();
+      }
+    }
+  }, {
+    key: 'getDefaultFoundation',
+    value: function getDefaultFoundation() {
+      var _this2 = this;
+
+      return new _tabs.MDCTabFoundation({
+        addClass: function addClass(className) {
+          return _this2.root_.classList.add(className);
+        },
+        removeClass: function removeClass(className) {
+          return _this2.root_.classList.remove(className);
+        },
+        registerInteractionHandler: function registerInteractionHandler(type, handler) {
+          return _this2.root_.addEventListener(type, handler);
+        },
+        deregisterInteractionHandler: function deregisterInteractionHandler(type, handler) {
+          return _this2.root_.removeEventListener(type, handler);
+        },
+        getOffsetWidth: function getOffsetWidth() {
+          return _this2.root_.offsetWidth;
+        },
+        getOffsetLeft: function getOffsetLeft() {
+          return _this2.root_.offsetLeft;
+        },
+        notifySelected: function notifySelected() {
+          return _this2.onSelect_();
+        }
+      });
+    }
+  }, {
+    key: 'measureSelf',
+    value: function measureSelf() {
+      this.foundation_.measureSelf();
+    }
+  }, {
+    key: 'tabBar',
+    set: function set(bar) {
+      this.tabBar_ = bar;
+      if (bar) {
+        bar.addTab(this);
+      }
+    },
+    get: function get() {
+      return this.tabBar_;
+    }
+  }, {
+    key: 'computedWidth',
+    get: function get() {
+      return this.foundation_.getComputedWidth();
+    }
+  }, {
+    key: 'computedLeft',
+    get: function get() {
+      return this.foundation_.getComputedLeft();
+    }
+  }, {
+    key: 'isActive',
+    get: function get() {
+      return this.foundation_.isActive();
+    },
+    set: function set(isActive) {
+      this.foundation_.setActive(isActive);
+    }
+  }, {
+    key: 'preventDefaultOnClick',
+    get: function get() {
+      return this.foundation_.preventsDefaultOnClick();
+    },
+    set: function set(preventDefaultOnClick) {
+      this.foundation_.setPreventDefaultOnClick(preventDefaultOnClick);
+    }
+  }]);
+
+  return MDCTabController;
+}((0, _hasNgValueMixin.HasNgValue)((0, _mixin.MDCRippleMixin)(_componentNg.MDCComponentNg)));
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5622,7 +6056,7 @@ exports.strings = strings;
 exports.numbers = numbers;
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5653,23 +6087,23 @@ var _createClass = function () { function defineProperties(target, props) { for 
 /* eslint-disable no-unused-vars */
 
 
-var _foundation = __webpack_require__(13);
+var _foundation = __webpack_require__(14);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _foundation3 = __webpack_require__(14);
+var _foundation3 = __webpack_require__(15);
 
 var _foundation4 = _interopRequireDefault(_foundation3);
 
-var _foundation5 = __webpack_require__(15);
+var _foundation5 = __webpack_require__(16);
 
 var _foundation6 = _interopRequireDefault(_foundation5);
 
-var _foundation7 = __webpack_require__(16);
+var _foundation7 = __webpack_require__(17);
 
 var _foundation8 = _interopRequireDefault(_foundation7);
 
-var _foundation9 = __webpack_require__(17);
+var _foundation9 = __webpack_require__(18);
 
 var _foundation10 = _interopRequireDefault(_foundation9);
 
@@ -5855,7 +6289,7 @@ exports.NativeInputType = NativeInputType;
 exports.FoundationMapType = FoundationMapType;
 
 /***/ }),
-/* 39 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5967,7 +6401,7 @@ var MDCLineRippleAdapter = function () {
 exports.default = MDCLineRippleAdapter;
 
 /***/ }),
-/* 40 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6078,7 +6512,7 @@ var MDCTextFieldHelperTextAdapter = function () {
 exports.default = MDCTextFieldHelperTextAdapter;
 
 /***/ }),
-/* 41 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6171,7 +6605,7 @@ var MDCTextFieldIconAdapter = function () {
 exports.default = MDCTextFieldIconAdapter;
 
 /***/ }),
-/* 42 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6253,7 +6687,7 @@ var MDCTextFieldLabelAdapter = function () {
 exports.default = MDCTextFieldLabelAdapter;
 
 /***/ }),
-/* 43 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6346,7 +6780,7 @@ var MDCTextFieldOutlineAdapter = function () {
 exports.default = MDCTextFieldOutlineAdapter;
 
 /***/ }),
-/* 44 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6381,40 +6815,40 @@ var strings = {
 exports.strings = strings;
 
 /***/ }),
-/* 45 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(46);
-__webpack_require__(51);
-__webpack_require__(61);
-__webpack_require__(77);
-__webpack_require__(78);
-__webpack_require__(79);
-__webpack_require__(84);
-__webpack_require__(85);
-__webpack_require__(91);
+__webpack_require__(50);
+__webpack_require__(54);
+__webpack_require__(64);
+__webpack_require__(80);
+__webpack_require__(81);
+__webpack_require__(82);
+__webpack_require__(87);
+__webpack_require__(88);
 __webpack_require__(94);
-__webpack_require__(99);
-__webpack_require__(105);
+__webpack_require__(97);
+__webpack_require__(101);
 __webpack_require__(107);
-__webpack_require__(115);
-__webpack_require__(121);
-__webpack_require__(123);
-__webpack_require__(131);
+__webpack_require__(109);
+__webpack_require__(116);
+__webpack_require__(122);
+__webpack_require__(124);
+__webpack_require__(133);
 
 angular.module('mdc', ['mdc.button', 'mdc.checkbox', 'mdc.dialog', 'mdc.drawer', 'mdc.form-field', 'mdc.grid-list', 'mdc.icon', 'mdc.icon-toggle', 'mdc.list', 'mdc.menu', 'mdc.radio', 'mdc.ripple', 'mdc.select', 'mdc.snackbar', 'mdc.switch', 'mdc.tabs', 'mdc.text-field']);
 
 /***/ }),
-/* 46 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _directive = __webpack_require__(47);
+var _directive = __webpack_require__(51);
 
 /**
  * @ngdoc module
@@ -6432,7 +6866,7 @@ angular.module('mdc.button', []).directive(_directive.MDCButtonController.name, 
 });
 
 /***/ }),
-/* 47 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6449,9 +6883,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _baseComponent = __webpack_require__(0);
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
-var _mixin = __webpack_require__(8);
+var _mixin = __webpack_require__(10);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6540,19 +6974,7 @@ var MDCButtonController = exports.MDCButtonController = function (_MDCRippleMixi
 }((0, _mixin.MDCRippleMixin)(_baseComponent.BaseComponent));
 
 /***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var has = exports.has = Object.prototype.hasOwnProperty;
-
-/***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6570,13 +6992,13 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(19);
+var _adapter = __webpack_require__(21);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(50);
+var _constants = __webpack_require__(53);
 
-var _util = __webpack_require__(9);
+var _util = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7289,7 +7711,7 @@ var MDCRippleFoundation = function (_MDCFoundation) {
 exports.default = MDCRippleFoundation;
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7348,7 +7770,7 @@ exports.strings = strings;
 exports.numbers = numbers;
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7365,15 +7787,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
 var _baseComponent = __webpack_require__(0);
 
-var _childMixin = __webpack_require__(11);
+var _childMixin = __webpack_require__(12);
 
-var _checkbox = __webpack_require__(56);
+var _checkbox = __webpack_require__(59);
 
-var _mdcCheckbox = __webpack_require__(60);
+var _mdcCheckbox = __webpack_require__(63);
 
 var _mdcCheckbox2 = _interopRequireDefault(_mdcCheckbox);
 
@@ -7487,7 +7909,7 @@ angular.module('mdc.checkbox', []).component(MDCCheckboxController.name, {
 });
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7504,7 +7926,7 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _foundation = __webpack_require__(53);
+var _foundation = __webpack_require__(56);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -7631,7 +8053,7 @@ exports.MDCFormField = MDCFormField;
 exports.MDCFormFieldFoundation = _foundation2.default;
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7649,11 +8071,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(54);
+var _adapter = __webpack_require__(57);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(55);
+var _constants = __webpack_require__(58);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7757,7 +8179,7 @@ var MDCFormFieldFoundation = function (_MDCFoundation) {
 exports.default = MDCFormFieldFoundation;
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7841,7 +8263,7 @@ var MDCFormFieldAdapter = function () {
 exports.default = MDCFormFieldAdapter;
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7881,7 +8303,7 @@ exports.cssClasses = cssClasses;
 exports.strings = strings;
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7906,13 +8328,13 @@ var _component2 = _interopRequireDefault(_component);
 
 var _index2 = __webpack_require__(6);
 
-var _foundation = __webpack_require__(57);
+var _foundation = __webpack_require__(60);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _index3 = __webpack_require__(3);
+var _index3 = __webpack_require__(4);
 
-var _util = __webpack_require__(9);
+var _util = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8133,7 +8555,7 @@ exports.MDCCheckboxFoundation = _foundation2.default;
 exports.MDCCheckbox = MDCCheckbox;
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8153,11 +8575,11 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _index = __webpack_require__(6);
 
-var _adapter = __webpack_require__(58);
+var _adapter = __webpack_require__(61);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(59);
+var _constants = __webpack_require__(62);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8544,7 +8966,7 @@ function validDescriptor(inputPropDesc) {
 exports.default = MDCCheckboxFoundation;
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8659,7 +9081,7 @@ var MDCCheckboxAdapter = function () {
 exports.default = MDCCheckboxAdapter;
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8721,25 +9143,25 @@ exports.strings = strings;
 exports.numbers = numbers;
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" ng-model=\"$ctrl.ngModel\" name=\"$ctrl.name\" ng-disabled=\"$ctrl.ngDisabled\"\n       ng-attr-id=\"{{ $ctrl.inputId }}\" class=\"mdc-checkbox__native-control\"/>\n<div class=\"mdc-checkbox__background\">\n  <svg class=\"mdc-checkbox__checkmark\"\n       viewBox=\"0 0 24 24\">\n    <path class=\"mdc-checkbox__checkmark-path\"\n          fill=\"none\"\n          stroke=\"white\"\n          d=\"M1.73,12.91 8.1,19.28 22.79,4.59\"/>\n  </svg>\n  <div class=\"mdc-checkbox__mixedmark\"></div>\n</div>";
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _body = __webpack_require__(62);
+var _body = __webpack_require__(65);
 
-var _dialog = __webpack_require__(63);
+var _dialog = __webpack_require__(66);
 
-var _$mdcDialog = __webpack_require__(65);
+var _$mdcDialog = __webpack_require__(68);
 
-__webpack_require__(73);
+__webpack_require__(76);
 
 angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', _$mdcDialog.$mdcDialogProvider).component(_dialog.MDCDialogController.name, {
   controller: _dialog.MDCDialogController,
@@ -8751,7 +9173,7 @@ angular.module('mdc.dialog', ['material.core.slim']).provider('$mdcDialog', _$md
 });
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8818,7 +9240,7 @@ var MDCDialogBodyController = exports.MDCDialogBodyController = function (_BaseC
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8831,7 +9253,7 @@ exports.MDCDialogController = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dialog = __webpack_require__(64);
+var _dialog = __webpack_require__(67);
 
 var _dialog2 = _interopRequireDefault(_dialog);
 
@@ -8888,13 +9310,13 @@ var MDCDialogController = exports.MDCDialogController = function () {
  */
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-dialog__surface\" ng-transclude></div>\n<div class=\"mdc-dialog__backdrop\"></div>";
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8905,9 +9327,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.$mdcDialogProvider = $mdcDialogProvider;
 
-var _dialog = __webpack_require__(66);
+var _dialog = __webpack_require__(69);
 
-var _defaultTemplate = __webpack_require__(72);
+var _defaultTemplate = __webpack_require__(75);
 
 var _defaultTemplate2 = _interopRequireDefault(_defaultTemplate);
 
@@ -9212,7 +9634,7 @@ function $mdcDialogProvider($$interimElementSlimProvider) {
  */
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9229,13 +9651,13 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _index = __webpack_require__(5);
 
-var _index2 = __webpack_require__(3);
+var _index2 = __webpack_require__(4);
 
-var _foundation = __webpack_require__(67);
+var _foundation = __webpack_require__(70);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _util = __webpack_require__(69);
+var _util = __webpack_require__(72);
 
 var util = _interopRequireWildcard(_util);
 
@@ -9397,7 +9819,7 @@ var MDCDialog = exports.MDCDialog = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9413,7 +9835,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(68);
+var _constants = __webpack_require__(71);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9611,7 +10033,7 @@ var MDCDialogFoundation = function (_MDCFoundation) {
 exports.default = MDCDialogFoundation;
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9655,7 +10077,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9666,7 +10088,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.createFocusTrapInstance = createFocusTrapInstance;
 
-var _focusTrap = __webpack_require__(70);
+var _focusTrap = __webpack_require__(73);
 
 var _focusTrap2 = _interopRequireDefault(_focusTrap);
 
@@ -9696,13 +10118,13 @@ function createFocusTrapInstance(surfaceEl, acceptButtonEl) {
    */
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var tabbable = __webpack_require__(71);
+var tabbable = __webpack_require__(74);
 
 var listeningFocusTrap = null;
 
@@ -9947,7 +10369,7 @@ function tryFocus(node) {
 module.exports = focusTrap;
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10055,13 +10477,13 @@ function createIsUnavailable(elementDocument) {
 }
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=\"mdc-dialog-title\"\n            aria-describedby=\"mdc-dialog-body\"\n            ng-class=\"dialog.css\">\n  <mdc-dialog-header>\n    <mdc-dialog-title id=\"mdc-dialog-title\">{{ dialog.title }}</mdc-dialog-title>\n  </mdc-dialog-header>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::dialog.mdcHtmlContent\" ng-bind-html=\"::dialog.mdcHtmlContent\">\n  </mdc-dialog-body>\n  <mdc-dialog-body id=\"mdc-dialog-body\" ng-class=\"::{'mdc-dialog__body--scrollable': dialog.scrollable}\"\n                   ng-if=\"::!dialog.mdcHtmlContent\">\n    <span ng-if=\"::dialog.mdcTextContent\">{{::dialog.mdcTextContent}}</span>\n    <label ng-if=\"::dialog.$type == 'prompt'\">\n      <input ng-keypress=\"dialog.keypress($event)\" ng-model=\"dialog.result\" placeholder=\"{{::dialog.placeholder}}\">\n    </label>\n  </mdc-dialog-body>\n  <mdc-dialog-footer>\n    <button mdc-button dialog=\"cancel\" ng-if=\"dialog.$type === 'confirm' || dialog.$type === 'prompt'\">\n      {{ dialog.cancel }}\n    </button>\n    <button mdc-button dialog=\"accept\">\n      {{ dialog.ok }}\n    </button>\n  </mdc-dialog-footer>\n</mdc-dialog>\n";
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10076,12 +10498,12 @@ module.exports = "<mdc-dialog role=\"alertdialog\"\n            aria-labelledby=
  */
 angular.module('material.core.slim', []);
 
-__webpack_require__(74);
-__webpack_require__(75);
-__webpack_require__(76);
+__webpack_require__(77);
+__webpack_require__(78);
+__webpack_require__(79);
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10129,7 +10551,7 @@ function UtilFactory($interpolate) {
 }
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10461,7 +10883,7 @@ MdCompilerService.prototype._fetchContentElement = function (options) {
 };
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11190,7 +11612,7 @@ function InterimElementProvider() {
 }
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11205,13 +11627,13 @@ function InterimElementProvider() {
 angular.module('mdc.drawer', []);
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _component = __webpack_require__(20);
+var _component = __webpack_require__(22);
 
 /**
  * @ngdoc module
@@ -11226,7 +11648,7 @@ angular.module('mdc.form-field', []).component(_component.MDCFormFieldController
 });
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11236,9 +11658,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _gridList = __webpack_require__(80);
+var _gridList = __webpack_require__(83);
 
-var _mdcGridList = __webpack_require__(83);
+var _mdcGridList = __webpack_require__(86);
 
 var _mdcGridList2 = _interopRequireDefault(_mdcGridList);
 
@@ -11396,7 +11818,7 @@ angular.module('mdc.grid-list', []).component(MDCGridListController.name, {
 });
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11411,7 +11833,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _foundation = __webpack_require__(81);
+var _foundation = __webpack_require__(84);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -11485,7 +11907,7 @@ var MDCGridList = exports.MDCGridList = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11501,7 +11923,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(82);
+var _constants = __webpack_require__(85);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11609,7 +12031,7 @@ var MDCGridListFoundation = function (_MDCFoundation) {
 exports.default = MDCGridListFoundation;
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11639,13 +12061,13 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-grid-list__tiles\" ng-transclude></div>";
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11771,7 +12193,7 @@ angular.module('mdc.icon', []).component(MDCIconController.name, {
 });
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11786,13 +12208,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _normalize = __webpack_require__(86);
+var _normalize = __webpack_require__(89);
 
 var _baseComponent = __webpack_require__(0);
 
-var _iconToggle = __webpack_require__(87);
+var _iconToggle = __webpack_require__(90);
 
-var _ripple = __webpack_require__(3);
+var _ripple = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -12012,7 +12434,7 @@ angular.module('mdc.icon-toggle', []).component(MDCIconToggleController.name, {
 });
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12060,7 +12482,7 @@ function convertStringsObjToBindingNames(obj, skip) {
 }
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12081,11 +12503,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _foundation = __webpack_require__(88);
+var _foundation = __webpack_require__(91);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _index = __webpack_require__(3);
+var _index = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12279,7 +12701,7 @@ exports.MDCIconToggle = MDCIconToggle;
 exports.MDCIconToggleFoundation = _foundation2.default;
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12297,9 +12719,9 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(89);
+var _adapter = __webpack_require__(92);
 
-var _constants = __webpack_require__(90);
+var _constants = __webpack_require__(93);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12606,7 +13028,7 @@ IconToggleState.prototype.cssClass;
 exports.default = MDCIconToggleFoundation;
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12758,7 +13180,7 @@ exports.MDCIconToggleAdapter = MDCIconToggleAdapter;
 exports.IconToggleEvent = IconToggleEvent;
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12804,15 +13226,15 @@ exports.cssClasses = cssClasses;
 exports.strings = strings;
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _component = __webpack_require__(92);
+var _component = __webpack_require__(95);
 
-var _directive = __webpack_require__(93);
+var _directive = __webpack_require__(96);
 
 /**
  * @ngdoc component
@@ -12846,7 +13268,7 @@ angular.module('mdc.list', []).component(_component.MDCListController.name, {
 });
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12940,7 +13362,7 @@ var MDCListController = exports.MDCListController = function (_BaseComponent) {
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13007,19 +13429,19 @@ var MDCListItemController = exports.MDCListItemController = function (_BaseCompo
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _directive = __webpack_require__(12);
+var _directive = __webpack_require__(13);
 
-var _component = __webpack_require__(21);
+var _component = __webpack_require__(23);
 
-var _component2 = __webpack_require__(98);
+var _component2 = __webpack_require__(24);
 
-var _directive2 = __webpack_require__(22);
+var _directive2 = __webpack_require__(27);
 
 angular.module('mdc.menu', []).directive(_directive.MDCMenuAnchorController.name, function () {
   return {
@@ -13046,7 +13468,7 @@ angular.module('mdc.menu', []).directive(_directive.MDCMenuAnchorController.name
 });
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13065,9 +13487,9 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(96);
+var _adapter = __webpack_require__(99);
 
-var _constants = __webpack_require__(24);
+var _constants = __webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13874,7 +14296,7 @@ exports.MDCMenuFoundation = MDCMenuFoundation;
 exports.AnchorMargin = AnchorMargin;
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14146,145 +14568,13 @@ var MDCMenuAdapter = function () {
 exports.MDCMenuAdapter = MDCMenuAdapter;
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-menu__items mdc-list\" role=\"menu\" aria-hidden=\"true\" ng-transclude></div>\n";
 
 /***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MDCMenuItemController = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _baseComponent = __webpack_require__(0);
-
-var _component = __webpack_require__(21);
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * @callback onSelectCallback
- * @param {Number} index
- * @param {HTMLElement} item
- */
-
-/**
- * @ngdoc directive
- * @name mdcMenuItem
- * @restrict AEC
- * @module mdc.menu
- * @description Used as a child of mdcMenu to create menu items
- * @example
- * mdc-menu-item="expression()"
- * // or
- * <mdc-menu-item on-select="expression()">
- *
- * @param {onSelectCallback} [onSelect] - expression to evaluate if item is selected
- */
-var MDCMenuItemController = exports.MDCMenuItemController = function (_BaseComponent) {
-  _inherits(MDCMenuItemController, _BaseComponent);
-
-  _createClass(MDCMenuItemController, null, [{
-    key: 'name',
-    get: function get() {
-      return 'mdcMenuItem';
-    }
-  }, {
-    key: '$inject',
-    get: function get() {
-      return ['$element', '$scope'];
-    }
-  }, {
-    key: 'bindings',
-    get: function get() {
-      return _defineProperty({
-        onSelect: '&?'
-      }, this.name, '&?');
-    }
-  }, {
-    key: 'require',
-    get: function get() {
-      return {
-        mdcMenuController: '^^' + _component.MDCMenuController.name
-      };
-    }
-  }]);
-
-  function MDCMenuItemController() {
-    var _ref2;
-
-    _classCallCheck(this, MDCMenuItemController);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    var _this = _possibleConstructorReturn(this, (_ref2 = MDCMenuItemController.__proto__ || Object.getPrototypeOf(MDCMenuItemController)).call.apply(_ref2, [this].concat(args)));
-
-    _this.$element.addClass('mdc-list-item');
-    _this.$element.attr('role', 'menuitem');
-    return _this;
-  }
-
-  _createClass(MDCMenuItemController, [{
-    key: '$postLink',
-    value: function $postLink() {
-      if (!this.$element.attr('tabindex') && Number(this.$element.attr('tabindex')) !== 0) {
-        this.$element.attr('tabindex', 0);
-      }
-
-      this.mdcMenuController._addItem(this);
-    }
-  }, {
-    key: '$onDestroy',
-    value: function $onDestroy() {
-      this.mdcMenuController._removeItem(this);
-    }
-  }, {
-    key: 'hasElement',
-    value: function hasElement(htmlElement) {
-      return this.$element[0] === htmlElement;
-    }
-  }, {
-    key: 'select',
-    value: function select(index) {
-      var _this2 = this;
-
-      var fn = void 0;
-      if (this[this.constructor.name]) {
-        fn = this[this.constructor.name];
-      } else if (this.onSelect) {
-        fn = this.onSelect;
-      }
-
-      if (fn) {
-        this.$scope.$apply(function () {
-          return fn({ index: index, item: _this2.$element[0] });
-        });
-      }
-    }
-  }]);
-
-  return MDCMenuItemController;
-}(_baseComponent.BaseComponent);
-
-/***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14296,15 +14586,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
 var _baseComponent = __webpack_require__(0);
 
-var _childMixin = __webpack_require__(11);
+var _childMixin = __webpack_require__(12);
 
-var _radio = __webpack_require__(100);
+var _radio = __webpack_require__(102);
 
-var _mdcRadio = __webpack_require__(104);
+var _mdcRadio = __webpack_require__(106);
 
 var _mdcRadio2 = _interopRequireDefault(_mdcRadio);
 
@@ -14416,7 +14706,7 @@ angular.module('mdc.radio', []).component(MDCRadioController.name, {
 });
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14439,11 +14729,11 @@ var _component2 = _interopRequireDefault(_component);
 
 var _index = __webpack_require__(6);
 
-var _foundation = __webpack_require__(101);
+var _foundation = __webpack_require__(103);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _index2 = __webpack_require__(3);
+var _index2 = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14633,7 +14923,7 @@ exports.MDCRadio = MDCRadio;
 exports.MDCRadioFoundation = _foundation2.default;
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14651,11 +14941,11 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _index = __webpack_require__(6);
 
-var _adapter = __webpack_require__(102);
+var _adapter = __webpack_require__(104);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(103);
+var _constants = __webpack_require__(105);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14803,7 +15093,7 @@ var MDCRadioFoundation = function (_MDCFoundation) {
 exports.default = MDCRadioFoundation;
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14884,7 +15174,7 @@ var MDCRadioAdapter = function () {
 exports.default = MDCRadioAdapter;
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14925,19 +15215,19 @@ exports.strings = strings;
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = "<input class=\"mdc-radio__native-control\" type=\"radio\" ng-attr-id=\"{{ $ctrl.inputId }}\"\n       ng-value=\"$ctrl.ngValue\" ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-radio__background\">\n  <div class=\"mdc-radio__outer-circle\"></div>\n  <div class=\"mdc-radio__inner-circle\"></div>\n</div>";
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _directive = __webpack_require__(106);
+var _directive = __webpack_require__(108);
 
 /**
  * Ripple
@@ -14953,7 +15243,7 @@ angular.module('mdc.ripple', []).directive(_directive.MDCRippleController.name, 
 });
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14970,9 +15260,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _baseComponent = __webpack_require__(0);
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
-var _mixin = __webpack_require__(8);
+var _mixin = __webpack_require__(10);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -15022,15 +15312,15 @@ var MDCRippleController = exports.MDCRippleController = function (_MDCRippleMixi
 }((0, _mixin.MDCRippleMixin)(_baseComponent.BaseComponent));
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _component = __webpack_require__(25);
+var _component = __webpack_require__(28);
 
-var _directive = __webpack_require__(114);
+var _directive = __webpack_require__(115);
 
 /**
  * @ngdoc module
@@ -15054,170 +15344,7 @@ angular.module('mdc.select', []).component(_component.MDCSelectController.name, 
 });
 
 /***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MDCComponentNg = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _baseComponent = __webpack_require__(0);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * Sync MDCComponent functions with AngularJS lifecycle events.
- *
- * Exposes foundationReady for when initialSyncWithDOM is completed.
- *
- * @class MDCComponentNg
- */
-var MDCComponentNg = exports.MDCComponentNg = function (_BaseComponent) {
-  _inherits(MDCComponentNg, _BaseComponent);
-
-  _createClass(MDCComponentNg, null, [{
-    key: '$inject',
-    get: function get() {
-      return ['$element', '$scope', '$document'];
-    }
-  }]);
-
-  function MDCComponentNg() {
-    var _ref;
-
-    _classCallCheck(this, MDCComponentNg);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    var _this = _possibleConstructorReturn(this, (_ref = MDCComponentNg.__proto__ || Object.getPrototypeOf(MDCComponentNg)).call.apply(_ref, [this].concat(args)));
-
-    _this.unlisteners__ = {};
-    _this.root_ = _this.$element[0];
-    _this.foundation_ = _this.getDefaultFoundation();
-    return _this;
-  }
-
-  _createClass(MDCComponentNg, [{
-    key: '$onInit',
-    value: function $onInit() {
-      this.initialize();
-    }
-  }, {
-    key: '$postLink',
-    value: function $postLink() {
-      var _this2 = this;
-
-      this.$element.ready(function () {
-        _this2.foundation_.init();
-        _this2.initialSyncWithDOM();
-        _this2.foundationReady = true;
-      });
-    }
-  }, {
-    key: '$onDestroy',
-    value: function $onDestroy() {
-      this.destroy();
-    }
-
-    /**
-     * @return {!F} foundation
-     */
-
-  }, {
-    key: 'getDefaultFoundation',
-    value: function getDefaultFoundation() {
-      // Subclasses must override this method to return a properly configured foundation class for the
-      // component.
-      throw new Error('Subclasses must override getDefaultFoundation to return a properly configured ' + 'foundation class');
-    }
-  }, {
-    key: 'initialSyncWithDOM',
-    value: function initialSyncWithDOM() {
-      // Subclasses should override this method if they need to perform work to synchronize with a host DOM
-      // object. An example of this would be a form control wrapper that needs to synchronize its internal state
-      // to some property or attribute of the host DOM. Please note: this is *not* the place to perform DOM
-      // reads/writes that would cause layout / paint, as this is called synchronously from within the constructor.
-    }
-  }, {
-    key: 'destroy',
-    value: function destroy() {
-      // Subclasses may implement this method to release any resources / deregister any listeners they have
-      // attached. An example of this might be deregistering a resize event from the window object.
-      if (this.foundationReady) {
-        this.foundation_.destroy();
-      }
-    }
-
-    /**
-     * Wrapper method to add an event listener to the component's root element. This is most useful when
-     * listening for custom events.
-     * @param {string} evtType
-     * @param {!Function} handler
-     */
-
-  }, {
-    key: 'listen',
-    value: function listen(evtType, handler) {
-      if (!this.unlisteners__[evtType]) {
-        this.unlisteners__[evtType] = new WeakMap();
-      }
-
-      this.unlisteners__[evtType].set(handler, this.$scope.$on(evtType, handler));
-    }
-
-    /**
-     * Wrapper method to remove an event listener to the component's root element. This is most useful when
-     * unlistening for custom events.
-     * @param {string} evtType
-     * @param {!Function} handler
-     */
-
-  }, {
-    key: 'unlisten',
-    value: function unlisten(evtType, handler) {
-      if (!this.unlisteners__[evtType]) {
-        return;
-      }
-
-      if (this.unlisteners__[evtType].has(handler)) {
-        this.unlisteners__[evtType].get(handler)();
-      }
-    }
-
-    /**
-     * Fires a cross-browser-compatible custom event from the component root of the given type,
-     * with the given data.
-     * @param {string} evtType
-     * @param {!Object} evtData
-     * @param {boolean=} shouldBubble - ignored
-     */
-
-  }, {
-    key: 'emit',
-    value: function emit(evtType, evtData) {
-      var shouldBubble = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-      this.$scope.$emit(evtType, evtData);
-    }
-  }]);
-
-  return MDCComponentNg;
-}(_baseComponent.BaseComponent);
-
-/***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15232,17 +15359,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _index2 = __webpack_require__(3);
+var _index2 = __webpack_require__(4);
 
-var _index3 = __webpack_require__(10);
+var _index3 = __webpack_require__(9);
 
-var _index4 = __webpack_require__(26);
+var _index4 = __webpack_require__(29);
 
-var _foundation = __webpack_require__(112);
+var _foundation = __webpack_require__(113);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(28);
+var _constants = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15488,7 +15615,7 @@ var MDCSelect = exports.MDCSelect = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15506,11 +15633,11 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(27);
+var _adapter = __webpack_require__(30);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _constants = __webpack_require__(111);
+var _constants = __webpack_require__(112);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15606,7 +15733,7 @@ var MDCSelectLabelFoundation = function (_MDCFoundation) {
 exports.default = MDCSelectLabelFoundation;
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15620,7 +15747,7 @@ var cssClasses = exports.cssClasses = {
 };
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15636,9 +15763,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(28);
+var _constants = __webpack_require__(31);
 
-var _index2 = __webpack_require__(10);
+var _index2 = __webpack_require__(9);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -16002,13 +16129,13 @@ var MDCSelectFoundation = function (_MDCFoundation) {
 exports.default = MDCSelectFoundation;
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-select__surface\" tabindex=\"0\">\n  <div class=\"mdc-select__label\" ng-bind=\"$ctrl.label\"></div>\n  <div class=\"mdc-select__selected-text\"></div>\n  <div class=\"mdc-select__bottom-line\"></div>\n</div>\n<div class=\"mdc-menu mdc-select__menu\">\n  <ul class=\"mdc-list mdc-menu__items\" ng-transclude></ul>\n</div>";
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16023,7 +16150,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _component = __webpack_require__(25);
+var _component = __webpack_require__(28);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -16134,18 +16261,18 @@ var MDCSelectItemController = exports.MDCSelectItemController = function (_BaseC
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _service = __webpack_require__(116);
+var _service = __webpack_require__(117);
 
 angular.module('mdc.snackbar', []).service(_service.MDCSnackbarService.name, _service.MDCSnackbarService);
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16158,17 +16285,17 @@ exports.MDCSnackbarService = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _bindInjections = __webpack_require__(18);
+var _bindInjections = __webpack_require__(19);
 
-var _snackbar = __webpack_require__(117);
+var _snackbar = __webpack_require__(118);
 
-var _constants = __webpack_require__(29);
+var _constants = __webpack_require__(32);
 
-var _snackbar2 = __webpack_require__(119);
+var _snackbar2 = __webpack_require__(120);
 
 var _snackbar3 = _interopRequireDefault(_snackbar2);
 
-var _snackbarAlignStart = __webpack_require__(120);
+var _snackbarAlignStart = __webpack_require__(121);
 
 var _snackbarAlignStart2 = _interopRequireDefault(_snackbarAlignStart);
 
@@ -16374,7 +16501,7 @@ var MDCSnackbarService = exports.MDCSnackbarService = function (_BindInjections)
 }(_bindInjections.BindInjections);
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16389,7 +16516,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _foundation = __webpack_require__(118);
+var _foundation = __webpack_require__(119);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -16538,7 +16665,7 @@ var MDCSnackbar = exports.MDCSnackbar = function (_MDCComponent) {
 }(_index.MDCComponent);
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16554,7 +16681,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _index = __webpack_require__(5);
 
-var _constants = __webpack_require__(29);
+var _constants = __webpack_require__(32);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -16846,19 +16973,19 @@ var MDCSnackbarFoundation = function (_MDCFoundation) {
 exports.default = MDCSnackbarFoundation;
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-snackbar\" aria-live=\"assertive\" aria-atomic=\"true\" aria-hidden=\"true\">\n  <div class=\"mdc-snackbar__text\"></div>\n  <div class=\"mdc-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdc-snackbar__action-button\"></button>\n  </div>\n</div>\n";
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-snackbar mdc-snackbar--align-start\" aria-live=\"assertive\" aria-atomic=\"true\" aria-hidden=\"true\">\n  <div class=\"mdc-snackbar__text\"></div>\n  <div class=\"mdc-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdc-snackbar__action-button\"></button>\n  </div>\n</div>\n";
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16875,13 +17002,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _arrayUnion = __webpack_require__(4);
+var _arrayUnion = __webpack_require__(3);
 
 var _baseComponent = __webpack_require__(0);
 
-var _childMixin = __webpack_require__(11);
+var _childMixin = __webpack_require__(12);
 
-var _mdcSwitch = __webpack_require__(122);
+var _mdcSwitch = __webpack_require__(123);
 
 var _mdcSwitch2 = _interopRequireDefault(_mdcSwitch);
 
@@ -16977,23 +17104,25 @@ angular.module('mdc.switch', []).component(MDCSwitchController.name, {
 });
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = "<input type=\"checkbox\" class=\"mdc-switch__native-control\" id=\"{{ $ctrl.inputId }}\"\n       ng-disabled=\"$ctrl.ngDisabled\" ng-model=\"$ctrl.ngModel\">\n<div class=\"mdc-switch__background\">\n    <div class=\"mdc-switch__knob\"></div>\n</div>";
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _tabBar = __webpack_require__(30);
+var _tabBarScroller = __webpack_require__(33);
 
-var _tab = __webpack_require__(130);
+var _tabBar = __webpack_require__(38);
 
-var _tabBarScroller = __webpack_require__(31);
+var _tab = __webpack_require__(40);
+
+var _tabText = __webpack_require__(132);
 
 /**
  * @ngdoc module
@@ -17002,25 +17131,30 @@ var _tabBarScroller = __webpack_require__(31);
  *
  * Tabs
  */
-angular.module('mdc.tabs', []).component(_tab.MDCTabController.name, {
-  controller: _tab.MDCTabController,
-  require: _tab.MDCTabController.require,
-  bindings: _tab.MDCTabController.bindings
-}).component(_tab.MDCTabTextController.name, {
-  controller: _tab.MDCTabTextController,
-  require: _tab.MDCTabTextController.require
+angular.module('mdc.tabs', []).component(_tabBarScroller.MDCTabBarScrollerController.name, {
+  controller: _tabBarScroller.MDCTabBarScrollerController,
+  transclude: _tabBarScroller.MDCTabBarScrollerController.transclude,
+  template: _tabBarScroller.MDCTabBarScrollerController.template
 }).component(_tabBar.MDCTabBarController.name, {
   controller: _tabBar.MDCTabBarController,
   require: _tabBar.MDCTabBarController.require,
   bindings: _tabBar.MDCTabBarController.bindings
-}).component(_tabBarScroller.MDCTabBarScrollerController.name, {
-  controller: _tabBarScroller.MDCTabBarScrollerController,
-  transclude: _tabBarScroller.MDCTabBarScrollerController.transclude,
-  template: _tabBarScroller.MDCTabBarScrollerController.template
+}).directive(_tab.MDCTabController.name, function () {
+  return {
+    controller: _tab.MDCTabController,
+    require: _tab.MDCTabController.require,
+    bindToController: _tab.MDCTabController.bindings
+  };
+}).directive(_tabText.MDCTabTextController.name, function () {
+  return {
+    controller: _tabText.MDCTabTextController,
+    require: _tabText.MDCTabTextController.require,
+    bindToController: _tabText.MDCTabTextController.bindings
+  };
 });
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17038,7 +17172,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(35);
+var _constants = __webpack_require__(37);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17184,7 +17318,7 @@ var MDCTabFoundation = function (_MDCFoundation) {
 exports.default = MDCTabFoundation;
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17204,7 +17338,7 @@ var _foundation2 = _interopRequireDefault(_foundation);
 
 var _index = __webpack_require__(7);
 
-var _constants = __webpack_require__(126);
+var _constants = __webpack_require__(127);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17436,7 +17570,7 @@ var MDCTabBarFoundation = function (_MDCFoundation) {
 exports.default = MDCTabBarFoundation;
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17472,7 +17606,7 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17490,7 +17624,7 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _constants = __webpack_require__(128);
+var _constants = __webpack_require__(129);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17831,7 +17965,7 @@ var MDCTabBarScrollerFoundation = function (_MDCFoundation) {
 exports.default = MDCTabBarScrollerFoundation;
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17872,13 +18006,13 @@ var strings = exports.strings = {
 };
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--back\">\n  <a class=\"mdc-tab-bar-scroller__indicator__inner material-icons\" href=\"javascript:void(0)\" aria-label=\"scroll back button\">\n    navigate_before\n  </a>\n</div>\n<div class=\"mdc-tab-bar-scroller__scroll-frame\" ng-transclude></div>\n<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scroller__indicator--forward\">\n  <a class=\"mdc-tab-bar-scroller__indicator__inner material-icons\" href=\"javascript:void(0)\" aria-label=\"scroll forward button\">\n    navigate_next\n  </a>\n</div>";
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17887,21 +18021,15 @@ module.exports = "<div class=\"mdc-tab-bar-scroller__indicator mdc-tab-bar-scrol
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MDCTabTextController = exports.MDCTabController = undefined;
+exports.HasNgValue = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _arrayUnion = __webpack_require__(4);
-
-var _baseComponent = __webpack_require__(0);
-
-var _mixin = __webpack_require__(8);
-
-var _tabBar = __webpack_require__(30);
-
-var _tabs = __webpack_require__(36);
+var _has = __webpack_require__(20);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17910,203 +18038,67 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * @ngdoc component
- * @name mdcTab
- * @module mdc.tabs
+ * Exposes getValue() to get the value from ngValue or value bindings.
  *
- * @param {expression} [active] Whether this is the active class or not.
+ * @mixin HasNgValue
+ * @param Base
  */
-var MDCTabController = exports.MDCTabController = function (_MDCRippleMixin) {
-  _inherits(MDCTabController, _MDCRippleMixin);
+var HasNgValue = exports.HasNgValue = function HasNgValue(Base) {
+  return function (_Base) {
+    _inherits(_class, _Base);
 
-  _createClass(MDCTabController, null, [{
-    key: 'name',
-    get: function get() {
-      return 'mdcTab';
-    }
-  }, {
-    key: 'bindings',
-    get: function get() {
-      return {
-        active: '<?'
-      };
-    }
-  }, {
-    key: 'require',
-    get: function get() {
-      return {
-        tabBar: '^^?' + _tabBar.MDCTabBarController.name
-      };
-    }
-  }, {
-    key: '$inject',
-    get: function get() {
-      return (0, _arrayUnion.arrayUnion)(['$element'], _get(MDCTabController.__proto__ || Object.getPrototypeOf(MDCTabController), '$inject', this));
-    }
-  }]);
+    function _class() {
+      _classCallCheck(this, _class);
 
-  function MDCTabController() {
-    var _ref;
-
-    _classCallCheck(this, MDCTabController);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
     }
 
-    var _this = _possibleConstructorReturn(this, (_ref = MDCTabController.__proto__ || Object.getPrototypeOf(MDCTabController)).call.apply(_ref, [this].concat(args)));
-
-    _this.$element.addClass('mdc-tab');
-    _this.root_ = _this.$element[0];
-    _this.added = false;
-
-    _this.foundation_ = _this.getDefaultFoundation();
-
-    _this.$element.ready(function () {
-      _this.addToTabBar();
-      _this.foundation_.init();
-      _this.initDone_ = true;
-      if (_this.willBeActive) {
-        _this._active = true;
+    _createClass(_class, [{
+      key: 'getValue',
+      value: function getValue() {
+        return _has.has.call(this, 'ngValue') ? this.ngValue : this.value;
       }
-    });
-    return _this;
-  }
-
-  _createClass(MDCTabController, [{
-    key: 'addToTabBar',
-    value: function addToTabBar() {
-      if (!this.added && this.tabBar) {
-        this.tabBar.addTab(this);
-        this.added = true;
+    }], [{
+      key: 'bindings',
+      get: function get() {
+        return _extends({ ngValue: '<?', value: '@?' }, _get(_class.__proto__ || Object.getPrototypeOf(_class), 'bindings', this));
       }
-    }
-  }, {
-    key: '$onInit',
-    value: function $onInit() {
-      _get(MDCTabController.prototype.__proto__ || Object.getPrototypeOf(MDCTabController.prototype), '$onInit', this).call(this);
-      this.addToTabBar();
-    }
-  }, {
-    key: '$onChanges',
-    value: function $onChanges(changes) {
-      _get(MDCTabController.prototype.__proto__ || Object.getPrototypeOf(MDCTabController.prototype), '$onChanges', this).call(this, changes);
+    }]);
 
-      if (changes.active) {
-        this.addToTabBar(); // if active, this may happen before $onInit
-        this._active = changes.active.currentValue;
-        if (changes.active.currentValue) {
-          // on initialize, sync active state with tabbar
-          this.notifyTabBar(true);
-        }
-      }
-    }
-  }, {
-    key: '$onDestroy',
-    value: function $onDestroy() {
-      _get(MDCTabController.prototype.__proto__ || Object.getPrototypeOf(MDCTabController.prototype), '$onDestroy', this).call(this);
+    return _class;
+  }(Base);
+};
 
-      if (this.tabBar) {
-        this.tabBar.removeTab(this);
-      }
-      this.foundation_.destroy();
-    }
-  }, {
-    key: 'hasMdcText',
-    value: function hasMdcText(toggle) {
-      this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(toggle));
-    }
-  }, {
-    key: 'handleClick',
-    value: function handleClick() {
-      this._active = true;
-      this.notifyTabBar();
-    }
-  }, {
-    key: 'notifyTabBar',
-    value: function notifyTabBar() {
-      var notifyScroller = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
 
-      if (this.tabBar) {
-        this.tabBar.activate(this, notifyScroller);
-      }
-    }
-  }, {
-    key: 'getDefaultFoundation',
-    value: function getDefaultFoundation() {
-      var _this2 = this;
+"use strict";
 
-      return new _tabs.MDCTabFoundation({
-        addClass: function addClass(className) {
-          return _this2.root_.classList.add(className);
-        },
-        removeClass: function removeClass(className) {
-          return _this2.root_.classList.remove(className);
-        },
-        registerInteractionHandler: function registerInteractionHandler(type, handler) {
-          return _this2.root_.addEventListener(type, handler);
-        },
-        deregisterInteractionHandler: function deregisterInteractionHandler(type, handler) {
-          return _this2.root_.removeEventListener(type, handler);
-        },
-        getOffsetWidth: function getOffsetWidth() {
-          return _this2.root_.offsetWidth;
-        },
-        getOffsetLeft: function getOffsetLeft() {
-          return _this2.root_.offsetLeft;
-        },
-        notifySelected: function notifySelected() {
-          return _this2.handleClick();
-        }
-      });
-    }
-  }, {
-    key: 'measureSelf',
-    value: function measureSelf() {
-      this.foundation_.measureSelf();
-    }
-  }, {
-    key: 'computedWidth',
-    get: function get() {
-      return this.foundation_.getComputedWidth();
-    }
-  }, {
-    key: 'computedLeft',
-    get: function get() {
-      return this.foundation_.getComputedLeft();
-    }
-  }, {
-    key: '_active',
-    get: function get() {
-      return this.foundation_ ? this.foundation_.isActive() : this.willBeActive;
-    },
-    set: function set(isActive) {
-      if (this.foundation_) {
-        this.foundation_.setActive(isActive);
-      } else {
-        this.willBeActive = isActive;
-      }
-    }
-  }, {
-    key: 'preventDefaultOnClick',
-    get: function get() {
-      return this.foundation_.preventsDefaultOnClick();
-    },
-    set: function set(preventDefaultOnClick) {
-      this.foundation_.setPreventDefaultOnClick(preventDefaultOnClick);
-    }
-  }]);
 
-  return MDCTabController;
-}((0, _mixin.MDCRippleMixin)(_baseComponent.BaseComponent));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MDCTabTextController = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _baseComponent = __webpack_require__(0);
+
+var _tab = __webpack_require__(40);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * @ngdoc component
+ * @ngdoc directive
  * @name mdcTabText
+ * @restrict AEC
  * @module mdc.tabs
  */
-
-
 var MDCTabTextController = exports.MDCTabTextController = function (_BaseComponent) {
   _inherits(MDCTabTextController, _BaseComponent);
 
@@ -18116,10 +18108,15 @@ var MDCTabTextController = exports.MDCTabTextController = function (_BaseCompone
       return 'mdcTabText';
     }
   }, {
+    key: 'bindings',
+    get: function get() {
+      return true;
+    }
+  }, {
     key: 'require',
     get: function get() {
       return {
-        tab: '^^' + MDCTabController.name
+        tab: '^^' + _tab.MDCTabController.name
       };
     }
   }, {
@@ -18130,29 +18127,29 @@ var MDCTabTextController = exports.MDCTabTextController = function (_BaseCompone
   }]);
 
   function MDCTabTextController() {
-    var _ref2;
+    var _ref;
 
     _classCallCheck(this, MDCTabTextController);
 
-    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    var _this3 = _possibleConstructorReturn(this, (_ref2 = MDCTabTextController.__proto__ || Object.getPrototypeOf(MDCTabTextController)).call.apply(_ref2, [this].concat(args)));
+    var _this = _possibleConstructorReturn(this, (_ref = MDCTabTextController.__proto__ || Object.getPrototypeOf(MDCTabTextController)).call.apply(_ref, [this].concat(args)));
 
-    _this3.$element.addClass('mdc-tab__icon-text');
-    return _this3;
+    _this.$element.addClass('mdc-tab__icon-text');
+    return _this;
   }
 
   _createClass(MDCTabTextController, [{
     key: '$postLink',
     value: function $postLink() {
-      this.tab.hasMdcText(true);
+      this.tab.setMDCText(true);
     }
   }, {
     key: '$onDestroy',
     value: function $onDestroy() {
-      this.tab.hasMdcText(false);
+      this.tab.setMDCText(false);
     }
   }]);
 
@@ -18160,13 +18157,13 @@ var MDCTabTextController = exports.MDCTabTextController = function (_BaseCompone
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _component = __webpack_require__(132);
+var _component = __webpack_require__(134);
 
 /**
  * @ngdoc module
@@ -18182,7 +18179,7 @@ angular.module('mdc.text-field', []).component(_component.MDCTextFieldController
 });
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18197,9 +18194,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _baseComponent = __webpack_require__(0);
 
-var _textfield = __webpack_require__(133);
+var _textfield = __webpack_require__(135);
 
-var _outline = __webpack_require__(144);
+var _outline = __webpack_require__(146);
 
 var _outline2 = _interopRequireDefault(_outline);
 
@@ -18525,7 +18522,7 @@ var MDCTextFieldController = exports.MDCTextFieldController = function (_BaseCom
 }(_baseComponent.BaseComponent);
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18546,27 +18543,27 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _index = __webpack_require__(3);
+var _index = __webpack_require__(4);
 
-var _util = __webpack_require__(9);
+var _util = __webpack_require__(11);
 
-var _constants = __webpack_require__(37);
+var _constants = __webpack_require__(41);
 
-var _adapter = __webpack_require__(38);
+var _adapter = __webpack_require__(42);
 
-var _foundation = __webpack_require__(138);
+var _foundation = __webpack_require__(140);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _index2 = __webpack_require__(139);
+var _index2 = __webpack_require__(141);
 
-var _index3 = __webpack_require__(140);
+var _index3 = __webpack_require__(142);
 
-var _index4 = __webpack_require__(141);
+var _index4 = __webpack_require__(143);
 
-var _index5 = __webpack_require__(142);
+var _index5 = __webpack_require__(144);
 
-var _index6 = __webpack_require__(143);
+var _index6 = __webpack_require__(145);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18978,7 +18975,7 @@ exports.MDCTextFieldOutline = _index6.MDCTextFieldOutline;
 exports.MDCTextFieldOutlineFoundation = _index6.MDCTextFieldOutlineFoundation;
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19013,7 +19010,7 @@ var cssClasses = {
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19055,7 +19052,7 @@ exports.strings = strings;
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19089,7 +19086,7 @@ var strings = {
 exports.strings = strings;
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19124,7 +19121,7 @@ var cssClasses = {
 exports.cssClasses = cssClasses;
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19142,29 +19139,29 @@ var _foundation = __webpack_require__(1);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
-var _adapter = __webpack_require__(38);
+var _adapter = __webpack_require__(42);
 
-var _foundation3 = __webpack_require__(13);
+var _foundation3 = __webpack_require__(14);
 
 var _foundation4 = _interopRequireDefault(_foundation3);
 
-var _foundation5 = __webpack_require__(14);
+var _foundation5 = __webpack_require__(15);
 
 var _foundation6 = _interopRequireDefault(_foundation5);
 
-var _foundation7 = __webpack_require__(15);
+var _foundation7 = __webpack_require__(16);
 
 var _foundation8 = _interopRequireDefault(_foundation7);
 
-var _foundation9 = __webpack_require__(16);
+var _foundation9 = __webpack_require__(17);
 
 var _foundation10 = _interopRequireDefault(_foundation9);
 
-var _foundation11 = __webpack_require__(17);
+var _foundation11 = __webpack_require__(18);
 
 var _foundation12 = _interopRequireDefault(_foundation11);
 
-var _constants = __webpack_require__(37);
+var _constants = __webpack_require__(41);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19675,7 +19672,7 @@ var MDCTextFieldFoundation = function (_MDCFoundation) {
 exports.default = MDCTextFieldFoundation;
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19694,11 +19691,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(39);
+var _adapter = __webpack_require__(43);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(13);
+var _foundation = __webpack_require__(14);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -19820,7 +19817,7 @@ exports.MDCLineRipple = MDCLineRipple;
 exports.MDCLineRippleFoundation = _foundation2.default;
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19839,11 +19836,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(40);
+var _adapter = __webpack_require__(44);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(14);
+var _foundation = __webpack_require__(15);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -19943,7 +19940,7 @@ exports.MDCTextFieldHelperText = MDCTextFieldHelperText;
 exports.MDCTextFieldHelperTextFoundation = _foundation2.default;
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19962,11 +19959,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(41);
+var _adapter = __webpack_require__(45);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(15);
+var _foundation = __webpack_require__(16);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -20060,7 +20057,7 @@ exports.MDCTextFieldIcon = MDCTextFieldIcon;
 exports.MDCTextFieldIconFoundation = _foundation2.default;
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20079,11 +20076,11 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _adapter = __webpack_require__(42);
+var _adapter = __webpack_require__(46);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(16);
+var _foundation = __webpack_require__(17);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -20174,7 +20171,7 @@ exports.MDCTextFieldLabel = MDCTextFieldLabel;
 exports.MDCTextFieldLabelFoundation = _foundation2.default;
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20193,13 +20190,13 @@ var _component = __webpack_require__(2);
 
 var _component2 = _interopRequireDefault(_component);
 
-var _constants = __webpack_require__(44);
+var _constants = __webpack_require__(48);
 
-var _adapter = __webpack_require__(43);
+var _adapter = __webpack_require__(47);
 
 var _adapter2 = _interopRequireDefault(_adapter);
 
-var _foundation = __webpack_require__(17);
+var _foundation = __webpack_require__(18);
 
 var _foundation2 = _interopRequireDefault(_foundation);
 
@@ -20297,7 +20294,7 @@ exports.MDCTextFieldOutline = MDCTextFieldOutline;
 exports.MDCTextFieldOutlineFoundation = _foundation2.default;
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"mdc-text-field__outline\">\n  <svg>\n    <path class=\"mdc-text-field__outline-path\"></path>\n  </svg>\n</div>\n<div class=\"mdc-text-field__idle-outline\"></div>";
