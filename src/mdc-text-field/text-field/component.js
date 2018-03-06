@@ -131,7 +131,7 @@ export class MDCTextFieldController extends BaseComponent {
         this.inputElement_.insertAdjacentElement('afterend', labelElement);
       }
 
-      labelElement.classList.add('mdc-text-field__label');
+      labelElement.classList.add('mdc-floating-label');
       if (this.label) {
         labelElement.innerText = this.label;
       }
