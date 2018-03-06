@@ -1,3 +1,12 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.4.0....v0.5.0) (2018-03-06)
+
+### BREAKING CHANGES
+* **text-field**: `mdc-text-field__label` changed to `mdc-floating-label`
+
+### Features
+* **mdc**: Update to [material-components-web@0.32.0](https://github.com/material-components/material-components-web/compare/v0.31.0...v0.32.0)
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.3.6....v0.4.0) (2018-03-05)
 
