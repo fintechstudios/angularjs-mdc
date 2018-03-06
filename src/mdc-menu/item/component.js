@@ -7,7 +7,7 @@ import {MDCMenuFoundation} from '@material/menu';
 /**
  * @callback onSelectCallback
  * @param {Number} index
- * @param {HTMLElement} item
+ * @param {MDCMenuItemController} item
  */
 
 /**
@@ -52,7 +52,7 @@ export class MDCMenuItemController extends BaseComponent {
     this.$element.attr('role', 'menuitem');
 
     this.selectHandler = ({detail: {index, item}}) => {
-      if (item === this.$element[0]) {
+      if (item === this) {
         this.select(index);
       }
     };
@@ -81,7 +81,7 @@ export class MDCMenuItemController extends BaseComponent {
     }
 
     if (fn) {
-      this.$scope.$apply(() => fn({index, item: this.$element[0]}));
+      this.$scope.$apply(() => fn({index, item: this}));
     }
   }
 }

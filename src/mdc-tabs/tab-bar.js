@@ -23,7 +23,7 @@ export class MDCTabBarController extends MDCComponentNg {
   static get require() {
     return {
       scroller: `^^?${MDCTabBarScrollerController.name}`,
-      ngModelCtrl_: '?ngModel',
+      ngModel: '?',
     };
   }
 
@@ -34,7 +34,7 @@ export class MDCTabBarController extends MDCComponentNg {
   }
 
   static get $inject() {
-    return arrayUnion(['$element', '$window'], super.$inject);
+    return arrayUnion(['$element', '$window', '$timeout'], super.$inject);
   }
 
   constructor(...args) {
@@ -48,128 +48,39 @@ export class MDCTabBarController extends MDCComponentNg {
     this.tabs_ = []; // tabs will automatically add themselves to the list using .addTab()
   }
 
+  get tabElements() {
+    return [].slice.call(this.root_.getElementsByClassName('mdc-tab'));
+  }
+
+  get value() {
+    return this.ngModel && this.ngModel.$viewValue;
+  }
+
+  set value(value) {
+    if (this.ngModel) {
+      this.ngModel.$setViewValue(value);
+    }
+  }
+
   get tabs() {
     return this.tabs_;
   }
 
-  get activeTab() {
-    const activeIndex = this.foundation_.getActiveTabIndex();
-    return this.tabs[activeIndex];
-  }
-
-  set activeTab(tab) {
-    this.setActiveTab_(tab, false);
-  }
-
-  get activeTabIndex() {
-    return this.foundation_.getActiveTabIndex();
-  }
-
-  set activeTabIndex(index) {
-    this.setActiveTabIndex_(index, false);
-  }
-
   initialize() {
-    this.tabSelectedHandler_ = ({detail}) => {
-      const {tab} = detail;
-      this.setActiveTab_(tab, true);
-    };
+    this.tabSelectedHandler_ = ({detail: {tab}}) => this.activateTab(tab, true);
   }
 
-  initialSyncWithDOM() {
-    if (this.ngModelCtrl_) {
-      this.ngModelCtrl_.$formatters.push((viewValue) => Number(viewValue));
-      this.ngModelCtrl_.$render = () => {
-        const index = this.ngModelCtrl_.$viewValue;
-
-        if (isNaN(index) || index < 0 || index >= this.tabs.length) {
-          return;
-        }
-
-        this.activeTabIndex = index;
-        if (this.scroller) { // outside changes trigger scroller if it exists
-          this.scroller.scrollToTabAtIndexIfNotVisible(index);
-        }
-      };
-
-      this.foundation_.activeTabIndex_ = -1; // init correctly
-      this.ngModelCtrl_.$render();
-    } else if (this.activeTabIndex < 0) {
-      // only trigger if ngModel isn't attached to the tabBar
-      this.tabs[0].isActive = true;
-    }
+  onElementReady() {
   }
 
-  addTab(tab) {
-    const activeIndex = this.activeTabIndex;
-    const htmlIndex = Array.prototype.indexOf.call(this.$element.children(), tab.root_);
+  activateTab(tab) {
+    const index = this.tabs.indexOf(tab);
 
-    this.tabs.splice(htmlIndex, 0, tab);
-
-    if (!this.foundationReady) {
-      return;
-    }
-
-    if (activeIndex === -1) {
-      this.foundation_.activeTabIndex_ = -1;
-      this.setActiveTabIndex_(0, true);
-    } else if (htmlIndex <= activeIndex) {
-      this.setActiveTabIndex_(activeIndex + 1, true);
-    }
-
-    this.layout();
-  }
-
-  removeTab(tab) {
-    const activeIndex = this.activeTabIndex;
-    const indexOfTab = this.tabs.indexOf(tab);
-    if (indexOfTab < 0) { // tab already removed
-      return;
-    }
-
-    if (this.tabs.length === 1) {
-      // if it's the last one, we can short-circuit any extra processing
-      this.tabs.length = 0;
-      return;
-    }
-
-    this.tabs.splice(indexOfTab, 1);
-
-    if (!this.foundationReady) {
-      return;
-    }
-
-    if (activeIndex === indexOfTab) {
-      this.foundation_.activeTabIndex_ = -1; // old tab is gone, reset foundation_ value
-      this.setActiveTabIndex_(0, true);
-    } else if (activeIndex > indexOfTab) {
-      this.setActiveTabIndex_(activeIndex - 1, true);
-    }
-
-    this.layout();
-  }
-
-  $postLink() {
-    super.$postLink();
+    this.$timeout(() => this.foundation_.switchToTabAtIndex(index, true), 20, false);
 
     if (this.scroller) {
-      this.$element.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
-      this.scroller.setTabBar(this);
+      this.scroller.scrollToTabIfNotVisible(tab);
     }
-  }
-
-  $onChanges(changes) {
-    super.$onChanges(changes);
-
-    if (changes.variant) {
-      this.$element.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
-      this.$element.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
-    }
-  }
-
-  $onDestroy() {
-    this.tabs.length = 0; // if $onDestroy is called, all the tabs should already be gone - remove references
-    super.$onDestroy();
   }
 
   getDefaultFoundation() {
@@ -203,23 +114,72 @@ export class MDCTabBarController extends MDCComponentNg {
     });
   }
 
-  setActiveTabIndex_(activeTabIndex, notifyChange) {
-    this.foundation_.switchToTabAtIndex(activeTabIndex, notifyChange);
-
-    if (notifyChange && this.ngModelCtrl_ && this.foundationReady) {
-      this.ngModelCtrl_.$setViewValue(activeTabIndex);
-    }
-  }
-
   layout() {
-    this.foundation_.layout();
+    if (this.foundationReady) {
+      this.foundation_.layout();
+
+      if (this.ngModel) {
+        this.ngModel.$render();
+      }
+      if (this.scroller) {
+        this.scroller.layout();
+      }
+    }
   }
 
-  setActiveTab_(activeTab, notifyChange) {
-    const indexOfTab = this.tabs.indexOf(activeTab);
-    if (indexOfTab < 0) {
-      throw new Error('Invalid tab component given as activeTab: Tab not found within this component\'s tab list');
+  addTab(tab) {
+    this.tabs.push(tab);
+    if (this.ngModel) {
+      this.ngModel.$viewChangeListeners.push(tab.$viewChangeHandler);
     }
-    this.setActiveTabIndex_(indexOfTab, notifyChange);
+    this.layout();
+  }
+
+  removeTab(tab) {
+    const viewHandlerIndex = this.ngModel ? this.ngModel.$viewChangeListeners.indexOf(tab.$viewChangeHandler) : -1;
+    if (viewHandlerIndex >= 0) {
+      this.ngModel.$viewChangeListeners.splice(viewHandlerIndex, 1);
+    }
+
+    const indexOfTab = this.tabs.indexOf(tab);
+    if (indexOfTab >= 0) {
+      this.tabs.splice(indexOfTab, 1);
+      this.layout();
+    }
+  }
+
+  $postLink() {
+    super.$postLink();
+
+    if (this.scroller) {
+      this.$element.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
+      this.scroller.setTabBar(this);
+    }
+  }
+
+  initialSyncWithDOM() {
+    if (this.ngModel) {
+      this.ngModel.$render = () => this.ngModel.$viewChangeListeners.forEach((listener) => listener());
+    } else if (this.tabs.length > 0) { // not using ngModel, so first tab must be active
+      this.tabs[0].isActive = true;
+    }
+  }
+
+  $onChanges(changes) {
+    super.$onChanges(changes);
+
+    if (changes.variant) {
+      this.$element.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
+      this.$element.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
+    }
+  }
+
+  $onDestroy() {
+    this.tabs.length = 0; // if $onDestroy is called, all the tabs should already be gone - remove references
+    super.$onDestroy();
+  }
+
+  get activeIndex() {
+    return this.foundation_.getActiveTabIndex();
   }
 }
