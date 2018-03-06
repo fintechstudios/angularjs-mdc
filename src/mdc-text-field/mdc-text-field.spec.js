@@ -53,7 +53,7 @@ describe('mdc-text-field', () => {
 
           expect(label[0]).to.exist;
           expect(label.text()).to.equal(LABEL_TEXT);
-          expect(label.hasClass('mdc-text-field__label')).to.be.true;
+          expect(label.hasClass('mdc-floating-label')).to.be.true;
         });
     });
 
@@ -159,7 +159,7 @@ describe('mdc-text-field', () => {
 
           expect(label[0]).to.exist;
           expect(label.text()).to.equal(LABEL_TEXT);
-          expect(label.hasClass('mdc-text-field__label')).to.be.true;
+          expect(label.hasClass('mdc-floating-label')).to.be.true;
         });
     });
 
@@ -375,7 +375,7 @@ describe('mdc-text-field', () => {
 
   context('model', () => {
     const TEST_VALUE = 'test value';
-    const FLOAT_LABEL = 'mdc-text-field__label--float-above';
+    const FLOAT_LABEL = 'mdc-floating-label--float-above';
 
     it('should update mdc.value when input ng-model changes', () => {
       return getMockTF({}, {tfModel: ''})
