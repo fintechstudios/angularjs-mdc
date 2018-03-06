@@ -15,14 +15,14 @@ jobs:
           path: ~/mdc
 
       - restore_cache:
-          key: v1-repo-deps-{{ checksum "~/mdc/package-lock.json" }}
+          key: v1-repo-deps-{{ checksum "~/mdc/package-lock.json" }}-{{ checksum "~/mdc/.circleci/config.yml" }}
 
       - run:
           name: Installing Dependencies
           command: cd ~/mdc && npm install
 
       - save_cache:
-          key: v1-repo-deps-{{ checksum "~/mdc/package-lock.json" }}
+          key: v1-repo-deps-{{ checksum "~/mdc/package-lock.json" }}-{{ checksum "~/mdc/.circleci/config.yml" }}
           paths:
             - ~/mdc/node_modules
 
