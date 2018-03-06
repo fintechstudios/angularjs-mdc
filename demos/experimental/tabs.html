@@ -17,9 +17,9 @@ limitations under the License
     <meta charset="utf-8">
     <title>MDC-Web Tab Bar Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/logo_components_color_2x_web_48dp.png" />
-    <script src="/assets/demo-styles.css.js" charset="utf-8"></script>
-    <script src="/assets/angularjs-mdc-experimental.css" charset="utf-8"></script>
+    <link rel="icon" type="image/png" href="../images/logo_components_color_2x_web_48dp.png" />
+    <script src="../assets/demo-styles.css.js" charset="utf-8"></script>
+    <script src="../assets/angularjs-mdc-experimental.css" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
@@ -84,14 +84,6 @@ limitations under the License
         margin-top: 8px;
       }
 
-      .panel {
-        display: none;
-      }
-
-      .panel.active {
-        display: block;
-      }
-
       .dots {
         display: flex;
         justify-content: flex-start;
@@ -146,7 +138,7 @@ limitations under the License
         <mdc-tab-bar>
           <mdc-tab>Item One</mdc-tab>
           <mdc-tab>Item Two</mdc-tab>
-          <mdc-tab active="true">Three</mdc-tab>
+          <mdc-tab>Three</mdc-tab>
         </mdc-tab-bar>
       </section>
 
@@ -157,15 +149,15 @@ limitations under the License
       <section>
         <fieldset>
           <legend class="mdc-typography--title">Basic Tab Bar w/ Dropdown</legend>
-          <mdc-tab-bar class="custom-label-color-tab">
-            <mdc-tab>Item One</mdc-tab>
-            <mdc-tab>Item Two</mdc-tab>
+          <mdc-tab-bar ng-model="withmenu" class="custom-label-color-tab">
+            <mdc-tab ng-value="1">Item One</mdc-tab>
+            <mdc-tab ng-value="2">Item Two</mdc-tab>
             <mdc-tab>
               More <mdc-icon class="mdc-tab__drop-down-icon">arrow_drop_down</mdc-icon>
               <mdc-menu>
-                <mdc-menu-item>Item Three</mdc-menu-item>
-                <mdc-menu-item>Item Four</mdc-menu-item>
-                <mdc-menu-item>Item Five</mdc-menu-item>
+                <mdc-menu-item ng-value="3">Item Three</mdc-menu-item>
+                <mdc-menu-item ng-value="4">Item Four</mdc-menu-item>
+                <mdc-menu-item ng-value="5">Item Five</mdc-menu-item>
               </mdc-menu>
             </mdc-tab>
           </mdc-tab-bar>
@@ -193,10 +185,10 @@ limitations under the License
       <section>
         <fieldset>
           <legend class="mdc-typography--title">Basic Tab Bar</legend>
-          <mdc-tab-bar>
-            <mdc-tab active="(cycleSelect % 3) === 0">Item One</mdc-tab>
-            <mdc-tab active="(cycleSelect % 3) === 1">Item Two</mdc-tab>
-            <mdc-tab active="(cycleSelect % 3) === 2">Three</mdc-tab>
+          <mdc-tab-bar ng-model="cycleSelect">
+            <mdc-tab ng-value="0">Item One</mdc-tab>
+            <mdc-tab ng-value="1">Item Two</mdc-tab>
+            <mdc-tab ng-value="2">Three</mdc-tab>
           </mdc-tab-bar>
         </fieldset>
         <p>
@@ -206,14 +198,14 @@ limitations under the License
       <section>
         <fieldset>
           <legend class="mdc-typography--title">Basic Tab Bar w/ Custom Label Color</legend>
-          <mdc-tab-bar class="custom-label-color-tab">
-            <mdc-tab on-select="clicked = 'one, index ' + index">Item One</mdc-tab>
-            <mdc-tab on-select="clicked = 'two, index ' + index">Item Two</mdc-tab>
-            <mdc-tab on-select="clicked = 'three, index ' + index">Three</mdc-tab>
+          <mdc-tab-bar ng-model="clicked" class="custom-label-color-tab">
+            <mdc-tab ng-value="undefined">One (undefined)</mdc-tab>
+            <mdc-tab ng-value="'Two'">Two ("Two")</mdc-tab>
+            <mdc-tab ng-value="3">Three (3)</mdc-tab>
           </mdc-tab-bar>
         </fieldset>
         <p>
-          Clicked: <i ng-bind="clicked || 'None'"></i>
+          Clicked: <i ng-bind="clicked ? (clicked | json) : 'None'"></i>
         </p>
       </section>
 
@@ -222,16 +214,7 @@ limitations under the License
           <h2 class="mdc-typography--title demo-title">Tab Bar with Scroller</h2>
           <mdc-tab-bar-scroller>
             <mdc-tab-bar ng-model="scroll.selected" ng-if="demoToggled">
-              <mdc-tab>Item Zero</mdc-tab>
-              <mdc-tab>Item One</mdc-tab>
-              <mdc-tab>Item Two</mdc-tab>
-              <mdc-tab>Item Three</mdc-tab>
-              <mdc-tab>Item Four</mdc-tab>
-              <mdc-tab>Item Five</mdc-tab>
-              <mdc-tab>Item Six</mdc-tab>
-              <mdc-tab>Item Seven</mdc-tab>
-              <mdc-tab>Item Eight</mdc-tab>
-              <mdc-tab>Item Nine</mdc-tab>
+              <mdc-tab ng-repeat="num in numbers" value="{{ $index + 1 }}">Item {{ num }}</mdc-tab>
             </mdc-tab-bar>
           </mdc-tab-bar-scroller>
           <p>
@@ -315,18 +298,20 @@ limitations under the License
       </section>
 
       <section>
-        <fieldset>
-          <legend class="mdc-typography--title">Custom Indicator Color</legend>
-          <mdc-tab-bar class="custom-indicator-tab-bar" ng-model="mutable.sel" ng-if="demoToggled">
-            <mdc-tab ng-repeat="item in mutable.list">Item {{ item }}</mdc-tab>
-          </mdc-tab-bar>
-        </fieldset>
+        <div class="demo-tabs__scroller">
+          <h2 class="mdc-typography--title demo-title">Custom Indicator Color</h2>
+          <mdc-tab-bar-scroller>
+            <mdc-tab-bar class="custom-indicator-tab-bar" ng-model="mutable.sel" ng-if="demoToggled">
+              <mdc-tab ng-repeat="item in mutable.list"
+                       ng-value="$index">Item {{ item }}</mdc-tab>
+            </mdc-tab-bar>
+          </mdc-tab-bar-scroller>
+        </div>
         <p>
-          <button mdc-button raised="true" color="primary" ng-click="mutableAdd()">Add Tab</button>
-          <button mdc-button raised="true" color="primary" ng-click="mutableCycle()">Cycle Tabs</button>
-          <button mdc-button raised="true" color="primary" ng-click="mutableRemove()">Remove Tab</button>
-          <button mdc-button raised="true" color="primary" ng-click="demoToggled = !demoToggled;">Toggle Tabbar</button>
-          <label>Selected <input ng-model="mutable.sel"></label>
+          <button mdc-button raised="true" ng-click="mutableAdd()">Add Tab</button>
+          <button mdc-button raised="true" ng-click="mutableCycle()">Cycle Tabs</button>
+          <button mdc-button raised="true" ng-click="mutableRemove()">Remove Tab</button>
+          <button mdc-button raised="true" ng-click="demoToggled = !demoToggled;">Toggle Tabbar</button>
         </p>
       </section>
 
@@ -426,20 +411,20 @@ limitations under the License
             <div class="mdc-toolbar__row">
               <div class="mdc-toolbar__section mdc-toolbar__section--align-start">
                 <mdc-tab-bar ng-model="selectedTab" class="custom-indicator-tab-bar-in-toolbar">
-                  <mdc-tab>Item One</mdc-tab>
-                  <mdc-tab>Item Two</mdc-tab>
-                  <mdc-tab>Item Three</mdc-tab>
+                  <mdc-tab ng-value="0">Item One</mdc-tab>
+                  <mdc-tab ng-value="1">Item Two</mdc-tab>
+                  <mdc-tab ng-value="2">Item Three</mdc-tab>
                 </mdc-tab-bar>
               </div>
             </div>
           </div>
           <section>
             <div class="panels">
-              <p ng-class="{'active': selectedTab === 0}" ng-if="selectedTab === 0"
+              <p ng-if="selectedTab === 0"
                  class="panel" role="tabpanel">Item One</p>
-              <p ng-class="{'active': selectedTab === 1}" ng-if="selectedTab === 1"
+              <p ng-if="selectedTab === 1"
                  class="panel" role="tabpanel">Item Two</p>
-              <p ng-class="{'active': selectedTab === 2}" ng-if="selectedTab === 2"
+              <p ng-if="selectedTab === 2"
                  class="panel" role="tabpanel">Item Three</p>
             </div>
             <div class="dots">
@@ -452,41 +437,48 @@ limitations under the License
       </section>
 
     </main>
-    <script src="/angular/angular.js"></script>
-    <script src="/assets/angularjs-mdc.js"></script>
-    <script src="/assets/angularjs-mdc-experimental.js"></script>
+    <script src="../angular/angular.js"></script>
+    <script src="../assets/angularjs-mdc.js"></script>
+    <script src="../assets/angularjs-mdc-experimental.js"></script>
     <script>
       angular.module('demo', ['mdc.tabs-experimental', 'mdc.menu-experimental', 'mdc.button', 'mdc.icon'])
         .controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
-          $scope.name = '';
+          $scope.numbers = [
+            'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+          ];
           $scope.isRTL = false;
           $scope.demoToggled = true;
           $scope.window = $window;
           $scope.selectedTab = 0;
           $scope.cycleSelect = 0;
+          $scope.withmenu = 1;
           $scope.scroll = {
-            selected: 7,
+            selected: '7',
           };
-          $scope.cycleToggled = () => {
-            $scope.cycleSelect++;
+          $scope.cycleToggled = function() {
+            if ($scope.cycleSelect === 2) {
+              $scope.cycleSelect = 0;
+            } else {
+              $scope.cycleSelect += 1;
+            }
           };
           $scope.mutable = {
             list: [0, 1, 2],
             sel: 1,
             counter: 2
           };
-          $scope.mutableCycle = () => {
+          $scope.mutableCycle = function() {
             $scope.mutable.sel = ($scope.mutable.sel + 1) % $scope.mutable.list.length;
           };
-          $scope.mutableAdd = () => {
+          $scope.mutableAdd = function() {
             const index = Math.floor(Math.random() * $scope.mutable.list.length);
             $scope.mutable.list.splice(index, 0, ++$scope.mutable.counter);
           };
-          $scope.mutableRemove = () => {
+          $scope.mutableRemove = function() {
             const index = Math.floor(Math.random() * $scope.mutable.list.length);
             $scope.mutable.list.splice(index, 1);
           };
-          $scope.toggleRTL = () => {
+          $scope.toggleRTL = function() {
             $scope.isRTL = !$scope.isRTL;
             $scope.window.dispatchEvent(new Event('resize'));
           }
