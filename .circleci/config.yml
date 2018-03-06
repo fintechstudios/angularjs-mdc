@@ -1,14 +1,16 @@
-defaults: &defaults
-  working_directory: ~/mdc
+dockerConfig: &dockerConfig
   docker:
       - image: circleci/node:8-browsers
+
+defaults: &defaults
+  <<: *dockerConfig
+  working_directory: ~/mdc
 
 
 version: 2
 jobs:
   install:
-    docker:
-        - image: circleci/node:6.10-browsers
+    <<: *dockerConfig
     working_directory: ~/
     steps:
       - checkout:
