@@ -150,8 +150,8 @@ export class MDCTextFieldController extends BaseComponent {
   }
 
   setupOutlinedAndBox_() {
-    const outlineElement = this.root_.getElementsByClassName('mdc-text-field__outline')[0];
-    const idleOutlineElement = this.root_.getElementsByClassName('mdc-text-field__idle-outline')[0];
+    const outlineElement = this.root_.getElementsByClassName('mdc-notched-outline')[0];
+    const idleOutlineElement = this.root_.getElementsByClassName('mdc-notched-outline__idle')[0];
     const bottomLineElement = this.root_.getElementsByClassName('mdc-line-ripple')[0];
 
     this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.OUTLINED, Boolean(this.outlined) && !this.isTextArea);

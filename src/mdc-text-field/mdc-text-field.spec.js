@@ -214,10 +214,10 @@ describe('mdc-text-field', () => {
         });
     });
 
-    it('should have a child mdc-text-field__outline', () => {
+    it('should have a child mdc-notched-outline', () => {
       return getMockTF({outlined: true})
         .then((tf) => {
-          const outline = tf.$element[0].querySelector('.mdc-text-field__outline');
+          const outline = tf.$element[0].querySelector('.mdc-notched-outline');
 
           expect(outline).to.exist;
         });
@@ -237,10 +237,10 @@ describe('mdc-text-field', () => {
         });
     });
 
-    it('should not have a child mdc-text-field__outline if contains a textarea', () => {
+    it('should not have a child mdc-notched-outline if contains a textarea', () => {
       return getMockTF({outlined: true}, {}, {textarea: true})
         .then((tf) => {
-          const outline = tf.$element[0].querySelector('.mdc-text-field__outline');
+          const outline = tf.$element[0].querySelector('.mdc-notched-outline');
 
           expect(outline).to.not.exist;
         });
