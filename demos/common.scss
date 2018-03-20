@@ -26,11 +26,6 @@ $mdc-theme-secondary: #018786 !default; // baseline teal, 600 tone
 // TODO(kfranqueiro): Pending further design discussion around how to manage dark theme
 @import "~@material/button/mixins";
 @import "~@material/ripple/mixins";
-// All demo pages have a top toolbar, and most of them use theme variables.
-// Import these *after* setting theme colors to override defaults in mdc-theme.
-@import "~@material/theme/mdc-theme";
-@import "~@material/toolbar/mdc-toolbar";
-@import "~@material/typography/mdc-typography";
 
 @import "../src/mdc";
 
