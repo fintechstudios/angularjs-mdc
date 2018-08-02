@@ -1,3 +1,9 @@
+<a name="0.5.2"></a>
+# [0.5.2](https://github.com/fintechstudios/angularjs-mdc/compare/v0.5.1....v0.5.2) (2018-08-02)
+
+### Bug fixes
+* **tabs**: set max height and width on experimental tab-bar menu
+
 <a name="0.5.1"></a>
 # [0.5.1](https://github.com/fintechstudios/angularjs-mdc/compare/v0.5.0....v0.5.1) (2018-03-06)
 
