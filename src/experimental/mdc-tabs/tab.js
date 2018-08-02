@@ -72,11 +72,15 @@ export class MDCExperimentalTabController extends MDCTabController {
   }
 
   showMenu_() {
+    const rootRect = this.root_.getBoundingClientRect();
+    const parentRect = this.menuParent_.parent()[0].getBoundingClientRect();
     const top = this.menuParent_[0].offsetTop;
-    const left = this.root_.getBoundingClientRect().left - this.menuParent_.parent()[0].getBoundingClientRect().left;
+    const left = rootRect.left - parentRect.left;
     this.setMenuElStyle_('left', `${left}px`);
     this.setMenuElStyle_('top', `${top}px`);
     this.setMenuElStyle_('transform-origin', 'center top 0px');
+    this.setMenuElStyle_('max-height', `calc(100vh - ${rootRect.y}px)`);
+    this.setMenuElStyle_('max-width', `calc(100vw - ${rootRect.x}px)`);
 
     this.menu.show();
   }
