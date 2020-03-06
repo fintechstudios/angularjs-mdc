@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -11,6 +12,8 @@ const IS_TEST = process.env.MDC_ENV === 'test';
 const IS_PROD = process.env.MDC_ENV === 'production' || process.env.MDC_ENV === 'demos';
 const OUT_PATH = IS_DEMOS ? path.resolve('./demos/assets') : path.resolve('./dist');
 const PACKAGE_NAME = 'angularjs-mdc';
+const packages = fs.readdirSync('./src');
+const experimentalPackages = fs.readdirSync('./src/experimental');
 
 const CSS_LOADER_CONFIG = [
   {
@@ -84,6 +87,45 @@ module.exports.push(Object.assign({}, module.exports[0], {
     library: EXPERIMENTAL_NAME,
   },
 }));
+packages.forEach((packageName) => {
+  const jsPath = path.resolve(`./src/${packageName}/${packageName}.js`);
+  const hasJs = fs.existsSync(jsPath);
+  if (!hasJs) {
+    return;
+  }
+
+  module.exports.push(Object.assign({}, module.exports[0], {
+    name: packageName,
+    entry: jsPath,
+    output: {
+      path: OUT_PATH,
+      publicPath: PUBLIC_PATH,
+      filename: packageName + '.' + (IS_PROD ? 'min.' : '') + 'js',
+      libraryTarget: 'umd',
+      library: packageName,
+    },
+  }));
+});
+experimentalPackages.forEach((packageName) => {
+  const outputName = `${packageName}-experimental`;
+  const jsPath = path.resolve(`./src/experimental/${packageName}/index.js`);
+  const hasJs = fs.existsSync(jsPath);
+  if (!hasJs) {
+    return;
+  }
+
+  module.exports.push(Object.assign({}, module.exports[0], {
+    name: outputName,
+    entry: jsPath,
+    output: {
+      path: OUT_PATH,
+      publicPath: PUBLIC_PATH,
+      filename: outputName + '.' + (IS_PROD ? 'min.' : '') + 'js',
+      libraryTarget: 'umd',
+      library: outputName,
+    },
+  }));
+});
 
 const CSS_EXPORT = {
   name: 'scss',
@@ -110,6 +152,22 @@ const CSS_EXPORT = {
 };
 CSS_EXPORT['entry'][PACKAGE_NAME] = path.resolve('./src/mdc.scss');
 CSS_EXPORT['entry'][EXPERIMENTAL_NAME] = path.resolve('./src/experimental/mdc.scss');
+packages.forEach((packageName) => {
+  const scssPath = path.resolve(`./src/${packageName}/${packageName}.scss`);
+  const hasScss = fs.existsSync(scssPath);
+  if (!hasScss) {
+    return;
+  }
+  CSS_EXPORT.entry[packageName] = scssPath;
+});
+experimentalPackages.forEach((packageName) => {
+  const scssPath = path.resolve(`./src/experimental/${packageName}/${packageName}.scss`);
+  const hasScss = fs.existsSync(scssPath);
+  if (!hasScss) {
+    return;
+  }
+  CSS_EXPORT.entry[`${packageName}-experimental`] = scssPath;
+});
 module.exports.push(CSS_EXPORT);
 
 const DEMO_CSS_EXPORT = {

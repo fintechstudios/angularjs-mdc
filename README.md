@@ -1,7 +1,13 @@
 # angularjs-mdc  [![CircleCI](https://circleci.com/gh/fintechstudios/angularjs-mdc/tree/master.svg?style=svg)](https://circleci.com/gh/fintechstudios/angularjs-mdc/tree/master)
+
 AngularJS wrapper for [Material Design Components Web](https://material.io/components/web/)
 
 [Demos](https://fintechstudios.github.io/angularjs-mdc/) - automatically updated with every release
+
+# Archival Notice
+
+FinTech Studios is phasing out our usage of this library as we transition our app from AngularJS to Angular. This repo
+will be archived when our transition is further along. May it rest easily with AngularJS.
 
 ## Rationale
 
