@@ -1,3 +1,9 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.5.2....v0.6.0) (2020-03-09)
+
+### Features
+* add distributable for each package
+
 <a name="0.5.2"></a>
 # [0.5.2](https://github.com/fintechstudios/angularjs-mdc/compare/v0.5.1....v0.5.2) (2018-08-02)
 
