@@ -61,7 +61,7 @@ export class MDCCheckboxController extends IsFormFieldChild(BaseComponent) {
 
     // inputId is handled by IsFormFieldChild
     if (changesObj.ngDisabled) {
-      this.$element.toggleClass(replaceMdcClassname(DISABLED_CLASSNAME), Boolean(this.ngDisabled));
+      this.$element.toggleClass(DISABLED_CLASSNAME, Boolean(this.ngDisabled));
     }
     if (changesObj.indeterminate) {
       this.mdc.indeterminate = this.indeterminate;
