@@ -138,7 +138,7 @@ describe('mdc-icon-toggle', function() {
 
   function expectComponentToBeDisabled(component) {
     const elem = component.$element;
-    expect(elem.hasClass('mdc-icon-toggle--disabled')).to.be.true;
+    expect(elem.hasClass('lmdc-icon-toggle--disabled')).to.be.true;
     expect(elem.attr('aria-disabled')).to.equal('true');
     expect(elem.attr('tabindex')).to.equal('-1');
     expect(component.$ctrl.ariaDisabled).to.equal('true');
@@ -146,7 +146,7 @@ describe('mdc-icon-toggle', function() {
 
   function expectComponentToBeEnabled(component) {
     const elem = component.$element;
-    expect(elem.hasClass('mdc-icon-toggle--disabled')).to.be.false;
+    expect(elem.hasClass('lmdc-icon-toggle--disabled')).to.be.false;
     expect(elem.attr('aria-disabled')).to.not.exist;
     expect(elem.attr('disabled')).to.not.exist;
     expect(component.$ctrl.ariaDisabled).to.not.exist;

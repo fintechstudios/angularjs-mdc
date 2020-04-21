@@ -25,17 +25,17 @@ describe('mdc-select', () => {
     MockSelect = $componentGenerator('mdcSelect');
   }));
 
-  it('should have the mdc-select class', () => {
-    expect(new MockSelect().$element.hasClass('mdc-select')).to.be.true;
+  it('should have the lmdc-select class', () => {
+    expect(new MockSelect().$element.hasClass('lmdc-select')).to.be.true;
   });
 
   it('should have attribute role=listbox', () => {
     expect(new MockSelect().$element.attr('role')).to.equal('listbox');
   });
 
-  it('should have class mdc-select--box when box=true', () => {
+  it('should have class lmdc-select--box when box=true', () => {
     const select = new MockSelect({box: true});
-    expect(select.$element.hasClass('mdc-select--box')).to.be.true;
+    expect(select.$element.hasClass('lmdc-select--box')).to.be.true;
   });
 
   it('should toggle between disabled and enabled when ngDisabled changes', () => {
@@ -44,11 +44,11 @@ describe('mdc-select', () => {
 
     return new Promise((resolve) => elem.ready(() => resolve()))
       .then(() => {
-        expect(elem.hasClass('mdc-select--disabled')).to.be.false;
+        expect(elem.hasClass('lmdc-select--disabled')).to.be.false;
         select.$parent('isDisabled', true);
-        expect(elem.hasClass('mdc-select--disabled')).to.be.true;
+        expect(elem.hasClass('lmdc-select--disabled')).to.be.true;
         select.$parent('isDisabled', false);
-        expect(elem.hasClass('mdc-select--disabled')).to.be.false;
+        expect(elem.hasClass('lmdc-select--disabled')).to.be.false;
       });
   });
 
@@ -74,9 +74,9 @@ describe('mdc-select', () => {
 
     return new Promise((resolve) => select.$element.ready(() => resolve()))
       .then(() => {
-        const label = select.$element[0].querySelector('.mdc-select__label');
+        const label = select.$element[0].querySelector('.lmdc-select__label');
 
-        expect(label.classList.contains('mdc-select__label--float-above')).to.be.false;
+        expect(label.classList.contains('lmdc-select__label--float-above')).to.be.false;
       });
   });
 
@@ -85,9 +85,9 @@ describe('mdc-select', () => {
 
     return new Promise((resolve) => select.$element.ready(() => resolve()))
       .then(() => {
-        const label = select.$element[0].querySelector('.mdc-select__label');
+        const label = select.$element[0].querySelector('.lmdc-select__label');
 
-        expect(label.classList.contains('mdc-select__label--float-above')).to.be.true;
+        expect(label.classList.contains('lmdc-select__label--float-above')).to.be.true;
       });
   });
 });
@@ -102,9 +102,9 @@ describe('mdc-select-item', () => {
     MockSelectItem = $componentGenerator('mdcSelectItem');
   }));
 
-  it('should have class mdc-list-item', () => {
+  it('should have class lmdc-list-item', () => {
     const item = new MockSelectItem();
-    expect(item.$element.hasClass('mdc-list-item')).to.be.true;
+    expect(item.$element.hasClass('lmdc-list-item')).to.be.true;
   });
 
   it('should add role="option"', () => {

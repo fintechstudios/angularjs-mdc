@@ -1,5 +1,8 @@
 import {BaseComponent} from '../../util/base-component';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
 
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-menu-anchor');
 
 /**
  * @ngdoc directive
@@ -20,7 +23,7 @@ export class MDCMenuAnchorController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-menu-anchor');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 
   getDimensions() {

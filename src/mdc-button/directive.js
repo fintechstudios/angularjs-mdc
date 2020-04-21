@@ -1,8 +1,11 @@
 import {BaseComponent} from '../util/base-component';
 import {arrayUnion} from '../util/array-union';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
+import {BASE_CLASSNAME as DIALOG_BASE_CLASSNAME} from '../mdc-dialog/component/dialog';
 
 import {MDCRippleMixin} from '../mdc-ripple/mixin';
 
+const BASE_CLASSNAME = replaceMdcClassname('mdc-button');
 
 /**
  * @ngdoc directive
@@ -42,7 +45,7 @@ export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-button');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 
   $onChanges(changes) {
@@ -50,13 +53,16 @@ export class MDCButtonController extends MDCRippleMixin(BaseComponent) {
 
     ['dense', 'raised', 'compact', 'unelevated', 'stroked'].forEach((attr) => {
       if (changes[attr]) {
-        this.$element.toggleClass('mdc-button--' + attr, Boolean(this[attr]));
+        this.$element.toggleClass(`${BASE_CLASSNAME}--${attr}`, Boolean(this[attr]));
       }
     });
     if (changes.dialog) {
-      this.$element.toggleClass('mdc-dialog__footer__button', this.dialog === 'cancel' || this.dialog === 'accept');
-      this.$element.toggleClass('mdc-dialog__footer__button--cancel', this.dialog === 'cancel');
-      this.$element.toggleClass('mdc-dialog__footer__button--accept', this.dialog === 'accept');
+      this.$element.toggleClass(
+        `${DIALOG_BASE_CLASSNAME}__footer__button`,
+        this.dialog === 'cancel' || this.dialog === 'accept'
+      );
+      this.$element.toggleClass(`${DIALOG_BASE_CLASSNAME}__footer__button--cancel`, this.dialog === 'cancel');
+      this.$element.toggleClass(`${DIALOG_BASE_CLASSNAME}__footer__button--accept`, this.dialog === 'accept');
     }
   };
 }

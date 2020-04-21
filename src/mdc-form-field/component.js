@@ -1,6 +1,12 @@
 import {BaseComponent} from '../util/base-component';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
 
-import {MDCFormField} from '@material/form-field';
+import {MDCFormField, MDCFormFieldFoundation} from '@material/form-field';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-form-field');
+const ALIGN_END_CLASSNAME = `${BASE_CLASSNAME}--align-end`;
+replaceFoundationConstants(MDCFormFieldFoundation);
 
 
 /**
@@ -28,12 +34,12 @@ export class MDCFormFieldController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-form-field');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 
   $onChanges(changesObj) {
     if (changesObj.alignEnd) {
-      this.$element.toggleClass('mdc-form-field--align-end', Boolean(this.alignEnd));
+      this.$element.toggleClass(ALIGN_END_CLASSNAME, Boolean(this.alignEnd));
     }
   }
 

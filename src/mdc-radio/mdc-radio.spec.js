@@ -10,10 +10,10 @@ describe('mdc-radio', () => {
     MockRadio = $componentGenerator('mdcRadio');
   }));
 
-  it('should have the mdc-radio class', () => {
+  it('should have the lmdc-radio class', () => {
     const radio = new MockRadio();
 
-    expect(radio.$element.hasClass('mdc-radio')).to.be.true;
+    expect(radio.$element.hasClass('lmdc-radio')).to.be.true;
   });
 
   it('should toggle as ng-model changes', function() {
@@ -41,7 +41,7 @@ describe('mdc-radio', () => {
     const elem = component.$element;
     const checkbox = angular.element(component.$element.find('input')[0]);
 
-    expect(elem.hasClass('mdc-radio--disabled')).to.be.true;
+    expect(elem.hasClass('lmdc-radio--disabled')).to.be.true;
     expect(checkbox.attr('disabled')).to.equal('disabled');
   }
 
@@ -49,7 +49,7 @@ describe('mdc-radio', () => {
     const elem = component.$element;
     const checkbox = angular.element(component.$element.find('input')[0]);
 
-    expect(elem.hasClass('mdc-radio--disabled')).to.be.false;
+    expect(elem.hasClass('lmdc-radio--disabled')).to.be.false;
     expect(checkbox.attr('disabled')).to.not.exist;
   }
 

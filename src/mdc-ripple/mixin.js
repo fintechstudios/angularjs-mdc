@@ -1,7 +1,10 @@
 import {arrayUnion} from '../util/array-union';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
 
-import {MDCRipple} from '@material/ripple';
 
+import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
+
+replaceFoundationConstants(MDCRippleFoundation);
 
 /**
  * Applies a ripple to this.rippleElement and exposes as this.ripple.

@@ -1,4 +1,6 @@
 import {arrayUnion} from '../util/array-union';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {MDCComponentNg} from '../mdc-base/component-ng';
 
@@ -7,6 +9,9 @@ import {getCorrectPropertyName} from '@material/animation';
 import {MDCTabBarScrollerFoundation} from '@material/tabs/tab-bar-scroller';
 
 import template from './tab-bar-scroller.html';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-tab-bar-scroller');
+replaceFoundationConstants(MDCTabBarScrollerFoundation);
 
 
 /**
@@ -35,7 +40,7 @@ export class MDCTabBarScrollerController extends MDCComponentNg {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-tab-bar-scroller');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 
   get tabBar() {

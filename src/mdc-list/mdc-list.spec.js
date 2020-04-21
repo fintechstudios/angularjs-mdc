@@ -12,7 +12,7 @@ describe('mdc-list', function() {
 
   ['dense', 'twoLine'].forEach(function(style) {
     it('should add the proper class when ' + style + '=true', inject(function($camelToKebab) {
-      const className = 'mdc-list--' + $camelToKebab(style);
+      const className = 'lmdc-list--' + $camelToKebab(style);
       const bindings = {};
       bindings[style] = 'hasStyle';
       const component = new $mockComponent(bindings, {'hasStyle': false});
@@ -28,7 +28,7 @@ describe('mdc-list', function() {
   });
 
   it('should add the proper class when avatar=true', function() {
-    const className = 'mdc-list--avatar-list';
+    const className = 'lmdc-list--avatar-list';
     const component = new $mockComponent({'avatar': 'hasStyle'}, {'hasStyle': false});
     const elem = component.$element;
     expect(elem.hasClass(className)).to.be.false;

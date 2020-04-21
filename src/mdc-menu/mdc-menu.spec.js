@@ -23,10 +23,10 @@ describe('mdc-menu', () => {
     $rootScope = _$rootScope_;
   }));
 
-  it('should have the `mdc-menu` class', () => {
+  it('should have the `lmdc-menu` class', () => {
     const menu = getMockMenu();
 
-    expect(menu.$element.hasClass('mdc-menu')).to.be.true;
+    expect(menu.$element.hasClass('lmdc-menu')).to.be.true;
 
     return menu.ready;
   });
@@ -51,10 +51,10 @@ describe('mdc-menu', () => {
     const menu = getMockMenu({id: 'menu'});
     const elem = menu.$element;
 
-    expect(elem.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(elem.hasClass('lmdc-menu--animating-open')).to.be.false;
 
     $rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, {id: 'menu'});
-    expect(elem.hasClass('mdc-menu--animating-open')).to.be.true;
+    expect(elem.hasClass('lmdc-menu--animating-open')).to.be.true;
 
     return menu.ready;
   });
@@ -63,10 +63,10 @@ describe('mdc-menu', () => {
     const menu = getMockMenu({id: 'menu'});
     const elem = menu.$element;
 
-    expect(elem.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(elem.hasClass('lmdc-menu--animating-open')).to.be.false;
 
     $rootScope.$broadcast(MDC_MENU_TOGGLE_EVENT, {id: 'notmenu'});
-    expect(elem.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(elem.hasClass('lmdc-menu--animating-open')).to.be.false;
 
     return menu.ready;
   });
@@ -83,10 +83,10 @@ describe('mdc-menu-anchor', () => {
     MockAnchor = $componentGenerator('mdcMenuAnchor');
   }));
 
-  it('should have the `mdc-menu-anchor` class', () => {
+  it('should have the `lmdc-menu-anchor` class', () => {
     const menu = new MockAnchor();
 
-    expect(menu.$element.hasClass('mdc-menu-anchor')).to.be.true;
+    expect(menu.$element.hasClass('lmdc-menu-anchor')).to.be.true;
   });
 });
 
@@ -114,12 +114,12 @@ describe('mdc-menu-toggle', () => {
 
     $scope.$digest();
 
-    expect(menu1.hasClass('mdc-menu--animating-open')).to.be.false;
-    expect(menu2.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(menu1.hasClass('lmdc-menu--animating-open')).to.be.false;
+    expect(menu2.hasClass('lmdc-menu--animating-open')).to.be.false;
 
     toggle.triggerHandler('click');
-    expect(menu1.hasClass('mdc-menu--animating-open')).to.be.true;
-    expect(menu2.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(menu1.hasClass('lmdc-menu--animating-open')).to.be.true;
+    expect(menu2.hasClass('lmdc-menu--animating-open')).to.be.false;
 
     return ready;
   });
@@ -136,10 +136,10 @@ describe('mdc-menu-toggle', () => {
 
     $scope.$digest();
 
-    expect(menu.hasClass('mdc-menu--animating-open')).to.be.false;
+    expect(menu.hasClass('lmdc-menu--animating-open')).to.be.false;
 
     toggle.triggerHandler('click');
-    expect(menu.hasClass('mdc-menu--animating-open')).to.be.true;
+    expect(menu.hasClass('lmdc-menu--animating-open')).to.be.true;
 
     return ready;
   });

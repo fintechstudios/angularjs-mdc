@@ -1,4 +1,6 @@
 import {arrayUnion} from '../../util/array-union';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
+import {replaceFoundationConstants} from '../../util/replace-foundation-constants';
 
 import {MDCComponentNg} from '../../mdc-base/component-ng';
 
@@ -16,6 +18,10 @@ const CORNER_PROPERTY_REGEX = /([ -])/;
 function convertToCornerProperty(anchorFrom) {
   return anchorFrom.replace(CORNER_PROPERTY_REGEX, '_').toUpperCase();
 }
+
+replaceFoundationConstants(MDCMenuFoundation);
+const BASE_CLASSNAME = replaceMdcClassname('mdc-menu');
+export const ITEMS_SELECTOR = replaceMdcClassname('.mdc-list-item[role]');
 
 
 /**
@@ -67,7 +73,7 @@ export class MDCMenuController extends MDCComponentNg {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-menu');
+    this.$element.addClass(BASE_CLASSNAME);
     this.itemControllers = [];
   }
 
@@ -161,7 +167,7 @@ export class MDCMenuController extends MDCComponentNg {
    */
   get items() {
     const {itemsContainer_: itemsContainer} = this;
-    return [].slice.call(itemsContainer.querySelectorAll('.mdc-list-item[role]'));
+    return [].slice.call(itemsContainer.querySelectorAll(ITEMS_SELECTOR));
   }
 
   /** @return {!MDCMenuFoundation} */

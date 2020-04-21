@@ -11,7 +11,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-<html class="mdc-typography">
+<html class="lmdc-typography">
   <head>
     <meta charset="utf-8">
     <title>List Item - Material Components Catalog</title>
@@ -22,27 +22,27 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
-      .mdc-list,
-      .mdc-list-group {
+      .lmdc-list,
+      .lmdc-list-group {
         max-width: 600px;
       }
       .grey-bg {
         background: rgba(0, 0, 0, .26);
       }
-      #icon-with-text-demo .mdc-list-item__graphic {
+      #icon-with-text-demo .lmdc-list-item__graphic {
         color: rgba(0, 0, 0, .54);
       }
-      #avatar-text-icon-demo-list .mdc-list-item__meta {
+      #avatar-text-icon-demo-list .lmdc-list-item__meta {
         text-decoration: none;
         color: #ff4081; /* Pink A200 */
       }
-      .two-line-avatar-text-icon-demo .mdc-list-item__graphic {
+      .two-line-avatar-text-icon-demo .lmdc-list-item__graphic {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         color: white;
       }
-      .two-line-avatar-text-icon-demo .mdc-list-item__meta {
+      .two-line-avatar-text-icon-demo .lmdc-list-item__meta {
         color: rgba(0, 0, 0, .26);
         text-decoration: none;
       }
@@ -61,11 +61,11 @@
         padding: 24px;
       }
 
-      #demo-wrapper .mdc-list, #demo-wrapper .mdc-list-group {
+      #demo-wrapper .lmdc-list, #demo-wrapper .lmdc-list-group {
         border: 1px solid rgba(0, 0, 0, 0.1);
       }
 
-      #demo-wrapper .mdc-list-group .mdc-list {
+      #demo-wrapper .lmdc-list-group .lmdc-list {
         border: none;
       }
 
@@ -79,7 +79,7 @@
         margin-bottom: 0.8em;
       }
 
-      .hero .mdc-list {
+      .hero .lmdc-list {
         background-color: white;
         min-width: 320px;
         box-shadow:
@@ -91,29 +91,29 @@
     </style>
   </head>
   <body ng-app="demo">
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <header class="lmdc-toolbar lmdc-toolbar--fixed">
+      <div class="lmdc-toolbar__row">
+        <section class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="lmdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">List</span>
+          <span class="lmdc-toolbar__title catalog-title">List</span>
         </section>
       </div>
     </header>
     <main ng-controller="MainCtrl">
-      <div class="mdc-toolbar-fixed-adjust"></div>
+      <div class="lmdc-toolbar-fixed-adjust"></div>
       <section class="hero" dir="{{ isRtl ? 'rtl' : ''}}">
         <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
           <mdc-list-item ng-repeat="folder in folder_demo">
-            <span class="mdc-list-item__graphic grey-bg" role="presentation">
+            <span class="lmdc-list-item__graphic grey-bg" role="presentation">
               <mdc-icon aria-hidden="true">folder</mdc-icon>
             </span>
-            <span class="mdc-list-item__text">
+            <span class="lmdc-list-item__text">
               {{ folder.n }}
-              <span class="mdc-list-item__secondary-text">{{ folder.d }}</span>
+              <span class="lmdc-list-item__secondary-text">{{ folder.d }}</span>
             </span>
-            <a href="#" class="mdc-list-item__meta material-icons"
+            <a href="#" class="lmdc-list-item__meta material-icons"
                aria-label="View more information" title="More info"
                onclick="event.preventDefault();">
               info
@@ -122,7 +122,7 @@
         </mdc-list>
       </section>
 
-      <section class="preamble mdc-typography--body1">
+      <section class="preamble lmdc-typography--body1">
         <aside>
           <p>
           <em>NOTE:</em> For the purposes of this demo, we've set a max-width of 600px on all
@@ -140,19 +140,19 @@
       <div id="demo-wrapper" dir="{{ isRtl ? 'rtl' : '' }}">
         <section>
           <h3>Custom Colors</h3>
-          <div class="mdc-list-group demo-list-group--custom">
-            <h3 class="mdc-list-group__subheader">Folders</h3>
+          <div class="lmdc-list-group demo-list-group--custom">
+            <h3 class="lmdc-list-group__subheader">Folders</h3>
             <mdc-list two-line="true" avatar="true"
                       class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
               <mdc-list-item ng-repeat="item in folder_demo">
-                  <span class="mdc-list-item__graphic grey-bg" role="presentation">
+                  <span class="lmdc-list-item__graphic grey-bg" role="presentation">
                     <mdc-icon aria-hidden="true">folder</mdc-icon>
                   </span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                     {{ item.n }}
-                    <span class="mdc-list-item__secondary-text">{{ item.d }}</span>
+                    <span class="lmdc-list-item__secondary-text">{{ item.d }}</span>
                   </span>
-                <a href="#" class="mdc-list-item__meta material-icons"
+                <a href="#" class="lmdc-list-item__meta material-icons"
                    aria-label="View more information" title="More info"
                    onclick="event.preventDefault();">
                   info
@@ -160,18 +160,18 @@
               </mdc-list-item>
             </mdc-list>
             <mdc-divider-inset></mdc-divider-inset>
-            <h3 class="mdc-list-group__subheader">Files</h3>
+            <h3 class="lmdc-list-group__subheader">Files</h3>
             <mdc-list two-line="true" avatar="true"
                       class="demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
               <mdc-list-item ng-repeat="item in folder_demo2">
-                  <span class="mdc-list-item__graphic grey-bg" role="presentation">
+                  <span class="lmdc-list-item__graphic grey-bg" role="presentation">
                     <mdc-icon aria-hidden="true">folder</mdc-icon>
                   </span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                     {{ item.n }}
-                    <span class="mdc-list-item__secondary-text">{{ item.d }}</span>
+                    <span class="lmdc-list-item__secondary-text">{{ item.d }}</span>
                   </span>
-                <a href="#" class="mdc-list-item__meta material-icons"
+                <a href="#" class="lmdc-list-item__meta material-icons"
                    aria-label="View more information" title="More info"
                    onclick="event.preventDefault();">
                   info
@@ -200,7 +200,7 @@
             <aside><p><em>Note: The grey background is styled using demo placeholder styles</em></p></aside>
             <mdc-list>
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item
               </mdc-list-item>
             </mdc-list>
@@ -209,7 +209,7 @@
             <h3>Start Detail (dense)</h3>
             <mdc-list dense="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item
               </mdc-list-item>
             </mdc-list>
@@ -218,7 +218,7 @@
             <h3>Start Detail Example - Icon with Text</h3>
             <mdc-list id="icon-with-text-demo">
               <mdc-list-item ng-repeat="item in icon_demo">
-                <mdc-icon class="mdc-list-item__graphic" aria-hidden="true">
+                <mdc-icon class="lmdc-list-item__graphic" aria-hidden="true">
                   {{ item.i }}
                 </mdc-icon>
                 {{ item.n }}
@@ -229,7 +229,7 @@
             <h3>Avatar List</h3>
             <mdc-list avatar="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item
               </mdc-list-item>
             </mdc-list>
@@ -238,7 +238,7 @@
             <h3>Avatar List (dense)</h3>
             <mdc-list avatar="true" dense="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item
               </mdc-list-item>
             </mdc-list>
@@ -247,7 +247,7 @@
             <h3>Example - Avatar with Text</h3>
             <mdc-list avatar="true">
               <mdc-list-item ng-repeat="item in animal_demo">
-                <img class="mdc-list-item__graphic"
+                <img class="lmdc-list-item__graphic"
                      ng-src="{{ item.i }}"
                      width="56" height="56" alt="{{ item.n }}">
                 {{ item.n }}
@@ -259,7 +259,7 @@
             <mdc-list>
               <mdc-list-item ng-repeat="_ in three">
                 Single-line item
-                <span class="mdc-list-item__meta grey-bg"></span>
+                <span class="lmdc-list-item__meta grey-bg"></span>
               </mdc-list-item>
             </mdc-list>
           </section>
@@ -268,7 +268,7 @@
             <mdc-list dense="true">
               <mdc-list-item ng-repeat="_ in three">
                 Single-line item
-                <span class="mdc-list-item__meta grey-bg"></span>
+                <span class="lmdc-list-item__meta grey-bg"></span>
               </mdc-list-item>
             </mdc-list>
           </section>
@@ -276,9 +276,9 @@
             <h3>Avatar + End Detail</h3>
             <mdc-list avatar="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item
-                <span class="mdc-list-item__meta grey-bg"></span>
+                <span class="lmdc-list-item__meta grey-bg"></span>
               </mdc-list-item>
             </mdc-list>
           </section>
@@ -286,9 +286,9 @@
             <h3>Avatar + End Detail (Dense)</h3>
             <mdc-list dense="true" avatar="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item
-                <span class="mdc-list-item__meta grey-bg"></span>
+                <span class="lmdc-list-item__meta grey-bg"></span>
               </mdc-list-item>
             </mdc-list>
           </section>
@@ -296,11 +296,11 @@
             <h3>Example - Avatar with Text and icon</h3>
             <mdc-list id="avatar-text-icon-demo-list" avatar="true">
               <mdc-list-item ng-repeat="item in animal_demo">
-                <img class="mdc-list-item__graphic grey-bg"
+                <img class="lmdc-list-item__graphic grey-bg"
                      ng-src="{{ item.i }}"
                      width="56" height="56" alt="{{ item.n }}">
                 {{ item.n }}
-                <a class="mdc-list-item__meta material-icons" href="#"
+                <a class="lmdc-list-item__meta material-icons" href="#"
                    aria-label="{{ item.f }}" title="{{ item.f }}"
                    onclick="event.preventDefault();">
                   {{ item.f.indexOf('Add') >= 0 ? 'favorite_border' : 'favorite' }}
@@ -315,9 +315,9 @@
             <h3>Text-Only</h3>
             <mdc-list two-line="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
               </mdc-list-item>
             </mdc-list>
@@ -326,9 +326,9 @@
             <h3>Text-Only (Dense)</h3>
             <mdc-list two-line="true" dense="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
               </mdc-list-item>
             </mdc-list>
@@ -337,10 +337,10 @@
             <h3>Start Detail</h3>
             <mdc-list two-line="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
               </mdc-list-item>
             </mdc-list>
@@ -349,10 +349,10 @@
             <h3>Start Detail (Dense)</h3>
             <mdc-list two-line="true" dense="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
               </mdc-list-item>
             </mdc-list>
@@ -361,10 +361,10 @@
             <h3>Avatar List</h3>
             <mdc-list two-line="true" avatar="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
               </mdc-list-item>
             </mdc-list>
@@ -373,10 +373,10 @@
             <h3>Avatar List (dense)</h3>
             <mdc-list two-line="true" avatar="true" dense="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
               </mdc-list-item>
             </mdc-list>
@@ -385,11 +385,11 @@
             <h3>End Detail</h3>
             <mdc-list two-line="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
-                <span class="mdc-list-item__meta grey-bg"></span>
+                <span class="lmdc-list-item__meta grey-bg"></span>
               </mdc-list-item>
             </mdc-list>
           </section>
@@ -397,11 +397,11 @@
             <h3>End Detail (Dense)</h3>
             <mdc-list two-line="true" dense="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                   Two-line item
-                  <span class="mdc-list-item__secondary-text">Secondary text</span>
+                  <span class="lmdc-list-item__secondary-text">Secondary text</span>
                 </span>
-                <span class="mdc-list-item__meta grey-bg"></span>
+                <span class="lmdc-list-item__meta grey-bg"></span>
               </mdc-list-item>
             </mdc-list>
           </section>
@@ -409,14 +409,14 @@
             <h3>Example - Two-line avatar + text + icon</h3>
             <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
               <mdc-list-item ng-repeat="folder in folder_demo">
-                <span class="mdc-list-item__graphic grey-bg" role="presentation">
+                <span class="lmdc-list-item__graphic grey-bg" role="presentation">
                   <mdc-icon aria-hidden="true">folder</mdc-icon>
                 </span>
-                <span class="mdc-list-item__text">
+                <span class="lmdc-list-item__text">
                   {{ folder.n }}
-                  <span class="mdc-list-item__secondary-text">{{ folder.d }}</span>
+                  <span class="lmdc-list-item__secondary-text">{{ folder.d }}</span>
                 </span>
-                <a href="#" class="mdc-list-item__meta material-icons"
+                <a href="#" class="lmdc-list-item__meta material-icons"
                    aria-label="View more information" title="More info"
                    onclick="event.preventDefault();">
                   info
@@ -439,12 +439,12 @@
             <h3>Inset Dividers</h3>
             <mdc-list avatar="true">
               <mdc-list-item ng-repeat="_ in three">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item - section 1
               </mdc-list-item>
               <mdc-divider-inset></mdc-divider-inset>
               <mdc-list-item ng-repeat="_ in two">
-                <span class="mdc-list-item__graphic grey-bg"></span>
+                <span class="lmdc-list-item__graphic grey-bg"></span>
                 Single-line item - section 2
               </mdc-list-item>
             </mdc-list>
@@ -454,13 +454,13 @@
           <h2>List Groups</h2>
           <section>
             <h3>Basic Usage</h3>
-            <div class="mdc-list-group">
-              <h3 class="mdc-list-group__subheader">List 1</h3>
+            <div class="lmdc-list-group">
+              <h3 class="lmdc-list-group__subheader">List 1</h3>
               <mdc-list>
                 <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
               </mdc-list>
               <mdc-divider></mdc-divider>
-              <h3 class="mdc-list-group__subheader">List 2</h3>
+              <h3 class="lmdc-list-group__subheader">List 2</h3>
               <mdc-list>
                 <mdc-list-item ng-repeat="_ in three">Single-line item</mdc-list-item>
               </mdc-list>
@@ -468,18 +468,18 @@
           </section>
           <section>
             <h3>Example - Two-line Lists, Avatars, end detail, inset dividers</h3>
-            <div class="mdc-list-group">
-              <h3 class="mdc-list-group__subheader">Folders</h3>
+            <div class="lmdc-list-group">
+              <h3 class="lmdc-list-group__subheader">Folders</h3>
               <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
                 <mdc-list-item ng-repeat="item in folder_demo">
-                  <span class="mdc-list-item__graphic grey-bg" role="presentation">
+                  <span class="lmdc-list-item__graphic grey-bg" role="presentation">
                     <mdc-icon aria-hidden="true">folder</mdc-icon>
                   </span>
-                  <span class="mdc-list-item__text">
+                  <span class="lmdc-list-item__text">
                     {{ item.n }}
-                    <span class="mdc-list-item__secondary-text">{{ item.d }}</span>
+                    <span class="lmdc-list-item__secondary-text">{{ item.d }}</span>
                   </span>
-                  <a href="#" class="mdc-list-item__meta material-icons"
+                  <a href="#" class="lmdc-list-item__meta material-icons"
                      aria-label="View more information" title="More info"
                      onclick="event.preventDefault();">
                     info
@@ -487,17 +487,17 @@
                 </mdc-list-item>
               </mdc-list>
               <mdc-divider-inset></mdc-divider-inset>
-              <h3 class="mdc-list-group__subheader">Files</h3>
+              <h3 class="lmdc-list-group__subheader">Files</h3>
               <mdc-list two-line="true" avatar="true" class="two-line-avatar-text-icon-demo">
                 <mdc-list-item ng-repeat="item in folder_demo2">
-                  <span class="mdc-list-item__graphic grey-bg" role="presentation">
+                  <span class="lmdc-list-item__graphic grey-bg" role="presentation">
                     <mdc-icon aria-hidden="true">folder</mdc-icon>
                   </span>
-                  <span class="mdc-list-item__text">
+                  <span class="lmdc-list-item__text">
                     {{ item.n }}
-                    <span class="mdc-list-item__secondary-text">{{ item.d }}</span>
+                    <span class="lmdc-list-item__secondary-text">{{ item.d }}</span>
                   </span>
-                  <a href="#" class="mdc-list-item__meta material-icons"
+                  <a href="#" class="lmdc-list-item__meta material-icons"
                      aria-label="View more information" title="More info"
                      onclick="event.preventDefault();">
                     info
@@ -512,8 +512,8 @@
           <section>
             <h3>Example - Interactive List</h3>
             <mdc-list>
-              <a href="#" class="mdc-list-item" ng-repeat="item in icon_demo">
-                <mdc-icon class="mdc-list-item__graphic" aria-hidden="true">
+              <a href="#" class="lmdc-list-item" ng-repeat="item in icon_demo">
+                <mdc-icon class="lmdc-list-item__graphic" aria-hidden="true">
                   {{ item.i }}
                 </mdc-icon>
                 {{ item.n }}

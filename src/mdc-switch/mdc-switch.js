@@ -1,10 +1,14 @@
 import {arrayUnion} from '../util/array-union';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {BaseComponent} from '../util/base-component';
 import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
 import template from './mdc-switch.html';
 
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-switch');
+const DISABLED_CLASSNAME = `${BASE_CLASSNAME}--disabled`;
 
 /**
  * @ngdoc component
@@ -38,14 +42,14 @@ export class MDCSwitchController extends IsFormFieldChild(BaseComponent) {
 
   constructor(...args) {
     super(...args);
-    this.$element.addClass('mdc-switch');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 
   $onChanges(changes) {
     super.$onChanges(changes);
 
     if (changes.ngDisabled) {
-      this.$element.toggleClass('mdc-switch--disabled', Boolean(this.ngDisabled));
+      this.$element.toggleClass(DISABLED_CLASSNAME, Boolean(this.ngDisabled));
     }
   };
 }

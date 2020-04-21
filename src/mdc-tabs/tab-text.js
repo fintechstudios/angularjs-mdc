@@ -1,7 +1,9 @@
 import {BaseComponent} from '../util/base-component';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {MDCTabController} from './tab';
 
+const BASE_CLASSNAME = replaceMdcClassname('mdc-tab__icon-text');
 
 /**
  * @ngdoc directive
@@ -31,7 +33,7 @@ export class MDCTabTextController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-tab__icon-text');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 
   $postLink() {

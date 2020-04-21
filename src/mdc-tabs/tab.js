@@ -1,4 +1,6 @@
 import {arrayUnion} from '../util/array-union';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {MDCComponentNg} from '../mdc-base/component-ng';
 import {MDCRippleMixin} from '../mdc-ripple/mixin';
@@ -7,6 +9,9 @@ import {MDCTabBarController} from './tab-bar';
 import {MDCTabFoundation} from '@material/tabs';
 import {HasNgValue} from '../util/has-ng-value-mixin';
 
+export const BASE_CLASSNAME = replaceMdcClassname('mdc-tab');
+const WITH_ICON_AND_TEXT_CLASSNAME = `${BASE_CLASSNAME}--with-icon-and-text`;
+replaceFoundationConstants(MDCTabFoundation);
 
 /**
  * @ngdoc component
@@ -34,7 +39,7 @@ export class MDCTabController extends HasNgValue(MDCRippleMixin(MDCComponentNg))
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-tab');
+    this.$element.addClass(BASE_CLASSNAME);
     if (!this.$element.attr('href') && !this.$element.attr('tabindex')) {
       this.$element.attr('tabindex', 0);
     }
@@ -61,7 +66,7 @@ export class MDCTabController extends HasNgValue(MDCRippleMixin(MDCComponentNg))
   }
 
   setMDCText(value) {
-    this.$element.toggleClass('mdc-tab--with-icon-and-text', Boolean(value));
+    this.$element.toggleClass(WITH_ICON_AND_TEXT_CLASSNAME, Boolean(value));
   }
 
   set tabBar(bar) {

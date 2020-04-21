@@ -1,12 +1,33 @@
 import {arrayUnion} from '../../util/array-union';
+import {replaceFoundationConstants} from '../../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
 import {MDCComponentNg} from '../../mdc-base/component-ng';
 import {MDCRippleMixin} from '../../mdc-ripple/mixin';
+import {ITEMS_SELECTOR} from '../../mdc-menu/menu/component';
 
-import {MDCMenu} from '@material/menu';
+import {MDCMenu, MDCMenuFoundation} from '@material/menu';
 import {MDCSelectFoundation} from '@material/select';
-import {MDCSelectLabel} from '@material/select/label';
+import {MDCSelectLabel, MDCSelectLabelFoundation} from '@material/select/label';
+import {MDCSelectBottomLineFoundation} from '@material/select/bottom-line';
 
 import template from './mdc-select.html';
+
+
+replaceFoundationConstants(MDCSelectFoundation);
+replaceFoundationConstants(MDCSelectLabelFoundation);
+replaceFoundationConstants(MDCSelectBottomLineFoundation);
+replaceFoundationConstants(MDCMenuFoundation);
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-select');
+const BOX_CLASSNAME = `${BASE_CLASSNAME}--box`;
+
+
+class ModifiedMDCMenu extends MDCMenu {
+  get items() {
+    const {itemsContainer_: itemsContainer} = this;
+    return [].slice.call(itemsContainer.querySelectorAll(ITEMS_SELECTOR));
+  }
+}
 
 
 /**
@@ -58,7 +79,7 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
     super(...args);
 
     this.optionCtrls_ = [];
-    this.$element.addClass('mdc-select');
+    this.$element.addClass(BASE_CLASSNAME);
     this.$element.attr('role', 'listbox');
   }
 
@@ -70,7 +91,7 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
     }
 
     if (changes.box) {
-      this.$element.toggleClass('mdc-select--box', Boolean(this.box));
+      this.$element.toggleClass(BOX_CLASSNAME, Boolean(this.box));
     }
   }
 
@@ -135,7 +156,7 @@ export class MDCSelectController extends MDCRippleMixin(MDCComponentNg) {
     return null;
   }
 
-  initialize(menuFactory = (el) => new MDCMenu(el), labelFactory = (el) => new MDCSelectLabel(el)) {
+  initialize(menuFactory = (el) => new ModifiedMDCMenu(el), labelFactory = (el) => new MDCSelectLabel(el)) {
     this.surface_ = this.root_.querySelector(MDCSelectFoundation.strings.SURFACE_SELECTOR);
     const labelElement = this.root_.querySelector(MDCSelectFoundation.strings.LABEL_SELECTOR);
     if (labelElement) {

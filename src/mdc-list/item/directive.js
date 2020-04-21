@@ -1,4 +1,7 @@
 import {BaseComponent} from '../../util/base-component';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-list-item');
 
 /**
  * @ngdoc directive
@@ -22,7 +25,7 @@ export class MDCListItemController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-list-item');
+    this.$element.addClass(BASE_CLASSNAME);
     this.$element.attr('role', 'listitem');
   }
 }

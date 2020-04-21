@@ -1,10 +1,16 @@
 import {arrayUnion} from '../util/array-union';
 import {BaseComponent} from '../util/base-component';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
-import {MDCCheckbox} from '@material/checkbox';
+import {MDCCheckbox, MDCCheckboxFoundation} from '@material/checkbox';
 
 import template from './mdc-checkbox.html';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-checkbox');
+const DISABLED_CLASSNAME = `${BASE_CLASSNAME}--disabled`;
+replaceFoundationConstants(MDCCheckboxFoundation);
 
 
 /**
@@ -42,7 +48,7 @@ export class MDCCheckboxController extends IsFormFieldChild(BaseComponent) {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-checkbox');
+    this.$element.addClass(BASE_CLASSNAME);
     this.mdc = new MDCCheckbox(this.$element[0]);
 
     this.$element.ready(() => {
@@ -55,7 +61,7 @@ export class MDCCheckboxController extends IsFormFieldChild(BaseComponent) {
 
     // inputId is handled by IsFormFieldChild
     if (changesObj.ngDisabled) {
-      this.$element.toggleClass('mdc-checkbox--disabled', Boolean(this.ngDisabled));
+      this.$element.toggleClass(replaceMdcClassname(DISABLED_CLASSNAME), Boolean(this.ngDisabled));
     }
     if (changesObj.indeterminate) {
       this.mdc.indeterminate = this.indeterminate;
