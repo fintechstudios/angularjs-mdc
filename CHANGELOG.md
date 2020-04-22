@@ -1,3 +1,16 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.6.0....v0.7.0) (2020-04-22)
+
+### BREAKING CHANGES
+* all classes have been changed from `mdc-` to `lmdc-` prefix
+* A CLI script to assist migration is included:
+```shell
+$ node ./node-modules/@fintechstudios/angularjs-mdc/transform-to-lmdc <DIRECTORY>
+```
+
+### Features
+* feat: transform classes to use lmdc- prefix instead of mdc- (#185)
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/fintechstudios/angularjs-mdc/compare/v0.5.2....v0.6.0) (2020-03-09)
 
