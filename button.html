@@ -47,17 +47,17 @@
     </style>
   </head>
   <body ng-app="demo">
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <header class="lmdc-toolbar lmdc-toolbar--fixed">
+      <div class="lmdc-toolbar__row">
+        <section class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="lmdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">Buttons</span>
+          <span class="lmdc-toolbar__title catalog-title">Buttons</span>
         </section>
       </div>
     </header>
-    <main class="mdc-toolbar-fixed-adjust" ng-controller="MainCtrl">
+    <main class="lmdc-toolbar-fixed-adjust" ng-controller="MainCtrl">
 
       <section class="hero">
         <div>
@@ -112,14 +112,14 @@
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Text Button</legend>
+          <legend class="lmdc-typography--title">Text Button</legend>
           
           <button mdc-button ng-disabled="isDisabled">Baseline</button>
           <button mdc-button compact="true" ng-disabled="isDisabled">Compact</button>
           <button mdc-button dense="true" ng-disabled="isDisabled">Dense</button>
           <button mdc-button class="secondary-text-button" ng-disabled="isDisabled">Secondary</button>
           <button mdc-button ng-disabled="isDisabled">
-            <mdc-icon class="mdc-button__icon">favorite</mdc-icon> Icon
+            <mdc-icon class="lmdc-button__icon">favorite</mdc-icon> Icon
           </button>
           <a mdc-button href="javascript:void(0);" ng-disabled="isDisabled">
             Link
@@ -127,14 +127,14 @@
         </fieldset>
 
         <fieldset>
-          <legend class="mdc-typography--title">Raised Button</legend>
+          <legend class="lmdc-typography--title">Raised Button</legend>
           
           <button mdc-button raised="true" ng-disabled="isDisabled">Baseline</button>
           <button mdc-button raised="true" compact="true" ng-disabled="isDisabled">Compact</button>
           <button mdc-button raised="true" dense="true" ng-disabled="isDisabled">Dense</button>
           <button mdc-button raised="true" class="secondary-filled-button" ng-disabled="isDisabled">Secondary</button>
           <button mdc-button raised="true" ng-disabled="isDisabled">
-            <mdc-icon class="mdc-button__icon">favorite</mdc-icon> Icon
+            <mdc-icon class="lmdc-button__icon">favorite</mdc-icon> Icon
           </button>
           <a mdc-button raised="true" href="javascript:void(0);" ng-disabled="isDisabled">
             Link
@@ -142,14 +142,14 @@
         </fieldset>
 
         <fieldset>
-          <legend class="mdc-typography--title">Unelevated Button (Experimental)</legend>
+          <legend class="lmdc-typography--title">Unelevated Button (Experimental)</legend>
 
           <button mdc-button unelevated="true" ng-disabled="isDisabled">Baseline</button>
           <button mdc-button unelevated="true" compact="true" ng-disabled="isDisabled">Compact</button>
           <button mdc-button unelevated="true" dense="true" ng-disabled="isDisabled">Dense</button>
           <button mdc-button unelevated="true" class="secondary-filled-button" ng-disabled="isDisabled">Secondary</button>
           <button mdc-button unelevated="true" ng-disabled="isDisabled">
-            <mdc-icon class="mdc-button__icon">favorite</mdc-icon> Icon
+            <mdc-icon class="lmdc-button__icon">favorite</mdc-icon> Icon
           </button>
           <a mdc-button unelevated="true" href="javascript:void(0);" ng-disabled="isDisabled">
             Link
@@ -157,14 +157,14 @@
         </fieldset>
 
         <fieldset>
-          <legend class="mdc-typography--title">Stroked Button (Experimental)</legend>
+          <legend class="lmdc-typography--title">Stroked Button (Experimental)</legend>
 
           <button mdc-button stroked="true" ng-disabled="isDisabled">Baseline</button>
           <button mdc-button stroked="true" compact="true" ng-disabled="isDisabled">Compact</button>
           <button mdc-button stroked="true" dense="true" ng-disabled="isDisabled">Dense</button>
           <button mdc-button stroked="true" class="secondary-stroked-button" ng-disabled="isDisabled">Secondary</button>
           <button mdc-button stroked="true" ng-disabled="isDisabled">
-            <mdc-icon class="mdc-button__icon">favorite</mdc-icon> Icon
+            <mdc-icon class="lmdc-button__icon">favorite</mdc-icon> Icon
           </button>
           <a mdc-button stroked="true" href="javascript:void(0);" ng-disabled="isDisabled">
             Link
@@ -172,7 +172,7 @@
         </fieldset>
 
         <fieldset>
-          <legend class="mdc-typography--title">Custom Button (Experimental)</legend>
+          <legend class="lmdc-typography--title">Custom Button (Experimental)</legend>
 
           <button mdc-button unelevated="true" class="big-round-corner-button" ng-disabled="isDisabled">
             Corner Radius
