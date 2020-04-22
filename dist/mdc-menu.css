@@ -29,7 +29,7 @@
  */
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-.mdc-menu {
+.lmdc-menu {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   /* @alternate */
   background-color: #fff;
@@ -53,9 +53,9 @@
   overflow-y: auto;
   will-change: transform, opacity;
   z-index: 4; }
-  .mdc-menu:focus {
+  .lmdc-menu:focus {
     outline: none; }
-  .mdc-menu--animating-open {
+  .lmdc-menu--animating-open {
     display: inline-block;
     -webkit-transform: scale(0.8);
             transform: scale(0.8);
@@ -64,40 +64,40 @@
     transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.12s cubic-bezier(0, 0, 0.2, 1);
     opacity: 0;
     overflow-y: hidden; }
-  .mdc-menu--open {
+  .lmdc-menu--open {
     display: inline-block;
     -webkit-transform: scale(1);
             transform: scale(1);
     opacity: 1; }
-  .mdc-menu--animating-closed {
+  .lmdc-menu--animating-closed {
     display: inline-block;
     transition: opacity 0.075s linear;
     opacity: 0;
     overflow-y: hidden; }
-  .mdc-menu__items {
+  .lmdc-menu__items {
     box-sizing: border-box;
     -webkit-transform: scale(1);
             transform: scale(1);
     overflow-x: hidden;
     overflow-y: auto;
     will-change: transform; }
-    .mdc-menu__items > .mdc-list-item {
+    .lmdc-menu__items > .lmdc-list-item {
       cursor: pointer; }
-    .mdc-menu--animating .mdc-menu__items {
+    .lmdc-menu--animating .lmdc-menu__items {
       overflow-y: hidden; }
-  .mdc-menu--animating-open > .mdc-menu__items {
+  .lmdc-menu--animating-open > .lmdc-menu__items {
     -webkit-transform: scale(1.25);
             transform: scale(1.25); }
-  .mdc-menu--open > .mdc-menu__items {
+  .lmdc-menu--open > .lmdc-menu__items {
     -webkit-transform: scale(1);
             transform: scale(1); }
-  [dir="rtl"] .mdc-menu {
+  [dir="rtl"] .lmdc-menu {
     -webkit-transform-origin: top right;
             transform-origin: top right; }
-  .mdc-menu .mdc-list-group,
-  .mdc-menu .mdc-list {
+  .lmdc-menu .lmdc-list-group,
+  .lmdc-menu .lmdc-list {
     padding: 8px 0; }
-  .mdc-menu .mdc-list-item {
+  .lmdc-menu .lmdc-list-item {
     font-family: Roboto, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -115,19 +115,19 @@
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none; }
-  .mdc-menu .mdc-list-item__graphic {
+  .lmdc-menu .lmdc-list-item__graphic {
     /* @alternate */
     color: rgba(0, 0, 0, 0.54);
     color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.54)); }
-  .mdc-menu .mdc-list-item[aria-disabled="true"] {
+  .lmdc-menu .lmdc-list-item[aria-disabled="true"] {
     /* @alternate */
     color: rgba(0, 0, 0, 0.38);
     color: var(--mdc-theme-text-disabled-on-background, rgba(0, 0, 0, 0.38));
     cursor: default;
     pointer-events: none; }
-    .mdc-menu .mdc-list-item[aria-disabled="true"]:focus::before {
+    .lmdc-menu .lmdc-list-item[aria-disabled="true"]:focus::before {
       opacity: 0; }
 
-.mdc-menu-anchor {
+.lmdc-menu-anchor {
   position: relative;
   overflow: visible; }

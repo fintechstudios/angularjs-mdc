@@ -50,10 +50,10 @@
   to {
     opacity: 0; } }
 
-.mdc-ripple-surface--test-edge-var-bug {
+.lmdc-ripple-surface--test-edge-var-bug {
   --mdc-ripple-surface-test-edge-var: 1px solid #000;
   visibility: hidden; }
-  .mdc-ripple-surface--test-edge-var-bug::before {
+  .lmdc-ripple-surface--test-edge-var-bug::before {
     border: var(--mdc-ripple-surface-test-edge-var); }
 
 /**
@@ -87,7 +87,7 @@
  */
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-.mdc-button {
+.lmdc-button {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -122,83 +122,83 @@
   overflow: hidden;
   vertical-align: middle;
   border-radius: 2px; }
-  .mdc-button::before, .mdc-button::after {
+  .lmdc-button::before, .lmdc-button::after {
     position: absolute;
     border-radius: 50%;
     opacity: 0;
     pointer-events: none;
     content: ""; }
-  .mdc-button::before {
+  .lmdc-button::before {
     transition: opacity 15ms linear;
     z-index: 1; }
-  .mdc-button.mdc-ripple-upgraded::before {
+  .lmdc-button.lmdc-ripple-upgraded::before {
     -webkit-transform: scale(var(--mdc-ripple-fg-scale, 1));
             transform: scale(var(--mdc-ripple-fg-scale, 1)); }
-  .mdc-button.mdc-ripple-upgraded::after {
+  .lmdc-button.lmdc-ripple-upgraded::after {
     top: 0;
     left: 0;
     -webkit-transform: scale(0);
             transform: scale(0);
     -webkit-transform-origin: center center;
             transform-origin: center center; }
-  .mdc-button.mdc-ripple-upgraded--unbounded::after {
+  .lmdc-button.lmdc-ripple-upgraded--unbounded::after {
     top: var(--mdc-ripple-top, 0);
     left: var(--mdc-ripple-left, 0); }
-  .mdc-button.mdc-ripple-upgraded--foreground-activation::after {
+  .lmdc-button.lmdc-ripple-upgraded--foreground-activation::after {
     -webkit-animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards;
             animation: 225ms mdc-ripple-fg-radius-in forwards, 75ms mdc-ripple-fg-opacity-in forwards; }
-  .mdc-button.mdc-ripple-upgraded--foreground-deactivation::after {
+  .lmdc-button.lmdc-ripple-upgraded--foreground-deactivation::after {
     -webkit-animation: 150ms mdc-ripple-fg-opacity-out;
             animation: 150ms mdc-ripple-fg-opacity-out;
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
             transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1)); }
-  .mdc-button::before, .mdc-button::after {
+  .lmdc-button::before, .lmdc-button::after {
     top: calc(50% - 100%);
     left: calc(50% - 100%);
     width: 200%;
     height: 200%; }
-  .mdc-button.mdc-ripple-upgraded::after {
+  .lmdc-button.lmdc-ripple-upgraded::after {
     width: var(--mdc-ripple-fg-size, 100%);
     height: var(--mdc-ripple-fg-size, 100%); }
-  .mdc-button::-moz-focus-inner {
+  .lmdc-button::-moz-focus-inner {
     padding: 0;
     border: 0; }
-  .mdc-button:active {
+  .lmdc-button:active {
     outline: none; }
-  .mdc-button:hover {
+  .lmdc-button:hover {
     cursor: pointer; }
-  .mdc-button:disabled {
+  .lmdc-button:disabled {
     background-color: transparent;
     /* @alternate */
     color: rgba(0, 0, 0, 0.38);
     color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38));
     cursor: default;
     pointer-events: none; }
-  .mdc-button:not(:disabled) {
+  .lmdc-button:not(:disabled) {
     background-color: transparent; }
-  .mdc-button:not(:disabled) {
+  .lmdc-button:not(:disabled) {
     /* @alternate */
     color: #6200ee;
     color: var(--mdc-theme-primary, #6200ee); }
-  .mdc-button::before, .mdc-button::after {
+  .lmdc-button::before, .lmdc-button::after {
     /* @alternate */
     background-color: #6200ee; }
     @supports not (-ms-ime-align: auto) {
-      .mdc-button::before, .mdc-button::after {
+      .lmdc-button::before, .lmdc-button::after {
         background-color: var(--mdc-theme-primary, #6200ee); } }
-  .mdc-button:hover::before {
+  .lmdc-button:hover::before {
     opacity: 0.04; }
-  .mdc-button:not(.mdc-ripple-upgraded):focus::before, .mdc-button.mdc-ripple-upgraded--background-focused::before {
+  .lmdc-button:not(.lmdc-ripple-upgraded):focus::before, .lmdc-button.lmdc-ripple-upgraded--background-focused::before {
     transition-duration: 75ms;
     opacity: 0.12; }
-  .mdc-button:not(.mdc-ripple-upgraded)::after {
+  .lmdc-button:not(.lmdc-ripple-upgraded)::after {
     transition: opacity 150ms linear; }
-  .mdc-button:not(.mdc-ripple-upgraded):active::after {
+  .lmdc-button:not(.lmdc-ripple-upgraded):active::after {
     transition-duration: 75ms;
     opacity: 0.16; }
-  .mdc-button.mdc-ripple-upgraded {
+  .lmdc-button.lmdc-ripple-upgraded {
     --mdc-ripple-fg-opacity: $opacity; }
-  .mdc-button .mdc-button__icon {
+  .lmdc-button .lmdc-button__icon {
     display: inline-block;
     width: 18px;
     height: 18px;
@@ -207,96 +207,90 @@
     line-height: inherit;
     vertical-align: top; }
 
-.mdc-button--raised:disabled,
-.mdc-button--unelevated:disabled {
+.lmdc-button--raised:disabled,
+.lmdc-button--unelevated:disabled {
   background-color: rgba(0, 0, 0, 0.12);
   /* @alternate */
   color: rgba(0, 0, 0, 0.38);
   color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38)); }
 
-.mdc-button--raised:not(:disabled),
-.mdc-button--unelevated:not(:disabled) {
+.lmdc-button--raised:not(:disabled),
+.lmdc-button--unelevated:not(:disabled) {
   /* @alternate */
   background-color: #6200ee; }
   @supports not (-ms-ime-align: auto) {
-    .mdc-button--raised:not(:disabled),
-    .mdc-button--unelevated:not(:disabled) {
+    .lmdc-button--raised:not(:disabled),
+    .lmdc-button--unelevated:not(:disabled) {
       background-color: var(--mdc-theme-primary, #6200ee); } }
 
-.mdc-button--raised:not(:disabled),
-.mdc-button--unelevated:not(:disabled) {
+.lmdc-button--raised:not(:disabled),
+.lmdc-button--unelevated:not(:disabled) {
   /* @alternate */
   color: white;
   color: var(--mdc-theme-text-primary-on-primary, white); }
 
-.mdc-button--raised::before, .mdc-button--raised::after,
-.mdc-button--unelevated::before,
-.mdc-button--unelevated::after {
+.lmdc-button--raised::before, .lmdc-button--raised::after, .lmdc-button--unelevated::before, .lmdc-button--unelevated::after {
   /* @alternate */
   background-color: white; }
   @supports not (-ms-ime-align: auto) {
-    .mdc-button--raised::before, .mdc-button--raised::after,
-    .mdc-button--unelevated::before,
-    .mdc-button--unelevated::after {
+    .lmdc-button--raised::before, .lmdc-button--raised::after, .lmdc-button--unelevated::before, .lmdc-button--unelevated::after {
       background-color: var(--mdc-theme-text-primary-on-primary, white); } }
 
-.mdc-button--raised:hover::before,
-.mdc-button--unelevated:hover::before {
+.lmdc-button--raised:hover::before,
+.lmdc-button--unelevated:hover::before {
   opacity: 0.08; }
 
-.mdc-button--raised:not(.mdc-ripple-upgraded):focus::before, .mdc-button--raised.mdc-ripple-upgraded--background-focused::before,
-.mdc-button--unelevated:not(.mdc-ripple-upgraded):focus::before,
-.mdc-button--unelevated.mdc-ripple-upgraded--background-focused::before {
+.lmdc-button--raised:not(.lmdc-ripple-upgraded):focus::before, .lmdc-button--raised.lmdc-ripple-upgraded--background-focused::before, .lmdc-button--unelevated:not(.lmdc-ripple-upgraded):focus::before, .lmdc-button--unelevated.lmdc-ripple-upgraded--background-focused::before {
   transition-duration: 75ms;
   opacity: 0.24; }
 
-.mdc-button--raised:not(.mdc-ripple-upgraded)::after,
-.mdc-button--unelevated:not(.mdc-ripple-upgraded)::after {
+.lmdc-button--raised:not(.lmdc-ripple-upgraded)::after,
+.lmdc-button--unelevated:not(.lmdc-ripple-upgraded)::after {
   transition: opacity 150ms linear; }
 
-.mdc-button--raised:not(.mdc-ripple-upgraded):active::after,
-.mdc-button--unelevated:not(.mdc-ripple-upgraded):active::after {
+.lmdc-button--raised:not(.lmdc-ripple-upgraded):active::after,
+.lmdc-button--unelevated:not(.lmdc-ripple-upgraded):active::after {
   transition-duration: 75ms;
   opacity: 0.32; }
 
-.mdc-button--raised.mdc-ripple-upgraded,
-.mdc-button--unelevated.mdc-ripple-upgraded {
+.lmdc-button--raised.lmdc-ripple-upgraded,
+.lmdc-button--unelevated.lmdc-ripple-upgraded {
   --mdc-ripple-fg-opacity: $opacity; }
 
-.mdc-button--raised {
+.lmdc-button--raised {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1); }
-  .mdc-button--raised:hover, .mdc-button--raised:focus {
+  .lmdc-button--raised:hover, .lmdc-button--raised:focus {
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); }
-  .mdc-button--raised:active {
+  .lmdc-button--raised:active {
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12); }
-  .mdc-button--raised:disabled {
+  .lmdc-button--raised:disabled {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12); }
 
-.mdc-button--stroked {
+.lmdc-button--stroked {
   border-style: solid;
   padding-right: 14px;
   padding-left: 14px;
   border-width: 2px;
   line-height: 32px; }
-  .mdc-button--stroked:disabled {
+  .lmdc-button--stroked:disabled {
     /* @alternate */
     border-color: rgba(0, 0, 0, 0.38);
     border-color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, 0.38)); }
-  .mdc-button--stroked.mdc-button--dense {
+  .lmdc-button--stroked.lmdc-button--dense {
     line-height: 27px; }
-  .mdc-button--stroked.mdc-button--compact {
+  .lmdc-button--stroked.lmdc-button--compact {
     padding-right: 6px;
     padding-left: 6px; }
-  .mdc-button--stroked:not(:disabled) {
+  .lmdc-button--stroked:not(:disabled) {
     /* @alternate */
     border-color: #6200ee;
     border-color: var(--mdc-theme-primary, #6200ee); }
 
-.mdc-button--compact {
+.lmdc-button--compact {
   padding: 0 8px; }
 
-.mdc-button--dense {
+.lmdc-button--dense {
   height: 32px;
   font-size: .8125rem;
   line-height: 32px; }

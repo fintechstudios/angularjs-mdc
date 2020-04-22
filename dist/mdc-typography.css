@@ -2,12 +2,12 @@
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-.mdc-typography {
+.lmdc-typography {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased; }
 
-.mdc-typography--display4 {
+.lmdc-typography--display4 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -18,10 +18,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--display4 {
+.lmdc-typography--adjust-margin.lmdc-typography--display4 {
   margin: -1rem 0 3.5rem -0.085em; }
 
-.mdc-typography--display3 {
+.lmdc-typography--display3 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -32,10 +32,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--display3 {
+.lmdc-typography--adjust-margin.lmdc-typography--display3 {
   margin: -8px 0 64px -0.07em; }
 
-.mdc-typography--display2 {
+.lmdc-typography--display2 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -46,10 +46,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--display2 {
+.lmdc-typography--adjust-margin.lmdc-typography--display2 {
   margin: -0.5rem 0 4rem -0.07em; }
 
-.mdc-typography--display1 {
+.lmdc-typography--display1 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -60,10 +60,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--display1 {
+.lmdc-typography--adjust-margin.lmdc-typography--display1 {
   margin: -0.5rem 0 4rem -0.07em; }
 
-.mdc-typography--headline {
+.lmdc-typography--headline {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -74,10 +74,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--headline {
+.lmdc-typography--adjust-margin.lmdc-typography--headline {
   margin: -0.5rem 0 1rem -0.06em; }
 
-.mdc-typography--title {
+.lmdc-typography--title {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -88,10 +88,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--title {
+.lmdc-typography--adjust-margin.lmdc-typography--title {
   margin: -0.5rem 0 1rem -0.05em; }
 
-.mdc-typography--subheading2 {
+.lmdc-typography--subheading2 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -102,10 +102,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--subheading2 {
+.lmdc-typography--adjust-margin.lmdc-typography--subheading2 {
   margin: -0.5rem 0 1rem -0.06em; }
 
-.mdc-typography--subheading1 {
+.lmdc-typography--subheading1 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -116,10 +116,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--subheading1 {
+.lmdc-typography--adjust-margin.lmdc-typography--subheading1 {
   margin: -0.313rem 0 0.813rem -0.06em; }
 
-.mdc-typography--body2 {
+.lmdc-typography--body2 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -130,10 +130,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--body2 {
+.lmdc-typography--adjust-margin.lmdc-typography--body2 {
   margin: -0.25rem 0 0.75rem 0; }
 
-.mdc-typography--body1 {
+.lmdc-typography--body1 {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -144,10 +144,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--body1 {
+.lmdc-typography--adjust-margin.lmdc-typography--body1 {
   margin: -0.25rem 0 0.75rem 0; }
 
-.mdc-typography--caption {
+.lmdc-typography--caption {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -158,10 +158,10 @@
   text-decoration: inherit;
   text-transform: inherit; }
 
-.mdc-typography--adjust-margin.mdc-typography--caption {
+.lmdc-typography--adjust-margin.lmdc-typography--caption {
   margin: -0.5rem 0 1rem -0.04em; }
 
-.mdc-typography--button {
+.lmdc-typography--button {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -172,5 +172,5 @@
   text-decoration: none;
   text-transform: uppercase; }
 
-.mdc-typography--adjust-margin.mdc-typography--button {
+.lmdc-typography--adjust-margin.lmdc-typography--button {
   margin: inherit; }

@@ -152,7 +152,7 @@
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
 /* postcss-bem-linter: define snackbar */
-.mdc-snackbar {
+.lmdc-snackbar {
   display: flex;
   position: fixed;
   bottom: 0;
@@ -171,65 +171,65 @@
   pointer-events: none;
   will-change: transform; }
   @media (max-width: 599px) {
-    .mdc-snackbar {
+    .lmdc-snackbar {
       left: 0;
       width: 100%;
       -webkit-transform: translate(0, 100%);
               transform: translate(0, 100%); } }
   @media (min-width: 600px) {
-    .mdc-snackbar {
+    .lmdc-snackbar {
       min-width: 288px;
       max-width: 568px;
       border-radius: 2px; } }
 
 @media (min-width: 600px) {
-  .mdc-snackbar--align-start {
+  .lmdc-snackbar--align-start {
     left: 24px;
     right: initial;
     bottom: 24px;
     -webkit-transform: translate(0, 200%);
             transform: translate(0, 200%); }
-    [dir="rtl"] .mdc-snackbar--align-start, .mdc-snackbar--align-start[dir="rtl"] {
+    [dir="rtl"] .lmdc-snackbar--align-start, .lmdc-snackbar--align-start[dir="rtl"] {
       left: initial;
       right: 24px; } }
 
 @media (max-width: 599px) {
-  .mdc-snackbar--align-start {
+  .lmdc-snackbar--align-start {
     bottom: 0;
     left: 0;
     width: 100%;
     -webkit-transform: translate(0, 100%);
             transform: translate(0, 100%); } }
 
-.mdc-snackbar--active {
+.lmdc-snackbar--active {
   -webkit-transform: translate(0);
           transform: translate(0);
   transition: -webkit-transform 0.25s 0ms cubic-bezier(0, 0, 0.2, 1);
   transition: transform 0.25s 0ms cubic-bezier(0, 0, 0.2, 1);
   transition: transform 0.25s 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.25s 0ms cubic-bezier(0, 0, 0.2, 1);
   pointer-events: auto; }
-  .mdc-snackbar--active:not(.mdc-snackbar--align-start) {
+  .lmdc-snackbar--active:not(.lmdc-snackbar--align-start) {
     -webkit-transform: translate(-50%, 0);
             transform: translate(-50%, 0); }
     @media (max-width: 599px) {
-      .mdc-snackbar--active:not(.mdc-snackbar--align-start) {
+      .lmdc-snackbar--active:not(.lmdc-snackbar--align-start) {
         bottom: 0;
         left: 0;
         width: 100%;
         -webkit-transform: translate(0);
                 transform: translate(0); } }
 
-.mdc-snackbar__action-wrapper {
+.lmdc-snackbar__action-wrapper {
   padding-left: 24px;
   padding-right: 0; }
-  [dir="rtl"] .mdc-snackbar__action-wrapper, .mdc-snackbar__action-wrapper[dir="rtl"] {
+  [dir="rtl"] .lmdc-snackbar__action-wrapper, .lmdc-snackbar__action-wrapper[dir="rtl"] {
     padding-left: 0;
     padding-right: 24px; }
 
-.mdc-snackbar--action-on-bottom {
+.lmdc-snackbar--action-on-bottom {
   flex-direction: column; }
 
-.mdc-snackbar__text {
+.lmdc-snackbar__text {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -247,36 +247,36 @@
   transition: opacity 0.3s 0ms cubic-bezier(0.4, 0, 1, 1);
   opacity: 0;
   color: white; }
-  .mdc-snackbar[dir="rtl"] .mdc-snackbar__text,
-  [dir="rtl"] .mdc-snackbar .mdc-snackbar__text {
+  .lmdc-snackbar[dir="rtl"] .lmdc-snackbar__text,
+  [dir="rtl"] .lmdc-snackbar .lmdc-snackbar__text {
     margin-left: auto;
     margin-right: 0; }
   @media (min-width: 600px) {
-    .mdc-snackbar__text {
+    .lmdc-snackbar__text {
       padding-left: 0;
       padding-right: 24px; }
-      [dir="rtl"] .mdc-snackbar__text, .mdc-snackbar__text[dir="rtl"] {
+      [dir="rtl"] .lmdc-snackbar__text, .lmdc-snackbar__text[dir="rtl"] {
         padding-left: 24px;
         padding-right: 0; } }
 
-.mdc-snackbar--action-on-bottom .mdc-snackbar__text {
+.lmdc-snackbar--action-on-bottom .lmdc-snackbar__text {
   margin-right: inherit; }
 
-.mdc-snackbar--action-on-bottom .mdc-snackbar__action-wrapper {
+.lmdc-snackbar--action-on-bottom .lmdc-snackbar__action-wrapper {
   margin-left: auto;
   margin-right: 0;
   flex-direction: column;
   justify-content: flex-start;
   margin-top: -12px;
   margin-bottom: 8px; }
-  [dir="rtl"] .mdc-snackbar--action-on-bottom .mdc-snackbar__action-wrapper, .mdc-snackbar--action-on-bottom .mdc-snackbar__action-wrapper[dir="rtl"] {
+  [dir="rtl"] .lmdc-snackbar--action-on-bottom .lmdc-snackbar__action-wrapper, .lmdc-snackbar--action-on-bottom .lmdc-snackbar__action-wrapper[dir="rtl"] {
     margin-left: 0;
     margin-right: auto; }
 
-.mdc-snackbar--multiline .mdc-snackbar__text {
+.lmdc-snackbar--multiline .lmdc-snackbar__text {
   height: 80px; }
 
-.mdc-snackbar__action-button {
+.lmdc-snackbar__action-button {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -301,20 +301,20 @@
           user-select: none;
   -webkit-appearance: none;
   visibility: hidden; }
-  .mdc-snackbar__action-button::-moz-focus-inner {
+  .lmdc-snackbar__action-button::-moz-focus-inner {
     border: 0; }
-  .mdc-snackbar__action-button:hover {
+  .lmdc-snackbar__action-button:hover {
     cursor: pointer; }
-  .mdc-snackbar__action-button:not([aria-hidden]) {
+  .lmdc-snackbar__action-button:not([aria-hidden]) {
     visibility: inherit; }
 
-.mdc-snackbar--active .mdc-snackbar__text,
-.mdc-snackbar--active .mdc-snackbar__action-button:not([aria-hidden]) {
+.lmdc-snackbar--active .lmdc-snackbar__text,
+.lmdc-snackbar--active .lmdc-snackbar__action-button:not([aria-hidden]) {
   transition: opacity 0.3s 0ms cubic-bezier(0.4, 0, 1, 1);
   opacity: 1; }
 
 /* stylelint-disable plugin/selector-bem-pattern */
-.mdc-snackbar--multiline.mdc-snackbar--action-on-bottom .mdc-snackbar__text {
+.lmdc-snackbar--multiline.lmdc-snackbar--action-on-bottom .lmdc-snackbar__text {
   margin: 0; }
 
 /* stylelint-enable plugin/selector-bem-pattern */

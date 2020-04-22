@@ -149,7 +149,7 @@
  * ```
  * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
  */
-.mdc-floating-label {
+.lmdc-floating-label {
   position: absolute;
   bottom: 8px;
   left: 0;
@@ -159,20 +159,20 @@
   transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: text; }
-  [dir="rtl"] .mdc-floating-label, .mdc-floating-label[dir="rtl"] {
+  [dir="rtl"] .lmdc-floating-label, .lmdc-floating-label[dir="rtl"] {
     right: 0;
     left: auto;
     -webkit-transform-origin: right top;
             transform-origin: right top; }
 
-.mdc-floating-label--float-above {
+.lmdc-floating-label--float-above {
   cursor: auto; }
 
-.mdc-floating-label--float-above {
+.lmdc-floating-label--float-above {
   -webkit-transform: translateY(-100%) scale(0.75);
           transform: translateY(-100%) scale(0.75); }
 
-.mdc-floating-label--shake {
+.lmdc-floating-label--shake {
   -webkit-animation: mdc-floating-label-shake-float-above-standard 250ms 1;
           animation: mdc-floating-label-shake-float-above-standard 250ms 1; }
 

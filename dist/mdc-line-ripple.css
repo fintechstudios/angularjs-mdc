@@ -1,4 +1,4 @@
-.mdc-line-ripple {
+.lmdc-line-ripple {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -12,10 +12,10 @@
   opacity: 0;
   z-index: 2; }
 
-.mdc-line-ripple--active {
+.lmdc-line-ripple--active {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   opacity: 1; }
 
-.mdc-line-ripple--deactivating {
+.lmdc-line-ripple--deactivating {
   opacity: 0; }

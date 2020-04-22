@@ -302,11 +302,11 @@
  * ```
  * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
  */
-.mdc-drawer--persistent {
+.lmdc-drawer--persistent {
   /* Use aspect ratio trick to maintain 16:9 aspect ratio on the header */
   color: rgba(0, 0, 0, 0.87);
   width: 0; }
-  .mdc-drawer--persistent .mdc-drawer__toolbar-spacer {
+  .lmdc-drawer--persistent .lmdc-drawer__toolbar-spacer {
     display: flex;
     position: relative;
     flex-direction: row;
@@ -318,15 +318,15 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     /* TODO(sgomes): replace with global breakpoints when we have them */ }
     @media (min-width: 600px) {
-      .mdc-drawer--persistent .mdc-drawer__toolbar-spacer {
+      .lmdc-drawer--persistent .lmdc-drawer__toolbar-spacer {
         height: 64px; } }
-  .mdc-drawer--persistent .mdc-drawer__header {
+  .lmdc-drawer--persistent .lmdc-drawer__header {
     position: relative; }
-  .mdc-drawer--persistent .mdc-drawer__header::before {
+  .lmdc-drawer--persistent .lmdc-drawer__header::before {
     display: block;
     padding-top: 56.25%;
     content: ""; }
-  .mdc-drawer--persistent .mdc-drawer__header-content {
+  .lmdc-drawer--persistent .lmdc-drawer__header-content {
     display: flex;
     position: absolute;
     top: 0;
@@ -336,7 +336,7 @@
     align-items: flex-end;
     box-sizing: border-box;
     padding: 16px; }
-  .mdc-drawer--persistent .mdc-list-item {
+  .lmdc-drawer--persistent .lmdc-list-item {
     font-family: Roboto, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -350,12 +350,12 @@
     outline: none;
     color: inherit;
     text-decoration: none; }
-  .mdc-drawer--persistent .mdc-list-item__graphic {
+  .lmdc-drawer--persistent .lmdc-list-item__graphic {
     color: rgba(0, 0, 0, 0.54); }
-  .mdc-drawer--persistent.mdc-drawer--permanent,
-  .mdc-drawer--persistent .mdc-drawer__drawer {
+  .lmdc-drawer--persistent.lmdc-drawer--permanent,
+  .lmdc-drawer--persistent .lmdc-drawer__drawer {
     background-color: #fff; }
-  .mdc-drawer--persistent .mdc-drawer__drawer {
+  .lmdc-drawer--persistent .lmdc-drawer__drawer {
     border-left: 0;
     border-right: 1px solid #e4e4e4;
     left: 0;
@@ -372,32 +372,32 @@
     width: 240px;
     overflow: hidden;
     touch-action: none; }
-    [dir="rtl"] .mdc-drawer--persistent .mdc-drawer__drawer, .mdc-drawer--persistent .mdc-drawer__drawer[dir="rtl"] {
+    [dir="rtl"] .lmdc-drawer--persistent .lmdc-drawer__drawer, .lmdc-drawer--persistent .lmdc-drawer__drawer[dir="rtl"] {
       border-left: 1px solid #e4e4e4;
       border-right: 0; }
-    [dir="rtl"] .mdc-drawer--persistent .mdc-drawer__drawer, .mdc-drawer--persistent .mdc-drawer__drawer[dir="rtl"] {
+    [dir="rtl"] .lmdc-drawer--persistent .lmdc-drawer__drawer, .lmdc-drawer--persistent .lmdc-drawer__drawer[dir="rtl"] {
       left: initial;
       right: 0; }
-    [dir="rtl"] .mdc-drawer--persistent .mdc-drawer__drawer, .mdc-drawer--persistent .mdc-drawer__drawer[dir="rtl"] {
+    [dir="rtl"] .lmdc-drawer--persistent .lmdc-drawer__drawer, .lmdc-drawer--persistent .lmdc-drawer__drawer[dir="rtl"] {
       -webkit-transform: translateX(107%);
               transform: translateX(107%);
       -webkit-transform: translateX(calc(100% + 20px));
               transform: translateX(calc(100% + 20px)); }
-  .mdc-drawer--persistent.mdc-drawer--animating .mdc-drawer__drawer {
+  .lmdc-drawer--persistent.lmdc-drawer--animating .lmdc-drawer__drawer {
     transition: -webkit-transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1);
     transition: transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1);
     transition: transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1); }
-  .mdc-drawer--persistent.mdc-drawer--animating.mdc-drawer--open .mdc-drawer__drawer {
+  .lmdc-drawer--persistent.lmdc-drawer--animating.lmdc-drawer--open .lmdc-drawer__drawer {
     transition: -webkit-transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1);
     transition: transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1);
     transition: transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1); }
-  .mdc-drawer--persistent.mdc-drawer--open {
+  .lmdc-drawer--persistent.lmdc-drawer--open {
     width: 240px;
     pointer-events: auto; }
-    .mdc-drawer--persistent.mdc-drawer--open .mdc-drawer__drawer {
+    .lmdc-drawer--persistent.lmdc-drawer--open .lmdc-drawer__drawer {
       -webkit-transform: none;
               transform: none; }
-    [dir="rtl"] .mdc-drawer--persistent.mdc-drawer--open .mdc-drawer__drawer, .mdc-drawer--persistent.mdc-drawer--open[dir="rtl"] .mdc-drawer__drawer {
+    [dir="rtl"] .lmdc-drawer--persistent.lmdc-drawer--open .lmdc-drawer__drawer, .lmdc-drawer--persistent.lmdc-drawer--open[dir="rtl"] .lmdc-drawer__drawer {
       -webkit-transform: none;
               transform: none; }
 
@@ -554,7 +554,7 @@
  */
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-.mdc-drawer--permanent {
+.lmdc-drawer--permanent {
   /* Use aspect ratio trick to maintain 16:9 aspect ratio on the header */
   color: rgba(0, 0, 0, 0.87);
   border-left: 0;
@@ -567,7 +567,7 @@
   box-sizing: border-box;
   width: 240px;
   overflow: hidden; }
-  .mdc-drawer--permanent .mdc-drawer__toolbar-spacer {
+  .lmdc-drawer--permanent .lmdc-drawer__toolbar-spacer {
     display: flex;
     position: relative;
     flex-direction: row;
@@ -579,15 +579,15 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     /* TODO(sgomes): replace with global breakpoints when we have them */ }
     @media (min-width: 600px) {
-      .mdc-drawer--permanent .mdc-drawer__toolbar-spacer {
+      .lmdc-drawer--permanent .lmdc-drawer__toolbar-spacer {
         height: 64px; } }
-  .mdc-drawer--permanent .mdc-drawer__header {
+  .lmdc-drawer--permanent .lmdc-drawer__header {
     position: relative; }
-  .mdc-drawer--permanent .mdc-drawer__header::before {
+  .lmdc-drawer--permanent .lmdc-drawer__header::before {
     display: block;
     padding-top: 56.25%;
     content: ""; }
-  .mdc-drawer--permanent .mdc-drawer__header-content {
+  .lmdc-drawer--permanent .lmdc-drawer__header-content {
     display: flex;
     position: absolute;
     top: 0;
@@ -597,7 +597,7 @@
     align-items: flex-end;
     box-sizing: border-box;
     padding: 16px; }
-  .mdc-drawer--permanent .mdc-list-item {
+  .lmdc-drawer--permanent .lmdc-list-item {
     font-family: Roboto, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -611,22 +611,22 @@
     outline: none;
     color: inherit;
     text-decoration: none; }
-  .mdc-drawer--permanent .mdc-list-item__graphic {
+  .lmdc-drawer--permanent .lmdc-list-item__graphic {
     color: rgba(0, 0, 0, 0.54); }
-  .mdc-drawer--permanent.mdc-drawer--permanent,
-  .mdc-drawer--permanent .mdc-drawer__drawer {
+  .lmdc-drawer--permanent.lmdc-drawer--permanent,
+  .lmdc-drawer--permanent .lmdc-drawer__drawer {
     background-color: #fff; }
-  [dir="rtl"] .mdc-drawer--permanent, .mdc-drawer--permanent[dir="rtl"] {
+  [dir="rtl"] .lmdc-drawer--permanent, .lmdc-drawer--permanent[dir="rtl"] {
     border-left: 1px solid #e4e4e4;
     border-right: 0; }
-  [dir="rtl"] .mdc-drawer--permanent, .mdc-drawer--permanent[dir="rtl"] {
+  [dir="rtl"] .lmdc-drawer--permanent, .lmdc-drawer--permanent[dir="rtl"] {
     left: initial;
     right: 0; }
-  .mdc-drawer--permanent--floating {
+  .lmdc-drawer--permanent--floating {
     border-left: 0;
     border-right: none;
     background: none; }
-    [dir="rtl"] .mdc-drawer--permanent--floating, .mdc-drawer--permanent--floating[dir="rtl"] {
+    [dir="rtl"] .lmdc-drawer--permanent--floating, .lmdc-drawer--permanent--floating[dir="rtl"] {
       border-left: none;
       border-right: 0; }
 
@@ -963,7 +963,7 @@
  * ```
  * An optional third $root-selector argument may also be given, which is passed to `mdc-rtl`.
  */
-.mdc-drawer--temporary {
+.lmdc-drawer--temporary {
   /* Use aspect ratio trick to maintain 16:9 aspect ratio on the header */
   color: rgba(0, 0, 0, 0.87);
   position: fixed;
@@ -977,7 +977,7 @@
   contain: strict;
   z-index: 5;
   /* Shaded background */ }
-  .mdc-drawer--temporary .mdc-drawer__toolbar-spacer {
+  .lmdc-drawer--temporary .lmdc-drawer__toolbar-spacer {
     display: flex;
     position: relative;
     flex-direction: row;
@@ -989,15 +989,15 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     /* TODO(sgomes): replace with global breakpoints when we have them */ }
     @media (min-width: 600px) {
-      .mdc-drawer--temporary .mdc-drawer__toolbar-spacer {
+      .lmdc-drawer--temporary .lmdc-drawer__toolbar-spacer {
         height: 64px; } }
-  .mdc-drawer--temporary .mdc-drawer__header {
+  .lmdc-drawer--temporary .lmdc-drawer__header {
     position: relative; }
-  .mdc-drawer--temporary .mdc-drawer__header::before {
+  .lmdc-drawer--temporary .lmdc-drawer__header::before {
     display: block;
     padding-top: 56.25%;
     content: ""; }
-  .mdc-drawer--temporary .mdc-drawer__header-content {
+  .lmdc-drawer--temporary .lmdc-drawer__header-content {
     display: flex;
     position: absolute;
     top: 0;
@@ -1007,7 +1007,7 @@
     align-items: flex-end;
     box-sizing: border-box;
     padding: 16px; }
-  .mdc-drawer--temporary .mdc-list-item {
+  .lmdc-drawer--temporary .lmdc-list-item {
     font-family: Roboto, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -1021,14 +1021,14 @@
     outline: none;
     color: inherit;
     text-decoration: none; }
-  .mdc-drawer--temporary .mdc-list-item__graphic {
+  .lmdc-drawer--temporary .lmdc-list-item__graphic {
     color: rgba(0, 0, 0, 0.54); }
-  .mdc-drawer--temporary.mdc-drawer--permanent,
-  .mdc-drawer--temporary .mdc-drawer__drawer {
+  .lmdc-drawer--temporary.lmdc-drawer--permanent,
+  .lmdc-drawer--temporary .lmdc-drawer__drawer {
     background-color: #fff; }
-  .mdc-drawer--temporary::before {
+  .lmdc-drawer--temporary::before {
     background-color: rgba(0, 0, 0, 0.6); }
-  .mdc-drawer--temporary::before {
+  .lmdc-drawer--temporary::before {
     display: block;
     position: absolute;
     top: 0;
@@ -1040,7 +1040,7 @@
     opacity: var(--mdc-temporary-drawer-opacity, 0);
     content: "";
     will-change: opacity; }
-  .mdc-drawer--temporary .mdc-drawer__drawer {
+  .lmdc-drawer--temporary .lmdc-drawer__drawer {
     box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
     left: 0;
     right: initial;
@@ -1059,19 +1059,19 @@
     overflow: hidden;
     touch-action: none;
     /* TODO(sgomes): replace with global breakpoints when we have them */ }
-    [dir="rtl"] .mdc-drawer--temporary .mdc-drawer__drawer, .mdc-drawer--temporary .mdc-drawer__drawer[dir="rtl"] {
+    [dir="rtl"] .lmdc-drawer--temporary .lmdc-drawer__drawer, .lmdc-drawer--temporary .lmdc-drawer__drawer[dir="rtl"] {
       left: initial;
       right: 0; }
-    [dir="rtl"] .mdc-drawer--temporary .mdc-drawer__drawer, .mdc-drawer--temporary .mdc-drawer__drawer[dir="rtl"] {
+    [dir="rtl"] .lmdc-drawer--temporary .lmdc-drawer__drawer, .lmdc-drawer--temporary .lmdc-drawer__drawer[dir="rtl"] {
       -webkit-transform: translateX(107%);
               transform: translateX(107%);
       -webkit-transform: translateX(calc(100% + 20px));
               transform: translateX(calc(100% + 20px)); }
     @media (min-width: 600px) {
-      .mdc-drawer--temporary .mdc-drawer__drawer {
+      .lmdc-drawer--temporary .lmdc-drawer__drawer {
         width: calc(100% - 64px);
         max-width: 320px; } }
-  .mdc-drawer--temporary .mdc-drawer__content {
+  .lmdc-drawer--temporary .lmdc-drawer__content {
     flex-grow: 1;
     box-sizing: border-box;
     margin: 0;
@@ -1079,30 +1079,30 @@
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y; }
-  .mdc-drawer--temporary .mdc-drawer__footer {
+  .lmdc-drawer--temporary .lmdc-drawer__footer {
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     flex-shrink: 0; }
-  .mdc-drawer--temporary.mdc-drawer--animating::before {
+  .lmdc-drawer--temporary.lmdc-drawer--animating::before {
     transition: opacity 0.3s 0ms cubic-bezier(0, 0, 0.2, 1); }
-  .mdc-drawer--temporary.mdc-drawer--animating.mdc-drawer--open .mdc-drawer__drawer {
+  .lmdc-drawer--temporary.lmdc-drawer--animating.lmdc-drawer--open .lmdc-drawer__drawer {
     transition: -webkit-transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1);
     transition: transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1);
     transition: transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.225s 0ms cubic-bezier(0, 0, 0.2, 1); }
-  .mdc-drawer--temporary.mdc-drawer--animating .mdc-drawer__drawer {
+  .lmdc-drawer--temporary.lmdc-drawer--animating .lmdc-drawer__drawer {
     transition: -webkit-transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1);
     transition: transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1);
     transition: transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1), -webkit-transform 0.195s 0ms cubic-bezier(0.4, 0, 0.6, 1); }
-  .mdc-drawer--temporary.mdc-drawer--open {
+  .lmdc-drawer--temporary.lmdc-drawer--open {
     pointer-events: auto; }
-    .mdc-drawer--temporary.mdc-drawer--open::before {
+    .lmdc-drawer--temporary.lmdc-drawer--open::before {
       opacity: 1;
       opacity: var(--mdc-temporary-drawer-opacity, 1); }
-    .mdc-drawer--temporary.mdc-drawer--open .mdc-drawer__drawer {
+    .lmdc-drawer--temporary.lmdc-drawer--open .lmdc-drawer__drawer {
       -webkit-transform: none;
               transform: none; }
-    [dir="rtl"] .mdc-drawer--temporary.mdc-drawer--open .mdc-drawer__drawer, .mdc-drawer--temporary.mdc-drawer--open[dir="rtl"] .mdc-drawer__drawer {
+    [dir="rtl"] .lmdc-drawer--temporary.lmdc-drawer--open .lmdc-drawer__drawer, .lmdc-drawer--temporary.lmdc-drawer--open[dir="rtl"] .lmdc-drawer__drawer {
       -webkit-transform: none;
               transform: none; }
 
-.mdc-drawer-scroll-lock {
+.lmdc-drawer-scroll-lock {
   overflow: hidden; }

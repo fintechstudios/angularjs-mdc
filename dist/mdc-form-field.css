@@ -152,7 +152,7 @@
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
 /* stylelint-disable selector-max-type */
-.mdc-form-field {
+.lmdc-form-field {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -168,20 +168,20 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle; }
-  .mdc-form-field > label {
+  .lmdc-form-field > label {
     order: 0;
     margin-right: auto;
     padding-left: 4px; }
-  [dir="rtl"] .mdc-form-field > label, .mdc-form-field[dir="rtl"] > label {
+  [dir="rtl"] .lmdc-form-field > label, .lmdc-form-field[dir="rtl"] > label {
     margin-left: auto;
     padding-right: 4px; }
 
-.mdc-form-field--align-end > label {
+.lmdc-form-field--align-end > label {
   order: -1;
   margin-left: auto;
   padding-right: 4px; }
 
-[dir="rtl"] .mdc-form-field--align-end > label, .mdc-form-field--align-end[dir="rtl"] > label {
+[dir="rtl"] .lmdc-form-field--align-end > label, .lmdc-form-field--align-end[dir="rtl"] > label {
   margin-right: auto;
   padding-left: 4px; }
 
