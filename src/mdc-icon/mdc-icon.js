@@ -1,4 +1,7 @@
 import {BaseComponent} from '../util/base-component';
+import {BASE_CLASSNAME as TEXT_FIELD_BASE_CLASSNAME} from '../mdc-text-field/text-field/component';
+
+const TEXT_FIELD_ICON_CLASSNAME = `${TEXT_FIELD_BASE_CLASSNAME}__icon`;
 
 /**
  * @ngdoc component
@@ -55,7 +58,7 @@ export class MDCIconController extends BaseComponent {
       ctrl.toggleIconCtrl(this, true);
     }
 
-    this.$element.toggleClass('mdc-text-field__icon', Boolean(ctrl));
+    this.$element.toggleClass(TEXT_FIELD_ICON_CLASSNAME, Boolean(ctrl));
   }
 
   $onDestroy() {

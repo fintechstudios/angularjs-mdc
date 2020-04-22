@@ -66,7 +66,7 @@ limitations under the License
         padding: 0 40px 40px;
       }
 
-      .mdc-tab-bar-scroller {
+      .lmdc-tab-bar-scroller {
         margin-bottom: 16px;
       }
 
@@ -125,18 +125,18 @@ limitations under the License
     </style>
   </head>
   <body ng-app="demo">
-    <header class="mdc-toolbar mdc-toolbar--fixed demo-header-toolbar">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <header class="lmdc-toolbar lmdc-toolbar--fixed demo-header-toolbar">
+      <div class="lmdc-toolbar__row">
+        <section class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="lmdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">Tabs</span>
+          <span class="lmdc-toolbar__title catalog-title">Tabs</span>
         </section>
       </div>
     </header>
 
-    <main ng-controller="MainCtrl" dir="{{ isRTL ? 'rtl' : '' }}" class="mdc-toolbar-fixed-adjust">
+    <main ng-controller="MainCtrl" dir="{{ isRTL ? 'rtl' : '' }}" class="lmdc-toolbar-fixed-adjust">
       <section class="hero">
         <mdc-tab-bar>
           <mdc-tab>Item One</mdc-tab>
@@ -151,7 +151,7 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Basic Tab Bar</legend>
+          <legend class="lmdc-typography--title">Basic Tab Bar</legend>
           <mdc-tab-bar ng-model="cycleSelect">
             <mdc-tab ng-value="0">Item One</mdc-tab>
             <mdc-tab ng-value="1">Item Two</mdc-tab>
@@ -164,7 +164,7 @@ limitations under the License
       </section>
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Basic Tab Bar w/ Custom Label Color</legend>
+          <legend class="lmdc-typography--title">Basic Tab Bar w/ Custom Label Color</legend>
           <mdc-tab-bar ng-model="clicked" class="custom-label-color-tab">
             <mdc-tab ng-value="undefined">One (undefined)</mdc-tab>
             <mdc-tab ng-value="'Two'">Two ("Two")</mdc-tab>
@@ -178,7 +178,7 @@ limitations under the License
 
       <section>
         <div class="demo-tabs__scroller">
-          <h2 class="mdc-typography--title demo-title">Tab Bar with Scroller</h2>
+          <h2 class="lmdc-typography--title demo-title">Tab Bar with Scroller</h2>
           <mdc-tab-bar-scroller>
             <mdc-tab-bar ng-model="scroll.selected" ng-if="demoToggled">
               <mdc-tab ng-repeat="num in numbers" value="{{ $index + 1 }}">Item {{ num }}</mdc-tab>
@@ -192,16 +192,16 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Icon Tab Labels</legend>
+          <legend class="lmdc-typography--title">Icon Tab Labels</legend>
           <mdc-tab-bar variant="icon" ng-if="demoToggled">
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-label="Recents">phone</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-label="Recents">phone</mdc-icon>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-label="Favorites">favorite</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-label="Favorites">favorite</mdc-icon>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-label="nearby">person_pin</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-label="nearby">person_pin</mdc-icon>
             </mdc-tab>
           </mdc-tab-bar>
         </fieldset>
@@ -209,16 +209,16 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Icon Tab Labels w/ Custom Icon Color</legend>
+          <legend class="lmdc-typography--title">Icon Tab Labels w/ Custom Icon Color</legend>
           <mdc-tab-bar variant="icon" class="custom-icon-color-tab" ng-if="demoToggled">
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-label="Recents">phone</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-label="Recents">phone</mdc-icon>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-label="Favorites">favorite</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-label="Favorites">favorite</mdc-icon>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-label="nearby">person_pin</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-label="nearby">person_pin</mdc-icon>
             </mdc-tab>
           </mdc-tab-bar>
         </fieldset>
@@ -226,18 +226,18 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Icon &amp; Text Labels</legend>
+          <legend class="lmdc-typography--title">Icon &amp; Text Labels</legend>
           <mdc-tab-bar variant="icons-text">
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-hidden="true">phone</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-hidden="true">phone</mdc-icon>
               <mdc-tab-text>Recents</mdc-tab-text>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-hidden="true">favorite</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-hidden="true">favorite</mdc-icon>
               <mdc-tab-text>Favorites</mdc-tab-text>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-hidden="true">person_pin</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-hidden="true">person_pin</mdc-icon>
               <mdc-tab-text>Nearby</mdc-tab-text>
             </mdc-tab>
           </mdc-tab-bar>
@@ -246,18 +246,18 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Icon &amp; Text Labels w/ Custom Colors</legend>
+          <legend class="lmdc-typography--title">Icon &amp; Text Labels w/ Custom Colors</legend>
           <mdc-tab-bar variant="icons-text" class="custom-ink-color-tab">
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-hidden="true">phone</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-hidden="true">phone</mdc-icon>
               <mdc-tab-text>Recents</mdc-tab-text>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-hidden="true">favorite</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-hidden="true">favorite</mdc-icon>
               <mdc-tab-text>Favorites</mdc-tab-text>
             </mdc-tab>
             <mdc-tab>
-              <mdc-icon class="mdc-tab__icon" aria-hidden="true">person_pin</mdc-icon>
+              <mdc-icon class="lmdc-tab__icon" aria-hidden="true">person_pin</mdc-icon>
               <mdc-tab-text>Nearby</mdc-tab-text>
             </mdc-tab>
           </mdc-tab-bar>
@@ -266,7 +266,7 @@ limitations under the License
 
       <section>
         <div class="demo-tabs__scroller">
-          <h2 class="mdc-typography--title demo-title">Custom Indicator Color</h2>
+          <h2 class="lmdc-typography--title demo-title">Custom Indicator Color</h2>
           <mdc-tab-bar-scroller>
             <mdc-tab-bar class="custom-indicator-tab-bar" ng-model="mutable.sel" ng-if="demoToggled">
               <mdc-tab ng-repeat="item in mutable.list"
@@ -284,13 +284,13 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Within mdc-toolbar</legend>
-          <div class="mdc-toolbar">
-            <div class="mdc-toolbar__row">
-              <div class="mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-start">
-                <h2 class="mdc-toolbar__title">Title</h2>
+          <legend class="lmdc-typography--title">Within mdc-toolbar</legend>
+          <div class="lmdc-toolbar">
+            <div class="lmdc-toolbar__row">
+              <div class="lmdc-toolbar__section lmdc-toolbar__section--shrink-to-fit lmdc-toolbar__section--align-start">
+                <h2 class="lmdc-toolbar__title">Title</h2>
               </div>
-              <div class="mdc-toolbar__section mdc-toolbar__section--align-end">
+              <div class="lmdc-toolbar__section lmdc-toolbar__section--align-end">
                 <div>
                   <mdc-tab-bar class="custom-tab-bar-in-toolbar">
                     <mdc-tab>Item One</mdc-tab>
@@ -306,7 +306,7 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Within MDCToolbar - fixed to bottom of toolbar</legend>
+          <legend class="lmdc-typography--title">Within MDCToolbar - fixed to bottom of toolbar</legend>
           <div class="demo-note">
             <em>
               Note: We want to avoid too many modifier classes for layouts like this. Therefore, we recommend overriding the style of
@@ -329,12 +329,12 @@ limitations under the License
             </code>
           </pre>
           </div>
-          <div class="mdc-toolbar">
-            <div class="mdc-toolbar__row">
-              <div class="mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-start">
-                <h1 class="mdc-toolbar__title">Title</h1>
+          <div class="lmdc-toolbar">
+            <div class="lmdc-toolbar__row">
+              <div class="lmdc-toolbar__section lmdc-toolbar__section--shrink-to-fit lmdc-toolbar__section--align-start">
+                <h1 class="lmdc-toolbar__title">Title</h1>
               </div>
-              <div class="mdc-toolbar__section my-modified-toolbar-section">
+              <div class="lmdc-toolbar__section my-modified-toolbar-section">
                 <mdc-tab-bar class="custom-tab-bar-in-toolbar">
                   <mdc-tab>Item One</mdc-tab>
                   <mdc-tab>Item Two</mdc-tab>
@@ -348,16 +348,16 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Within mdc-toolbar + custom color indicator</legend>
+          <legend class="lmdc-typography--title">Within mdc-toolbar + custom color indicator</legend>
           <div class="demo-note">
             <em>Note: Changing the toolbar's background color here so that the primary indicator can be visible</em>
           </div>
-          <div class="mdc-toolbar mdc-theme--accent-bg">
-            <div class="mdc-toolbar__row">
-              <div class="mdc-toolbar__section mdc-toolbar__section--shrink-to-fit mdc-toolbar__section--align-start">
-                <h1 class="mdc-toolbar__title">Title</h1>
+          <div class="lmdc-toolbar lmdc-theme--accent-bg">
+            <div class="lmdc-toolbar__row">
+              <div class="lmdc-toolbar__section lmdc-toolbar__section--shrink-to-fit lmdc-toolbar__section--align-start">
+                <h1 class="lmdc-toolbar__title">Title</h1>
               </div>
-              <div class="mdc-toolbar__section mdc-toolbar__section--align-end">
+              <div class="lmdc-toolbar__section lmdc-toolbar__section--align-end">
                 <div>
                   <mdc-tab-bar class="custom-indicator-tab-bar-in-toolbar">
                     <mdc-tab>Item One</mdc-tab>
@@ -373,10 +373,10 @@ limitations under the License
 
       <section>
         <fieldset>
-          <legend class="mdc-typography--title">Within Toolbar, Dynamic Content Control</legend>
-          <div class="mdc-toolbar" id="dynamic-demo-toolbar">
-            <div class="mdc-toolbar__row">
-              <div class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <legend class="lmdc-typography--title">Within Toolbar, Dynamic Content Control</legend>
+          <div class="lmdc-toolbar" id="dynamic-demo-toolbar">
+            <div class="lmdc-toolbar__row">
+              <div class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
                 <mdc-tab-bar ng-model="selectedTab" class="custom-indicator-tab-bar-in-toolbar">
                   <mdc-tab ng-value="0">Item One</mdc-tab>
                   <mdc-tab ng-value="1">Item Two</mdc-tab>

@@ -1,4 +1,8 @@
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
 import template from './dialog.html';
+
+
+export const BASE_CLASSNAME = replaceMdcClassname('mdc-dialog');
 
 /**
  * @ngdoc component

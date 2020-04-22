@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const transformMdcToLmdc = require('./scripts/transform-mdc-to-lmdc');
+
+
 // Used with webpack-dev-server
 const PUBLIC_PATH = '/assets/';
 const IS_DEV = process.env.MDC_ENV === 'development' || process.env.MDC_ENV === 'test';
@@ -26,7 +29,10 @@ const CSS_LOADER_CONFIG = [
     loader: 'postcss-loader',
     options: {
       sourceMap: IS_DEV,
-      plugins: () =>[require('autoprefixer')({grid: false})],
+      plugins: () =>[
+        require('autoprefixer')({grid: false}),
+        transformMdcToLmdc(),
+      ],
     },
   },
   {

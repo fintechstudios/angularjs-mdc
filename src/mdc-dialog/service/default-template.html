@@ -5,10 +5,10 @@
   <mdc-dialog-header>
     <mdc-dialog-title id="mdc-dialog-title">{{ dialog.title }}</mdc-dialog-title>
   </mdc-dialog-header>
-  <mdc-dialog-body id="mdc-dialog-body" ng-class="::{'mdc-dialog__body--scrollable': dialog.scrollable}"
+  <mdc-dialog-body id="mdc-dialog-body" ng-class="::{'lmdc-dialog__body--scrollable': dialog.scrollable}"
                    ng-if="::dialog.mdcHtmlContent" ng-bind-html="::dialog.mdcHtmlContent">
   </mdc-dialog-body>
-  <mdc-dialog-body id="mdc-dialog-body" ng-class="::{'mdc-dialog__body--scrollable': dialog.scrollable}"
+  <mdc-dialog-body id="mdc-dialog-body" ng-class="::{'lmdc-dialog__body--scrollable': dialog.scrollable}"
                    ng-if="::!dialog.mdcHtmlContent">
     <span ng-if="::dialog.mdcTextContent">{{::dialog.mdcTextContent}}</span>
     <label ng-if="::dialog.$type == 'prompt'">

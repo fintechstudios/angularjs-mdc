@@ -1,6 +1,7 @@
 import {BindInjections} from '../util/bind-injections';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
 
-import {MDCSnackbar} from '@material/snackbar';
+import {MDCSnackbar, MDCSnackbarFoundation} from '@material/snackbar';
 import {numbers} from '@material/snackbar/constants';
 
 import defaultTemplate from './snackbar.html';
@@ -15,6 +16,8 @@ function getParentMap(template) {
   }
   return TEMPLATE_TO_SNACKBAR_MAP.get(template);
 }
+
+replaceFoundationConstants(MDCSnackbarFoundation);
 
 
 /**

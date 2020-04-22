@@ -1,6 +1,10 @@
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
 import {BaseComponent} from '../../util/base-component';
 
 import {MDCSelectController} from '../select/component';
+
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-list-item');
 
 
 /**
@@ -39,7 +43,7 @@ export class MDCSelectItemController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-list-item');
+    this.$element.addClass(BASE_CLASSNAME);
     this.$element.attr('role', 'option');
 
     if (!this.$element.attr('tabindex')) {

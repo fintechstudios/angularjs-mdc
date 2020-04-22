@@ -1,9 +1,19 @@
 import {BaseComponent} from '../util/base-component';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {MDCGridListFoundation} from '@material/grid-list';
 
 import template from './mdc-grid-list.html';
+
 const VALID_TILE_ASPECTS = ['1x1', '16x9', '2x3', '3x2', '4x3', '3x4'];
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-grid-list');
+const START_ALIGN_ICON_CLASSNAME = `${BASE_CLASSNAME}--with-icon-align-start`;
+const END_ALIGN_ICON_CLASSNAME = `${BASE_CLASSNAME}--with-icon-align-end`;
+const WITH_GUTTER_CLASSNAME = `${BASE_CLASSNAME}--tile-gutter-1`;
+const TILE_ASPECT_BASE_CLASSNAME = `${BASE_CLASSNAME}--tile-aspect`;
+replaceFoundationConstants(MDCGridListFoundation);
 
 
 /**
@@ -72,15 +82,15 @@ class MDCGridListController extends BaseComponent {
 
   $onChanges(changesObj) {
     if (changesObj.iconAlign) {
-      this.$element.toggleClass('mdc-grid-list--with-icon-align-start', this.iconAlign === 'start');
-      this.$element.toggleClass('mdc-grid-list--with-icon-align-end', this.iconAlign === 'end');
+      this.$element.toggleClass(START_ALIGN_ICON_CLASSNAME, this.iconAlign === 'start');
+      this.$element.toggleClass(END_ALIGN_ICON_CLASSNAME, this.iconAlign === 'end');
     }
     if (changesObj.gutter) {
-      this.$element.toggleClass('mdc-grid-list--tile-gutter-1', this.gutter == '1');
+      this.$element.toggleClass(WITH_GUTTER_CLASSNAME, this.gutter == '1');
     }
     if (changesObj.aspect) {
       VALID_TILE_ASPECTS.forEach((r) => {
-        this.$element.toggleClass('mdc-grid-list--tile-aspect-' + r, this.aspect === r);
+        this.$element.toggleClass(`${TILE_ASPECT_BASE_CLASSNAME}-${r}`, this.aspect === r);
       });
     }
   };

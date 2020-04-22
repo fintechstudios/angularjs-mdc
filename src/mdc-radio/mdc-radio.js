@@ -1,10 +1,15 @@
 import {arrayUnion} from '../util/array-union';
 import {BaseComponent} from '../util/base-component';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 import {IsFormFieldChild} from '../mdc-form-field/child-mixin';
 
-import {MDCRadio} from '@material/radio';
+import {MDCRadio, MDCRadioFoundation} from '@material/radio';
 
 import template from './mdc-radio.html';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-radio');
+replaceFoundationConstants(MDCRadioFoundation);
 
 
 /**
@@ -44,7 +49,7 @@ class MDCRadioController extends IsFormFieldChild(BaseComponent) {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-radio');
+    this.$element.addClass(BASE_CLASSNAME);
     this.mdc = new MDCRadio(this.$element[0]);
 
     this.$element.ready(() => {

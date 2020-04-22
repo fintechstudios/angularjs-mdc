@@ -1,6 +1,10 @@
+import {replaceFoundationConstants} from '../../util/replace-foundation-constants';
+
 import {MDCDialog, MDCDialogFoundation} from '@material/dialog';
 
 import defaultTemplate from './default-template.html';
+
+replaceFoundationConstants(MDCDialogFoundation);
 
 
 /**

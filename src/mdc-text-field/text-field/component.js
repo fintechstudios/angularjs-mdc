@@ -1,8 +1,40 @@
 import {BaseComponent} from '../../util/base-component';
+import {replaceFoundationConstants} from '../../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
 
-import {MDCTextField, MDCTextFieldFoundation, MDCTextFieldHelperTextFoundation} from '@material/textfield';
+import {
+  MDCTextField,
+  MDCTextFieldFoundation,
+  MDCTextFieldHelperTextFoundation,
+  MDCTextFieldIconFoundation,
+  MDCTextFieldOutlineFoundation,
+} from '@material/textfield';
+import {MDCLineRippleFoundation} from '@material/line-ripple';
+import {MDCFloatingLabelFoundation} from '@material/floating-label';
 
 import outlineTemplate from './outline.html';
+
+replaceFoundationConstants(MDCTextFieldFoundation);
+replaceFoundationConstants(MDCTextFieldHelperTextFoundation);
+replaceFoundationConstants(MDCLineRippleFoundation);
+replaceFoundationConstants(MDCTextFieldIconFoundation);
+replaceFoundationConstants(MDCTextFieldOutlineFoundation);
+replaceFoundationConstants(MDCFloatingLabelFoundation);
+
+export const BASE_CLASSNAME = MDCTextFieldFoundation.cssClasses.ROOT;
+const TEXTAREA_CLASSNAME = `${BASE_CLASSNAME}--textarea`;
+const FULLWIDTH_CLASSNAME = `${BASE_CLASSNAME}--fullwidth`;
+const WITH_LEADING_ICON_CLASSNAME = `${BASE_CLASSNAME}--with-leading-icon`;
+const WITH_TRAILING_ICON_CLASSNAME = `${BASE_CLASSNAME}--with-trailing-icon`;
+
+const INPUT_CLASSNAME = `${BASE_CLASSNAME}__input`;
+const OUTLINE_CLASSNAME = `${BASE_CLASSNAME}__outline`;
+const IDLE_OUTLINE_CLASSNAME = `${BASE_CLASSNAME}__idle-outline`;
+
+const HELPER_TEXT_CLASSNAME = `${BASE_CLASSNAME}-helper-text`;
+
+const LINE_RIPPLE_CLASSNAME = replaceMdcClassname('mdc-line-ripple');
+const FLOATING_LABEL_CLASSNAME = replaceMdcClassname('mdc-floating-label');
 
 
 /**
@@ -44,7 +76,7 @@ export class MDCTextFieldController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass(MDCTextFieldFoundation.cssClasses.ROOT);
+    this.$element.addClass(BASE_CLASSNAME);
 
     this.root_ = this.$element[0];
     this.setupInput_();
@@ -106,12 +138,12 @@ export class MDCTextFieldController extends BaseComponent {
     this.inputElement_ = this.root_.querySelector('input,textarea');
 
     if (this.inputElement_.tagName === 'TEXTAREA') {
-      this.root_.classList.add('mdc-text-field--textarea');
+      this.root_.classList.add(TEXTAREA_CLASSNAME);
     } else {
-      this.root_.classList.remove('mdc-text-field--textarea');
+      this.root_.classList.remove(TEXTAREA_CLASSNAME);
     }
 
-    this.inputElement_.classList.add('mdc-text-field__input');
+    this.inputElement_.classList.add(INPUT_CLASSNAME);
 
     if (!this.inputElement_.id) {
       this.inputElement_.id = `--mdc-form-field-${this.$scope.$id}`;
@@ -119,7 +151,7 @@ export class MDCTextFieldController extends BaseComponent {
   }
 
   setupLabelAndFullwidth_() {
-    this.$element.toggleClass('mdc-text-field--fullwidth', Boolean(this.fullwidth));
+    this.$element.toggleClass(FULLWIDTH_CLASSNAME, Boolean(this.fullwidth));
 
     let labelElement = this.root_.getElementsByTagName('label')[0];
 
@@ -131,7 +163,7 @@ export class MDCTextFieldController extends BaseComponent {
         this.inputElement_.insertAdjacentElement('afterend', labelElement);
       }
 
-      labelElement.classList.add('mdc-floating-label');
+      labelElement.classList.add(FLOATING_LABEL_CLASSNAME);
       if (this.label) {
         labelElement.innerText = this.label;
       }
@@ -150,9 +182,9 @@ export class MDCTextFieldController extends BaseComponent {
   }
 
   setupOutlinedAndBox_() {
-    const outlineElement = this.root_.getElementsByClassName('mdc-text-field__outline')[0];
-    const idleOutlineElement = this.root_.getElementsByClassName('mdc-text-field__idle-outline')[0];
-    const bottomLineElement = this.root_.getElementsByClassName('mdc-line-ripple')[0];
+    const outlineElement = this.root_.getElementsByClassName(OUTLINE_CLASSNAME)[0];
+    const idleOutlineElement = this.root_.getElementsByClassName(IDLE_OUTLINE_CLASSNAME)[0];
+    const bottomLineElement = this.root_.getElementsByClassName(LINE_RIPPLE_CLASSNAME)[0];
 
     this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.OUTLINED, Boolean(this.outlined) && !this.isTextArea);
     this.$element.toggleClass(MDCTextFieldFoundation.cssClasses.BOX, !Boolean(this.outlined) && Boolean(this.box));
@@ -174,7 +206,7 @@ export class MDCTextFieldController extends BaseComponent {
     }
 
     if (wantsBottomLine && !bottomLineElement) {
-      this.$element.append('<div class="mdc-line-ripple"></div>');
+      this.$element.append(`<div class="${LINE_RIPPLE_CLASSNAME}"></div>`);
     } else if (!wantsBottomLine && bottomLineElement) {
       bottomLineElement.remove();
     }
@@ -200,7 +232,7 @@ export class MDCTextFieldController extends BaseComponent {
     if (wantsHelpText) {
       if (!this.helperTextElement_) {
         this.helperTextElement_ = this.$document[0].createElement('p');
-        this.helperTextElement_.className = 'mdc-text-field-helper-text';
+        this.helperTextElement_.className = HELPER_TEXT_CLASSNAME;
         this.helperTextElement_.id = `${this.inputElement_.id}--help`;
 
         this.inputElement_.setAttribute('aria-controls', this.helperTextElement_.id);
@@ -254,9 +286,9 @@ export class MDCTextFieldController extends BaseComponent {
     const isLeading = iconCtrl.$element[0] === this.$element.children()[0];
 
     if (isLeading) {
-      this.$element.toggleClass('mdc-text-field--with-leading-icon', enabled);
+      this.$element.toggleClass(WITH_LEADING_ICON_CLASSNAME, enabled);
     } else {
-      this.$element.toggleClass('mdc-text-field--with-trailing-icon', enabled);
+      this.$element.toggleClass(WITH_TRAILING_ICON_CLASSNAME, enabled);
     }
   }
 

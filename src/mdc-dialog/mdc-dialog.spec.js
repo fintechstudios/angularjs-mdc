@@ -86,16 +86,16 @@ describe('mdc-dialog-body', function() {
     $mockComponent = $componentGenerator('mdcDialogBody');
   }));
 
-  it('should have the `mdc-dialog__body--scrollable` class when scrollable=true', function() {
+  it('should have the `lmdc-dialog__body--scrollable` class when scrollable=true', function() {
     const component = new $mockComponent({'scrollable': 'hasScroll'}, {hasScroll: false});
     const elem = component.$element;
 
-    expect(elem.hasClass('mdc-dialog__body--scrollable')).to.be.false;
+    expect(elem.hasClass('lmdc-dialog__body--scrollable')).to.be.false;
 
     component.$parent('hasScroll', true);
-    expect(elem.hasClass('mdc-dialog__body--scrollable')).to.be.true;
+    expect(elem.hasClass('lmdc-dialog__body--scrollable')).to.be.true;
 
     component.$parent('hasScroll', false);
-    expect(elem.hasClass('mdc-dialog__body--scrollable')).to.be.false;
+    expect(elem.hasClass('lmdc-dialog__body--scrollable')).to.be.false;
   });
 });

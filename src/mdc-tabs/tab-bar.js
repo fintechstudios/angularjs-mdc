@@ -1,11 +1,22 @@
 import {arrayUnion} from '../util/array-union';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {MDCComponentNg} from '../mdc-base/component-ng';
 
+import {BASE_CLASSNAME as TAB_BASE_CLASSNAME} from './tab';
 import {MDCTabBarScrollerController} from './tab-bar-scroller';
 
 import {MDCTabFoundation, MDCTabBarFoundation} from '@material/tabs';
 
+replaceFoundationConstants(MDCTabBarFoundation);
+replaceFoundationConstants(MDCTabFoundation);
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-tab-bar');
+const INDICATOR_CLASSNAME = `${BASE_CLASSNAME}__indicator`;
+const ICON_TABS_CLASSNAME = `${BASE_CLASSNAME}--icon-tabs`;
+const ICONS_WITH_TEXT_CLASSNAME = `${BASE_CLASSNAME}--icons-with-text`;
+const SCROLLER_SCROLL_FRAME_TABS_CLASSNAME = `${BASE_CLASSNAME}-scroller__scroll-frame__tabs`;
 
 /**
  * @ngdoc component
@@ -40,16 +51,16 @@ export class MDCTabBarController extends MDCComponentNg {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-tab-bar');
+    this.$element.addClass(BASE_CLASSNAME);
 
-    this.indicator_ = angular.element('<span class="mdc-tab-bar__indicator"></span>')[0];
+    this.indicator_ = angular.element(`<span class="${INDICATOR_CLASSNAME}"></span>`)[0];
     this.$element.append(this.indicator_);
 
     this.tabs_ = []; // tabs will automatically add themselves to the list using .addTab()
   }
 
   get tabElements() {
-    return [].slice.call(this.root_.getElementsByClassName('mdc-tab'));
+    return [].slice.call(this.root_.getElementsByClassName(TAB_BASE_CLASSNAME));
   }
 
   get value() {
@@ -152,7 +163,7 @@ export class MDCTabBarController extends MDCComponentNg {
     super.$postLink();
 
     if (this.scroller) {
-      this.$element.addClass('mdc-tab-bar-scroller__scroll-frame__tabs');
+      this.$element.addClass(SCROLLER_SCROLL_FRAME_TABS_CLASSNAME);
       this.scroller.setTabBar(this);
     }
   }
@@ -169,8 +180,8 @@ export class MDCTabBarController extends MDCComponentNg {
     super.$onChanges(changes);
 
     if (changes.variant) {
-      this.$element.toggleClass('mdc-tab-bar--icon-tabs', this.variant === 'icon');
-      this.$element.toggleClass('mdc-tab-bar--icons-with-text', this.variant === 'icons-text');
+      this.$element.toggleClass(ICON_TABS_CLASSNAME, this.variant === 'icon');
+      this.$element.toggleClass(ICONS_WITH_TEXT_CLASSNAME, this.variant === 'icons-text');
     }
   }
 

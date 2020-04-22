@@ -1,9 +1,14 @@
 import {directiveNormalize, convertStringsObjToBindingNames} from '../util/normalize';
+import {replaceFoundationConstants} from '../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 import {BaseComponent} from '../util/base-component';
 
 import {MDCIconToggleFoundation} from '@material/icon-toggle';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple';
 
+replaceFoundationConstants(MDCIconToggleFoundation);
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-icon-toggle');
 
 const bindings = {};
 const STRING_BINDINGS = convertStringsObjToBindingNames(MDCIconToggleFoundation.strings, ['CHANGE_EVENT']);
@@ -57,7 +62,7 @@ export class MDCIconToggleController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-icon-toggle');
+    this.$element.addClass(BASE_CLASSNAME);
     this.$element.attr('tabindex', 0);
     this.$element.ready(() => {
       this.ripple_ = this.initRipple_();

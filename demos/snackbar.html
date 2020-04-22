@@ -14,7 +14,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-<html class="mdc-typography">
+<html class="lmdc-typography">
   <head>
     <meta charset="utf-8">
     <title>Snackbar - Material Components Catalog</title>
@@ -26,11 +26,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <style>
       /* Override style for hero example. */
-      .hero .mdc-snackbar {
+      .hero .lmdc-snackbar {
         position: relative;
         left: auto;
       }
-      .hero .mdc-snackbar--active {
+      .hero .lmdc-snackbar--active {
         transform: none;
       }
 
@@ -45,27 +45,27 @@
   </head>
   <body ng-app="demo" class="loading" ng-controller="MainCtrl"
         dir="{{ isRTL ? 'rtl' : '' }}">
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <header class="lmdc-toolbar lmdc-toolbar--fixed">
+      <div class="lmdc-toolbar__row">
+        <section class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="lmdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">Snackbar</span>
+          <span class="lmdc-toolbar__title catalog-title">Snackbar</span>
         </section>
       </div>
     </header>
 
     <main>
-      <div class="mdc-toolbar-fixed-adjust"></div>
+      <div class="lmdc-toolbar-fixed-adjust"></div>
       <section class="hero">
-        <div class="mdc-snackbar mdc-snackbar--active"
+        <div class="lmdc-snackbar lmdc-snackbar--active"
              aria-live="assertive"
              aria-atomic="true"
              aria-hidden="true">
-          <div class="mdc-snackbar__text">Message sent</div>
-          <div class="mdc-snackbar__action-wrapper">
-            <button mdc-button type="button" class="mdc-snackbar__action-button">Undo</button>
+          <div class="lmdc-snackbar__text">Message sent</div>
+          <div class="lmdc-snackbar__action-wrapper">
+            <button mdc-button type="button" class="lmdc-snackbar__action-button">Undo</button>
           </div>
         </div>
       </section>
@@ -73,7 +73,7 @@
 
       <section class="example">
         <div>
-          <h2 class="mdc-typography--title">Basic Example</h2>
+          <h2 class="lmdc-typography--title">Basic Example</h2>
 
           <mdc-form-field>
             <mdc-checkbox ng-model="multiline"></mdc-checkbox>

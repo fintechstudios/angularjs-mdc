@@ -10,10 +10,10 @@ describe('mdc-ripple', () => {
     MockRipple = $componentGenerator('mdcRipple');
   }));
 
-  it('should have the `mdc-ripple-surface` class', () => {
+  it('should have the `lmdc-ripple-surface` class', () => {
     const component = new MockRipple();
     const elem = component.$element;
 
-    expect(elem.hasClass('mdc-ripple-surface'), 'missing class mdc-ripple-surface').to.be.true;
+    expect(elem.hasClass('lmdc-ripple-surface'), 'missing class mdc-ripple-surface').to.be.true;
   });
 });

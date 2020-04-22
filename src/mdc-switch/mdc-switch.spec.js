@@ -10,10 +10,10 @@ describe('mdc-switch', function() {
     $mockComponent = $componentGenerator('mdcSwitch');
   }));
 
-  it('should have the mdc-switch class', () => {
+  it('should have the lmdc-switch class', () => {
     const sw = new $mockComponent();
 
-    expect(sw.$element.hasClass('mdc-switch')).to.be.true;
+    expect(sw.$element.hasClass('lmdc-switch')).to.be.true;
   });
 
   it('should toggle as ng-model changes', function() {
@@ -41,7 +41,7 @@ describe('mdc-switch', function() {
     const elem = component.$element;
     const checkbox = angular.element(component.$element.find('input')[0]);
 
-    expect(elem.hasClass('mdc-switch--disabled')).to.be.true;
+    expect(elem.hasClass('lmdc-switch--disabled')).to.be.true;
     expect(checkbox.attr('disabled')).to.equal('disabled');
   }
 
@@ -49,7 +49,7 @@ describe('mdc-switch', function() {
     const elem = component.$element;
     const checkbox = angular.element(component.$element.find('input')[0]);
 
-    expect(elem.hasClass('mdc-switch--disabled')).to.be.false;
+    expect(elem.hasClass('lmdc-switch--disabled')).to.be.false;
     expect(checkbox.attr('disabled')).to.not.exist;
   }
 

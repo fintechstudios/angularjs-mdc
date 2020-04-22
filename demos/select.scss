@@ -11,7 +11,7 @@
   @include mdc-select-focused-label-color(green);
 }
 
-.demo-select-custom-colors.mdc-select--box {
+.demo-select-custom-colors.lmdc-select--box {
   @include mdc-select-container-fill-color(rgba(blue, .1));
 }
 // stylelint-enable selector-class-pattern

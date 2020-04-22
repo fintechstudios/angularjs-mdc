@@ -14,7 +14,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-<html class="mdc-typography">
+<html class="lmdc-typography">
   <head>
     <meta charset="utf-8">
     <title>Select Menu - Material Components Catalog</title>
@@ -32,19 +32,19 @@
     </style>
   </head>
   <body ng-app="demo">
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <header class="lmdc-toolbar lmdc-toolbar--fixed">
+      <div class="lmdc-toolbar__row">
+        <section class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="lmdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">Select</span>
+          <span class="lmdc-toolbar__title catalog-title">Select</span>
         </section>
       </div>
     </header>
 
     <main ng-controller="MainCtrl">
-      <div class="mdc-toolbar-fixed-adjust"></div>
+      <div class="lmdc-toolbar-fixed-adjust"></div>
       <section class="hero">
         <mdc-select label="Pick a food group" auto-resize="false">
           <mdc-select-item>Bread, Cereal, Rice, and Pasta</mdc-select-item>
@@ -57,7 +57,7 @@
       </section>
 
       <section class="example">
-        <h2 class="mdc-typography--title">Fully-Featured Component</h2>
+        <h2 class="lmdc-typography--title">Fully-Featured Component</h2>
         <section dir="{{ isRTL ? 'rtl': '' }}">
           <mdc-select label="Pick a food group"
                       ng-class="{'demo-select-custom-colors': altColors}"
@@ -89,7 +89,7 @@
       </section>
 
       <section class="example">
-        <h2 class="mdc-typography--title">Select box</h2>
+        <h2 class="lmdc-typography--title">Select box</h2>
         <section dir="{{ isRTL ? 'rtl': '' }}">
           <mdc-select label="Pick a food group" box="true"
                       ng-class="{'demo-select-custom-colors': altColors}"
@@ -121,7 +121,7 @@
       </section>
 
       <section class="example">
-        <h2 class="mdc-typography--title">With ng-repeat</h2>
+        <h2 class="lmdc-typography--title">With ng-repeat</h2>
         <mdc-select label="Items" ng-model="repeatSelected">
           <mdc-select-item ng-repeat="i in six" ng-value="i" ng-bind="::$index + 1"></mdc-select-item>
         </mdc-select>

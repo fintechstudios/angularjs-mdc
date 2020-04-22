@@ -1,7 +1,12 @@
 import {BaseComponent} from '../../util/base-component';
+import {replaceFoundationConstants} from '../../util/replace-foundation-constants';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
 import {MDCMenuController} from '../menu/component';
 
 import {MDCMenuFoundation} from '@material/menu';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-list-item');
+replaceFoundationConstants(MDCMenuFoundation);
 
 
 /**
@@ -48,7 +53,7 @@ export class MDCMenuItemController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-list-item');
+    this.$element.addClass(BASE_CLASSNAME);
     this.$element.attr('role', 'menuitem');
 
     this.selectHandler = ({detail: {index, item}}) => {

@@ -1,4 +1,12 @@
 import {BaseComponent} from '../../util/base-component';
+import {replaceMdcClassname} from '../../util/replace-mdc-classname';
+
+const BASE_CLASSNAME = replaceMdcClassname('mdc-list');
+const DENSE_CLASSNAME = `${BASE_CLASSNAME}--dense`;
+const AVATAR_LIST_CLASSNAME = `${BASE_CLASSNAME}--avatar-list`;
+const TWO_LINE_CLASSNAME = `${BASE_CLASSNAME}--two-line`;
+const NON_INTERACTIVE_CLASSNAME = `${BASE_CLASSNAME}--non-interactive`;
+
 
 /**
  * @ngdoc component
@@ -31,22 +39,22 @@ export class MDCListController extends BaseComponent {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-list');
+    this.$element.addClass(BASE_CLASSNAME);
     this.$element.attr('role', 'list');
   }
 
   $onChanges(changes) {
     if (changes.dense) {
-      this.$element.toggleClass('mdc-list--dense', Boolean(this.dense));
+      this.$element.toggleClass(DENSE_CLASSNAME, Boolean(this.dense));
     }
     if (changes.avatar) {
-      this.$element.toggleClass('mdc-list--avatar-list', Boolean(this.avatar));
+      this.$element.toggleClass(AVATAR_LIST_CLASSNAME, Boolean(this.avatar));
     }
     if (changes.twoLine) {
-      this.$element.toggleClass('mdc-list--two-line', Boolean(this.twoLine));
+      this.$element.toggleClass(TWO_LINE_CLASSNAME, Boolean(this.twoLine));
     }
     if (changes.nonInteractive) {
-      this.$element.toggleClass('mdc-list--non-interactive', Boolean(this.nonInteractive));
+      this.$element.toggleClass(NON_INTERACTIVE_CLASSNAME, Boolean(this.nonInteractive));
     }
   };
 }

@@ -1,8 +1,10 @@
 import {BaseComponent} from '../util/base-component';
 import {arrayUnion} from '../util/array-union';
+import {replaceMdcClassname} from '../util/replace-mdc-classname';
 
 import {MDCRippleMixin} from './mixin';
 
+const BASE_CLASSNAME = replaceMdcClassname('mdc-ripple-surface');
 
 /**
  * @ngdoc directive
@@ -24,6 +26,6 @@ export class MDCRippleController extends MDCRippleMixin(BaseComponent) {
   constructor(...args) {
     super(...args);
 
-    this.$element.addClass('mdc-ripple-surface');
+    this.$element.addClass(BASE_CLASSNAME);
   }
 }

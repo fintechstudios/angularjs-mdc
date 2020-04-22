@@ -37,7 +37,7 @@
         -webkit-user-select: none;
       }
 
-      .mdc-ripple-surface[data-mdc-ripple-is-unbounded] {
+      .lmdc-ripple-surface[data-mdc-ripple-is-unbounded] {
         width: 40px;
         height: 40px;
         padding: 0;
@@ -104,30 +104,30 @@
       }
     </style>
   </head>
-  <body ng-app="demo" class="mdc-typography">
+  <body ng-app="demo" class="lmdc-typography">
     <aside id="unsupported-msg">
       It appears your browser does not support custom properties, or has a broken implementation.
       Please try this in Chrome, Firefox, or Safari 10+.
     </aside>
-    <header class="mdc-toolbar mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+    <header class="lmdc-toolbar lmdc-toolbar--fixed">
+      <div class="lmdc-toolbar__row">
+        <section class="lmdc-toolbar__section lmdc-toolbar__section--align-start">
           <span class="catalog-back">
-            <a href="./" class="mdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
+            <a href="./" class="lmdc-toolbar__menu-icon"><mdc-icon>arrow_back</mdc-icon></a>
           </span>
-          <span class="mdc-toolbar__title catalog-title">Ripple</span>
+          <span class="lmdc-toolbar__title catalog-title">Ripple</span>
         </section>
       </div>
     </header>
     <main ng-controller="MainCtrl">
-      <div class="mdc-toolbar-fixed-adjust"></div>
+      <div class="lmdc-toolbar-fixed-adjust"></div>
 
-      <section class="hero mdc-ripple-surface"></section>
+      <section class="hero lmdc-ripple-surface"></section>
 
       <section class="example">
         <div>
           <h2>Bounded</h2>
-          <div class="demo-surface mdc-elevation--z2" mdc-ripple>
+          <div class="demo-surface lmdc-elevation--z2" mdc-ripple>
             Interact with me!
           </div>
         </div>
@@ -135,7 +135,7 @@
       <section class="example">
         <div>
           <h2>Unbounded</h2>
-          <div class="demo-surface mdc-elevation--z2" mdc-ripple data-mdc-ripple-is-unbounded="true">
+          <div class="demo-surface lmdc-elevation--z2" mdc-ripple data-mdc-ripple-is-unbounded="true">
             <mdc-icon>favorite</mdc-icon>
           </div>
         </div>
@@ -144,11 +144,11 @@
         <div>
           <h2>Theme Styles</h2>
           <div mdc-ripple
-               class="mdc-ripple-surface--primary mdc-theme--primary demo-surface mdc-elevation--z2">
+               class="lmdc-ripple-surface--primary lmdc-theme--primary demo-surface lmdc-elevation--z2">
             Primary
           </div>
           <div mdc-ripple
-               class="mdc-ripple-surface--accent mdc-theme--secondary demo-surface mdc-elevation--z2">
+               class="lmdc-ripple-surface--accent lmdc-theme--secondary demo-surface lmdc-elevation--z2">
             Secondary
           </div>
         </div>
@@ -157,7 +157,7 @@
         <div>
           <h2>Applied to <code>&lt;button&gt;</code> element</h2>
           <button mdc-ripple type="button"
-                  class="mdc-elevation--z2 demo-surface">button</button>
+                  class="lmdc-elevation--z2 demo-surface">button</button>
         </div>
       </section>
     </main>
