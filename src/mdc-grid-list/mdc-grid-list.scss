@@ -1,12 +1,6 @@
 @import '~@material/grid-list/mdc-grid-list';
 
-mdc-grid-list {
-  @extend .mdc-grid-list;
-}
-
-mdc-grid-tile {
-  @extend .mdc-grid-tile;
-
+.mdc-grid-tile {
   //TODO: remove when https://github.com/material-components/material-components-web/pull/1136 is merged
   /* @alternate */
   width: $mdc-grid-list-tile-width;

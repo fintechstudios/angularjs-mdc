@@ -1,15 +1,5 @@
 @import '~@material/list/mdc-list';
 
-mdc-list, mdc-list-item {
+.mdc-list, .mdc-list-item, .mdc-list-divider {
   display: block;
-}
-
-mdc-divider {
-  display: block;
-  @extend .mdc-list-divider;
-}
-
-mdc-divider-inset {
-  display: block;
-  @extend .mdc-list-divider, .mdc-list-divider--inset;
 }
