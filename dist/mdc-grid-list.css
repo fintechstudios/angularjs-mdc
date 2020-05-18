@@ -154,7 +154,7 @@
 .lmdc-grid-tile__primary {
   padding-bottom: calc(100% / 1); }
 
-.lmdc-grid-tile, mdc-grid-tile {
+.lmdc-grid-tile {
   margin: 2px 0;
   padding: 0 2px; }
 
@@ -170,7 +170,7 @@
   flex-flow: row wrap;
   padding: 0; }
 
-.lmdc-grid-list--tile-gutter-1 .lmdc-grid-tile, .lmdc-grid-list--tile-gutter-1 mdc-grid-tile {
+.lmdc-grid-list--tile-gutter-1 .lmdc-grid-tile {
   margin: 0.5px 0;
   padding: 0 0.5px; }
 
@@ -196,7 +196,7 @@
 .lmdc-grid-list--tile-aspect-3x4 .lmdc-grid-tile__primary {
   padding-bottom: calc(100% / 0.75); }
 
-.lmdc-grid-tile, mdc-grid-tile {
+.lmdc-grid-tile {
   display: block;
   position: relative;
   /* @alternate */
@@ -282,7 +282,8 @@
 .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary {
   padding-left: 56px;
   padding-right: 8px; }
-  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary {
+  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary,
+  [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__secondary {
     padding-left: 8px;
     padding-right: 56px; }
 
@@ -290,14 +291,15 @@
   left: 16px;
   right: initial;
   font-size: 24px; }
-  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__icon, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list--with-icon-align-end .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start mdc-icon, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list--with-icon-align-end mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start mdc-icon, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__icon, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list--with-icon-align-end [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start mdc-icon, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list--with-icon-align-end [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-start mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start mdc-icon, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-start mdc-icon {
+  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list--with-icon-align-end .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-start mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-tile__icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list--with-icon-align-end [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-start mdc-icon {
     left: initial;
     right: 16px; }
 
 .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary {
   padding-left: 16px;
   padding-right: 56px; }
-  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary {
+  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary,
+  [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__secondary {
     padding-left: 56px;
     padding-right: 16px; }
 
@@ -305,11 +307,11 @@
   left: initial;
   right: 16px;
   font-size: 24px; }
-  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__icon, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end mdc-icon, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list--with-icon-align-start .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end mdc-icon, mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list--with-icon-align-start mdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__icon, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end mdc-icon, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-end mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list--with-icon-align-start [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end mdc-icon, [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list--with-icon-align-start [dir="rtl"] mdc-grid-list .lmdc-grid-list--with-icon-align-end mdc-icon {
+  .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end mdc-icon, .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list--with-icon-align-start .lmdc-grid-list[dir="rtl"] .lmdc-grid-list--with-icon-align-end mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-tile__icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end mdc-icon, [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end .lmdc-grid-list--with-icon-align-start mdc-icon, .lmdc-grid-list--with-icon-align-start [dir="rtl"] .lmdc-grid-list .lmdc-grid-list--with-icon-align-end mdc-icon {
     left: 16px;
     right: initial; }
 
-mdc-grid-tile {
+.lmdc-grid-tile {
   /* @alternate */
   width: 200px;
   width: var(--mdc-grid-list-tile-width, 200px); }

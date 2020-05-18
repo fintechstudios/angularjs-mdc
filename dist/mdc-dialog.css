@@ -182,7 +182,7 @@
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
 /* TODO(sgomes): Figure out what to do about desktop font sizes. */
 /* TODO(sgomes): Figure out what to do about i18n and i18n font sizes. */
-.lmdc-dialog, mdc-dialog {
+.lmdc-dialog {
   display: flex;
   position: fixed;
   top: 0;
@@ -222,20 +222,22 @@
           transform: translateY(150px) scale(0.8);
   border-radius: 2px;
   opacity: 0; }
-  .lmdc-dialog[dir="rtl"] .lmdc-dialog__surface, mdc-dialog[dir="rtl"] .lmdc-dialog__surface, [dir="rtl"] .lmdc-dialog .lmdc-dialog__surface, [dir="rtl"] mdc-dialog .lmdc-dialog__surface {
+  .lmdc-dialog[dir="rtl"] .lmdc-dialog__surface,
+  [dir="rtl"] .lmdc-dialog .lmdc-dialog__surface {
     text-align: right; }
 
-.lmdc-dialog__header, mdc-dialog-header {
+.lmdc-dialog__header {
   display: flex;
   align-items: center;
   padding: 24px 24px 0; }
-  .lmdc-dialog[dir="rtl"] .lmdc-dialog__header, mdc-dialog[dir="rtl"] .lmdc-dialog__header, .lmdc-dialog[dir="rtl"] mdc-dialog-header, mdc-dialog[dir="rtl"] mdc-dialog-header, [dir="rtl"] .lmdc-dialog .lmdc-dialog__header, [dir="rtl"] mdc-dialog .lmdc-dialog__header, [dir="rtl"] .lmdc-dialog mdc-dialog-header, [dir="rtl"] mdc-dialog mdc-dialog-header {
+  .lmdc-dialog[dir="rtl"] .lmdc-dialog__header,
+  [dir="rtl"] .lmdc-dialog .lmdc-dialog__header {
     text-align: right; }
 
 .lmdc-dialog__header__empty {
   padding: 0; }
 
-.lmdc-dialog__header__title, mdc-dialog-title {
+.lmdc-dialog__header__title {
   font-family: Roboto, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -248,7 +250,7 @@
   flex: 1;
   margin: 0; }
 
-.lmdc-dialog__body, mdc-dialog-body {
+.lmdc-dialog__body {
   /* @alternate */
   color: rgba(0, 0, 0, 0.54);
   color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, 0.54));
@@ -272,7 +274,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
 
-.lmdc-dialog__footer, mdc-dialog-footer {
+.lmdc-dialog__footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -298,11 +300,11 @@
   color: var(--mdc-theme-secondary, #018786); }
 
 @media (max-width: 640px) {
-  .lmdc-dialog, mdc-dialog {
+  .lmdc-dialog {
     min-width: 280px; }
   .lmdc-dialog__surface {
     min-width: 280px; }
-  .lmdc-dialog__body, mdc-dialog-body {
+  .lmdc-dialog__body {
     line-height: 24px; } }
 
 .lmdc-dialog--animating {
